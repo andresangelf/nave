@@ -184,7 +184,7 @@ const defaults = (kind) => ({
   // fuente
   image: null, shape: 'esfera', angle: 90, lockup: 'principal',
   // encuadre de la fuente
-  scale: kind === 'simbolo' ? .84 : 1, ox: 0, oy: 0,
+  scale: kind === 'simbolo' ? .84 : 1, ox: 0, oy: 0, fit: 'cubrir', alpha: true,
   // retícula
   grid: 'hex', sep: 18, dot: 'circulo',
   // tono
@@ -259,16 +259,24 @@ const L = () => doc.layers.find(l => l.id === doc.sel);
 
 /* ——— Fuentes de tono: cada capa produce un campo de luminancia 0..1 ——— */
 const fieldCache = new Map();
-function fieldKey(l) { return [l.kind, l.image, l.shape, l.angle, l.scale, l.ox, l.oy, doc.w, doc.h].join('|'); }
+function fieldKey(l) { return [l.kind, l.image, l.shape, l.angle, l.scale, l.ox, l.oy, l.fit, doc.w, doc.h].join('|'); }
 function makeField(l) {
   const key = fieldKey(l); if (fieldCache.has(key)) return fieldCache.get(key);
   const k = Math.min(1, 900 / Math.max(doc.w, doc.h)), W = Math.max(2, Math.round(doc.w * k)), H = Math.max(2, Math.round(doc.h * k));
   const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d', { willReadFrequently: true });
+  let alpha = null;
   x.fillStyle = '#000'; x.fillRect(0, 0, W, H);
   const cx = W / 2 + l.ox / 100 * W, cy = H / 2 + l.oy / 100 * H, S = Math.min(W, H) * l.scale;
   if (l.kind === 'imagen') {
     const im = IMAGES.get(l.image);
-    if (im) { const r = Math.max(W / im.img.width, H / im.img.height) * l.scale; const iw = im.img.width * r, ih = im.img.height * r; x.drawImage(im.img, cx - iw / 2, cy - ih / 2, iw, ih); }
+    if (im) {
+      const r = (l.fit === 'contener' ? Math.min : Math.max)(W / im.img.width, H / im.img.height) * l.scale, iw = im.img.width * r, ih = im.img.height * r;
+      // canal alfa aparte: lo transparente del PNG (y lo que queda fuera de la imagen) no lleva puntos
+      const ca = document.createElement('canvas'); ca.width = W; ca.height = H; const xa = ca.getContext('2d', { willReadFrequently: true });
+      xa.drawImage(im.img, cx - iw / 2, cy - ih / 2, iw, ih); const ad = xa.getImageData(0, 0, W, H).data;
+      alpha = new Float32Array(W * H); for (let i = 0; i < W * H; i++) alpha[i] = ad[i * 4 + 3] / 255;
+      x.drawImage(ca, 0, 0);
+    }
   } else if (l.kind === 'simbolo') {
     x.translate(cx - S / 2, cy - S / 2); x.scale(S / 200, S / 200); x.fillStyle = '#fff'; x.fill(symPath);
   } else if (l.kind === 'forma') {
@@ -313,7 +321,8 @@ function makeField(l) {
   }
   const raw = x.getImageData(0, 0, W, H).data, lum = new Float32Array(W * H);
   for (let i = 0; i < W * H; i++) lum[i] = (.2126 * raw[i * 4] + .7152 * raw[i * 4 + 1] + .0722 * raw[i * 4 + 2]) / 255;
-  const f = { W, H, k, lum, sample(px, py) { const i = clamp(Math.round(px * k), 0, W - 1), j = clamp(Math.round(py * k), 0, H - 1); return lum[j * W + i]; } };
+  const at = (px, py) => clamp(Math.round(py * k), 0, H - 1) * W + clamp(Math.round(px * k), 0, W - 1);
+  const f = { W, H, k, lum, sample(px, py) { return lum[at(px, py)]; }, alphaAt(px, py) { return alpha ? alpha[at(px, py)] : 1; } };
   fieldCache.clear(); fieldCache.set(key, f);   // se conserva la última; las capas se recalculan rápido
   return f;
 }
@@ -346,6 +355,8 @@ function points(l) {
       if (l.grid === 'ruido') { px += (hash(i, j, l.seed) - .5) * s * .9; py += (hash(i, j, l.seed + 7) - .5) * s * .9; }
       if (px < -s || py < -s || px > doc.w + s || py > doc.h + s) continue;
       if (!inMask(l, px, py)) continue;
+      let a = 1;
+      if (l.kind === 'imagen' && l.alpha !== false) { a = f.alphaAt(px, py); if (a < .35) continue; }
       let v = f.sample(px, py);
       if (l.tone === 'sombras') v = 1 - v;
       v = clamp((v - .5) * con + .5); v = Math.pow(v, gam);
@@ -353,6 +364,7 @@ function points(l) {
         const t = { arriba: py / doc.h, abajo: 1 - py / doc.h, izquierda: px / doc.w, derecha: 1 - px / doc.w, centro: 1 - Math.hypot(px / doc.w - .5, py / doc.h - .5) * 1.6 }[l.fadeDir];
         v *= (1 - fade) + fade * sstep(0, 1, t);
       }
+      if (a < 1) v *= a;
       if (v <= cut) continue;
       let r;
       if (l.mode === 'presencia') { if (hash(i, j, l.seed) > v) continue; r = maxR; }
@@ -514,14 +526,20 @@ let pendingRecipe = null;
 function addImage(src, name, id) {
   return new Promise((res, rej) => { const img = new Image(); img.onload = () => { id = id || 'img-' + uid(); IMAGES.set(id, { img, src, name }); res(id); }; img.onerror = () => rej(new Error('Imagen no válida')); img.src = src; });
 }
+function hasAlpha(src) {
+  const k = Math.min(1, 256 / Math.max(src.width, src.height)), c = document.createElement('canvas'); c.width = Math.max(1, Math.round(src.width * k)); c.height = Math.max(1, Math.round(src.height * k));
+  const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(src, 0, 0, c.width, c.height); const d = x.getImageData(0, 0, c.width, c.height).data;
+  for (let i = 3; i < d.length; i += 4) if (d[i] < 250) return true; return false;
+}
 function readFile(file) { return new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = rej; fr.readAsDataURL(file); }); }
 async function addImageLayer(file) {
   const src = await readFile(file);
   // reduce a 1600 px para mantener recetas livianas
   const big = await addImage(src, file.name), im = IMAGES.get(big).img, k = Math.min(1, 1600 / Math.max(im.width, im.height));
-  if (k < 1) { const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); IMAGES.delete(big); await addImage(c.toDataURL('image/jpeg', .86), file.name, big); }
+  if (k < 1) { const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); IMAGES.delete(big); await addImage(hasAlpha(c) ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .86), file.name, big); }
   if (pendingRecipe === 'foto') { pendingRecipe = null; doc.bg = 'ambar'; doc.layers = []; }
   const l = { ...defaults('imagen'), image: big, name: file.name.replace(/\.[^.]+$/, '').slice(0, 28) };
+  if (hasAlpha(IMAGES.get(big).img)) l.fit = 'contener';   // recorte PNG: se ve completo y solo su silueta lleva puntos
   if (doc.bg === 'ambar') { l.color = 'espacio'; l.tone = 'sombras'; }
   else if (['crema', 'niebla', 'ambar', 'blanco'].includes(doc.bg)) { l.color = 'espacio'; }
   doc.layers.push(l); doc.sel = l.id; ui();
@@ -594,6 +612,7 @@ function props() {
   else if (l.kind === 'marca') h += SEG('lockup', 'Versión', [['principal', 'Principal'], ['nave', 'NΛVE']]) + R('w', 'Ancho', 10, 95, 1, '%') + R('ox', 'Mover X', -50, 50, 1, '%') + R('oy', 'Mover Y', -50, 50, 1, '%') +
     `<div class="row two"><label>NΛVE</label>${palette('colW', l.colW, [...BRAND, 'blanco'])}</div>` + (l.lockup === 'principal' ? `<div class="row two"><label>Café</label>${palette('colC', l.colC, [...BRAND, 'blanco'])}</div>` : '') + R('opacity', 'Opacidad', 0, 100, 1, '%') + '</div>';
   else {
+    if (l.kind === 'imagen') h += SEG('fit', 'Encuadre', [['cubrir', 'Cubrir'], ['contener', 'Contener']]) + CK('alpha', 'Respetar transparencia (PNG): solo la silueta lleva puntos');
     h += R('scale', 'Escala', .2, 3, .01) + R('ox', 'Mover X', -50, 50, 1, '%') + R('oy', 'Mover Y', -50, 50, 1, '%') + '</div>';
     h += `<div class="sec"><h3>Retícula</h3>` + SEG('grid', 'Tipo', [['hex', 'Hexagonal'], ['cuadrada', 'Cuadrada'], ['ruido', 'Orgánica']]) + R('sep', 'Separación', 4, 80, 1, '') + SEG('dot', 'Punto', [['circulo', '●'], ['cuadrado', '■'], ['rombo', '◆'], ['cruz', '+'], ['anillo', '○']]) + `<p class="hint">Separación en px sobre un lado corto de 1080. La relación de la casa es 4 : 1 (tamaño máximo 25%).</p></div>`;
     h += `<div class="sec"><h3>Tono</h3>` + SEG('tone', 'Los puntos son', [['luces', 'Luces'], ['sombras', 'Sombras']]) + SEG('mode', 'El tono cambia', [['tamano', 'Tamaño'], ['presencia', 'Presencia'], ['ambos', 'Ambos']]) +

@@ -37,7 +37,7 @@ Presentación en Figma (56 láminas, estilos y componentes): https://www.figma.c
 
 1. Abre `herramientas/trama-estudio.html` en el navegador (funciona sin conexión; usa Standerd y Lenia si están instaladas).
 2. Elige el formato. Agrega **Soporte** si la pieza necesita retícula, margen 2M, marcas de registro, zona segura o línea de corte.
-3. Suelta o pega imágenes: cada una es una capa que se convierte en puntos. Suma símbolo, formas (esfera, planeta, toroide, volcán, degradado, onda) o el logotipo.
+3. Suelta o pega imágenes: cada una es una capa que se convierte en puntos. Un PNG con transparencia solo lleva puntos en su silueta (opción **Respetar transparencia**) y entra con encuadre **Contener** para verse completo; una foto entra en **Cubrir**. Suma símbolo, formas (esfera, planeta, toroide, volcán, degradado, onda) o el logotipo.
 4. Ajusta por capa: retícula (hexagonal, cuadrada, orgánica), forma del punto, tono (luces o sombras), tamaño o presencia, contraste, densidad direccional, desplazamiento (lente), máscara, color de la paleta y mezcla.
 5. **Guardar receta** crea un JSON reutilizable (con las imágenes incluidas). Cualquiera del equipo lo abre y obtiene la misma trama.
 6. **Copiar SVG** y pegar en Figma: llega como vectores con un grupo por capa (`01 · Soporte`, `02 · Foto`…). También hay descarga de SVG y PNG.
