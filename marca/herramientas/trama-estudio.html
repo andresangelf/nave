@@ -448,9 +448,17 @@ function buildSVG() {
   });
   return s + '</svg>';
 }
-function download(name, blob) {
-  try { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Descarga iniciada: ' + name); }
-  catch (e) { toast('Este visor no permite descargas. Usa “Copiar SVG” o abre el archivo local.'); }
+// En el visor de Claude las descargas pasan por la capacidad `downloads`; abierto como archivo local, por un enlace normal.
+let dlCap; const dlReady = window.claude && window.claude.use ? window.claude.use('downloads').then(d => (dlCap = d)).catch(() => (dlCap = null)) : Promise.resolve(dlCap = undefined);
+async function download(name, blob) {
+  await dlReady;
+  if (dlCap) {
+    try { await dlCap.save({ filename: name, data: blob }); toast('Archivo guardado: ' + name); }
+    catch (e) { toast(e && e.code === 'declined' ? 'Descarga cancelada.' : 'No se pudo guardar aquí. Usa “Copiar SVG”.'); }
+    return;
+  }
+  if (dlCap === null) { toast('Este visor no permite descargas. Usa “Copiar SVG” o abre el archivo local.'); return; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Descarga iniciada: ' + name);
 }
 const stamp = () => `nave-trama-${doc.fmt}-${new Date().toISOString().slice(0, 10)}`;
 $('#b-svg').onclick = () => download(stamp() + '.svg', new Blob([buildSVG()], { type: 'image/svg+xml' }));
