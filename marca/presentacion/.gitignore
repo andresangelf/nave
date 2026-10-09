@@ -1,4 +1,5 @@
-svg/
-png/
-manifest.json
 __pycache__/
+experimental/
+manifest.json
+png/
+svg/

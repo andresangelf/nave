@@ -1,6 +1,6 @@
 # Presentación · Bitácora de despegue
 
-Archivo de Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG (página «Presentación · Despegue», 45 láminas en seis fases: Tierra, Presión, Condiciones, Astillero, Despegue y Órbita). La página «00 · Léeme», encima de las láminas, explica cómo está armada.
+Archivo de Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG (página «Presentación · Despegue», 45 láminas en seis fases: Tierra, Presión, Condiciones, Astillero, Despegue y Órbita, más tres brand boards de anexo). La página «00 · Léeme», encima de las láminas, explica cómo está armada.
 
 Aquí está lo necesario para regenerar las tramas de la presentación:
 
@@ -12,6 +12,7 @@ Aquí está lo necesario para regenerar las tramas de la presentación:
 | `fotos/` | Fotografías fuente generadas con Figma AI solo para presentar. Cuando existan fotos reales del espacio, reemplázalas con el mismo nombre y vuelve a generar. |
 | `generar_piezas.py` | Tramas de las piezas de la página «Pruebas» y de la señalética: teselas de micropunto, serie «Entre», historia de evento, etiqueta, tote, vaso desplegado, membresía, variantes de retícula y punto, y el storyboard de movimiento. |
 | `revelado.py` | Revelado de película para el estilo fotográfico: B/N tipo Tri-X o color tipo Ektachrome de los 80, con grano en dos escalas, negros lavados, halación y viñeta. |
+| `texturas_experimentales.py` | Texturas de la página «Exploración · experimental»: foto que se vuelve trama, duotono, riso a dos tintas, fotocopia, hoja de contactos y sello en kraft. |
 | `fotos/estilo/` | Las 6 escenas de Nave sin revelar (Figma AI): reacción, equipo, brindis, pizarra, prototipo y cabina. |
 
 ```sh
