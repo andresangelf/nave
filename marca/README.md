@@ -18,6 +18,7 @@ Presentación en Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG. La 
 | `tokens.css`, `tokens.json` | Color, tipografía, retícula y tamaños mínimos. |
 | `presentacion/` | Generador de las tramas y fotos en trama de la presentación «Bitácora de despegue». |
 | `herramientas/trama-estudio.html` | Estudio de Trama: genera tramas por capas a partir de imágenes, símbolo y formas, y el soporte (retícula, margen, marcas, zona segura, corte) según el formato. Exporta SVG por capas, PNG y recetas JSON. |
+| `herramientas/animacion-apertura.html` | «Mil pequeños pasos»: animación de apertura de 12 s en bucle (canvas 1920×1080). Del punto Ignición a la órbita: retícula M, trama que se presuriza, 1018 puntos que arman el símbolo en el orden de su trayectoria y lockup con la promesa. Trae transporte, velocidad, cuadro a cuadro y el guion para After Effects. |
 
 ## Decisiones principales
 
