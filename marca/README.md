@@ -22,7 +22,7 @@ Presentación en Figma (56 láminas, estilos y componentes): https://www.figma.c
 
 - **Símbolo:** una sola trayectoria (órbita → despegue en Λ → aterrizaje) construida con un módulo `t = 0.28 R` y piernas a 45°. Versión de puntos para escalas grandes, sólida debajo de 160 px / 30 mm.
 - **Color:** la paleta de Figma organizada por función: Base (Crema, Niebla), Profundidad (Espacio, Tueste), Combustión (Ignición, Ámbar) e Instrumentos (Acero, Petróleo, Señal). Un acento por pieza.
-- **Tipografía:** Standerd (Craft Supply Co.) + Lenia Mono, licenciadas. Respaldo libre en web: Inter Tight + JetBrains Mono. El trazo de “Café” es solo logotipo. Los archivos de fuente no se versionan en este repositorio.
+- **Tipografía:** Standerd (Craft Supply Co.) + Lenia Mono, licenciadas. Respaldo libre en web: Inter Tight + JetBrains Mono. El trazo de “Café” es solo logotipo. Los archivos de fuente no se versionan en este repositorio. Standerd es variable y su instancia por defecto es Thin: el texto corrido va a 480, subtítulos a 600 y titulares a 700, con el eje `wght` declarado (`font-variation-settings`) para que no caiga en Thin al usar la fuente instalada.
 - **Retícula:** `M = lado corto / 20`, margen `2M`, trama a `M/2` o `M/4`.
 - **Orientación:** espacios con nombre, código de tres letras y emblema; señal de sala en cuatro niveles; pantalla “Estado de la nave”.
 

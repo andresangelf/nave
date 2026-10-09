@@ -3,24 +3,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-<style>
+<style>@font-face{font-family:"Standerd Nave";src:local("Standerd Regular"),local("Standerd-Regular"),local("Standerd"),local("StanderdVF");font-weight:100;--wg:100 900;font-style:normal}
+:root{--wg:400}*,::before,::after{font-variation-settings:"wght" var(--wg)}h1,h2,h3,h4,h5,h6,b,strong,th{--wg:700}[font-weight="400"]{--wg:400}[font-weight="500"]{--wg:500}[font-weight="600"]{--wg:600}[font-weight="700"]{--wg:700}
+
 /* Layout: mesa de trabajo de tres columnas — capas · lienzo · propiedades. Interfaz en Espacio para que el lienzo sea lo único con color. */
 :root{
   color-scheme:dark;
   --crema:#FFF5EE; --niebla:#D7E1E2; --espacio:#012436; --tueste:#210A05; --ignicion:#E55C41; --ambar:#EFA441; --acero:#798E91; --petroleo:#005A88; --senal:#0067DE;
   --ui:#00131D; --ui-2:#011B29; --ui-3:#06293C; --line:rgba(255,245,238,.1); --line-2:rgba(255,245,238,.2);
-  --tx:#FFF5EE; --tx-2:rgba(255,245,238,.62); --tx-3:rgba(255,245,238,.4);
-  --sans:"Standerd","Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --tx:#FFF5EE; --tx-2:rgba(255,245,238,.78); --tx-3:rgba(255,245,238,.56);
+  --sans:"Standerd Nave","Standerd","Inter Tight","Helvetica Neue",Arial,sans-serif;
   --mono:"Lenia Mono","JetBrains Mono",ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--ui);color:var(--tx);font:14px/1.45 var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+body{margin:0;background:var(--ui);color:var(--tx);font:14px/1.45 var(--sans);font-weight:480;--wg:480;letter-spacing:.005em;-webkit-font-smoothing:antialiased;overflow:hidden}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--senal);outline-offset:2px}
 .app{display:grid;grid-template-columns:270px minmax(0,1fr) 320px;grid-template-rows:52px minmax(0,1fr);height:100%}
 header{grid-column:1/-1;display:flex;align-items:center;gap:16px;padding:0 16px;border-bottom:1px solid var(--line);background:var(--ui)}
-header .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+header .brand{display:flex;align-items:center;gap:10px;font-weight:600;--wg:600;letter-spacing:-.005em;white-space:nowrap}
 header .brand svg{width:22px;height:22px}
 header .sp{flex:1}
 .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx-2)}
@@ -33,7 +35,7 @@ aside{background:var(--ui-2);overflow:auto;min-height:0}
 aside.left{border-right:1px solid var(--line)}
 aside.right{border-left:1px solid var(--line)}
 .sec{padding:14px 16px;border-bottom:1px solid var(--line)}
-.sec h3{margin:0 0 10px;font-size:11px;font-family:var(--mono);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ambar)}
+.sec h3{margin:0 0 10px;font-size:11px;font-family:var(--mono);font-weight:500;--wg:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ambar)}
 .layers{list-style:none;margin:0;padding:6px;display:flex;flex-direction:column;gap:2px}
 .layers li{display:grid;grid-template-columns:18px 26px minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
 .layers li:hover{background:rgba(255,245,238,.04)}
@@ -51,7 +53,7 @@ aside.right{border-left:1px solid var(--line)}
   linear-gradient(rgba(255,245,238,.03) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(255,245,238,.03) 1px,transparent 1px) 0 0/24px 24px,#000C14}
 .stage canvas{display:block;box-shadow:0 30px 60px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,245,238,.06)}
 .stage .meta{position:absolute;left:16px;bottom:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--tx-3);text-transform:uppercase}
-.drop{position:absolute;inset:16px;border:2px dashed var(--ambar);border-radius:10px;display:none;place-items:center;background:rgba(1,36,54,.75);font-size:18px;font-weight:600;pointer-events:none}
+.drop{position:absolute;inset:16px;border:2px dashed var(--ambar);border-radius:10px;display:none;place-items:center;background:rgba(1,36,54,.75);font-size:18px;font-weight:600;--wg:600;pointer-events:none}
 .stage.over .drop{display:grid}
 .row{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;align-items:center;gap:8px;margin:8px 0}
 .row.two{grid-template-columns:96px minmax(0,1fr)}
@@ -75,12 +77,12 @@ input[type=number]{font-family:var(--mono);font-size:12px}
 .hint{font-size:12.5px;color:var(--tx-3);margin:6px 0 0}
 .thumb{width:100%;aspect-ratio:16/10;border:1px dashed var(--line-2);border-radius:6px;display:grid;place-items:center;overflow:hidden;cursor:pointer;color:var(--tx-3);font-size:12.5px;text-align:center;padding:8px;background:var(--ui)}
 .thumb img{width:100%;height:100%;object-fit:contain}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--crema);color:var(--espacio);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--crema);color:var(--espacio);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;--wg:600;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
 .toast.on{opacity:1}
 .recipes{display:grid;gap:6px}
 .recipes button{text-align:left;padding:9px 10px;border-radius:6px;border:1px solid var(--line);background:var(--ui);cursor:pointer}
 .recipes button:hover{border-color:var(--line-2)}
-.recipes b{display:block;font-size:13px;font-weight:600}
+.recipes b{display:block;font-size:13px;font-weight:600;--wg:600}
 .recipes span{font-size:11.5px;color:var(--tx-3)}
 textarea#manual{width:100%;height:120px;background:var(--ui);border:1px solid var(--line-2);border-radius:6px;font-family:var(--mono);font-size:10.5px;padding:8px}
 .empty{color:var(--tx-3);font-size:13px;padding:12px 16px}
@@ -92,7 +94,7 @@ textarea#manual{width:100%;height:120px;background:var(--ui);border:1px solid va
   aside.left,aside.right{border:0;border-top:1px solid var(--line)}
 }
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
-</style></head><body>
+</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
@@ -623,8 +625,9 @@ function persist() { clearTimeout(saveT); saveT = setTimeout(() => { try { local
   let r = null; try { r = JSON.parse(localStorage.getItem('nave-trama') || 'null'); } catch (e) {}
   if (r && r.capas && r.capas.length && !r.capas.some(c => c.kind === 'imagen')) await loadRecipe(r);
   else await loadRecipe({ tipo: 'nave-trama', ...JSON.parse(JSON.stringify(HOUSE[0].r)) });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+  if (document.fonts && document.fonts.ready) Promise.all(['400','500','600','700'].map(w=>document.fonts.load(w+' 16px "Standerd Nave"').catch(()=>{}))).then(()=>document.fonts.ready).then(redraw);
 })();
 })();
 </script>
+
 </body></html>

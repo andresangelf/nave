@@ -4,7 +4,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..800&family=Host+Grotesk:ital,wght@0,300..800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
-<style>
+<style>@font-face{font-family:"Standerd Nave";src:local("Standerd Regular"),local("Standerd-Regular"),local("Standerd"),local("StanderdVF");font-weight:100;--wg:100 900;font-style:normal}
+:root{--wg:400}*,::before,::after{font-variation-settings:"wght" var(--wg)}h1,h2,h3,h4,h5,h6,b,strong,th{--wg:700}[font-weight="400"]{--wg:400}[font-weight="500"]{--wg:500}[font-weight="600"]{--wg:600}[font-weight="700"]{--wg:700}
+
 /* Layout: lámina de astillero — retícula de módulo M, marcas de registro en las esquinas, una idea por lámina.
    Página de un solo mundo visual (la marca real): fondo Crema y secciones Espacio; no se invierte en modo oscuro. */
 :root{
@@ -16,16 +18,16 @@
   --acero:#798E91; --petroleo:#005A88; --senal:#0067DE;
   /* Derivados funcionales */
   --ink:var(--espacio);
-  --ink-2:#3B5565;
-  --ink-3:#6B7F89;
+  --ink-2:#2B4656;
+  --ink-3:#536874;
   --rule:rgba(1,36,54,.14);
   --rule-strong:rgba(1,36,54,.28);
   --sheet:#FFFAF6;
   --on-dark:#FFF5EE;
-  --on-dark-2:rgba(255,245,238,.66);
+  --on-dark-2:rgba(255,245,238,.8);
   --rule-dark:rgba(255,245,238,.14);
   /* Tipografía */
-  --f-sans:"Standerd","Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-sans:"Standerd Nave","Standerd","Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
   --f-mono:"Lenia Mono","JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --t-signal:clamp(64px,11vw,148px);
   --t-h1:clamp(40px,6.4vw,92px);
@@ -41,7 +43,7 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--crema);color:var(--ink);font-family:var(--f-sans);font-size:var(--t-body);line-height:1.55;-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
+body{background:var(--crema);color:var(--ink);font-family:var(--f-sans);font-size:var(--t-body);line-height:1.55;font-weight:480;--wg:480;letter-spacing:.005em;-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
 img,svg,canvas{max-width:100%}
 canvas{display:block}
 a{color:inherit}
@@ -50,11 +52,11 @@ a{color:inherit}
 
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:max(16px,4vw)}
 .mono{font-family:var(--f-mono)}
-.label{font-family:var(--f-mono);font-size:var(--t-data);letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.label{font-family:var(--f-mono);font-size:var(--t-data);letter-spacing:.12em;text-transform:uppercase;font-weight:500;--wg:500}
 .tnum{font-variant-numeric:tabular-nums}
-h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.04;text-wrap:balance}
+h1,h2,h3,h4{margin:0;font-weight:700;--wg:700;letter-spacing:-.01em;line-height:1.04;text-wrap:balance}
 p{margin:0}
-.lede{font-size:clamp(18px,1.6vw,21px);line-height:1.5;color:var(--ink-2);max-width:62ch}
+.lede{font-size:clamp(18px,1.6vw,21px);line-height:1.5;font-weight:480;--wg:480;color:var(--ink-2);max-width:62ch}
 .muted{color:var(--ink-2)}
 .dark .muted,.dark .lede{color:var(--on-dark-2)}
 
@@ -81,7 +83,7 @@ section{position:relative}
 .sec-head h2{font-size:var(--t-h2);margin-bottom:20px}
 .sub{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:16px 40px;margin-top:clamp(56px,8vw,96px);margin-bottom:28px;align-items:baseline}
 .sub:first-of-type{margin-top:0}
-.sub h3{font-size:var(--t-h3);font-weight:650;letter-spacing:-.01em}
+.sub h3{font-size:var(--t-h3);font-weight:650;--wg:650;letter-spacing:-.005em}
 .sub .label{color:var(--ink-3)}
 .dark .sub .label,.cacao .sub .label{color:var(--on-dark-2)}
 .sub p{color:var(--ink-2);max-width:64ch;margin-top:8px}
@@ -103,7 +105,7 @@ section{position:relative}
 .reg > .reg-b::before{bottom:-7px;left:-7px}.reg > .reg-b::after{bottom:-7px;right:-7px}
 .cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
 .dark .cap,.cacao .cap{color:var(--on-dark-2)}
-.cap b{color:var(--ink);font-weight:500}
+.cap b{color:var(--ink);font-weight:500;--wg:500}
 .dark .cap b{color:var(--on-dark)}
 
 .grid{display:grid;gap:clamp(16px,2.4vw,28px)}
@@ -126,7 +128,7 @@ section{position:relative}
 .hero{background:var(--espacio);color:var(--on-dark);overflow:hidden;position:relative}
 .hero .gridbg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9}
 .hero-in{position:relative;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:32px 48px;align-items:center;padding-block:clamp(48px,7vw,96px) clamp(48px,7vw,88px)}
-.hero h1{font-size:var(--t-h1);letter-spacing:-.028em;line-height:.98;margin-top:28px}
+.hero h1{font-size:var(--t-h1);letter-spacing:-.014em;line-height:.98;margin-top:28px}
 .hero .lede{color:var(--on-dark-2);margin-top:28px;max-width:46ch}
 .hero-meta{display:flex;gap:10px 28px;flex-wrap:wrap;margin-top:40px;color:var(--on-dark-2)}
 .hero-meta span{display:flex;gap:8px;align-items:center}
@@ -140,7 +142,7 @@ section{position:relative}
 /* ——— Concepto ——— */
 .map{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--rule-strong)}
 .map-row{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) minmax(0,3fr);gap:16px 32px;padding-block:22px;border-bottom:1px solid var(--rule)}
-.map-row blockquote{margin:0;font-size:clamp(19px,1.8vw,23px);font-weight:500;letter-spacing:-.01em;line-height:1.3}
+.map-row blockquote{margin:0;font-size:clamp(19px,1.8vw,23px);font-weight:500;--wg:500;letter-spacing:-.005em;line-height:1.3}
 .map-row p{color:var(--ink-2)}
 .map-row .where{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--rule-strong);border-radius:999px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
@@ -153,7 +155,7 @@ section{position:relative}
 .layer{padding:20px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:14px;min-width:0}
 .layer:last-child{border-right:0}
 .layer .ratio{border:1px solid var(--rule)}
-.layer h4{font-size:20px;letter-spacing:-.01em}
+.layer h4{font-size:20px;letter-spacing:-.005em}
 .layer p{font-size:15px;color:var(--ink-2)}
 .layer .pillar{margin-top:auto;color:var(--ignicion)}
 @media (max-width:900px){.layers{grid-template-columns:repeat(2,minmax(0,1fr))}.layer:nth-child(2){border-right:0}.layer:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
@@ -177,13 +179,13 @@ section{position:relative}
 /* ——— Color ——— */
 .sw-group{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:16px 40px;padding-block:24px;border-top:1px solid var(--rule)}
 .sw-group:first-child{border-top:1px solid var(--rule-strong)}
-.sw-group h4{font-size:18px;letter-spacing:-.01em}
+.sw-group h4{font-size:18px;letter-spacing:-.005em}
 .sw-group .why{font-size:14.5px;color:var(--ink-2);margin-top:6px;max-width:34ch}
 .swatches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .sw{display:flex;flex-direction:column;min-width:0}
 .sw .chipc{aspect-ratio:3/2;border-radius:2px;position:relative;border:1px solid rgba(1,36,54,.08)}
 .sw .chipc span{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em}
-.sw h5{margin:12px 0 2px;font-size:17px;font-weight:650;letter-spacing:-.01em}
+.sw h5{margin:12px 0 2px;font-size:17px;font-weight:650;--wg:650;letter-spacing:-.005em}
 .sw dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0 10px;font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2)}
 .sw dt{color:var(--ink-3)}
 .sw dd{margin:0}
@@ -196,7 +198,7 @@ section{position:relative}
 .prop span{position:absolute;left:10px;bottom:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;white-space:nowrap}
 .pairs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .pair{padding:20px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:16px}
-.pair .big{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.pair .big{font-size:34px;font-weight:700;--wg:700;letter-spacing:-.01em;line-height:1}
 .pair .meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;display:flex;justify-content:space-between;gap:8px}
 @media (max-width:1000px){.pairs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
@@ -204,17 +206,17 @@ section{position:relative}
 .type-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:12px 40px;padding-block:28px;border-top:1px solid var(--rule);align-items:baseline}
 .type-row:last-child{border-bottom:1px solid var(--rule)}
 .type-row .spec{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.04em;line-height:1.7}
-.type-row .spec b{color:var(--ink);font-weight:500;display:block;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.s-signal{font-size:var(--t-signal);font-weight:700;letter-spacing:-.032em;line-height:.88}
-.s-h1{font-size:var(--t-h2);font-weight:700;letter-spacing:-.03em;line-height:1}
-.s-h3{font-size:28px;font-weight:600;letter-spacing:-.015em;line-height:1.15}
+.type-row .spec b{color:var(--ink);font-weight:500;--wg:500;display:block;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.s-signal{font-size:var(--t-signal);font-weight:700;--wg:700;letter-spacing:-.016em;line-height:.88}
+.s-h1{font-size:var(--t-h2);font-weight:700;--wg:700;letter-spacing:-.015em;line-height:1}
+.s-h3{font-size:28px;font-weight:600;--wg:600;letter-spacing:-.007em;line-height:1.15}
 .s-body{font-size:17px;line-height:1.55;max-width:60ch;color:var(--ink-2)}
 .s-data{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 @media (max-width:820px){.type-row{grid-template-columns:minmax(0,1fr)}}
 .families{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .fam{padding:24px;display:flex;flex-direction:column;gap:14px;min-height:260px}
-.fam .glyphs{font-size:52px;line-height:1;letter-spacing:-.02em;font-weight:600;word-break:break-all}
-.fam .glyphs.mono{font-family:var(--f-mono);font-size:34px;letter-spacing:0;font-weight:400}
+.fam .glyphs{font-size:52px;line-height:1;letter-spacing:-.01em;font-weight:600;--wg:600;word-break:break-all}
+.fam .glyphs.mono{font-family:var(--f-mono);font-size:34px;letter-spacing:0;font-weight:400;--wg:400}
 .fam p{font-size:14.5px;color:var(--ink-2)}
 .fam .lic{margin-top:auto;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
 .on-espacio.fam p,.on-espacio .lic{color:var(--on-dark-2)}
@@ -223,12 +225,12 @@ section{position:relative}
 /* ——— Retícula ——— */
 .formats{width:100%;border-collapse:collapse;font-size:14.5px}
 .formats th,.formats td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--rule);vertical-align:top}
-.formats th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.formats th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;--wg:500}
 .formats td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .tbl-wrap{overflow-x:auto}
 
 /* ——— Trama ——— */
-.fn h4{font-size:18px;letter-spacing:-.01em;margin-top:16px}
+.fn h4{font-size:18px;letter-spacing:-.005em;margin-top:16px}
 .fn p{font-size:14.5px;color:var(--ink-2);margin-top:6px}
 .fn .label{color:var(--ignicion)}
 .gen{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:0;border:1px solid var(--rule-strong);background:var(--sheet)}
@@ -273,14 +275,14 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 .photo-list{display:grid;gap:0;border-top:1px solid var(--rule-strong)}
 .photo-list a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);text-decoration:none}
 .photo-list a:hover .t{text-decoration:underline}
-.photo-list .t{font-weight:550}
+.photo-list .t{font-weight:550;--wg:550}
 .photo-list .s{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
 
 /* ——— Orientación ——— */
 .emb{padding:22px;display:flex;flex-direction:column;gap:14px;min-height:240px}
 .emb .ico{width:64px;height:64px;color:var(--ambar)}
 .emb .code{font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:var(--ambar)}
-.emb h4{font-size:22px;letter-spacing:-.015em}
+.emb h4{font-size:22px;letter-spacing:-.007em}
 .emb p{font-size:14px;color:var(--on-dark-2);margin-top:auto}
 .picto{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border-top:1px solid var(--rule-dark);border-left:1px solid var(--rule-dark)}
 .picto div{border-right:1px solid var(--rule-dark);border-bottom:1px solid var(--rule-dark);padding:18px 12px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
@@ -290,9 +292,9 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 .board{background:#000C14;border-radius:4px;padding:6px;display:grid;gap:6px}
 .board .row{display:grid;grid-template-columns:56px minmax(0,1fr) auto 56px;align-items:center;gap:16px;background:var(--espacio);padding:14px 18px;border-radius:2px}
 .board .row svg{width:36px;height:36px;color:var(--crema)}
-.board .nm{font-size:clamp(20px,2.4vw,30px);font-weight:700;letter-spacing:-.02em;color:var(--crema);line-height:1.05}
-.board .nm small{display:block;font-size:13px;font-weight:400;letter-spacing:0;color:var(--on-dark-2);margin-top:4px}
-.board .cd{font-family:var(--f-mono);font-size:clamp(16px,1.8vw,22px);font-weight:700;color:var(--ambar);letter-spacing:.06em}
+.board .nm{font-size:clamp(20px,2.4vw,30px);font-weight:700;--wg:700;letter-spacing:-.01em;color:var(--crema);line-height:1.05}
+.board .nm small{display:block;font-size:13px;font-weight:480;--wg:480;letter-spacing:0;color:var(--on-dark-2);margin-top:4px}
+.board .cd{font-family:var(--f-mono);font-size:clamp(16px,1.8vw,22px);font-weight:700;--wg:700;color:var(--ambar);letter-spacing:.06em}
 .board .ar{width:44px;height:44px;color:var(--crema);justify-self:end}
 .board .row.hl{background:var(--ambar)}
 .board .row.hl .nm,.board .row.hl svg,.board .row.hl .ar{color:var(--tueste)}
@@ -301,25 +303,25 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 @media (max-width:560px){.board .row{grid-template-columns:40px minmax(0,1fr) 36px;gap:12px}.board .cd{display:none}.board .row svg{width:28px;height:28px}.board .ar{width:32px;height:32px}}
 .plate{position:relative;background:var(--espacio);color:var(--crema);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:18px;aspect-ratio:3/4;max-width:420px;width:100%}
 .plate .top{display:flex;justify-content:space-between;align-items:flex-start}
-.plate h4{font-size:clamp(34px,4vw,52px);letter-spacing:-.03em;line-height:.95}
-.plate .fn{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600}
+.plate h4{font-size:clamp(34px,4vw,52px);letter-spacing:-.015em;line-height:.95}
+.plate .fn{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;--wg:600}
 .plate .fn i{width:14px;height:14px;border-radius:50%;background:var(--ignicion)}
 .plate .desc{color:var(--on-dark-2);font-size:17px}
-.plate .next{margin-top:auto;border-top:1px solid var(--rule-dark);padding-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600}
+.plate .next{margin-top:auto;border-top:1px solid var(--rule-dark);padding-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;--wg:600}
 .schema{display:grid;gap:0;border-top:1px solid var(--rule-dark)}
 .schema div{display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid var(--rule-dark)}
-.schema b{font-family:var(--f-mono);color:var(--ambar);font-weight:500}
+.schema b{font-family:var(--f-mono);color:var(--ambar);font-weight:500;--wg:500}
 .schema span{color:var(--on-dark-2)}
-.schema strong{color:var(--crema);font-weight:600;display:block}
+.schema strong{color:var(--crema);font-weight:600;--wg:600;display:block}
 .status{background:#00131D;border-radius:6px;padding:clamp(16px,2.4vw,28px);color:var(--crema);font-size:15px}
 .status-h{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--rule-dark)}
-.status-h h4{font-size:clamp(22px,2.6vw,34px);letter-spacing:-.02em}
+.status-h h4{font-size:clamp(22px,2.6vw,34px);letter-spacing:-.01em}
 .status-h .clock{font-family:var(--f-mono);font-size:clamp(22px,2.6vw,34px);color:var(--ambar);font-variant-numeric:tabular-nums}
 .st-table{width:100%;border-collapse:collapse;min-width:640px}
-.st-table th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-2);font-weight:500;text-align:left;padding:14px 10px 8px 0}
+.st-table th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-2);font-weight:500;--wg:500;text-align:left;padding:14px 10px 8px 0}
 .st-table td{padding:13px 10px 13px 0;border-top:1px solid var(--rule-dark);vertical-align:middle}
-.st-table .cd{font-family:var(--f-mono);color:var(--ambar);letter-spacing:.08em;font-weight:700}
-.st-table .nm{font-weight:600;font-size:17px}
+.st-table .cd{font-family:var(--f-mono);color:var(--ambar);letter-spacing:.08em;font-weight:700;--wg:700}
+.st-table .nm{font-weight:600;--wg:600;font-size:17px}
 .pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 .pill i{width:9px;height:9px;border-radius:50%}
 .st-ok i{background:#5BC28C}.st-busy i{background:var(--ignicion)}.st-res i{background:var(--ambar)}
@@ -337,12 +339,12 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 .stage > svg{width:100%;height:auto;display:block}
 .menu{background:var(--crema);color:var(--espacio);padding:clamp(22px,3vw,40px);width:100%;max-width:440px;box-shadow:0 1px 0 rgba(1,36,54,.06),0 18px 40px -24px rgba(1,36,54,.45)}
 .menu .mh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:18px;border-bottom:1.5px solid var(--espacio)}
-.menu h4{font-size:30px;letter-spacing:-.03em}
-.menu h5{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ignicion);margin:22px 0 8px;font-weight:500}
+.menu h4{font-size:30px;letter-spacing:-.015em}
+.menu h5{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ignicion);margin:22px 0 8px;font-weight:500;--wg:500}
 .menu ul{list-style:none;margin:0;padding:0}
 .menu li{display:grid;grid-template-columns:auto minmax(12px,1fr) auto;align-items:baseline;gap:8px;padding:5px 0}
-.menu li .n{font-weight:600}
-.menu li .n small{display:block;font-weight:400;font-size:12.5px;color:var(--ink-2);margin-top:1px}
+.menu li .n{font-weight:600;--wg:600}
+.menu li .n small{display:block;font-weight:480;--wg:480;font-size:12.5px;color:var(--ink-2);margin-top:1px}
 .menu li .d{border-bottom:2px dotted rgba(1,36,54,.45);transform:translateY(-4px)}
 .menu li .p{font-family:var(--f-mono);font-size:14px;font-variant-numeric:tabular-nums}
 .menu .mf{margin-top:20px;padding-top:12px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
@@ -350,7 +352,7 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 .ig > canvas{position:absolute;inset:0;width:100%;height:100%}
 .ig .in{position:absolute;inset:0;padding:7.4%;display:flex;flex-direction:column}
 .ig .top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--f-mono);font-size:clamp(8px,.8vw,11px);letter-spacing:.1em;text-transform:uppercase}
-.ig .big{font-size:clamp(28px,3.6vw,46px);font-weight:700;letter-spacing:-.035em;line-height:.98;margin-top:auto}
+.ig .big{font-size:clamp(28px,3.6vw,46px);font-weight:700;--wg:700;letter-spacing:-.018em;line-height:.98;margin-top:auto}
 .ig .ig-foot{display:flex;justify-content:space-between;gap:10px;margin-top:6%;font-family:var(--f-mono);font-size:clamp(8px,.8vw,11px);letter-spacing:.08em;text-transform:uppercase}
 .note{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:10px}
 
@@ -358,12 +360,12 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 .voice{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--rule-strong)}
 .voice > div{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr) minmax(0,4fr);gap:12px 32px;padding-block:20px;border-bottom:1px solid var(--rule)}
 .voice .sit{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-top:4px}
-.voice .yes{font-size:clamp(18px,1.7vw,21px);font-weight:550;letter-spacing:-.01em;line-height:1.35}
+.voice .yes{font-size:clamp(18px,1.7vw,21px);font-weight:550;--wg:550;letter-spacing:-.005em;line-height:1.35}
 .voice .no{color:var(--ink-3);font-size:15px;text-decoration:line-through;text-decoration-color:rgba(229,92,65,.7);text-decoration-thickness:1.5px}
 @media (max-width:820px){.voice > div{grid-template-columns:minmax(0,1fr)}}
 .traits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:40px}
 .trait{padding:22px;border:1px solid var(--rule-strong)}
-.trait h4{font-size:22px;letter-spacing:-.015em;margin-bottom:8px}
+.trait h4{font-size:22px;letter-spacing:-.007em;margin-bottom:8px}
 .trait p{font-size:15px;color:var(--ink-2)}
 .trait .label{color:var(--ignicion);display:block;margin-bottom:14px}
 @media (max-width:820px){.traits{grid-template-columns:minmax(0,1fr)}}
@@ -389,7 +391,7 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 .foot svg{height:64px;width:auto}
 
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-</style></head><body>
+</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <symbol id="lk" viewBox="0 0 467 308"><path style="fill:var(--lw,currentColor)" d="M111.131 58.8954H97.5646C95.6679 58.8954 94.1297 60.4371 94.1297 62.3252V146.274L25.698 58.8954H0V171.473C0 173.366 1.54397 174.902 3.43489 174.902H17.0009C18.8976 174.902 20.4358 173.361 20.4358 171.473V87.402L88.7866 174.902H114.566V62.3252C114.566 60.4313 113.022 58.8954 111.131 58.8954Z"/><path style="fill:var(--lw,currentColor)" d="M200.698 58.8953H178.296L128.646 168.793C128.039 170.139 128.155 171.68 128.959 172.922C129.762 174.163 131.121 174.902 132.602 174.902H145.127C146.821 174.902 148.365 173.909 149.071 172.373C156.374 156.419 180.019 104.741 189.503 83.5737L230.155 172.373C230.86 173.909 232.404 174.902 234.099 174.902H246.699C248.179 174.902 249.544 174.157 250.342 172.916C251.14 171.675 251.256 170.127 250.643 168.782L200.681 58.8953H200.698Z"/><path style="fill:var(--lw,currentColor)" d="M354.447 58.8953H341.841C340.158 58.8953 338.614 59.8827 337.909 61.407C334.705 68.307 307.492 126.972 297.239 150.212C287.762 129.056 264.122 77.3954 256.813 61.4301C256.107 59.8942 254.564 58.9011 252.869 58.9011H240.344C238.864 58.9011 237.505 59.6402 236.701 60.8816C235.897 62.123 235.782 63.6647 236.389 65.01L286.038 174.908H308.44L358.402 65.0216C359.015 63.6762 358.9 62.1288 358.102 60.8874C357.298 59.6459 355.939 58.9011 354.459 58.9011L354.447 58.8953Z"/><path style="fill:var(--lw,currentColor)" d="M467 77.7765V58.8895H378.589C376.34 58.8895 374.507 60.7199 374.507 62.966V170.82C374.507 173.066 376.34 174.896 378.589 174.896H467V156.01H394.943V124.564H459.095V105.677H394.943V77.7708H467V77.7765Z"/><path style="fill:var(--le,currentColor)" d="M134.217 31.0904L131.004 7.37441L145.636 5.39776L145.972 7.87809L134.198 9.46861L135.28 17.4532L146.645 15.9179L146.981 18.3982L135.616 19.9335L136.74 28.224L148.513 26.6334L148.849 29.1138L134.217 31.0904Z"/><path style="fill:var(--le,currentColor)" d="M164.715 27.7813C162.573 27.9854 160.781 27.7658 159.34 27.1225C157.897 26.4563 156.672 25.5513 155.666 24.4072L157.588 22.502C158.633 23.5734 159.696 24.3447 160.775 24.8158C161.878 25.2848 163.147 25.4508 164.583 25.314C166.315 25.149 167.598 24.6248 168.434 23.7416C169.269 22.8583 169.618 21.6999 169.481 20.2664C169.37 19.1059 168.954 18.2386 168.232 17.6645C167.508 17.0676 166.313 16.7108 164.646 16.5941L161.938 16.4044C160.756 16.3104 159.747 16.0966 158.91 15.763C158.096 15.4273 157.423 14.9978 156.89 14.4745C156.354 13.9285 155.952 13.324 155.681 12.6609C155.409 11.975 155.237 11.2567 155.165 10.5058C154.956 8.32135 155.516 6.60325 156.845 5.35148C158.175 4.0997 160.058 3.35763 162.497 3.12527C164.411 2.94285 166.048 3.10831 167.408 3.62165C168.79 4.13282 169.936 4.93064 170.844 6.0151L168.994 7.948C168.25 7.14631 167.385 6.51693 166.399 6.05987C165.412 5.6028 164.178 5.44484 162.697 5.586C161.079 5.74018 159.87 6.19985 159.069 6.965C158.269 7.73016 157.933 8.79537 158.064 10.1606C158.166 11.2301 158.569 12.0757 159.272 12.6975C159.996 13.2944 161.215 13.6605 162.93 13.7956L165.536 13.995C166.718 14.089 167.727 14.3028 168.564 14.6364C169.401 14.9699 170.085 15.3984 170.618 15.9216C171.174 16.4427 171.588 17.0462 171.861 17.732C172.133 18.4178 172.306 19.1476 172.38 19.9212C172.591 22.1284 172.027 23.9272 170.689 25.3177C169.373 26.706 167.381 27.5272 164.715 27.7813Z"/><path style="fill:var(--le,currentColor)" d="M188.407 3.99144L189.715 25.3807L186.836 25.5563L185.528 4.16701L177.542 4.65402L177.389 2.15575L196.24 1.00617L196.393 3.50444L188.407 3.99144Z"/><path style="fill:var(--le,currentColor)" d="M211.89 24.6627C210.952 24.6897 210.283 24.5146 209.883 24.1373C209.505 23.7595 209.308 23.2735 209.291 22.6794L209.273 22.0625C209.256 21.4685 209.425 20.972 209.78 20.573C210.157 20.1734 210.815 19.9601 211.754 19.9331C212.692 19.906 213.349 20.0815 213.727 20.4594C214.127 20.8366 214.336 21.3222 214.353 21.9163L214.371 22.5332C214.388 23.1272 214.208 23.6241 213.83 24.0237C213.475 24.4226 212.828 24.6356 211.89 24.6627Z"/><path style="fill:var(--le,currentColor)" d="M267.304 24.614L251.311 24.0872L251.408 21.1402L259.642 14.2073C260.844 13.1948 261.84 12.1527 262.632 11.081C263.424 9.98646 263.84 8.82236 263.881 7.58872L263.894 7.1775C263.942 5.73824 263.601 4.61781 262.872 3.8162C262.143 2.99174 261.035 2.55503 259.548 2.50604C258.084 2.45781 256.939 2.79746 256.113 3.52498C255.311 4.2304 254.695 5.19354 254.265 6.41437L251.723 5.37009C251.975 4.66942 252.307 3.99423 252.718 3.34453C253.152 2.67273 253.687 2.08429 254.322 1.57919C254.957 1.0741 255.715 0.675951 256.595 0.384753C257.498 0.0943089 258.532 -0.0316964 259.699 0.0067372C260.889 0.0459244 261.936 0.25193 262.84 0.624754C263.766 0.998332 264.528 1.50371 265.126 2.14088C265.746 2.7788 266.202 3.52568 266.495 4.38151C266.81 5.23809 266.951 6.16898 266.918 7.17417C266.888 8.08799 266.722 8.94016 266.421 9.73071C266.143 10.522 265.752 11.2753 265.247 11.9905C264.765 12.7065 264.181 13.4076 263.494 14.094C262.831 14.7582 262.087 15.4199 261.264 16.0788L254.379 21.684L267.386 22.1124L267.304 24.614Z"/><path style="fill:var(--le,currentColor)" d="M282.748 25.8598C281.286 25.7644 280.048 25.4088 279.033 24.7928C278.019 24.1541 277.204 23.2877 276.588 22.1938C275.971 21.0999 275.553 19.7784 275.333 18.2293C275.113 16.6802 275.067 14.9249 275.196 12.9633C275.323 11.0245 275.596 9.30148 276.016 7.79412C276.437 6.26396 277.024 4.99661 277.778 3.99209C278.532 2.98757 279.453 2.24586 280.539 1.76698C281.627 1.26529 282.902 1.06212 284.364 1.15747C285.826 1.25282 287.064 1.61988 288.077 2.25865C289.092 2.8746 289.908 3.72954 290.525 4.82346C291.141 5.91738 291.559 7.25028 291.777 8.82216C291.997 10.3712 292.044 12.1152 291.917 14.0539C291.788 16.0155 291.514 17.75 291.095 19.2573C290.675 20.7647 290.088 22.0206 289.334 23.0252C288.58 24.0297 287.659 24.7828 286.571 25.2845C285.484 25.7634 284.21 25.9551 282.748 25.8598ZM282.912 23.3622C283.871 23.4248 284.705 23.2959 285.414 22.9757C286.125 22.6326 286.708 22.1324 287.164 21.4749C287.643 20.8189 288.017 20.0187 288.285 19.0741C288.555 18.1067 288.729 17.0186 288.808 15.8097L289.063 11.9093C289.141 10.7232 289.109 9.6331 288.968 8.6389C288.826 7.6447 288.561 6.7913 288.172 6.07872C287.805 5.36763 287.291 4.80726 286.63 4.39762C285.97 3.96516 285.16 3.71765 284.201 3.65507C283.241 3.5925 282.406 3.73274 281.696 4.0758C280.987 4.39605 280.393 4.88415 279.914 5.54012C279.458 6.19758 279.095 7.01 278.825 7.97738C278.556 8.94476 278.382 10.0215 278.304 11.2076L278.049 15.1079C277.97 16.3168 278.001 17.4184 278.143 18.4126C278.286 19.384 278.54 20.2252 278.907 20.9363C279.296 21.6489 279.82 22.2214 280.48 22.6539C281.142 23.0635 281.952 23.2996 282.912 23.3622ZM283.424 15.5272C282.625 15.4751 282.075 15.2789 281.777 14.9387C281.5 14.6 281.377 14.2026 281.407 13.7464L281.456 12.9937C281.486 12.5375 281.66 12.1595 281.978 11.8595C282.319 11.561 282.889 11.4379 283.688 11.49C284.488 11.5422 285.026 11.7376 285.302 12.0763C285.601 12.4165 285.735 12.8147 285.705 13.2708L285.656 14.0235C285.626 14.4797 285.441 14.857 285.1 15.1555C284.782 15.4555 284.224 15.5794 283.424 15.5272Z"/><path style="fill:var(--le,currentColor)" d="M314.394 28.1497L298.473 26.5511L298.769 23.6173L307.451 17.2525C308.718 16.323 309.782 15.3501 310.644 14.3339C311.507 13.295 312.001 12.1614 312.125 10.9333L312.166 10.5239C312.31 9.09112 312.046 7.95035 311.372 7.10161C310.7 6.23013 309.624 5.72007 308.144 5.57141C306.686 5.42504 305.521 5.6871 304.648 6.35757C303.801 7.00759 303.121 7.92723 302.61 9.11647L300.144 7.90398C300.443 7.22181 300.819 6.57039 301.273 5.94973C301.751 5.3086 302.325 4.75736 302.992 4.29602C303.66 3.83468 304.443 3.48826 305.34 3.25676C306.261 3.02755 307.302 2.97127 308.463 3.08791C309.648 3.20683 310.678 3.4826 311.555 3.91523C312.454 4.35014 313.181 4.90551 313.734 5.58132C314.31 6.25942 314.715 7.03522 314.949 7.90873C315.206 8.78453 315.284 9.72278 315.183 10.7235C315.091 11.6332 314.869 12.4723 314.515 13.2409C314.185 14.0118 313.743 14.7371 313.192 15.4168C312.663 16.0988 312.033 16.7592 311.301 17.3979C310.595 18.0162 309.809 18.6264 308.943 19.2287L301.697 24.3592L314.645 25.6594L314.394 28.1497Z"/><path style="fill:var(--le,currentColor)" d="M329.668 30.4879C328.421 30.314 327.328 29.9537 326.387 29.407C325.45 28.8377 324.683 28.1192 324.088 27.2514C323.519 26.3642 323.121 25.3278 322.894 24.1421C322.69 22.9596 322.686 21.6666 322.882 20.2631C323.129 18.4973 323.621 16.8811 324.358 15.4145C325.121 13.9284 325.999 12.6084 326.992 11.4546C328.012 10.2812 329.1 9.27903 330.256 8.44794C331.416 7.59422 332.526 6.92975 333.586 6.45453L337.259 6.96695C335.837 7.71481 334.554 8.45901 333.41 9.19954C332.289 9.94325 331.275 10.748 330.368 11.6139C329.464 12.4572 328.674 13.397 327.997 14.4335C327.323 15.4474 326.72 16.6211 326.187 17.9545L326.347 18.0462C327.05 17.1518 327.911 16.4526 328.929 15.9484C329.95 15.4216 331.198 15.261 332.672 15.4666C333.714 15.6121 334.643 15.9147 335.457 16.3745C336.271 16.8342 336.951 17.4253 337.497 18.1478C338.043 18.8702 338.423 19.7079 338.636 20.6608C338.872 21.6169 338.913 22.6496 338.758 23.7589C338.596 24.9134 338.254 25.9505 337.733 26.8702C337.214 27.7672 336.555 28.5176 335.754 29.1213C334.978 29.7055 334.065 30.1205 333.014 30.3661C331.985 30.615 330.87 30.6556 329.668 30.4879ZM329.972 28.0723C331.604 28.3 332.924 28.0341 333.932 27.2746C334.962 26.5182 335.59 25.3364 335.815 23.7291L335.853 23.4575C336.078 21.8502 335.798 20.5418 335.015 19.5324C334.254 18.5262 333.058 17.9092 331.426 17.6815C329.793 17.4537 328.462 17.7181 327.431 18.4744C326.424 19.2339 325.807 20.4173 325.582 22.0246L325.544 22.2963C325.32 23.9036 325.587 25.2103 326.348 26.2166C327.131 27.226 328.339 27.8445 329.972 28.0723Z"/><path style="fill:var(--lc,currentColor)" d="M302.717 200.339C305.659 200.173 309.785 200.5 310.248 204.356C310.713 208.232 307.396 212.834 305.198 215.882C304.403 216.985 302.208 220.057 300.583 220.171C296.311 219.621 295.815 221.385 293.358 224.489C291.054 227.397 288.992 230.884 286.75 234.023C289.732 233.658 292.703 233.211 295.66 232.682C297.522 232.361 299.411 231.949 301.285 231.729C301.832 231.665 302.49 231.571 302.946 231.955C303.26 232.219 303.415 232.599 303.449 233.001C303.637 235.296 301.276 239.107 299.874 240.8C299.233 241.574 298.473 242.334 297.541 242.745C295.143 243.803 283.367 245.424 280.34 245.698C278.373 249.068 276.245 252.39 274.195 255.711C268.773 264.489 262.787 272.86 257.525 281.739C263.299 279.81 269.136 277.354 274.82 275.136C279.083 273.472 283.222 271.415 287.466 269.709C286.718 268.375 286.297 267.038 286.371 265.496C286.534 262.087 289.019 259.066 291.427 256.869C299.844 249.196 320.636 239.951 331.996 240.508C333.717 240.593 335.396 240.94 336.588 242.291C337.826 243.694 338.011 245.559 337.886 247.347C337.734 249.497 336.385 252.405 334.424 253.469C332.61 254.452 330.007 254.288 327.987 254.563C320.343 255.601 311.332 257.724 305.401 262.953C304.824 263.46 304.03 264.257 304.019 265.074C304.015 265.361 304.097 265.594 304.301 265.797C304.807 266.299 306.065 266.156 306.723 266.087C309.256 265.821 311.842 265.104 314.257 264.304C315.966 263.737 320.17 261.923 321.744 261.921C322.324 261.92 322.896 262.27 323.292 262.67C324.017 263.401 324.313 264.407 324.294 265.419C324.265 266.978 323.511 268.608 322.316 269.614C320.513 271.132 317.782 271.958 315.612 272.876C309.735 275.364 298.827 279.579 294.373 283.863C293.902 284.314 293.377 284.858 293.36 285.545C294.118 287.186 299.165 285.777 300.621 285.422C313.48 282.293 326.36 277.829 337.87 271.226C341.233 269.323 344.523 267.293 347.734 265.141C349.277 264.12 354.323 260.306 355.613 260.005C360.419 258.882 360.247 265.816 357.97 268.467C355.016 271.906 352.697 273.524 349.203 275.862C335.935 284.574 321.474 291.312 306.276 295.867C296.928 298.975 279.266 303.228 276.109 289.527C275.712 287.798 276.351 285.666 277.017 284.084C267.828 287.67 258.815 291.592 249.714 295.382C248.089 297.907 246.711 300.376 244.951 302.869C242.558 306.35 240.083 306.966 236.123 307.73C230.608 308.792 225.595 306.799 228.317 300.347C229.28 298.064 231.029 295.865 232.389 293.769C233.577 291.939 235.017 290.132 236.257 288.329C238.544 285.24 240.707 282.009 243.059 278.976C241.229 280.52 238.991 282.034 237.035 283.467C231.48 287.538 225.943 291.77 220.048 295.338C218.514 296.267 216.895 296.583 215.192 295.978C209.21 293.851 207.255 289.578 209.028 283.667C202.841 287.9 196.907 292.778 190.036 295.961C186.243 297.718 182.175 298.645 178.122 297.102C175.398 296.075 173.192 294.007 171.988 291.352C169.045 284.773 173.964 277.587 177.925 272.58C187.208 260.845 199.935 252.278 213.499 246.234C217.808 244.314 224.06 241.57 228.789 243.345C231.98 244.631 233.411 247.131 234.726 250.109C238.09 251.587 240.39 253.793 238.782 257.788C237.474 261.04 235.014 264.251 233.022 267.156C230.975 270.077 229.017 273.059 227.149 276.097C234.473 272.012 241.688 267.735 248.786 263.271C249.495 262.83 253.875 260.215 254.196 259.721C256.772 255.763 258.941 251.508 261.57 247.55C261.428 247.586 261.284 247.617 261.139 247.642C256.994 248.362 251.761 250.326 251.057 244.264C250.391 238.534 255.01 238.472 259.192 237.858L268.346 236.509C270.285 233.312 272.595 229.995 274.712 226.903C277.173 223.291 279.72 219.74 282.352 216.253C287.681 209.241 293.633 202.034 302.717 200.339ZM221.273 259.41C222.032 258.184 221.646 256.736 219.929 256.836C211.479 258.066 195.266 273.122 190.29 280.079C189.814 280.744 188.387 282.607 188.514 283.491C188.557 283.79 188.648 283.813 188.848 284.02C189.315 284.216 189.747 284.159 190.226 283.995C191.654 283.428 193.905 282.15 195.3 281.196C204.32 275.03 215.403 268.878 221.273 259.41Z"/><path style="fill:var(--lc,currentColor)" d="M177.599 206.142C180.294 205.562 186.629 206.424 189.267 207.259C193.229 208.512 196.729 211.04 198.664 214.782C200.897 219.099 200.554 224.241 199.111 228.754C196.436 237.12 190.23 244.771 182.394 248.783C178.193 250.934 172.874 251.945 168.304 250.444C166.875 249.975 165.516 249.207 164.83 247.796C164.331 246.771 164.615 245.502 165.21 244.574C166.105 243.175 168.525 241.125 169.793 239.892C173.982 235.814 183.014 227.136 184.737 221.935C184.98 221.204 185.142 220.287 184.77 219.573C184.471 218.999 183.94 218.696 183.338 218.519C179.422 217.369 173.338 220.516 169.891 222.385C164.415 225.354 159.22 229.049 154.36 232.941C143.945 241.28 123.589 260.584 119.921 273.062C119.033 276.082 118.765 279.845 120.333 282.698C121.256 284.377 122.777 285.548 124.609 286.075C130.909 287.888 140.524 283.251 145.921 280.237C152.46 276.683 158.428 271.743 164.415 267.279C168.07 263.857 172.38 269.923 172.642 273.307C172.927 276.984 170.028 280.271 167.469 282.676C156.587 292.9 143.107 299.693 128.221 301.412C113.21 303.146 100.71 293.493 99.2995 278.295C98.1456 267.312 105.278 256.179 112.24 248.127C127.476 230.505 153.749 208.319 177.599 206.142Z"/><path style="fill:var(--lc,currentColor)" d="M347.535 212.187C349.112 212.082 350.457 212.486 351.431 213.941C353.258 216.667 353.424 221.502 350.141 223.204C348.843 223.878 347.286 224.344 345.853 224.842C343.624 225.605 341.404 226.392 339.193 227.205C332.925 229.54 326.744 232.216 320.427 234.423C319.831 234.657 319.125 234.905 318.491 235C317.845 235.097 317.24 235.008 316.71 234.611C316.107 234.16 315.712 233.558 315.612 232.806C315.45 231.608 315.875 230.44 316.595 229.498C320.003 225.049 338.052 215.319 343.827 213.148C345.04 212.692 346.251 212.362 347.535 212.187Z"/></symbol>
@@ -744,7 +746,7 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
       <div class="sec-num label">04 / Tipografía</div>
       <div>
         <h2>Una voz que orienta</h2>
-        <p class="lede">Standerd para nombrar y explicar, Lenia Mono para los datos de bitácora. Una grotesca clara para nombrar y explicar, y una monoespaciada para los datos de bitácora: códigos, coordenadas, horarios y altitudes. El trazo de “Café” pertenece solo al logotipo.</p>
+        <p class="lede">Standerd para nombrar y explicar; Lenia Mono para los datos de bitácora: códigos, coordenadas, horarios y altitudes. El trazo de “Café” pertenece solo al logotipo.</p>
       </div>
     </div>
     <div class="families">
@@ -959,7 +961,7 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
         <div class="plate reg on-espacio" style="border:1px solid var(--rule-dark)"><span class="reg-b"></span>
           <div class="top">
             <svg viewBox="0 0 95.0308 95.0047" style="width:56px;height:56px;color:var(--ambar)" aria-hidden="true"><use href="#e-escotilla"/></svg>
-            <span class="mono" style="color:var(--ambar);font-size:22px;font-weight:700;letter-spacing:.08em">GAR</span>
+            <span class="mono" style="color:var(--ambar);font-size:22px;font-weight:700;--wg:700;letter-spacing:.08em">GAR</span>
           </div>
           <h4>El Garage</h4>
           <div class="fn"><i></i>Sala privada</div>
@@ -1174,7 +1176,7 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 'use strict';
 const SYM_D = "M30.6,172.0 L30.6,172.0 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L100.0,102.6 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L149.6,152.2 L148.9,152.9 L148.9,152.9 L146.8,154.7 L146.8,154.7 L144.6,156.5 L144.6,156.5 L142.3,158.2 L142.3,158.2 L140.0,159.9 L140.0,159.9 L137.6,161.4 L137.6,161.4 L135.2,162.8 L135.2,162.8 L132.7,164.2 L132.7,164.2 L130.1,165.4 L130.1,165.4 L127.6,166.5 L127.6,166.5 L124.9,167.5 L124.9,167.5 L122.2,168.5 L122.2,168.5 L119.5,169.3 L119.5,169.3 L116.8,170.0 L116.8,170.0 L114.0,170.6 L114.0,170.6 L111.3,171.1 L111.3,171.1 L108.5,171.5 L108.5,171.5 L105.6,171.8 L105.6,171.8 L102.8,171.9 L102.8,171.9 L100.0,172.0 L100.0,172.0 L97.2,171.9 L97.2,171.9 L94.4,171.8 L94.4,171.8 L91.5,171.5 L91.5,171.5 L88.7,171.1 L88.7,171.1 L86.0,170.6 L86.0,170.6 L83.2,170.0 L83.2,170.0 L80.5,169.3 L80.5,169.3 L77.8,168.5 L77.8,168.5 L75.1,167.5 L75.1,167.5 L72.4,166.5 L72.4,166.5 L70.8,165.8 L70.8,165.8 L70.8,165.8 L50.0,186.6 L50.0,186.6 L50.0,186.6 L51.1,187.2 L51.1,187.2 L54.6,189.1 L54.6,189.1 L58.1,190.8 L58.1,190.8 L61.7,192.4 L61.7,192.4 L65.4,193.8 L65.4,193.8 L69.1,195.1 L69.1,195.1 L72.9,196.2 L72.9,196.2 L76.7,197.2 L76.7,197.2 L80.5,198.1 L80.5,198.1 L84.4,198.8 L84.4,198.8 L88.2,199.3 L88.2,199.3 L92.2,199.7 L92.2,199.7 L96.1,199.9 L96.1,199.9 L100.0,200.0 L100.0,200.0 L103.9,199.9 L103.9,199.9 L107.8,199.7 L107.8,199.7 L111.8,199.3 L111.8,199.3 L115.6,198.8 L115.6,198.8 L119.5,198.1 L119.5,198.1 L123.3,197.2 L123.3,197.2 L127.1,196.2 L127.1,196.2 L130.9,195.1 L130.9,195.1 L134.6,193.8 L134.6,193.8 L138.3,192.4 L138.3,192.4 L141.9,190.8 L141.9,190.8 L145.4,189.1 L145.4,189.1 L148.9,187.2 L148.9,187.2 L152.2,185.3 L152.2,185.3 L155.6,183.1 L155.6,183.1 L158.8,180.9 L158.8,180.9 L161.9,178.5 L161.9,178.5 L164.9,176.0 L164.9,176.0 L167.9,173.4 L167.9,173.4 L169.4,172.0 L170.7,170.7 L170.7,170.7 L173.4,167.9 L173.4,167.9 L176.0,164.9 L176.0,164.9 L178.5,161.9 L178.5,161.9 L180.9,158.8 L180.9,158.8 L183.1,155.6 L183.1,155.6 L185.3,152.2 L185.3,152.2 L186.7,149.7 L186.7,149.7 L186.7,149.7 L165.9,128.9 L100.0,63.0 L100.0,63.0 L100.0,63.0 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L34.1,128.9 L33.5,127.6 L33.5,127.6 L32.5,124.9 L32.5,124.9 L31.5,122.2 L31.5,122.2 L30.7,119.5 L30.7,119.5 L30.0,116.8 L30.0,116.8 L29.4,114.0 L29.4,114.0 L28.9,111.3 L28.9,111.3 L28.5,108.5 L28.5,108.5 L28.2,105.6 L28.2,105.6 L28.1,102.8 L28.1,102.8 L28.0,100.0 L28.0,100.0 L28.1,97.2 L28.1,97.2 L28.2,94.4 L28.2,94.4 L28.5,91.5 L28.5,91.5 L28.9,88.7 L28.9,88.7 L29.4,86.0 L29.4,86.0 L30.0,83.2 L30.0,83.2 L30.7,80.5 L30.7,80.5 L31.5,77.8 L31.5,77.8 L32.5,75.1 L32.5,75.1 L33.5,72.4 L33.5,72.4 L34.6,69.9 L34.6,69.9 L35.8,67.3 L35.8,67.3 L37.2,64.8 L37.2,64.8 L38.6,62.4 L38.6,62.4 L40.1,60.0 L40.1,60.0 L41.8,57.7 L41.8,57.7 L43.5,55.4 L43.5,55.4 L45.3,53.2 L45.3,53.2 L47.1,51.1 L47.1,51.1 L49.1,49.1 L49.1,49.1 L51.1,47.1 L51.1,47.1 L53.2,45.3 L53.2,45.3 L55.4,43.5 L55.4,43.5 L57.7,41.8 L57.7,41.8 L60.0,40.1 L60.0,40.1 L62.4,38.6 L62.4,38.6 L64.8,37.2 L64.8,37.2 L67.3,35.8 L67.3,35.8 L69.9,34.6 L69.9,34.6 L72.4,33.5 L72.4,33.5 L75.1,32.5 L75.1,32.5 L77.8,31.5 L77.8,31.5 L80.5,30.7 L80.5,30.7 L83.2,30.0 L83.2,30.0 L86.0,29.4 L86.0,29.4 L88.7,28.9 L88.7,28.9 L91.5,28.5 L91.5,28.5 L94.4,28.2 L94.4,28.2 L97.2,28.1 L97.2,28.1 L100.0,28.0 L100.0,28.0 L102.8,28.1 L102.8,28.1 L105.6,28.2 L105.6,28.2 L108.5,28.5 L108.5,28.5 L111.3,28.9 L111.3,28.9 L114.0,29.4 L114.0,29.4 L116.8,30.0 L116.8,30.0 L119.5,30.7 L119.5,30.7 L122.2,31.5 L122.2,31.5 L124.9,32.5 L124.9,32.5 L127.6,33.5 L127.6,33.5 L130.1,34.6 L130.1,34.6 L132.7,35.8 L132.7,35.8 L135.2,37.2 L135.2,37.2 L137.6,38.6 L137.6,38.6 L140.0,40.1 L140.0,40.1 L142.3,41.8 L142.3,41.8 L144.6,43.5 L144.6,43.5 L146.8,45.3 L146.8,45.3 L148.9,47.1 L148.9,47.1 L150.9,49.1 L150.9,49.1 L152.9,51.1 L152.9,51.1 L154.7,53.2 L154.7,53.2 L156.5,55.4 L156.5,55.4 L158.2,57.7 L158.2,57.7 L159.9,60.0 L159.9,60.0 L161.4,62.4 L161.4,62.4 L162.8,64.8 L162.8,64.8 L164.2,67.3 L164.2,67.3 L165.4,69.9 L165.4,69.9 L166.5,72.4 L166.5,72.4 L167.5,75.1 L167.5,75.1 L168.5,77.8 L168.5,77.8 L169.3,80.5 L169.3,80.5 L170.0,83.2 L170.0,83.2 L170.6,86.0 L170.6,86.0 L171.1,88.7 L171.1,88.7 L171.5,91.5 L171.5,91.5 L171.8,94.4 L171.8,94.4 L171.9,97.2 L171.9,97.2 L172.0,100.0 L172.0,100.0 L172.0,101.0 L172.0,101.0 L172.0,101.0 L196.6,125.7 L196.6,125.7 L196.6,125.7 L197.2,123.3 L197.2,123.3 L198.1,119.5 L198.1,119.5 L198.8,115.6 L198.8,115.6 L199.3,111.8 L199.3,111.8 L199.7,107.8 L199.7,107.8 L199.9,103.9 L199.9,103.9 L200.0,100.0 L200.0,100.0 L199.9,96.1 L199.9,96.1 L199.7,92.2 L199.7,92.2 L199.3,88.2 L199.3,88.2 L198.8,84.4 L198.8,84.4 L198.1,80.5 L198.1,80.5 L197.2,76.7 L197.2,76.7 L196.2,72.9 L196.2,72.9 L195.1,69.1 L195.1,69.1 L193.8,65.4 L193.8,65.4 L192.4,61.7 L192.4,61.7 L190.8,58.1 L190.8,58.1 L189.1,54.6 L189.1,54.6 L187.2,51.1 L187.2,51.1 L185.3,47.8 L185.3,47.8 L183.1,44.4 L183.1,44.4 L180.9,41.2 L180.9,41.2 L178.5,38.1 L178.5,38.1 L176.0,35.1 L176.0,35.1 L173.4,32.1 L173.4,32.1 L170.7,29.3 L170.7,29.3 L167.9,26.6 L167.9,26.6 L164.9,24.0 L164.9,24.0 L161.9,21.5 L161.9,21.5 L158.8,19.1 L158.8,19.1 L155.6,16.9 L155.6,16.9 L152.2,14.7 L152.2,14.7 L148.9,12.8 L148.9,12.8 L145.4,10.9 L145.4,10.9 L141.9,9.2 L141.9,9.2 L138.3,7.6 L138.3,7.6 L134.6,6.2 L134.6,6.2 L130.9,4.9 L130.9,4.9 L127.1,3.8 L127.1,3.8 L123.3,2.8 L123.3,2.8 L119.5,1.9 L119.5,1.9 L115.6,1.2 L115.6,1.2 L111.8,0.7 L111.8,0.7 L107.8,0.3 L107.8,0.3 L103.9,0.1 L103.9,0.1 L100.0,0.0 L100.0,0.0 L96.1,0.1 L96.1,0.1 L92.2,0.3 L92.2,0.3 L88.2,0.7 L88.2,0.7 L84.4,1.2 L84.4,1.2 L80.5,1.9 L80.5,1.9 L76.7,2.8 L76.7,2.8 L72.9,3.8 L72.9,3.8 L69.1,4.9 L69.1,4.9 L65.4,6.2 L65.4,6.2 L61.7,7.6 L61.7,7.6 L58.1,9.2 L58.1,9.2 L54.6,10.9 L54.6,10.9 L51.1,12.8 L51.1,12.8 L47.8,14.7 L47.8,14.7 L44.4,16.9 L44.4,16.9 L41.2,19.1 L41.2,19.1 L38.1,21.5 L38.1,21.5 L35.1,24.0 L35.1,24.0 L32.1,26.6 L32.1,26.6 L29.3,29.3 L29.3,29.3 L26.6,32.1 L26.6,32.1 L24.0,35.1 L24.0,35.1 L21.5,38.1 L21.5,38.1 L19.1,41.2 L19.1,41.2 L16.9,44.4 L16.9,44.4 L14.7,47.8 L14.7,47.8 L12.8,51.1 L12.8,51.1 L10.9,54.6 L10.9,54.6 L9.2,58.1 L9.2,58.1 L7.6,61.7 L7.6,61.7 L6.2,65.4 L6.2,65.4 L4.9,69.1 L4.9,69.1 L3.8,72.9 L3.8,72.9 L2.8,76.7 L2.8,76.7 L1.9,80.5 L1.9,80.5 L1.2,84.4 L1.2,84.4 L0.7,88.2 L0.7,88.2 L0.3,92.2 L0.3,92.2 L0.1,96.1 L0.1,96.1 L0.0,100.0 L0.0,100.0 L0.1,103.9 L0.1,103.9 L0.3,107.8 L0.3,107.8 L0.7,111.8 L0.7,111.8 L1.2,115.6 L1.2,115.6 L1.9,119.5 L1.9,119.5 L2.8,123.3 L2.8,123.3 L3.8,127.1 L3.8,127.1 L4.9,130.9 L4.9,130.9 L6.2,134.6 L6.2,134.6 L7.6,138.3 L7.6,138.3 L9.2,141.9 L9.2,141.9 L10.9,145.4 L10.9,145.4 L12.8,148.9 L12.8,148.9 L14.7,152.2 L14.7,152.2 L16.9,155.6 L16.9,155.6 L19.1,158.8 L19.1,158.8 L21.5,161.9 L21.5,161.9 L24.0,164.9 L24.0,164.9 L26.6,167.9 L26.6,167.9 L29.3,170.7 L29.3,170.7 L30.6,172.0Z";
 const C = {crema:'#FFF5EE', niebla:'#D7E1E2', espacio:'#012436', tueste:'#210A05', ignicion:'#E55C41', ambar:'#EFA441', acero:'#798E91', petroleo:'#005A88', senal:'#0067DE'};
-const SANS = '"Standerd","Inter Tight","Helvetica Neue",Arial,sans-serif';
+const SANS = '"Standerd Nave","Standerd","Inter Tight","Helvetica Neue",Arial,sans-serif';
 const MONO = '"Lenia Mono","JetBrains Mono",ui-monospace,Menlo,monospace';
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const symPath = new Path2D(SYM_D);
@@ -1306,7 +1308,7 @@ reg('ly-4', (ctx, w, h) => {
   ctx.fillStyle = C.espacio; ctx.font = `600 ${Math.round(h * .09)}px ${SANS}`; ctx.fillText('Sala privada', m + 16, h * .56);
   ctx.strokeStyle = 'rgba(1,36,54,.2)'; ctx.beginPath(); ctx.moveTo(m, h * .72); ctx.lineTo(w - m, h * .72); ctx.stroke();
   ctx.font = `600 ${Math.round(h * .075)}px ${SANS}`; ctx.fillText('Consulta disponibilidad', m, h * .86);
-  ctx.font = `400 ${Math.round(h * .1)}px ${SANS}`; ctx.textAlign = 'right'; ctx.fillText('→', w - m, h * .865); ctx.textAlign = 'left';
+  ctx.font = `480 ${Math.round(h * .1)}px ${SANS}`; ctx.textAlign = 'right'; ctx.fillText('→', w - m, h * .865); ctx.textAlign = 'left';
 });
 
 /* ——— Objetos de cuerpo ——— */
@@ -1427,7 +1429,7 @@ const pairs = [['Espacio', C.espacio, 'Crema', C.crema], ['Crema', C.crema, 'Esp
 const pairsEl = $('#pairs');
 if (pairsEl) pairsEl.innerHTML = pairs.map(([fn, f, bn, b]) => {
   const r = contrast(f, b), lvl = r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : r >= 3 ? 'AA grande' : 'Decorativo';
-  return `<div class="pair" style="background:${b};color:${f};border:1px solid rgba(1,36,54,.1)"><div class="big">Aa</div><div><div style="font-weight:600;font-size:15px">${fn} sobre ${bn}</div><div class="meta"><span class="tnum">${r.toFixed(1)} : 1</span><span>${lvl}</span></div></div></div>`;
+  return `<div class="pair" style="background:${b};color:${f};border:1px solid rgba(1,36,54,.1)"><div class="big">Aa</div><div><div style="font-weight:600;--wg:600;font-size:15px">${fn} sobre ${bn}</div><div class="meta"><span class="tnum">${r.toFixed(1)} : 1</span><span>${lvl}</span></div></div></div>`;
 }).join('');
 
 /* ——— Soporte ——— */
@@ -1506,7 +1508,7 @@ reg('ct-1', (ctx, w, h) => {
   hex(w, h, s, (x, y) => { if (x > bx - s * .6 && x < bx + bw + s * .6 && y > by - s * .6 && y < by + bh + s * .6) return; dot(ctx, x, y, s * .11); }, 0, s * .4);
   ctx.fillStyle = C.acero; ctx.fill();
   ctx.fillStyle = C.espacio; ctx.font = `700 ${Math.round(h * .1)}px ${SANS}`; ctx.fillText('Área para leer', bx, by + bh * .45);
-  ctx.font = `400 ${Math.round(h * .055)}px ${SANS}`; ctx.fillStyle = '#3B5565'; ctx.fillText('La trama se abre y el texto respira.', bx, by + bh * .78);
+  ctx.font = `480 ${Math.round(h * .055)}px ${SANS}`; ctx.fillStyle = '#3B5565'; ctx.fillText('La trama se abre y el texto respira.', bx, by + bh * .78);
 });
 reg('ct-2', (ctx, w, h) => {
   const s = w / 20; ctx.beginPath();
@@ -1661,7 +1663,7 @@ const tick = () => { if (clock) { const d = new Date(); clock.textContent = Stri
 tick(); setInterval(tick, 20000);
 
 /* ——— Aplicaciones (SVG) ——— */
-const FS = `font-family:'Standerd','Inter Tight','Helvetica Neue',Arial,sans-serif`, FM = `font-family:'Lenia Mono','JetBrains Mono',ui-monospace,Menlo,monospace`;
+const FS = `font-family:'Standerd Nave','Standerd','Inter Tight','Helvetica Neue',Arial,sans-serif`, FM = `font-family:'Lenia Mono','JetBrains Mono',ui-monospace,Menlo,monospace`;
 const symClip = (x, y, S, pat) => `<g transform="translate(${x} ${y}) scale(${S / 200})"><rect width="200" height="200" fill="url(#${pat})" clip-path="url(#clip-sym)"/></g>`;
 function cupSVG() {
   return `<svg viewBox="0 0 520 470" role="img" aria-label="Vaso de café de 12 onzas y tapa vista desde arriba">
@@ -1706,19 +1708,19 @@ function bagSVG() {
   <rect x="52" y="180" width="70" height="12" fill="${C.espacio}"/><text x="55" y="189" style="${FM};font-size:7.5px;letter-spacing:1px" fill="${C.crema}">FINCA 1,450 M</text>
   <rect x="52" y="300" width="236" height="168" fill="${C.crema}"/>
   <text x="64" y="320" style="${FM};font-size:8px;letter-spacing:1.6px" fill="${C.ignicion}">LOTE 01 / 2026 · TUESTE MEDIO</text>
-  <text x="62" y="372" style="${FS};font-size:54px;font-weight:700;letter-spacing:-2.4px" fill="${C.espacio}">1,450</text>
+  <text x="62" y="372" style="${FS};font-size:54px;font-weight:700;--wg:700;letter-spacing:-2.4px" fill="${C.espacio}">1,450</text>
   <text x="232" y="372" style="${FM};font-size:10px;letter-spacing:1.4px" fill="${C.espacio}">MSNM</text>
-  <text x="64" y="396" style="${FS};font-size:14px;font-weight:600" fill="${C.espacio}">Apaneca-Ilamatepec</text>
+  <text x="64" y="396" style="${FS};font-size:14px;font-weight:600;--wg:600" fill="${C.espacio}">Apaneca-Ilamatepec</text>
   <text x="64" y="413" style="${FS};font-size:11.5px" fill="#3B5565">Pacamara · Lavado · Panela, cacao</text>
   <line x1="64" y1="430" x2="276" y2="430" stroke="rgba(1,36,54,.2)"/>
-  <text x="64" y="452" style="${FM};font-size:13px;font-weight:700;letter-spacing:1px" fill="${C.espacio}">APN</text>
+  <text x="64" y="452" style="${FM};font-size:13px;font-weight:700;--wg:700;letter-spacing:1px" fill="${C.espacio}">APN</text>
   <path d="M100 448 H226" stroke="${C.espacio}" stroke-width="1.6" stroke-dasharray="0 6" stroke-linecap="round"/>
   <svg x="156" y="440" width="16" height="16" viewBox="0 0 200 200" style="--ls:${C.ignicion}"><use href="#sym"/></svg>
-  <text x="276" y="452" text-anchor="end" style="${FM};font-size:13px;font-weight:700;letter-spacing:1px" fill="${C.espacio}">ESC</text>
+  <text x="276" y="452" text-anchor="end" style="${FM};font-size:13px;font-weight:700;--wg:700;letter-spacing:1px" fill="${C.espacio}">ESC</text>
   <text x="290" y="484" text-anchor="end" style="${FM};font-size:9px;letter-spacing:1.2px" fill="${C.crema}">250 g</text>
   <g transform="translate(350 40)">
     <text style="${FM};font-size:10px;letter-spacing:1.6px" fill="${C.ignicion}">CÓMO SE LEE</text>
-    ${[['1,450 msnm', 'La altitud de la finca es el número protagonista. Construir a la altura de tus ideas empieza en el origen.'], ['Volcán de puntos', 'La densidad crece hacia la base. El punto Ignición marca la altura exacta del cultivo.'], ['APN → ESC', 'Ruta del grano en códigos de tres letras: de Apaneca a Escalón.'], ['Lote y tueste', 'Datos de bitácora en monoespaciada, como en un pase.']].map(([t, d], i) => `<g transform="translate(0 ${30 + i * 104})"><circle cx="5" cy="-4" r="4" fill="${i === 0 ? C.ignicion : C.espacio}"/><text x="18" style="${FS};font-size:16px;font-weight:650" fill="${C.espacio}">${t}</text><foreignObject x="18" y="8" width="262" height="80"><div xmlns="http://www.w3.org/1999/xhtml" style="${FS};font-size:13px;line-height:1.45;color:#3B5565">${d}</div></foreignObject></g>`).join('')}
+    ${[['1,450 msnm', 'La altitud de la finca es el número protagonista. Construir a la altura de tus ideas empieza en el origen.'], ['Volcán de puntos', 'La densidad crece hacia la base. El punto Ignición marca la altura exacta del cultivo.'], ['APN → ESC', 'Ruta del grano en códigos de tres letras: de Apaneca a Escalón.'], ['Lote y tueste', 'Datos de bitácora en monoespaciada, como en un pase.']].map(([t, d], i) => `<g transform="translate(0 ${30 + i * 104})"><circle cx="5" cy="-4" r="4" fill="${i === 0 ? C.ignicion : C.espacio}"/><text x="18" style="${FS};font-size:16px;font-weight:650;--wg:650" fill="${C.espacio}">${t}</text><foreignObject x="18" y="8" width="262" height="80"><div xmlns="http://www.w3.org/1999/xhtml" style="${FS};font-size:13px;line-height:1.45;color:#3B5565">${d}</div></foreignObject></g>`).join('')}
   </g></svg>`;
 }
 function passSVG() {
@@ -1738,17 +1740,17 @@ function passSVG() {
   <text x="628" y="50" text-anchor="end" style="${FM};font-size:10px;letter-spacing:2px" fill="${C.ambar}">PASE DE ABORDAR · DÍA</text>
   <line x1="660" y1="10" x2="660" y2="370" stroke="${C.espacio}" stroke-opacity=".5" stroke-width="2" stroke-dasharray="0 9" stroke-linecap="round"/>
   ${F(40, 112, 'PASAJERA', 'Andrea Rivas')}${F(260, 112, 'MISIÓN', 'Lanzar la tienda en línea')}
-  <text x="40" y="200" style="${FS};font-size:64px;font-weight:700;letter-spacing:-2px" fill="${C.espacio}">ESC</text>
+  <text x="40" y="200" style="${FS};font-size:64px;font-weight:700;--wg:700;letter-spacing:-2px" fill="${C.espacio}">ESC</text>
   <text x="40" y="222" style="${FM};font-size:9px;letter-spacing:1.4px" fill="${C.acero}">ESCALÓN · ACCESO</text>
   <path d="M200 178 H452" stroke="${C.espacio}" stroke-width="2" stroke-dasharray="0 8" stroke-linecap="round"/>
   <svg x="310" y="160" width="36" height="36" viewBox="0 0 200 200" style="--ls:${C.ignicion}"><use href="#sym"/></svg>
-  <text x="620" y="200" text-anchor="end" style="${FS};font-size:64px;font-weight:700;letter-spacing:-2px" fill="${C.espacio}">CUB</text>
+  <text x="620" y="200" text-anchor="end" style="${FS};font-size:64px;font-weight:700;--wg:700;letter-spacing:-2px" fill="${C.espacio}">CUB</text>
   <text x="620" y="222" text-anchor="end" style="${FM};font-size:9px;letter-spacing:1.4px" fill="${C.acero}">CUBIERTA · COWORKING</text>
   <line x1="40" y1="246" x2="620" y2="246" stroke="rgba(1,36,54,.14)"/>
   ${F(40, 276, 'FECHA', '23 OCT 2026')}${F(190, 276, 'ABORDAJE', '08:30')}${F(310, 276, 'REGRESO', '18:00')}${F(430, 276, 'ESCRITORIO', '12')}${F(540, 276, 'WI‑FI', 'NAVE-CUB')}
   <text x="40" y="346" style="${FM};font-size:8.5px;letter-spacing:1.2px" fill="${C.ignicion}">● CAFÉ DE BIENVENIDA INCLUIDO EN BARRA</text>
   <text x="690" y="112" style="${FM};font-size:8.5px;letter-spacing:1.4px" fill="${C.acero}">PUERTA</text>
-  <text x="690" y="150" style="${FS};font-size:40px;font-weight:700;letter-spacing:-1px" fill="${C.espacio}">CUB 12</text>
+  <text x="690" y="150" style="${FS};font-size:40px;font-weight:700;--wg:700;letter-spacing:-1px" fill="${C.espacio}">CUB 12</text>
   <g transform="translate(700 190)" fill="${C.espacio}">${code}</g>
   <text x="690" y="346" style="${FM};font-size:8px;letter-spacing:1.2px" fill="${C.acero}">CÓDIGO ILUSTRATIVO</text>
   </svg>`;
@@ -1762,12 +1764,12 @@ function loyalSVG() {
   <rect x="2" y="2" width="856" height="540" rx="26" fill="${C.espacio}"/>
   <svg x="48" y="44" width="160" height="40" viewBox="0 0 900 132" style="--lw:${C.crema};--lc:${C.ambar};--ls:${C.ignicion}"><use href="#lk-h"/></svg>
   <text x="812" y="70" text-anchor="end" style="${FM};font-size:13px;letter-spacing:2.4px" fill="${C.ambar}">TARJETA DE MISIÓN</text>
-  <text x="48" y="200" style="${FS};font-size:56px;font-weight:700;letter-spacing:-2px" fill="${C.crema}">Cuenta regresiva</text>
+  <text x="48" y="200" style="${FS};font-size:56px;font-weight:700;--wg:700;letter-spacing:-2px" fill="${C.crema}">Cuenta regresiva</text>
   <text x="48" y="238" style="${FS};font-size:20px" fill="rgba(255,245,238,.66)">Cada café es un paso. El décimo va por cuenta de la casa.</text>
   ${slots}
   <circle cx="726" cy="300" r="46" fill="${C.ignicion}"/>
-  <text x="726" y="296" text-anchor="middle" style="${FM};font-size:13px;font-weight:700;letter-spacing:1px" fill="${C.crema}">T−0</text>
-  <text x="726" y="314" text-anchor="middle" style="${FS};font-size:12px;font-weight:600" fill="${C.crema}">Despegue</text>
+  <text x="726" y="296" text-anchor="middle" style="${FM};font-size:13px;font-weight:700;--wg:700;letter-spacing:1px" fill="${C.crema}">T−0</text>
+  <text x="726" y="314" text-anchor="middle" style="${FS};font-size:12px;font-weight:600;--wg:600" fill="${C.crema}">Despegue</text>
   <line x1="48" y1="420" x2="812" y2="420" stroke="rgba(255,245,238,.14)"/>
   <text x="48" y="470" style="${FM};font-size:12px;letter-spacing:1.6px" fill="rgba(255,245,238,.66)">TRIPULANTE ______________________</text>
   <text x="812" y="470" text-anchor="end" style="${FM};font-size:12px;letter-spacing:1.6px" fill="rgba(255,245,238,.66)">N.º 0412</text>
@@ -1780,9 +1782,9 @@ function cardSVG() {
   <g clip-path="url(#cardf)">${symClip(250, -40, 360, 'hx-pet')}</g>
   <svg x="36" y="176" width="120" height="80" viewBox="0 0 467 308" style="--lw:${C.crema};--lc:${C.ambar};--le:${C.ambar}"><use href="#lk"/></svg>
   <rect x="520" y="10" width="470" height="270" rx="10" fill="${C.crema}"/>
-  <text x="548" y="66" style="${FS};font-size:26px;font-weight:700;letter-spacing:-.8px" fill="${C.espacio}">Nombre Apellido</text>
+  <text x="548" y="66" style="${FS};font-size:26px;font-weight:700;--wg:700;letter-spacing:-.8px" fill="${C.espacio}">Nombre Apellido</text>
   <text x="548" y="90" style="${FS};font-size:14px" fill="#3B5565">Equipo en tierra · Operaciones</text>
-  <circle cx="553" cy="122" r="4" fill="${C.ignicion}"/><text x="566" y="126" style="${FS};font-size:13px;font-weight:600" fill="${C.espacio}">Construye a la altura de tus ideas.</text>
+  <circle cx="553" cy="122" r="4" fill="${C.ignicion}"/><text x="566" y="126" style="${FS};font-size:13px;font-weight:600;--wg:600" fill="${C.espacio}">Construye a la altura de tus ideas.</text>
   <line x1="548" y1="150" x2="962" y2="150" stroke="rgba(1,36,54,.16)"/>
   <text x="548" y="182" style="${FM};font-size:11px;letter-spacing:1px" fill="${C.espacio}">+503 0000 0000</text>
   <text x="548" y="202" style="${FM};font-size:11px;letter-spacing:1px" fill="${C.espacio}">nombre@navecafe.sv</text>
@@ -1796,9 +1798,9 @@ function patchSVG() {
   return `<svg viewBox="0 0 1200 230" role="img" aria-label="Parches de misión para cada espacio">${P.map(([cd, n, ic, bg, fg, tx], i) => {
     const cx = 100 + i * 200, id = 'arc' + i;
     return `<g transform="translate(${cx} 115)"><circle r="92" fill="${bg}"/><circle r="84" fill="none" stroke="${fg}" stroke-width="1.5" stroke-dasharray="0 6" stroke-linecap="round"/><circle r="58" fill="none" stroke="${fg}" stroke-opacity=".5"/>
-    <path id="${id}" d="M-70 0 A70 70 0 1 1 70 0" fill="none"/><text style="${FM};font-size:11px;letter-spacing:2.6px;font-weight:500" fill="${tx}"><textPath href="#${id}" startOffset="50%" text-anchor="middle">${n} · NAVE CAFÉ</textPath></text>
+    <path id="${id}" d="M-70 0 A70 70 0 1 1 70 0" fill="none"/><text style="${FM};font-size:11px;letter-spacing:2.6px;font-weight:500;--wg:500" fill="${tx}"><textPath href="#${id}" startOffset="50%" text-anchor="middle">${n} · NAVE CAFÉ</textPath></text>
     <svg x="-30" y="-36" width="60" height="60" viewBox="0 0 100 100" style="color:${fg}"><use href="#${ic}" width="100" height="100"/></svg>
-    <text y="46" text-anchor="middle" style="${FM};font-size:15px;font-weight:700;letter-spacing:2px" fill="${tx}">${cd}</text></g>`;
+    <text y="46" text-anchor="middle" style="${FM};font-size:15px;font-weight:700;--wg:700;letter-spacing:2px" fill="${tx}">${cd}</text></g>`;
   }).join('')}</svg>`;
 }
 const put = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
@@ -1852,20 +1854,20 @@ reg('ig-2', (ctx, w, h) => {
 });
 reg('ig-3', (ctx, w, h) => { const s = w / 24; ctx.beginPath(); hex(w, h, s, (x, y) => dot(ctx, x, y, s * .07)); ctx.fillStyle = 'rgba(255,245,238,.55)'; ctx.fill(); });
 const ig3 = $('#ig3-stats');
-if (ig3) ig3.innerHTML = [['418', 'cafés servidos', 1], ['37', 'reuniones en CTL'], ['12', 'asesorías en GAR'], ['6', 'proyectos listos', 2]].map(([n, t, k]) => `<div style="border:1.5px solid var(--tueste);border-radius:999px;padding:5% 8%;display:flex;align-items:baseline;gap:6px;${k === 1 ? 'background:var(--tueste);color:var(--crema)' : k === 2 ? 'background:var(--crema)' : ''}"><b style="font-size:clamp(14px,1.7vw,22px);letter-spacing:-.03em">${n}</b><span style="font-size:clamp(8px,.75vw,10.5px);line-height:1.1">${t}</span></div>`).join('');
+if (ig3) ig3.innerHTML = [['418', 'cafés servidos', 1], ['37', 'reuniones en CTL'], ['12', 'asesorías en GAR'], ['6', 'proyectos listos', 2]].map(([n, t, k]) => `<div style="border:1.5px solid var(--tueste);border-radius:999px;padding:5% 8%;display:flex;align-items:baseline;gap:6px;${k === 1 ? 'background:var(--tueste);color:var(--crema)' : k === 2 ? 'background:var(--crema)' : ''}"><b style="font-size:clamp(14px,1.7vw,22px);letter-spacing:-.015em">${n}</b><span style="font-size:clamp(8px,.75vw,10.5px);line-height:1.1">${t}</span></div>`).join('');
 
 /* ——— Reglas ——— */
 const RULES = [
-  ['si', 'Un acento por pieza', 'Ignición o Ámbar marca una sola prioridad. Lo demás vive en la base.', `<rect width="300" height="225" fill="${C.crema}"/><svg x="40" y="50" width="120" height="80" viewBox="0 0 467 308" style="--lw:${C.espacio};--lc:${C.espacio};--le:${C.espacio}"><use href="#lk"/></svg><circle cx="220" cy="160" r="22" fill="${C.ignicion}"/><text x="40" y="180" style="${FS};font-size:15px;font-weight:600" fill="${C.espacio}">Reserva tu cabina</text>`],
-  ['no', 'Acentos compitiendo', 'Ignición, Ámbar y Señal juntos borran la jerarquía.', `<rect width="300" height="225" fill="${C.crema}"/><rect x="30" y="34" width="110" height="70" fill="${C.ignicion}"/><rect x="160" y="34" width="110" height="70" fill="${C.ambar}"/><rect x="30" y="122" width="240" height="70" fill="${C.senal}"/><text x="44" y="164" style="${FS};font-size:17px;font-weight:700" fill="${C.crema}">¡Todo es importante!</text>`],
+  ['si', 'Un acento por pieza', 'Ignición o Ámbar marca una sola prioridad. Lo demás vive en la base.', `<rect width="300" height="225" fill="${C.crema}"/><svg x="40" y="50" width="120" height="80" viewBox="0 0 467 308" style="--lw:${C.espacio};--lc:${C.espacio};--le:${C.espacio}"><use href="#lk"/></svg><circle cx="220" cy="160" r="22" fill="${C.ignicion}"/><text x="40" y="180" style="${FS};font-size:15px;font-weight:600;--wg:600" fill="${C.espacio}">Reserva tu cabina</text>`],
+  ['no', 'Acentos compitiendo', 'Ignición, Ámbar y Señal juntos borran la jerarquía.', `<rect width="300" height="225" fill="${C.crema}"/><rect x="30" y="34" width="110" height="70" fill="${C.ignicion}"/><rect x="160" y="34" width="110" height="70" fill="${C.ambar}"/><rect x="30" y="122" width="240" height="70" fill="${C.senal}"/><text x="44" y="164" style="${FS};font-size:17px;font-weight:700;--wg:700" fill="${C.crema}">¡Todo es importante!</text>`],
   ['no', 'Deformar o completar la Λ', 'No se estira, no se inclina y la Λ nunca lleva travesaño.', `<rect width="300" height="225" fill="${C.crema}"/><svg x="20" y="62" width="260" height="70" viewBox="0 0 467 116" preserveAspectRatio="none" style="--lw:${C.espacio}"><use href="#lk-w"/></svg><rect x="96" y="110" width="40" height="9" fill="${C.ignicion}"/>`],
-  ['no', 'Escribir frases con el trazo de Café', 'El trazo manual es dibujo del logotipo. Los textos van en Host Grotesk.', `<rect width="300" height="225" fill="${C.espacio}"/><text x="150" y="124" text-anchor="middle" style="font-family:Georgia,serif;font-style:italic;font-size:40px;font-weight:700" fill="${C.ambar}">Bienvenidos</text>`],
-  ['si', 'Abrir la trama donde se lee', 'La densidad se aleja del texto. Si no se puede abrir, el texto va en una franja limpia.', `<rect width="300" height="225" fill="${C.crema}"/><g id="rdots"></g><text x="30" y="150" style="${FS};font-size:24px;font-weight:700;letter-spacing:-.8px" fill="${C.espacio}">Demo day</text><text x="30" y="172" style="${FM};font-size:10px;letter-spacing:1.4px" fill="${C.ignicion}">JUE 23 OCT · HNG</text>`],
+  ['no', 'Escribir frases con el trazo de Café', 'El trazo manual es dibujo del logotipo. Los textos van en Host Grotesk.', `<rect width="300" height="225" fill="${C.espacio}"/><text x="150" y="124" text-anchor="middle" style="font-family:Georgia,serif;font-style:italic;font-size:40px;font-weight:700;--wg:700" fill="${C.ambar}">Bienvenidos</text>`],
+  ['si', 'Abrir la trama donde se lee', 'La densidad se aleja del texto. Si no se puede abrir, el texto va en una franja limpia.', `<rect width="300" height="225" fill="${C.crema}"/><g id="rdots"></g><text x="30" y="150" style="${FS};font-size:24px;font-weight:700;--wg:700;letter-spacing:-.8px" fill="${C.espacio}">Demo day</text><text x="30" y="172" style="${FM};font-size:10px;letter-spacing:1.4px" fill="${C.ignicion}">JUE 23 OCT · HNG</text>`],
   ['no', 'Puntos más chicos que 3 px', 'Debajo de 30 mm o 160 px usa el símbolo sólido. Prueba siempre a tamaño real.', `<rect width="300" height="225" fill="${C.crema}"/><g id="rtiny"></g><svg x="186" y="78" width="56" height="56" viewBox="0 0 200 200" style="--ls:${C.espacio}"><use href="#sym"/></svg><text x="62" y="170" text-anchor="middle" style="${FM};font-size:10px" fill="${C.ignicion}">✕ 40 px</text><text x="214" y="170" text-anchor="middle" style="${FM};font-size:10px" fill="#2E8B5A">✓ sólido</text>`],
 ];
 const rl = $('#rules');
 if (rl) {
-  rl.innerHTML = RULES.map(([k, t, d, art]) => `<div class="rule-c"><div class="ratio r-43"><svg viewBox="0 0 300 225" aria-hidden="true">${art}</svg></div><div class="v ${k}">${k === 'si' ? '✓ Sí' : '✕ No'}</div><h4 style="font-size:18px;margin-top:4px;letter-spacing:-.01em">${t}</h4><p>${d}</p></div>`).join('');
+  rl.innerHTML = RULES.map(([k, t, d, art]) => `<div class="rule-c"><div class="ratio r-43"><svg viewBox="0 0 300 225" aria-hidden="true">${art}</svg></div><div class="v ${k}">${k === 'si' ? '✓ Sí' : '✕ No'}</div><h4 style="font-size:18px;margin-top:4px;letter-spacing:-.005em">${t}</h4><p>${d}</p></div>`).join('');
   const g = $('#rdots'); let c = '';
   for (let j = 0; j < 22; j++) for (let i = 0; i < 30; i++) { const x = i * 10 + (j % 2) * 5, y = j * 8.66; const p = sstep(200, 330, x + (225 - y) * .35); if (p > .02 && hash(i, j, 2) < p) c += `<circle cx="${x}" cy="${y}" r="${(1 + 1.8 * p).toFixed(2)}"/>`; }
   if (g) { g.setAttribute('fill', C.ignicion); g.innerHTML = c; }
@@ -1877,7 +1879,7 @@ if (!reduce && heroItem) { heroItem.t0 = performance.now(); heroItem.lastT = her
 canvases.forEach(it => ro.observe(it.el));
 function paintAll() { canvases.forEach(it => paint(it, it.lastT)); }
 paintAll();
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintAll);
+if (document.fonts && document.fonts.ready) Promise.all(['400','500','600','700'].map(w=>document.fonts.load(w+' 16px "Standerd Nave"').catch(()=>{}))).then(()=>document.fonts.ready).then(paintAll);
 
 // Animaciones: presurización del héroe y giro de la escotilla (solo si no se pide reducir movimiento)
 if (!reduce) {
@@ -1892,4 +1894,5 @@ if (!reduce) {
 })();
 
 </script>
+
 </body></html>

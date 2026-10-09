@@ -16,4 +16,11 @@
   --nave-t-subtitulo: 28px;
   --nave-t-texto: 17px;
   --nave-t-dato: 12px;
+  /* Standerd es variable y su instancia por defecto es Thin: declarar el peso y el eje wght */
+  --nave-w-texto: 480;
+  --nave-w-subtitulo: 600;
+  --nave-w-titular: 700;
+  --nave-w-dato: 500;
+  --nave-tracking-texto: .005em;
+  --nave-tracking-titular: -.01em;
 }
