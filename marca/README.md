@@ -4,6 +4,8 @@ Aterrizaje práctico de la identidad a partir de tres fuentes: el manifiesto (`C
 
 Abre `nave-cafe-sistema.html` en el navegador para ver el manual completo, con el generador de trama.
 
+Presentación en Figma (56 láminas, estilos y componentes): https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG
+
 ## Qué hay aquí
 
 | Carpeta / archivo | Contenido |
@@ -20,7 +22,7 @@ Abre `nave-cafe-sistema.html` en el navegador para ver el manual completo, con e
 
 - **Símbolo:** una sola trayectoria (órbita → despegue en Λ → aterrizaje) construida con un módulo `t = 0.28 R` y piernas a 45°. Versión de puntos para escalas grandes, sólida debajo de 160 px / 30 mm.
 - **Color:** la paleta de Figma organizada por función: Base (Crema, Niebla), Profundidad (Espacio, Tueste), Combustión (Ignición, Ámbar) e Instrumentos (Acero, Petróleo, Señal). Un acento por pieza.
-- **Tipografía:** Elvon Grotesk + Lenia Mono (licenciadas, Envato). Respaldo libre en web: Host Grotesk + JetBrains Mono. El trazo de “Café” es solo logotipo. Los archivos de fuente no se versionan en este repositorio.
+- **Tipografía:** Standerd (Craft Supply Co.) + Lenia Mono, licenciadas. Respaldo libre en web: Inter Tight + JetBrains Mono. El trazo de “Café” es solo logotipo. Los archivos de fuente no se versionan en este repositorio.
 - **Retícula:** `M = lado corto / 20`, margen `2M`, trama a `M/2` o `M/4`.
 - **Orientación:** espacios con nombre, código de tres letras y emblema; señal de sala en cuatro niveles; pantalla “Estado de la nave”.
 
@@ -33,7 +35,7 @@ Abre `nave-cafe-sistema.html` en el navegador para ver el manual completo, con e
 
 ## Estudio de Trama: flujo de trabajo
 
-1. Abre `herramientas/trama-estudio.html` en el navegador (funciona sin conexión; usa Elvon y Lenia si están instaladas).
+1. Abre `herramientas/trama-estudio.html` en el navegador (funciona sin conexión; usa Standerd y Lenia si están instaladas).
 2. Elige el formato. Agrega **Soporte** si la pieza necesita retícula, margen 2M, marcas de registro, zona segura o línea de corte.
 3. Suelta o pega imágenes: cada una es una capa que se convierte en puntos. Suma símbolo, formas (esfera, planeta, toroide, volcán, degradado, onda) o el logotipo.
 4. Ajusta por capa: retícula (hexagonal, cuadrada, orgánica), forma del punto, tono (luces o sombras), tamaño o presencia, contraste, densidad direccional, desplazamiento (lente), máscara, color de la paleta y mezcla.
