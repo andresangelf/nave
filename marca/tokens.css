@@ -1,0 +1,19 @@
+/* Nave Café · tokens de marca */
+:root {
+  --nave-crema: #FFF5EE;
+  --nave-niebla: #D7E1E2;
+  --nave-espacio: #012436;
+  --nave-tueste: #210A05;
+  --nave-ignicion: #E55C41;
+  --nave-ambar: #EFA441;
+  --nave-acero: #798E91;
+  --nave-petroleo: #005A88;
+  --nave-senal: #0067DE;
+  --nave-font-sans: "Host Grotesk", "Elvon Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --nave-font-mono: "JetBrains Mono", "Lenia Mono", ui-monospace, Menlo, monospace;
+  --nave-t-senal: 148px;
+  --nave-t-titular: 60px;
+  --nave-t-subtitulo: 28px;
+  --nave-t-texto: 17px;
+  --nave-t-dato: 12px;
+}
