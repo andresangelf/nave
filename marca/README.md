@@ -4,7 +4,7 @@ Aterrizaje práctico de la identidad a partir de tres fuentes: el manifiesto (`C
 
 Abre `nave-cafe-sistema.html` en el navegador para ver el manual completo, con el generador de trama.
 
-Presentación en Figma (56 láminas, estilos y componentes): https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG
+Presentación en Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG. La página «Presentación · Despegue» cuenta la marca en 42 láminas, del manifiesto a las aplicaciones. La versión anterior, tipo manual, queda en «Presentación v1 · archivo».
 
 ## Qué hay aquí
 
@@ -16,6 +16,7 @@ Presentación en Figma (56 láminas, estilos y componentes): https://www.figma.c
 | `emblemas/` | Un emblema por espacio, tomados de los elementos de la base: CUB, CAB, GAR, CTL, HNG, BAR. |
 | `pictogramas/` | 12 pictogramas sobre retícula de 48, trazo 2.5, y 5 flechas contorneadas de Figma (retícula 96, trazo 15, punta redondeada). |
 | `tokens.css`, `tokens.json` | Color, tipografía, retícula y tamaños mínimos. |
+| `presentacion/` | Generador de las tramas y fotos en trama de la presentación «Bitácora de despegue». |
 | `herramientas/trama-estudio.html` | Estudio de Trama: genera tramas por capas a partir de imágenes, símbolo y formas, y el soporte (retícula, margen, marcas, zona segura, corte) según el formato. Exporta SVG por capas, PNG y recetas JSON. |
 
 ## Decisiones principales
