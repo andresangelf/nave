@@ -14,7 +14,7 @@ Presentación en Figma (56 láminas, estilos y componentes): https://www.figma.c
 | `logotipo/` | Logotipo principal en 5 variantes de color y horizontal claro / oscuro. Vectores tomados de Figma. |
 | `simbolo/` | Símbolo “Trayectoria” sólido (5 colores) y de puntos (4 colores, trama hexagonal 4:1). |
 | `emblemas/` | Un emblema por espacio, tomados de los elementos de la base: CUB, CAB, GAR, CTL, HNG, BAR. |
-| `pictogramas/` | 12 pictogramas y 5 flechas sobre retícula de 48, trazo 2.5. |
+| `pictogramas/` | 12 pictogramas sobre retícula de 48, trazo 2.5, y 5 flechas contorneadas de Figma (retícula 96, trazo 15, punta redondeada). |
 | `tokens.css`, `tokens.json` | Color, tipografía, retícula y tamaños mínimos. |
 | `herramientas/trama-estudio.html` | Estudio de Trama: genera tramas por capas a partir de imágenes, símbolo y formas, y el soporte (retícula, margen, marcas, zona segura, corte) según el formato. Exporta SVG por capas, PNG y recetas JSON. |
 
