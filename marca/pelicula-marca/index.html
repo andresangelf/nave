@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NAVE · película de marca</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  /* Las fuentes con licencia se cargan desde el equipo si están instaladas; no se redistribuyen. */
-  @font-face { font-family: "Lenia Mono"; src: local("Lenia Mono"), local("LeniaMono-Regular"); }
-  @font-face { font-family: "Standerd"; src: local("Standerd"); }
+  /* Standerd y Lenia Mono se usan si están instaladas en el equipo; los archivos con licencia no se redistribuyen. */
   html, body { margin: 0; height: 100%; background: #00131D; }
   #raiz { position: fixed; inset: 0; }
 </style>
@@ -18,18 +16,18 @@
 <div id="raiz"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
 <script type="module">
   import { createNaveFilm } from './NaveFilm.js';
-  const NaveFilm = createNaveFilm({ React, html: htm.bind(React.createElement) });
+  const NaveFilm = createNaveFilm(React);
   const q = new URLSearchParams(location.search);
-  const props = {
+  await document.fonts.ready;
+  ReactDOM.createRoot(document.getElementById('raiz')).render(React.createElement(NaveFilm, {
     bpm: Number(q.get('bpm')) || 120,
     loop: q.has('loop'),
     controles: !q.has('limpio'),
+    autoplay: !q.has('pausa'),
     onReady: (api) => { window.naveFilm = api; },
-  };
-  ReactDOM.createRoot(document.getElementById('raiz')).render(React.createElement(NaveFilm, props));
+  }));
 </script>
 </body>
 </html>

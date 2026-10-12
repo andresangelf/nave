@@ -1,67 +1,71 @@
 # NAVE · película de marca
 
-Animación de ~67 s (135 beats a 120 BPM) que recorre el deck *NAVE · Tech Company & Venture Builder* en orden: manifiesto, qué es, clientes, oferta Tech y Venture, modelo operativo, partners, valores, estructura y roles, cierre.
+Bitácora de misión de 88 s (176 beats a 120 BPM), en 16:9 y 2560 × 1440. Cuenta el deck *NAVE · Tech Company & Venture Builder* con la línea gráfica de la presentación «Bitácora de despegue»:
+
+- láminas Crema, Espacio y Ámbar;
+- titulares en Standerd con una frase de acento en Ignición;
+- bitácora en Lenia Mono;
+- cruces de registro;
+- tramas de puntos;
+- tableros de aeropuerto.
+
+## Guion
+
+| Beats | Toma | Recurso de la línea gráfica |
+|---|---|---|
+| 0–8 | Arranque | El punto Ignición parpadea dos veces y la bitácora entra: cuenta regresiva, capítulo y altitud. |
+| 8–24 | Manifiesto | El campo de estrellas se tensa hacia el punto. Aparecen tres marcadores (empresa, idea, persona) y el orden nace en retícula: «para hacerla mejor». |
+| 24–34 | NAVE | La retícula entrega 1 018 puntos al símbolo. El punto enciende el vértice y la marca se asienta. |
+| 34–58 | ¿Qué es NAVE? | Cifra «25+», filas «Entre… y…» con líneas punteadas y el socio de ejecución con barras de señalética. |
+| 58–72 | Clientes | Dos puertas de embarque, TC y VB, con indicadores de aeropuerto. |
+| 72–90 | ¿Qué ofrece? | Tablero «estado de la nave» con 8 servicios. La fila de Tech Equity se abre hasta volverse la lámina siguiente. |
+| 90–104 | Modelo operativo | Dos flechas convergen en una base de tres capas. Los marcos ISO corren como tablero. |
+| 104–116 | Partners | Constelación sobre el horizonte de puntos. |
+| 116–134 | ¿Qué nos rige? | Checklist de pre-vuelo de 7 puntos. |
+| 134–160 | Tripulación | Órbita del board: cada rol tiene su lema y sus funciones, y al final salen los directores por país. |
+| 160–176 | Despegue | «¿Preguntas?», luego «Listos para el despegue.», T–00, columna de empuje y la marca en órbita. |
+
+Los cambios de color de lámina se hacen con un barrido de trama: los puntos del color siguiente crecen hasta cubrir. La bitácora (cuenta regresiva hasta T–00, capítulo, altímetro de 25 puntos) es la misma de la animación de apertura y enlaza todas las tomas.
+
+## Archivos
+
+| Archivo | Qué hace |
+|---|---|
+| `motor.js` | Guion (`ESCENAS`), contenido (`CONTENIDO`) y dibujo de cada cuadro en el lienzo de 2560 × 1440. Es determinista: un mismo tiempo produce siempre la misma imagen. |
+| `NaveFilm.js` | Componente React: reloj único, lienzo 16:9, controles (Espacio, R, ←/→) y movimiento reducido. |
+| `activos.js` | Trazos del símbolo, letras NAVE y el símbolo de 1 018 puntos. |
+| `index.html` | Vista previa. |
+| `render.html` + `exportar.mjs` | Exportación cuadro a cuadro a MP4. |
 
 ## Ver
 
 ```bash
 cd marca/pelicula-marca
-python3 -m http.server 8765    # el módulo ES necesita servirse por http
-# http://localhost:8765/              controles: Espacio = play/pausa, R = repetir, ←/→ = ±2 s
-# http://localhost:8765/?bpm=132      ajusta el tempo (a 132 BPM dura ~61 s)
-# http://localhost:8765/?loop&limpio  en bucle y sin barra de controles
+python3 -m http.server 8765     # http://localhost:8765/   ·   ?bpm=140 acelera   ·   ?loop   ·   ?limpio
 ```
 
-## Usar en una app React
+## Exportar a 2K · 120 fps
+
+```bash
+STANDERD=/ruta/StanderdVF.ttf LENIA=/ruta/carpeta-lenia node exportar.mjs 120 nave-pelicula-2k-120fps.mp4 4
+```
+
+Renderiza en paralelo con 4 procesos de Chromium y une los tramos sin recomprimir (H.264, CRF 16, yuv420p). Las fuentes con licencia se leen de tu disco y no se copian al repositorio.
+
+## Usar en React
 
 ```js
 import React from 'react';
-import htm from 'htm';
-import { createNaveFilm, ESCENAS, CONTENIDO } from './NaveFilm.js';
+import { createNaveFilm } from './NaveFilm.js';
+const NaveFilm = createNaveFilm(React);
 
-const NaveFilm = createNaveFilm({ React, html: htm.bind(React.createElement) });
-
-<div style={{ width: '100%', height: '100vh' }}>
-  <NaveFilm bpm={120} loop autoplay controles onReady={(api) => api.seek(12)} />
-</div>
+<NaveFilm bpm={120} loop={false} autoplay controles onReady={(api) => api.seek(12)} />
 ```
 
-| Prop | Por defecto | Qué hace |
-|---|---|---|
-| `bpm` | `120` | Tempo de toda la línea de tiempo |
-| `escenas` | `ESCENAS` | Orden y duración en beats de cada escena |
-| `contenido` | `CONTENIDO` | Todos los textos del deck |
-| `colores` / `tipos` | `PALETA` / `TIPOS` | Sobrescriben tokens de color o familias |
-| `autoplay`, `loop`, `controles` | `true`, `false`, `true` | Reproducción |
-| `onReady(api)` | — | `api.seek(s)`, `play()`, `pause()`, `replay()`, `duracion` |
-
-## Cómo está armado
-
-- **Un solo reloj.** Un `requestAnimationFrame` calcula el tiempo desde una base; pausa, búsqueda y repetición solo mueven esa base. No hay temporizadores sueltos que se desfasen.
-- **Tiempo en beats.** `ESCENAS` define cuántos beats dura cada escena; dentro de cada una, los elementos declaran el beat local en que entran (`c.entra(2.5, {...})`). Alargar una escena o cambiar el tempo no obliga a tocar ningún elemento.
-- **Geometría propia.** El barrido entre escenas de color es el chevrón del techo del símbolo subiendo (despegue). La regla Ignición, el punto, la trama de puntos y las flechas de aeropuerto se repiten como hilo conductor.
-- **Lienzo adaptable.** 1920×1080 en horizontal y 1080×1920 en vertical, escalado sin recortar. Las grillas pasan a menos columnas y los títulos se ajustan al ancho.
-- **Movimiento reducido.** Con `prefers-reduced-motion`, todo entra solo con fundido corto, sin desplazamientos ni rebotes, y los barridos pasan a fundidos.
-
-## Activos
-
-- `activos.js`: trazos del símbolo sólido (`marca/simbolo/`) y de las cuatro letras NAVE (`marca/logotipo/nave-horizontal-*.svg`), sin la palabra «Café».
-- **Fuentes:** usa Lenia Mono y Standerd si están instaladas en el equipo. Si no, cae en JetBrains Mono e Inter Tight (Google Fonts). Los archivos con licencia no van en el repositorio.
-- **Org chart:** el deck lo trae como imagen; aquí está reconstruido como órbita animada con los mismos cargos y flechas.
+Props: `bpm`, `escenas`, `contenido`, `colores`, `fuentes`, `autoplay`, `loop`, `controles`, `onReady(api)`. La `api` expone `seek`, `play`, `pause`, `replay` y `duracion`.
 
 ## Notas de fidelidad
 
-Los textos son los del deck, con estas correcciones ortográficas:
-
-| En el deck | Aquí |
-|---|---|
-| Atencion | Atención |
-| Inquenbrantabilidad | Inquebrantabilidad |
-| meteologias | metodologías |
-| garantia | garantía |
-| creacion | creación |
-| tecnica | técnica |
-| record | récord |
-| elite | élite |
-
-De cada rol se muestran el lema y los títulos de sus cinco funciones; el párrafo completo de cada función queda fuera por tiempo.
+- **Textos:** salen del deck. En el tablero de servicios y en los roles se acortan a una línea (los roles muestran el lema y los títulos de sus funciones).
+- **Ortografía:** se corrigió la del deck: Atención, Inquebrantabilidad, metodologías, garantía.
+- **Logotipo:** se usan las letras NAVE del logotipo horizontal, sin «Café».

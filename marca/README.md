@@ -47,4 +47,4 @@ Presentación en Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG. La 
 
 ## Película de marca NAVE
 
-`pelicula-marca/`: componente React (`NaveFilm.js`) con la película de ~67 s que recorre el deck Tech Company & Venture Builder. Ver `pelicula-marca/README.md`.
+`pelicula-marca/`: película de marca de 88 s en 16:9 · 2K (componente React + motor de lienzo + exportador a 120 fps) sobre el deck Tech Company & Venture Builder. Ver `pelicula-marca/README.md`.

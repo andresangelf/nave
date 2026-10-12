@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>NAVE · render</title>
+<style>html,body{margin:0;background:#000}</style></head>
+<body>
+<!-- Página de render para exportar.mjs: un lienzo 2560 × 1440 sin escalar, cuadro por cuadro. -->
+<canvas id="cv" width="2560" height="1440"></canvas>
+<script type="module">
+  import { crearMotor } from './motor.js';
+  const q = new URLSearchParams(location.search);
+  const motor = crearMotor({ bpm: Number(q.get('bpm')) || 120 });
+  const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  window.duracion = motor.duracion;
+  window.cuadro = (t, tipo = 'image/png') => { ctx.setTransform(1, 0, 0, 1, 0, 0); motor.render(ctx, t); return cv.toDataURL(tipo); };
+  window.listo = true;
+</script>
+</body>
+</html>
