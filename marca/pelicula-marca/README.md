@@ -69,3 +69,12 @@ Props: `bpm`, `escenas`, `contenido`, `colores`, `fuentes`, `autoplay`, `loop`, 
 - **Textos:** salen del deck. En el tablero de servicios y en los roles se acortan a una línea (los roles muestran el lema y los títulos de sus funciones).
 - **Ortografía:** se corrigió la del deck: Atención, Inquebrantabilidad, metodologías, garantía.
 - **Logotipo:** se usan las letras NAVE del logotipo horizontal, sin «Café».
+
+## Versión final con sonido
+
+`nave-pelicula-2k-120fps.mp4`: 2560 × 1440, 120 fps, H.264 + AAC 320 kbps, 121 s, −16 LUFS.
+
+- **Voz:** ElevenLabs Eleven v4, voz «Jorge» (latina, grave, centrada), con tags de emoción, pausas y énfasis. El guion está cortado por frases con los tiempos de palabra de Scribe y colocado al inicio de cada toma.
+- **Música:** «Radar Focus», de Blue Saga (Epidemic Sound), a −17 dB, con *ducking* bajo la voz.
+- **Efectos (Epidemic Sound):** pitidos de radio en el arranque y en la cuenta T–03, *whoosh* en cada barrido de trama, *flip board* en los tableros y retumbo grave en el despegue.
+- **Licencia:** la música y los efectos solo se usan dentro del MP4; los archivos originales no se guardan en el repositorio.
