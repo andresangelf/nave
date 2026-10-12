@@ -44,3 +44,7 @@ Presentación en Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG. La 
 4. Ajusta por capa: retícula (hexagonal, cuadrada, orgánica), forma del punto, tono (luces o sombras), tamaño o presencia, contraste, densidad direccional, desplazamiento (lente), máscara, color de la paleta y mezcla.
 5. **Guardar receta** crea un JSON reutilizable (con las imágenes incluidas). Cualquiera del equipo lo abre y obtiene la misma trama.
 6. **Copiar SVG** y pegar en Figma: llega como vectores con un grupo por capa (`01 · Soporte`, `02 · Foto`…). También hay descarga de SVG y PNG.
+
+## Película de marca NAVE
+
+`pelicula-marca/`: componente React (`NaveFilm.js`) con la película de ~67 s que recorre el deck Tech Company & Venture Builder. Ver `pelicula-marca/README.md`.
