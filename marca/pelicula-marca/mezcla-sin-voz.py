@@ -30,7 +30,7 @@ for k,b in enumerate((6,7,8)): a('beep','des',b,-10)
 a('confirma','des',9,-8,0.8); ev.append(('riser',T('des',9.6)-2.86,-12,1.0)); a('cohete','des',9.6,-5); a('rumble','des',9.6,-8); a('boom','des',11.2,-6)
 for e,b in (('nave',8.4),('que',22.4),('cli',16.6),('mod',14.4),('par',14.4),('val',20.4)): a('whoosh',e,b,-10)
 D=121.154/V
-ins=['-i','musica2.wav']; f=[f"[0:a]atrim=0:{D:.2f},asetpts=PTS-STARTPTS,afade=t=in:d=1.2,afade=t=out:st={D-4.5:.2f}:d=4.5,volume=-7dB[mus]"]; sl=[]
+ins=['-i','musica3.wav']; f=[f"[0:a]atrim=0:{D:.2f},asetpts=PTS-STARTPTS,afade=t=in:d=1.2,afade=t=out:st={D-4.5:.2f}:d=4.5,volume=-7dB[mus]"]; sl=[]
 for j,(nm,t,db,p) in enumerate(ev):
     ins+=['-i',f'{nm}.wav']
     pitch=f",asetrate=48000*{p},aresample=48000" if p!=1.0 else ""

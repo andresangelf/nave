@@ -83,7 +83,7 @@ Props: `bpm`, `escenas`, `contenido`, `colores`, `fuentes`, `autoplay`, `loop`, 
 
 `nave-pelicula-2k-120fps-sin-voz.mp4`: la misma película a 1,2× (101 s), 2560 × 1440 a 120 fps, −14 LUFS.
 
-- **Música:** «Run Further», de Bonnie Grace (Epidemic Sound), 130 BPM, al frente de la mezcla.
+- **Música:** «Vaporeon», de Luwaks (Epidemic Sound), future bass eufórico a 112 BPM, al frente de la mezcla.
 - **Efectos:** 82 efectos de Epidemic Sound, sincronizados con los eventos del motor (`mezcla-sin-voz.py` calcula cada tiempo a partir de la escena y el beat local).
   - pops de cristal en apariciones, con notas ascendentes en los marcadores, partners y emblemas;
   - ráfagas de datos en contadores y tickers;
