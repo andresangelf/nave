@@ -78,3 +78,19 @@ Props: `bpm`, `escenas`, `contenido`, `colores`, `fuentes`, `autoplay`, `loop`, 
 - **Música:** «Radar Focus», de Blue Saga (Epidemic Sound), a −17 dB, con *ducking* bajo la voz.
 - **Efectos (Epidemic Sound):** pitidos de radio en el arranque y en la cuenta T–03, *whoosh* en cada barrido de trama, *flip board* en los tableros y retumbo grave en el despegue.
 - **Licencia:** la música y los efectos solo se usan dentro del MP4; los archivos originales no se guardan en el repositorio.
+
+## Versión alternativa sin voz
+
+`nave-pelicula-2k-120fps-sin-voz.mp4`: la misma película a 1,2× (101 s), 2560 × 1440 a 120 fps, −14 LUFS.
+
+- **Música:** «Run Further», de Bonnie Grace (Epidemic Sound), 130 BPM, al frente de la mezcla.
+- **Efectos:** 82 efectos de Epidemic Sound, sincronizados con los eventos del motor (`mezcla-sin-voz.py` calcula cada tiempo a partir de la escena y el beat local).
+  - pops de cristal en apariciones, con notas ascendentes en los marcadores, partners y emblemas;
+  - ráfagas de datos en contadores y tickers;
+  - granular cuando se mueve la trama;
+  - riser + golpe en el encendido del símbolo;
+  - clics en letras, barras y capas;
+  - tablero de aeropuerto;
+  - confirmaciones en el checklist;
+  - *whoosh* en cada barrido de trama;
+  - cuenta T–03 → T–00, cohete, retumbo y golpe final.
