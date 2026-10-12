@@ -13,7 +13,7 @@ Bitácora de misión de 121 s (210 beats a 104 BPM), en 16:9 y 2560 × 1440. Cue
 
 | Toma | Inicio | Recurso de la línea gráfica |
 |---|---|---|
-| Arranque | 0:00 | El punto Ignición parpadea dos veces y la bitácora entra: cuenta regresiva, capítulo y altitud. |
+| Arranque | 0:00 | El punto Ignición parpadea dos veces y entra la bitácora: cruces de registro, puntos de capítulo y altímetro. |
 | Manifiesto | 0:05 | El campo de estrellas se tensa hacia el punto. Aparecen tres marcadores (empresa, idea, persona) y el orden nace en retícula: «para hacerla mejor». |
 | NAVE | 0:14 | La retícula entrega 1 018 puntos al símbolo. El punto enciende el vértice y la marca se asienta. |
 | ¿Qué es NAVE? | 0:20 | Cifra «25+», «Fusionamos» con filas «la rigurosidad ··· y la agilidad.» y el socio de ejecución con barras de señalética. |
