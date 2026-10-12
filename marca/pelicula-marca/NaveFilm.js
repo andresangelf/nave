@@ -3,7 +3,7 @@
 //
 //   import { createNaveFilm } from './NaveFilm.js';
 //   const NaveFilm = createNaveFilm(React);
-//   <NaveFilm bpm={120} autoplay loop={false} controles />
+//   <NaveFilm bpm={104} autoplay loop={false} controles />
 //
 // No importa React: lo recibe. Así sirve igual con los UMD de una página estática que con un bundler.
 
@@ -14,7 +14,7 @@ export { ESCENAS, CONTENIDO, PALETA, FUENTES };
 export function createNaveFilm(React) {
   const { useEffect, useRef, useState, useMemo, useCallback, createElement: h } = React;
 
-  function NaveFilm({ bpm = 120, escenas = ESCENAS, contenido = CONTENIDO, colores, fuentes, autoplay = true, loop = false, controles = true, onReady, style }) {
+  function NaveFilm({ bpm, escenas = ESCENAS, contenido = CONTENIDO, colores, fuentes, autoplay = true, loop = false, controles = true, onReady, style }) {
     const motor = useMemo(() => crearMotor({ bpm, escenas, contenido, colores, fuentes }), [bpm, escenas, contenido, colores, fuentes]);
     const caja = useRef(null), lienzo = useRef(null);
     const reloj = useRef({ base: 0, desde: 0, play: autoplay });

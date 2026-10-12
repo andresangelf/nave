@@ -1,6 +1,6 @@
 # NAVE · película de marca
 
-Bitácora de misión de 88 s (176 beats a 120 BPM), en 16:9 y 2560 × 1440. Cuenta el deck *NAVE · Tech Company & Venture Builder* con la línea gráfica de la presentación «Bitácora de despegue»:
+Bitácora de misión de 121 s (210 beats a 104 BPM), en 16:9 y 2560 × 1440. Cuenta el deck *NAVE · Tech Company & Venture Builder* con la línea gráfica de la presentación «Bitácora de despegue»:
 
 - láminas Crema, Espacio y Ámbar;
 - titulares en Standerd con una frase de acento en Ignición;
@@ -11,21 +11,21 @@ Bitácora de misión de 88 s (176 beats a 120 BPM), en 16:9 y 2560 × 1440. Cuen
 
 ## Guion
 
-| Beats | Toma | Recurso de la línea gráfica |
+| Toma | Inicio | Recurso de la línea gráfica |
 |---|---|---|
-| 0–8 | Arranque | El punto Ignición parpadea dos veces y la bitácora entra: cuenta regresiva, capítulo y altitud. |
-| 8–24 | Manifiesto | El campo de estrellas se tensa hacia el punto. Aparecen tres marcadores (empresa, idea, persona) y el orden nace en retícula: «para hacerla mejor». |
-| 24–34 | NAVE | La retícula entrega 1 018 puntos al símbolo. El punto enciende el vértice y la marca se asienta. |
-| 34–58 | ¿Qué es NAVE? | Cifra «25+», filas «Entre… y…» con líneas punteadas y el socio de ejecución con barras de señalética. |
-| 58–72 | Clientes | Dos puertas de embarque, TC y VB, con indicadores de aeropuerto. |
-| 72–90 | ¿Qué ofrece? | Tablero «estado de la nave» con 8 servicios. La fila de Tech Equity se abre hasta volverse la lámina siguiente. |
-| 90–104 | Modelo operativo | Dos flechas convergen en una base de tres capas. Los marcos ISO corren como tablero. |
-| 104–116 | Partners | Constelación sobre el horizonte de puntos. |
-| 116–134 | ¿Qué nos rige? | Checklist de pre-vuelo de 7 puntos. |
-| 134–160 | Tripulación | Órbita del board: cada rol tiene su lema y sus funciones, y al final salen los directores por país. |
-| 160–176 | Despegue | «¿Preguntas?», luego «Listos para el despegue.», T–00, columna de empuje y la marca en órbita. |
+| Arranque | 0:00 | El punto Ignición parpadea dos veces y la bitácora entra: cuenta regresiva, capítulo y altitud. |
+| Manifiesto | 0:05 | El campo de estrellas se tensa hacia el punto. Aparecen tres marcadores (empresa, idea, persona) y el orden nace en retícula: «para hacerla mejor». |
+| NAVE | 0:14 | La retícula entrega 1 018 puntos al símbolo. El punto enciende el vértice y la marca se asienta. |
+| ¿Qué es NAVE? | 0:20 | Cifra «25+», «Fusionamos» con filas «la rigurosidad ··· y la agilidad.» y el socio de ejecución con barras de señalética. |
+| Clientes | 0:33 | Dos puertas de embarque, TC y VB, con indicadores de aeropuerto. |
+| ¿Qué ofrece? | 0:44 | Tablero «estado de la nave» con 8 servicios. La fila de Tech Equity se abre hasta volverse la lámina siguiente. |
+| Modelo operativo | 0:58 | Dos flechas convergen en una base de tres capas. Los marcos ISO corren como tablero. |
+| Partners | 1:07 | Constelación sobre el horizonte de puntos. |
+| ¿Qué nos rige? | 1:16 | Checklist de pre-vuelo de 7 puntos. |
+| Tripulación | 1:29 | Órbita del board: cada rol tiene su lema y sus funciones, y al final salen los directores por país. |
+| Despegue | 1:51 | «¿Preguntas?», luego «Listos para el despegue.», cuenta T–03 → T–00, columna de empuje y la marca en órbita. |
 
-Los cambios de color de lámina se hacen con un barrido de trama: los puntos del color siguiente crecen hasta cubrir. La bitácora (cuenta regresiva hasta T–00, capítulo, altímetro de 25 puntos) es la misma de la animación de apertura y enlaza todas las tomas.
+Los cambios de color de lámina se hacen con un barrido de trama: los puntos del color siguiente crecen hasta cubrir. Las cruces de registro, los puntos de capítulo y el altímetro de 25 puntos se mantienen en todas las tomas, sin textos en las esquinas.
 
 ## Archivos
 
@@ -41,7 +41,7 @@ Los cambios de color de lámina se hacen con un barrido de trama: los puntos del
 
 ```bash
 cd marca/pelicula-marca
-python3 -m http.server 8765     # http://localhost:8765/   ·   ?bpm=140 acelera   ·   ?loop   ·   ?limpio
+python3 -m http.server 8765     # http://localhost:8765/   ·   ?bpm=120 acelera   ·   ?loop   ·   ?limpio
 ```
 
 ## Exportar a 2K · 120 fps
@@ -59,7 +59,7 @@ import React from 'react';
 import { createNaveFilm } from './NaveFilm.js';
 const NaveFilm = createNaveFilm(React);
 
-<NaveFilm bpm={120} loop={false} autoplay controles onReady={(api) => api.seek(12)} />
+<NaveFilm bpm={104} loop={false} autoplay controles onReady={(api) => api.seek(12)} />
 ```
 
 Props: `bpm`, `escenas`, `contenido`, `colores`, `fuentes`, `autoplay`, `loop`, `controles`, `onReady(api)`. La `api` expone `seek`, `play`, `pause`, `replay` y `duracion`.

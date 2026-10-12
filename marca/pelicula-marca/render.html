@@ -8,7 +8,7 @@
 <script type="module">
   import { crearMotor } from './motor.js';
   const q = new URLSearchParams(location.search);
-  const motor = crearMotor({ bpm: Number(q.get('bpm')) || 120 });
+  const motor = crearMotor({ bpm: Number(q.get('bpm')) || undefined });
   const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
   window.duracion = motor.duracion;
   window.cuadro = (t, tipo = 'image/png') => { ctx.setTransform(1, 0, 0, 1, 0, 0); motor.render(ctx, t); return cv.toDataURL(tipo); };

@@ -22,7 +22,7 @@
   const q = new URLSearchParams(location.search);
   await document.fonts.ready;
   ReactDOM.createRoot(document.getElementById('raiz')).render(React.createElement(NaveFilm, {
-    bpm: Number(q.get('bpm')) || 120,
+    bpm: Number(q.get('bpm')) || undefined,
     loop: q.has('loop'),
     controles: !q.has('limpio'),
     autoplay: !q.has('pausa'),
