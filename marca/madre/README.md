@@ -18,7 +18,7 @@ Ampliación del sistema de Nave Café a Nave como marca madre, siguiendo `Nave_P
 `logotipo/familia/` reúne los 24 SVG de la familia: 4 marcas × 3 versiones × 2 temas (claro y oscuro). Todos se generan con `python3 fuente/familia.py`.
 
 - **Marcas:** Nave, Nave Café, Nave Systems y Nave Academy.
-- **Versiones:** completa, mínima horizontal y símbolo.
+- **Versiones:** completa, mínima horizontal y símbolo. Excepción: la completa de Nave Café es el logotipo original del café (NΛVE, «Café» y EST. 2026) sin símbolo; el símbolo solo aparece en su versión horizontal.
 - **Proporciones:** las mismas de Branding (61:66 y 136:113): identificador a 2X; en la versión completa, alineado al final de NΛVE; en la horizontal, con mayúscula igual a la altura de NΛVE.
 - **Identificadores:**
   - Systems y Academy usan DM Sans, igual que en Branding.

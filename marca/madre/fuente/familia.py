@@ -1,12 +1,13 @@
 """Genera logotipo/familia/: Nave, Nave Café, Nave Systems y Nave Academy en versión completa,
 mínima horizontal y símbolo. Geometría de Nave — Identidad Visual (Branding 61:66 y 136:113):
-identificador a 2X; completa con mayúscula ≈ 0,57 × NΛVE alineada al final de NΛVE;
+identificador a 2X; Nave Café completa = logotipo original del café sin símbolo; completa con mayúscula ≈ 0,57 × NΛVE alineada al final de NΛVE;
 horizontal con mayúscula = altura de NΛVE. Identificadores en DM Sans contorneada (exportada de Figma)."""
 import json, pathlib, re
 A = pathlib.Path(__file__).parent; OUT = A.parent / 'logotipo' / 'familia'; OUT.mkdir(parents=True, exist_ok=True)
 L = json.loads((A / 'logotipo-f1.json').read_text())['principal']
 S, W = L['s'], L['d']
 SCRIPT = re.findall(r'd="([^"]+)"', (A / 'cafe-trazo.svg').read_text())
+LK = re.findall(r'd="([^"]+)"', (A.parent.parent / 'logotipo' / 'nave-principal-espacio.svg').read_text())
 ID = json.loads((A / 'identificadores-dmsans.json').read_text())
 C = dict(espacio='#012436', crema='#FFF5EE', ignicion='#E55C41', ambar='#EFA441', petroleo='#005A88')
 k = 201 / 396.77
@@ -22,7 +23,8 @@ for slug, (nombre, acc, idf) in MARCAS.items():
     # completa
     body = sym(a) + word(ink); w, h = 1346, 397
     if idf == 'cafe':
-      body += script(a, 1.731, 538.13 + 99 * 1.731, 97.92 + (200 - 58.9) * 1.731); h = 342.2 + 109 * 1.731
+      # Nave Café completa = logotipo original del café (NΛVE, «Café», EST. 2026) sin símbolo; el símbolo solo va en la horizontal.
+      body = ''.join(f'<path fill="{ink if i < 4 else a}" d="{d}"/>' for i, d in enumerate(LK)); w, h = 467, 308
     elif idf:
       body += f'<path fill="{ink}" d="{ID[idf]["d"]}"/>'; h = 487
     open(OUT / f'{slug}-completa-{tema}.svg', 'w').write(svg(w, h, body, nombre))
