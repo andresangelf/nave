@@ -48,3 +48,7 @@ Presentación en Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG. La 
 ## Película de marca NAVE
 
 `pelicula-marca/`: película de marca de 121 s en 16:9 · 2K (componente React + motor de lienzo + exportador a 120 fps) sobre el deck Tech Company & Venture Builder. Ver `pelicula-marca/README.md`.
+
+## Nave · marca madre
+
+`madre/`: propuesta para llevar el sistema del café a Nave como marca madre: arquitectura, firmas, gramática de puntos, tokens y narrativa con cambios etiquetados. Artefacto: https://claude.ai/artifact/M3uK8aXtDtmZaGGGgCA8oe. Ver `madre/README.md`.

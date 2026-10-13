@@ -1,0 +1,1153 @@
+<title>Nave · Sistema de marca</title>
+<meta name="description" content="Ampliación del branding de Nave Café a Nave como marca madre: narrativa, arquitectura de marca, firmas, fundamentos, capas, aplicaciones e implementación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400&display=swap">
+<style>
+@font-face{font-family:"Standerd Nave";src:local("Standerd Regular"),local("Standerd-Regular"),local("Standerd"),local("StanderdVF");font-weight:100 900}
+/* Lámina de bitácora: retícula de módulo M, marcas de registro, una idea por lámina.
+   Un solo mundo visual, el de la marca (Crema y Espacio): la página no se invierte con el tema del visor. */
+:root{
+  color-scheme:light;
+  --crema:#FFF5EE; --niebla:#D7E1E2; --espacio:#012436; --tueste:#210A05;
+  --ignicion:#E55C41; --ambar:#EFA441; --acero:#798E91; --petroleo:#005A88; --senal:#0067DE;
+  --ok:#2E8B5A;
+  --ink:var(--espacio); --ink-2:#2B4656; --ink-3:#536874;
+  --rule:rgba(1,36,54,.14); --rule-strong:rgba(1,36,54,.3);
+  --sheet:#FFFAF6; --on-dark:#FFF5EE; --on-dark-2:rgba(255,245,238,.78); --rule-dark:rgba(255,245,238,.16);
+  --f-sans:"Standerd Nave","Standerd","Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Lenia Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --t-h1:clamp(38px,5.8vw,84px); --t-h2:clamp(30px,4.2vw,56px); --t-h3:clamp(19px,1.8vw,23px); --t-body:17px; --t-data:12px;
+  --wrap:1240px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--crema);color:var(--ink);font-family:var(--f-sans);font-size:var(--t-body);line-height:1.55;font-weight:450;font-variation-settings:"wght" 450;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5{margin:0;font-weight:700;font-variation-settings:"wght" 700;letter-spacing:-.012em;line-height:1.05;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--senal);outline-offset:3px;border-radius:2px}
+::selection{background:var(--ambar);color:var(--tueste)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:max(16px,4vw)}
+.label{font-family:var(--f-mono);font-size:var(--t-data);letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.mono{font-family:var(--f-mono)}
+.muted{color:var(--ink-2)}
+.dark{background:var(--espacio);color:var(--on-dark)}
+.dark .muted{color:var(--on-dark-2)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* navegación */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(255,245,238,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.nav .mk{flex:none;display:flex;align-items:center;text-decoration:none}
+.nav .mk svg{height:20px;width:auto;color:var(--espacio)}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
+.nav ul::-webkit-scrollbar{display:none}
+.nav a.l{display:block;padding:6px 9px;border-radius:999px;text-decoration:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.nav a.l:hover{background:rgba(1,36,54,.06);color:var(--ink)}
+.nav .read{flex:none}
+
+/* secciones */
+.sec{padding-block:clamp(64px,9vw,120px);position:relative}
+.sec + .sec{border-top:1px solid var(--rule)}
+.sec.dark + .sec,.sec + .sec.dark{border-top-color:transparent}
+.head{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:20px 40px;margin-bottom:clamp(36px,5vw,64px)}
+.head .num{color:var(--ignicion);padding-top:.5em}
+.dark .head .num{color:var(--ambar)}
+.head h2{font-size:var(--t-h2);margin-bottom:18px}
+.head p{max-width:64ch;color:var(--ink-2);font-size:clamp(17px,1.4vw,19px)}
+.dark .head p{color:var(--on-dark-2)}
+.sub{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:12px 40px;margin:clamp(48px,7vw,84px) 0 24px;align-items:baseline}
+.sub .label{color:var(--ink-3)}
+.dark .sub .label{color:var(--on-dark-2)}
+.sub h3{font-size:var(--t-h3);font-weight:650;font-variation-settings:"wght" 650}
+.sub p{color:var(--ink-2);max-width:64ch;margin-top:6px}
+.dark .sub p{color:var(--on-dark-2)}
+@media (max-width:820px){.head,.sub{grid-template-columns:minmax(0,1fr)}}
+.grid{display:grid;gap:clamp(16px,2.2vw,26px)}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1000px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.g2,.g3{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:460px){.g4{grid-template-columns:minmax(0,1fr)}}
+.min0{min-width:0}
+
+/* lámina con marcas de registro */
+.sheet{position:relative;background:var(--sheet);border:1px solid var(--rule);min-width:0}
+.dark .sheet{background:rgba(255,245,238,.035);border-color:var(--rule-dark)}
+.reg::before,.reg::after,.reg>.rb::before,.reg>.rb::after{content:"";position:absolute;width:13px;height:13px;pointer-events:none;color:var(--ink-3);background:linear-gradient(currentColor,currentColor) center/1px 100% no-repeat,linear-gradient(currentColor,currentColor) center/100% 1px no-repeat;opacity:.55}
+.dark .reg::before,.dark .reg::after,.dark .reg>.rb::before,.dark .reg>.rb::after{color:var(--on-dark-2)}
+.reg>.rb{position:absolute;inset:0;pointer-events:none}
+.reg::before{top:-7px;left:-7px}.reg::after{top:-7px;right:-7px}.reg>.rb::before{bottom:-7px;left:-7px}.reg>.rb::after{bottom:-7px;right:-7px}
+.cap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.dark .cap{color:var(--on-dark-2)}
+.pad{padding:clamp(18px,2.4vw,28px)}
+
+/* etiquetas de estado editorial */
+.tag{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;border:1px solid currentColor;line-height:1.5}
+.tag i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.t-orig{color:var(--ink-2)}
+.t-ajuste{color:var(--petroleo)}
+.t-puente{color:#B4442D}
+.t-pend{color:#8A5A0B;background:rgba(239,164,65,.14);border-color:rgba(138,90,11,.5)}
+.t-vig{color:var(--ok)}
+.t-expl{color:#8A5A0B;border-style:dashed}
+.dark .t-orig{color:var(--on-dark-2)}
+.dark .t-vig{color:#7FD3A6}
+.dark .t-expl,.dark .t-pend{color:var(--ambar);background:transparent}
+
+/* controles */
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button,.btn{cursor:pointer;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;padding:8px 12px;border-radius:999px;border:1px solid var(--rule-strong);background:transparent;color:var(--ink-2);min-height:36px}
+.seg button[aria-pressed="true"],.seg button[aria-selected="true"]{background:var(--espacio);color:var(--crema);border-color:var(--espacio)}
+.dark .seg button,.dark .btn{border-color:var(--rule-dark);color:var(--on-dark-2)}
+.dark .seg button[aria-pressed="true"],.dark .seg button[aria-selected="true"]{background:var(--crema);color:var(--espacio);border-color:var(--crema)}
+.btn.solid{background:var(--espacio);color:var(--crema);border-color:var(--espacio)}
+.btn:hover,.seg button:hover{filter:brightness(1.08)}
+.toast{font-family:var(--f-mono);font-size:11.5px;color:var(--petroleo);min-height:1.5em;margin-top:8px}
+
+/* tablas */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.t{width:100%;border-collapse:collapse;font-size:15px}
+table.t th,table.t td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--rule)}
+table.t th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;border-bottom-color:var(--rule-strong)}
+table.t td.k{font-weight:600;font-variation-settings:"wght" 600}
+table.t td.m{font-family:var(--f-mono);font-size:13px}
+.dark table.t th{color:var(--on-dark-2);border-bottom-color:var(--rule-dark)}
+.dark table.t td{border-bottom-color:var(--rule-dark)}
+
+/* hero */
+.hero{overflow:hidden}
+.hero-in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px 56px;align-items:center;padding-block:clamp(48px,7vw,96px)}
+.hero h1{font-size:var(--t-h1);line-height:.98;letter-spacing:-.018em;margin-top:26px}
+.hero h1 em{font-style:normal;color:var(--ignicion)}
+.hero .lede{margin-top:26px;max-width:52ch;font-size:clamp(17px,1.5vw,20px);color:var(--on-dark-2)}
+.scope{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.scope span{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border:1px solid var(--rule-dark);border-radius:999px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-dark-2)}
+.scope i{width:7px;height:7px;border-radius:50%;background:var(--ignicion)}
+.q{margin-top:34px;padding:18px 20px;border:1px solid var(--rule-dark);max-width:60ch}
+.q .label{color:var(--ambar);display:block;margin-bottom:8px}
+.q p{font-size:clamp(18px,1.6vw,21px);line-height:1.35;font-weight:550;font-variation-settings:"wght" 550}
+.hero-art{position:relative;width:100%;max-width:520px;justify-self:end}
+.hero-art .stage{position:relative;aspect-ratio:1;max-width:100%}
+.hero-art canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-art .ctl{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}
+@media (max-width:900px){.hero-in{grid-template-columns:minmax(0,1fr)}.hero-art{justify-self:center}}
+
+/* fuentes y diagnóstico */
+.diag{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule-strong)}
+.diag>div{padding:22px;border-right:1px solid var(--rule);min-width:0}
+.diag>div:last-child{border-right:0}
+.diag h4{font-size:20px;margin-bottom:12px;display:flex;gap:10px;align-items:center}
+.diag h4 i{width:10px;height:10px;border-radius:50%}
+.diag ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:15px;display:grid;gap:7px}
+@media (max-width:820px){.diag{grid-template-columns:minmax(0,1fr)}.diag>div{border-right:0;border-bottom:1px solid var(--rule)}}
+
+/* narrativa */
+.narr-ctl{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.narr{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,40px);align-items:start}
+@media (max-width:960px){.narr{grid-template-columns:minmax(0,1fr)}}
+.textpanel{padding:clamp(22px,3.4vw,48px)}
+.textpanel .vh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.prose{font-size:clamp(17px,1.45vw,20px);line-height:1.62;max-width:62ch;display:grid;gap:1.05em}
+.prose p{white-space:pre-line}
+.prose ins{text-decoration:none;background:rgba(229,92,65,.1);font-weight:700;font-variation-settings:"wght" 700;box-shadow:inset 0 -2px 0 rgba(229,92,65,.55)}
+.prose del{color:var(--ink-3);text-decoration:line-through;text-decoration-color:var(--ignicion);text-decoration-thickness:2px}
+.prose sup.ch{font-family:var(--f-mono);font-size:10px;letter-spacing:.04em;color:var(--ignicion);font-weight:600;margin-inline:2px;vertical-align:super}
+.prose .np{border-left:2px solid var(--ignicion);padding-left:14px}
+.notas{margin-top:22px;padding-top:14px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink-3);display:grid;gap:6px;max-width:70ch}
+.chg{display:grid;gap:14px}
+.chg article{padding:16px 18px;border:1px solid var(--rule);background:var(--sheet)}
+.chg .top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.chg .id{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--ignicion)}
+.chg dl{margin:0;display:grid;grid-template-columns:76px minmax(0,1fr);gap:6px 12px;font-size:14.5px}
+.chg dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.chg dd{margin:0;color:var(--ink-2)}
+.chg dd.b{color:var(--ink)}
+.obs{margin-top:16px;padding:14px 16px;border:1px dashed var(--rule-strong);font-size:14.5px;color:var(--ink-2)}
+.obs .label{display:block;color:var(--ink-3);margin-bottom:6px}
+
+/* conceptos */
+.chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--rule-strong)}
+.chain>div{border-right:1px solid var(--rule);display:flex;flex-direction:column;min-width:0}
+.chain>div:last-child{border-right:0}
+.chain canvas{width:100%;aspect-ratio:1;display:block;border-bottom:1px solid var(--rule);background:var(--sheet)}
+.chain .tx{padding:16px;display:grid;gap:8px}
+.chain h4{font-size:20px}
+.chain p{font-size:14.5px;color:var(--ink-2)}
+.chain .nv{font-size:14px;color:var(--ink);border-top:1px solid var(--rule);padding-top:8px}
+.chain .step{color:var(--ignicion)}
+@media (max-width:1000px){.chain{grid-template-columns:repeat(2,minmax(0,1fr))}.chain>div{border-bottom:1px solid var(--rule)}}
+@media (max-width:480px){.chain{grid-template-columns:minmax(0,1fr)}.chain>div{border-right:0}}
+.bigq{font-size:clamp(26px,3.4vw,44px);line-height:1.12;font-weight:650;font-variation-settings:"wght" 650;letter-spacing:-.012em;max-width:26ch}
+.bigq em{font-style:normal;color:var(--ignicion)}
+
+/* voz */
+.hou{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--rule-dark)}
+.hou div{padding:18px 16px 18px 0;border-bottom:1px solid var(--rule-dark);display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;font-size:16px}
+.hou b{font-family:var(--f-mono);color:var(--ambar);font-weight:500}
+@media (max-width:820px){.hou{grid-template-columns:minmax(0,1fr)}}
+.arq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
+.arq>div{padding:20px;border:1px solid var(--rule-dark)}
+.arq h4{font-size:22px;margin-bottom:6px}
+.arq .label{color:var(--ambar);display:block;margin-bottom:10px}
+@media (max-width:640px){.arq{grid-template-columns:minmax(0,1fr)}}
+.reg-ex{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--rule-dark)}
+.reg-ex>div{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:8px 28px;padding:16px 0;border-bottom:1px solid var(--rule-dark)}
+.reg-ex .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-2);padding-top:4px}
+.reg-ex .v{font-size:clamp(17px,1.5vw,20px);line-height:1.4}
+.reg-ex .v.h{font-size:clamp(22px,2.4vw,30px);font-weight:700;font-variation-settings:"wght" 700;letter-spacing:-.01em;line-height:1.15}
+.reg-ex .v.cta{font-family:var(--f-mono);font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--ambar)}
+@media (max-width:720px){.reg-ex>div{grid-template-columns:minmax(0,1fr)}}
+.avoid{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.avoid li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;color:var(--on-dark-2);font-size:15px}
+.avoid li::before{content:"×";color:var(--ignicion);font-family:var(--f-mono)}
+
+/* pilares */
+.vals{display:flex;flex-wrap:wrap;gap:10px}
+.vals span{padding:10px 16px;border:1px solid var(--espacio);font-size:clamp(18px,1.8vw,24px);font-weight:650;font-variation-settings:"wght" 650;letter-spacing:-.01em}
+.matrix td,.matrix th{min-width:200px}
+.matrix th:first-child,.matrix td:first-child{min-width:150px}
+.matrix thead th{font-family:var(--f-sans);font-size:20px;text-transform:none;letter-spacing:-.01em;color:var(--ink);font-weight:700;font-variation-settings:"wght" 700}
+
+/* arquitectura */
+.rec{padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:20px 40px}
+.rec .big{font-size:clamp(22px,2.4vw,31px);line-height:1.2;font-weight:650;font-variation-settings:"wght" 650;letter-spacing:-.01em}
+.rec ol{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--ink-2);font-size:15.5px}
+@media (max-width:860px){.rec{grid-template-columns:minmax(0,1fr)}}
+.tree-wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(18px,3vw,36px);align-items:start;margin-top:28px}
+@media (max-width:900px){.tree-wrap{grid-template-columns:minmax(0,1fr)}}
+.tree{padding:18px 18px 22px}
+.lvl{margin-top:16px}
+.lvl:first-child{margin-top:0}
+.lvl>.label{color:var(--ink-3);display:block;margin-bottom:8px}
+.node{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;text-align:left;cursor:pointer;background:transparent;border:1px solid var(--rule);padding:10px 12px;margin-top:6px;min-height:44px}
+.node:hover{border-color:var(--rule-strong);background:rgba(1,36,54,.03)}
+.node[aria-pressed="true"]{background:var(--espacio);color:var(--crema);border-color:var(--espacio)}
+.node[aria-pressed="true"] .tag{color:var(--crema)}
+.node .nm{font-weight:600;font-variation-settings:"wght" 600;font-size:15.5px;min-width:0}
+.node .nm small{display:block;font-weight:450;font-variation-settings:"wght" 450;font-size:12.5px;opacity:.75;font-family:var(--f-mono);letter-spacing:.04em}
+.node.child{margin-left:22px;width:calc(100% - 22px)}
+.ficha{padding:clamp(20px,3vw,34px);position:sticky;top:76px}
+.ficha h3{font-size:clamp(26px,3vw,38px);margin:10px 0 6px}
+.ficha .ty{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.ficha dl{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:0;margin:20px 0 0;border-top:1px solid var(--rule-strong)}
+.ficha dt,.ficha dd{padding:10px 0;border-bottom:1px solid var(--rule);margin:0}
+.ficha dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);padding-top:13px;padding-right:12px}
+.ficha dd{font-size:15px;color:var(--ink-2)}
+.ficha .pend{margin-top:16px;padding:12px 14px;background:rgba(239,164,65,.14);border-left:3px solid var(--ambar);font-size:14.5px}
+@media (max-width:900px){.ficha{position:relative;top:auto}}
+.allfichas{display:none}
+.modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.mode{padding:18px;display:flex;flex-direction:column;gap:12px}
+.mode .vis{aspect-ratio:16/9;background:var(--crema);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden}
+.mode .vis svg{max-width:100%;max-height:100%}
+.mode h4{font-size:18px}
+.mode p{font-size:14px;color:var(--ink-2)}
+.mode .ex{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
+@media (max-width:1000px){.modes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.modes{grid-template-columns:minmax(0,1fr)}}
+
+/* firmas */
+.fir-ctl{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-bottom:22px}
+.fir-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.2vw,26px)}
+@media (max-width:760px){.fir-grid{grid-template-columns:minmax(0,1fr)}}
+.fir .art{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;padding:clamp(14px,3vw,36px);max-width:100%}
+.fir .art svg{width:100%;height:100%}
+.fir .meta{padding:14px 18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.fir .meta b{font-weight:650;font-variation-settings:"wght" 650}
+.fir.ex{border-style:dashed}
+.spec{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);border-top:1px solid var(--rule-strong)}
+.spec dt,.spec dd{margin:0;padding:12px 0;border-bottom:1px solid var(--rule)}
+.spec dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-top:15px;padding-right:12px}
+.spec dd{color:var(--ink-2)}
+@media (max-width:640px){.spec{grid-template-columns:minmax(0,1fr)}.spec dt{border-bottom:0;padding-bottom:0}}
+
+/* fundamentos */
+.swg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.swg h4{font-size:17px;margin-bottom:10px}
+.sw{display:grid;gap:8px;margin-bottom:12px}
+.sw .c{aspect-ratio:3/2;border:1px solid rgba(1,36,54,.1);position:relative}
+.sw .c span{position:absolute;left:10px;bottom:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.05em}
+.sw b{font-size:16px;font-weight:650;font-variation-settings:"wght" 650}
+.sw small{display:block;font-size:13px;color:var(--ink-3)}
+@media (max-width:900px){.swg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.prop{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:10px 24px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule)}
+.prop .bar{display:flex;height:44px;border:1px solid var(--rule)}
+.prop .bar div{position:relative;min-width:0;overflow:hidden}
+.prop .bar span{position:absolute;left:6px;bottom:5px;font-family:var(--f-mono);font-size:10px;white-space:nowrap}
+.prop .n{font-weight:600;font-variation-settings:"wght" 600}
+@media (max-width:640px){.prop{grid-template-columns:minmax(0,1fr)}}
+.fam{padding:22px;display:flex;flex-direction:column;gap:12px;min-height:220px}
+.fam .gl{font-size:46px;line-height:1;font-weight:650;font-variation-settings:"wght" 650;letter-spacing:-.01em;overflow-wrap:anywhere}
+.fam .gl.mono{font-family:var(--f-mono);font-size:32px;font-weight:500}
+.fam .gl.dm{font-family:"DM Sans",var(--f-sans);font-weight:400;font-variation-settings:normal}
+.fam p{font-size:14.5px;color:var(--ink-2)}
+.fam .lic{margin-top:auto;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.fn canvas{width:100%;aspect-ratio:4/3;display:block}
+.fn h4{font-size:18px;margin-top:14px}
+.fn p{font-size:14.5px;color:var(--ink-2);margin-top:4px}
+.fn .label{color:var(--ignicion);margin-top:8px;display:block}
+.mat{aspect-ratio:1;position:relative;overflow:hidden;border:1px solid var(--rule)}
+.mat .lb{position:absolute;left:12px;bottom:10px;right:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.alu{background:repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 1px,rgba(255,255,255,.35) 1px 2px,rgba(0,0,0,.04) 2px 3px),linear-gradient(100deg,#9AA4A9 0%,#E3E7E8 28%,#B8C0C3 46%,#EEF1F1 62%,#A9B2B6 82%,#D5DADC 100%)}
+.perf{background:radial-gradient(circle at center,var(--espacio) 0 2.6px,transparent 3.2px) 0 0/14px 14px,linear-gradient(100deg,#9AA4A9 0%,#E3E7E8 28%,#B8C0C3 46%,#EEF1F1 62%,#A9B2B6 82%,#D5DADC 100%)}
+.paper{background:radial-gradient(rgba(1,36,54,.05) 1px,transparent 1.3px) 0 0/4px 4px,var(--crema)}
+.deboss{background:var(--crema);display:flex;align-items:center;justify-content:center}
+.deboss svg{width:52%;color:var(--crema);filter:drop-shadow(1px 1px 0 rgba(255,255,255,.95)) drop-shadow(-1px -1px 0 rgba(1,36,54,.2))}
+
+/* capas */
+.cap-ctl{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;margin-bottom:20px}
+.comp{position:relative;aspect-ratio:16/10;max-width:100%;overflow:hidden;background:var(--crema)}
+.comp>*{position:absolute;inset:0}
+.comp canvas{width:100%;height:100%}
+.comp .orient{padding:6.2% 6.6%;display:flex;flex-direction:column;color:var(--espacio)}
+.comp .orient .row{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--f-mono);font-size:clamp(8px,1vw,12px);letter-spacing:.1em;text-transform:uppercase;gap:10px}
+.comp .orient h4{font-size:clamp(22px,3.6vw,50px);line-height:.98;letter-spacing:-.02em;max-width:13ch;margin-top:auto}
+.comp .orient h4 em{font-style:normal;color:var(--ignicion)}
+.comp .orient .ft{display:flex;justify-content:space-between;align-items:flex-end;margin-top:4%;gap:12px}
+.comp .orient .ft svg{height:clamp(14px,2.2vw,28px);width:auto;color:var(--espacio)}
+.comp .orient .ft span{font-family:var(--f-mono);font-size:clamp(8px,.95vw,11.5px);letter-spacing:.08em;text-transform:uppercase}
+.sep{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.sep .comp{aspect-ratio:16/10}
+.sep h4{font-size:18px;margin-top:12px}
+.sep p{font-size:14px;color:var(--ink-2);margin-top:4px}
+.sep .om{font-size:13px;color:var(--ink-3);margin-top:6px}
+@media (max-width:1000px){.sep{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.sep{grid-template-columns:minmax(0,1fr)}}
+.layers-info{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--rule-strong);margin-top:22px}
+.layers-info>div{padding:16px;border-right:1px solid var(--rule);min-width:0}
+.layers-info>div:last-child{border-right:0}
+.layers-info h4{font-size:18px;margin-bottom:6px}
+.layers-info p{font-size:14px;color:var(--ink-2)}
+.layers-info .om{font-size:13px;color:var(--ink-3);margin-top:8px}
+@media (max-width:900px){.layers-info{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.layers-info{grid-template-columns:minmax(0,1fr)}}
+
+/* aplicaciones */
+.apps{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2.2vw,26px)}
+.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}
+@media (max-width:900px){.c4,.c5,.c7,.c8{grid-column:span 6}}
+@media (max-width:640px){.c4,.c5,.c6,.c7,.c8{grid-column:span 12}}
+.app{display:flex;flex-direction:column;min-width:0}
+.app .sheet{flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(14px,2.6vw,32px)}
+.appcap{margin-top:12px;display:grid;gap:4px}
+.appcap .t1{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.appcap b{font-weight:650;font-variation-settings:"wght" 650}
+.appcap small{font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase}
+.post{position:relative;width:100%;aspect-ratio:4/5;background:var(--espacio);color:var(--crema);overflow:hidden}
+.post canvas{position:absolute;inset:0;width:100%;height:100%}
+.post .in{position:absolute;inset:0;padding:8%;display:flex;flex-direction:column}
+.post .in .row{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:clamp(8px,.85vw,11px);letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-2)}
+.post .in h4{margin-top:auto;font-size:clamp(26px,3.4vw,44px);line-height:.98;letter-spacing:-.02em}
+.post .in h4 em{font-style:normal;color:var(--ignicion)}
+.post .in .ft{margin-top:7%;display:flex;justify-content:space-between;align-items:flex-end}
+.post .in .ft svg{height:clamp(16px,2vw,24px);width:auto;color:var(--crema);flex:none}
+.post .in .ft{gap:10px}
+.post .in .ft span{font-family:var(--f-mono);font-size:clamp(8px,.85vw,11px);letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-2)}
+.onep{width:100%;max-width:520px;background:#FFFFFF;color:var(--espacio);box-shadow:0 1px 0 rgba(1,36,54,.06),0 22px 40px -26px rgba(1,36,54,.5);aspect-ratio:210/297;padding:7%;display:flex;flex-direction:column;gap:3%;font-size:clamp(7px,2.4cqi,12px);overflow:hidden}
+.app .sheet{container-type:inline-size}
+.onep .hd{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--f-mono);font-size:.82em;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.onep .code{font-family:var(--f-mono);font-weight:700;color:var(--petroleo);letter-spacing:.1em;font-size:1.05em}
+.onep h4{font-size:2.5em;line-height:1;letter-spacing:-.02em}
+.onep .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8% 6%;margin-top:2%}
+.onep .cols h5{font-family:var(--f-mono);font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:var(--ignicion);font-weight:500;margin-bottom:4px}
+.onep .cols p{line-height:1.45;color:var(--ink-2)}
+.onep .meter{display:flex;gap:3px;margin-top:6px}
+.onep .meter i{width:.7em;height:.7em;border-radius:50%;background:var(--niebla)}
+.onep .meter i.on{background:var(--petroleo)}
+.onep .ftr{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--rule);padding-top:4%}
+.onep .ftr svg{height:2.2em;width:auto;color:var(--espacio)}
+.onep .ftr span{font-family:var(--f-mono);font-size:.78em;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.onep .dots{height:13%;position:relative;flex:none}
+.onep .dots canvas{position:absolute;inset:0;width:100%;height:100%}
+.plate{width:100%;max-width:360px;aspect-ratio:3/4;background:var(--espacio);color:var(--crema);padding:9%;display:flex;flex-direction:column;gap:6%}
+.plate .tp{display:flex;justify-content:space-between;align-items:flex-start}
+.plate .tp svg.em{width:28%;height:auto;color:var(--ambar)}
+.plate .cd{font-family:var(--f-mono);font-weight:700;letter-spacing:.1em;color:var(--ambar);font-size:clamp(16px,1.8vw,22px)}
+.plate h4{font-size:clamp(30px,3.6vw,46px);line-height:.95;letter-spacing:-.02em}
+.plate .fn{display:flex;align-items:center;gap:10px;font-size:clamp(15px,1.5vw,19px);font-weight:600;font-variation-settings:"wght" 600}
+.plate .fn i{width:12px;height:12px;border-radius:50%;background:var(--ignicion)}
+.plate .bt{margin-top:auto;border-top:1px solid var(--rule-dark);padding-top:7%;display:flex;justify-content:space-between;align-items:center}
+.plate .bt svg.lk{height:clamp(30px,3.4vw,42px);width:auto;--lw:var(--crema);--le:var(--ambar);--lc:var(--ambar)}
+.plate .bt svg.ar{width:clamp(26px,3vw,36px);height:auto;color:var(--crema)}
+.status{width:100%;background:#00131D;color:var(--crema);padding:clamp(16px,2.4vw,26px);border-radius:4px;font-size:14.5px}
+.status .h{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--rule-dark)}
+.status .h h4{font-size:clamp(19px,2vw,25px)}
+.status .h .mono{color:var(--ambar);font-size:13px;letter-spacing:.06em}
+.status dl{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);margin:0}
+.status dt,.status dd{margin:0;padding:11px 0;border-bottom:1px solid var(--rule-dark)}
+.status dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-2);padding-top:13px}
+.status .pill{display:inline-flex;gap:8px;align-items:center;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.status .pill i{width:9px;height:9px;border-radius:50%;background:var(--ambar)}
+.status .m25{display:flex;gap:3px;flex-wrap:wrap;margin-top:12px}
+.status .m25 i{width:7px;height:7px;border-radius:50%;background:rgba(255,245,238,.18)}
+.status .m25 i.on{background:var(--crema)}
+.status .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-dark-2)}
+.acad{width:100%;max-width:440px;aspect-ratio:4/5;background:var(--crema);border:1.5px dashed #8A5A0B;position:relative;padding:8%;display:flex;flex-direction:column;overflow:hidden}
+.acad canvas{position:absolute;inset:0;width:100%;height:100%}
+.acad>*:not(canvas){position:relative}
+.acad .stamp{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8A5A0B;border:1px solid currentColor;padding:4px 8px;background:var(--crema)}
+.acad h4{margin-top:auto;font-size:clamp(24px,2.8vw,36px);line-height:1.02;letter-spacing:-.015em;color:var(--espacio)}
+.acad .ft{margin-top:8%;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.acad .ft svg{height:clamp(26px,3vw,40px);width:auto;color:var(--espacio)}
+.acad .ft span{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+/* implementación */
+.impl-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,40px)}
+@media (max-width:900px){.impl-grid{grid-template-columns:minmax(0,1fr)}}
+.lst{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule-strong)}
+.lst li{padding:11px 0;border-bottom:1px solid var(--rule);font-size:15px;color:var(--ink-2);display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px}
+.lst li b{font-family:var(--f-mono);font-size:12px;color:var(--ignicion);font-weight:500;padding-top:2px}
+.dark .lst{border-top-color:var(--rule-dark)}
+.dark .lst li{border-bottom-color:var(--rule-dark);color:var(--on-dark-2)}
+.dark .lst li b{color:var(--ambar)}
+.codeout{width:100%;min-height:150px;font-family:var(--f-mono);font-size:12px;line-height:1.5;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);padding:12px;resize:vertical}
+
+.foot{padding-block:56px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.foot svg{height:56px;width:auto;color:var(--crema)}
+.foot .links{display:grid;gap:6px;font-family:var(--f-mono);font-size:12px;letter-spacing:.04em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* modo lectura e impresión: todo lo que está en pestañas se muestra a la vez */
+body.lectura .only-live{display:none!important}
+body.lectura .allfichas{display:grid;gap:16px;margin-top:28px}
+body.lectura .tree-wrap{display:none}
+body.lectura .sep{display:grid!important}
+body.lectura #capas-juntas{display:none}
+body.lectura .reg-all{display:grid!important}
+body.lectura .reg-one{display:none}
+body.lectura .narr-all{display:grid!important}
+body.lectura .narr-one{display:none}
+.reg-all,.narr-all{display:none;gap:28px}
+@media print{
+  .nav,.only-live,.tree-wrap,#capas-juntas,.reg-one,.narr-one,.hero-art .ctl{display:none!important}
+  .allfichas,.sep,.reg-all,.narr-all{display:grid!important}
+  .sec{padding-block:36px;break-inside:auto}
+  .sheet,.chg article,.fir,.app{break-inside:avoid}
+  body{font-size:12pt}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="lk" viewBox="0 0 467 308"><path style="fill:var(--lw,currentColor)" d="M111.131 58.8954H97.5646C95.6679 58.8954 94.1297 60.4371 94.1297 62.3252V146.274L25.698 58.8954H0V171.473C0 173.366 1.54397 174.902 3.43489 174.902H17.0009C18.8976 174.902 20.4358 173.361 20.4358 171.473V87.402L88.7866 174.902H114.566V62.3252C114.566 60.4313 113.022 58.8954 111.131 58.8954Z"/><path style="fill:var(--lw,currentColor)" d="M200.698 58.8953H178.296L128.646 168.793C128.039 170.139 128.155 171.68 128.959 172.922C129.762 174.163 131.121 174.902 132.602 174.902H145.127C146.821 174.902 148.365 173.909 149.071 172.373C156.374 156.419 180.019 104.741 189.503 83.5737L230.155 172.373C230.86 173.909 232.404 174.902 234.099 174.902H246.699C248.179 174.902 249.544 174.157 250.342 172.916C251.14 171.675 251.256 170.127 250.643 168.782L200.681 58.8953H200.698Z"/><path style="fill:var(--lw,currentColor)" d="M354.447 58.8953H341.841C340.158 58.8953 338.614 59.8827 337.909 61.407C334.705 68.307 307.492 126.972 297.239 150.212C287.762 129.056 264.122 77.3954 256.813 61.4301C256.107 59.8942 254.564 58.9011 252.869 58.9011H240.344C238.864 58.9011 237.505 59.6402 236.701 60.8816C235.897 62.123 235.782 63.6647 236.389 65.01L286.038 174.908H308.44L358.402 65.0216C359.015 63.6762 358.9 62.1288 358.102 60.8874C357.298 59.6459 355.939 58.9011 354.459 58.9011L354.447 58.8953Z"/><path style="fill:var(--lw,currentColor)" d="M467 77.7765V58.8895H378.589C376.34 58.8895 374.507 60.7199 374.507 62.966V170.82C374.507 173.066 376.34 174.896 378.589 174.896H467V156.01H394.943V124.564H459.095V105.677H394.943V77.7708H467V77.7765Z"/><path style="fill:var(--le,currentColor)" d="M134.217 31.0904L131.004 7.37441L145.636 5.39776L145.972 7.87809L134.198 9.46861L135.28 17.4532L146.645 15.9179L146.981 18.3982L135.616 19.9335L136.74 28.224L148.513 26.6334L148.849 29.1138L134.217 31.0904Z"/><path style="fill:var(--le,currentColor)" d="M164.715 27.7813C162.573 27.9854 160.781 27.7658 159.34 27.1225C157.897 26.4563 156.672 25.5513 155.666 24.4072L157.588 22.502C158.633 23.5734 159.696 24.3447 160.775 24.8158C161.878 25.2848 163.147 25.4508 164.583 25.314C166.315 25.149 167.598 24.6248 168.434 23.7416C169.269 22.8583 169.618 21.6999 169.481 20.2664C169.37 19.1059 168.954 18.2386 168.232 17.6645C167.508 17.0676 166.313 16.7108 164.646 16.5941L161.938 16.4044C160.756 16.3104 159.747 16.0966 158.91 15.763C158.096 15.4273 157.423 14.9978 156.89 14.4745C156.354 13.9285 155.952 13.324 155.681 12.6609C155.409 11.975 155.237 11.2567 155.165 10.5058C154.956 8.32135 155.516 6.60325 156.845 5.35148C158.175 4.0997 160.058 3.35763 162.497 3.12527C164.411 2.94285 166.048 3.10831 167.408 3.62165C168.79 4.13282 169.936 4.93064 170.844 6.0151L168.994 7.948C168.25 7.14631 167.385 6.51693 166.399 6.05987C165.412 5.6028 164.178 5.44484 162.697 5.586C161.079 5.74018 159.87 6.19985 159.069 6.965C158.269 7.73016 157.933 8.79537 158.064 10.1606C158.166 11.2301 158.569 12.0757 159.272 12.6975C159.996 13.2944 161.215 13.6605 162.93 13.7956L165.536 13.995C166.718 14.089 167.727 14.3028 168.564 14.6364C169.401 14.9699 170.085 15.3984 170.618 15.9216C171.174 16.4427 171.588 17.0462 171.861 17.732C172.133 18.4178 172.306 19.1476 172.38 19.9212C172.591 22.1284 172.027 23.9272 170.689 25.3177C169.373 26.706 167.381 27.5272 164.715 27.7813Z"/><path style="fill:var(--le,currentColor)" d="M188.407 3.99144L189.715 25.3807L186.836 25.5563L185.528 4.16701L177.542 4.65402L177.389 2.15575L196.24 1.00617L196.393 3.50444L188.407 3.99144Z"/><path style="fill:var(--le,currentColor)" d="M211.89 24.6627C210.952 24.6897 210.283 24.5146 209.883 24.1373C209.505 23.7595 209.308 23.2735 209.291 22.6794L209.273 22.0625C209.256 21.4685 209.425 20.972 209.78 20.573C210.157 20.1734 210.815 19.9601 211.754 19.9331C212.692 19.906 213.349 20.0815 213.727 20.4594C214.127 20.8366 214.336 21.3222 214.353 21.9163L214.371 22.5332C214.388 23.1272 214.208 23.6241 213.83 24.0237C213.475 24.4226 212.828 24.6356 211.89 24.6627Z"/><path style="fill:var(--le,currentColor)" d="M267.304 24.614L251.311 24.0872L251.408 21.1402L259.642 14.2073C260.844 13.1948 261.84 12.1527 262.632 11.081C263.424 9.98646 263.84 8.82236 263.881 7.58872L263.894 7.1775C263.942 5.73824 263.601 4.61781 262.872 3.8162C262.143 2.99174 261.035 2.55503 259.548 2.50604C258.084 2.45781 256.939 2.79746 256.113 3.52498C255.311 4.2304 254.695 5.19354 254.265 6.41437L251.723 5.37009C251.975 4.66942 252.307 3.99423 252.718 3.34453C253.152 2.67273 253.687 2.08429 254.322 1.57919C254.957 1.0741 255.715 0.675951 256.595 0.384753C257.498 0.0943089 258.532 -0.0316964 259.699 0.0067372C260.889 0.0459244 261.936 0.25193 262.84 0.624754C263.766 0.998332 264.528 1.50371 265.126 2.14088C265.746 2.7788 266.202 3.52568 266.495 4.38151C266.81 5.23809 266.951 6.16898 266.918 7.17417C266.888 8.08799 266.722 8.94016 266.421 9.73071C266.143 10.522 265.752 11.2753 265.247 11.9905C264.765 12.7065 264.181 13.4076 263.494 14.094C262.831 14.7582 262.087 15.4199 261.264 16.0788L254.379 21.684L267.386 22.1124L267.304 24.614Z"/><path style="fill:var(--le,currentColor)" d="M282.748 25.8598C281.286 25.7644 280.048 25.4088 279.033 24.7928C278.019 24.1541 277.204 23.2877 276.588 22.1938C275.971 21.0999 275.553 19.7784 275.333 18.2293C275.113 16.6802 275.067 14.9249 275.196 12.9633C275.323 11.0245 275.596 9.30148 276.016 7.79412C276.437 6.26396 277.024 4.99661 277.778 3.99209C278.532 2.98757 279.453 2.24586 280.539 1.76698C281.627 1.26529 282.902 1.06212 284.364 1.15747C285.826 1.25282 287.064 1.61988 288.077 2.25865C289.092 2.8746 289.908 3.72954 290.525 4.82346C291.141 5.91738 291.559 7.25028 291.777 8.82216C291.997 10.3712 292.044 12.1152 291.917 14.0539C291.788 16.0155 291.514 17.75 291.095 19.2573C290.675 20.7647 290.088 22.0206 289.334 23.0252C288.58 24.0297 287.659 24.7828 286.571 25.2845C285.484 25.7634 284.21 25.9551 282.748 25.8598ZM282.912 23.3622C283.871 23.4248 284.705 23.2959 285.414 22.9757C286.125 22.6326 286.708 22.1324 287.164 21.4749C287.643 20.8189 288.017 20.0187 288.285 19.0741C288.555 18.1067 288.729 17.0186 288.808 15.8097L289.063 11.9093C289.141 10.7232 289.109 9.6331 288.968 8.6389C288.826 7.6447 288.561 6.7913 288.172 6.07872C287.805 5.36763 287.291 4.80726 286.63 4.39762C285.97 3.96516 285.16 3.71765 284.201 3.65507C283.241 3.5925 282.406 3.73274 281.696 4.0758C280.987 4.39605 280.393 4.88415 279.914 5.54012C279.458 6.19758 279.095 7.01 278.825 7.97738C278.556 8.94476 278.382 10.0215 278.304 11.2076L278.049 15.1079C277.97 16.3168 278.001 17.4184 278.143 18.4126C278.286 19.384 278.54 20.2252 278.907 20.9363C279.296 21.6489 279.82 22.2214 280.48 22.6539C281.142 23.0635 281.952 23.2996 282.912 23.3622ZM283.424 15.5272C282.625 15.4751 282.075 15.2789 281.777 14.9387C281.5 14.6 281.377 14.2026 281.407 13.7464L281.456 12.9937C281.486 12.5375 281.66 12.1595 281.978 11.8595C282.319 11.561 282.889 11.4379 283.688 11.49C284.488 11.5422 285.026 11.7376 285.302 12.0763C285.601 12.4165 285.735 12.8147 285.705 13.2708L285.656 14.0235C285.626 14.4797 285.441 14.857 285.1 15.1555C284.782 15.4555 284.224 15.5794 283.424 15.5272Z"/><path style="fill:var(--le,currentColor)" d="M314.394 28.1497L298.473 26.5511L298.769 23.6173L307.451 17.2525C308.718 16.323 309.782 15.3501 310.644 14.3339C311.507 13.295 312.001 12.1614 312.125 10.9333L312.166 10.5239C312.31 9.09112 312.046 7.95035 311.372 7.10161C310.7 6.23013 309.624 5.72007 308.144 5.57141C306.686 5.42504 305.521 5.6871 304.648 6.35757C303.801 7.00759 303.121 7.92723 302.61 9.11647L300.144 7.90398C300.443 7.22181 300.819 6.57039 301.273 5.94973C301.751 5.3086 302.325 4.75736 302.992 4.29602C303.66 3.83468 304.443 3.48826 305.34 3.25676C306.261 3.02755 307.302 2.97127 308.463 3.08791C309.648 3.20683 310.678 3.4826 311.555 3.91523C312.454 4.35014 313.181 4.90551 313.734 5.58132C314.31 6.25942 314.715 7.03522 314.949 7.90873C315.206 8.78453 315.284 9.72278 315.183 10.7235C315.091 11.6332 314.869 12.4723 314.515 13.2409C314.185 14.0118 313.743 14.7371 313.192 15.4168C312.663 16.0988 312.033 16.7592 311.301 17.3979C310.595 18.0162 309.809 18.6264 308.943 19.2287L301.697 24.3592L314.645 25.6594L314.394 28.1497Z"/><path style="fill:var(--le,currentColor)" d="M329.668 30.4879C328.421 30.314 327.328 29.9537 326.387 29.407C325.45 28.8377 324.683 28.1192 324.088 27.2514C323.519 26.3642 323.121 25.3278 322.894 24.1421C322.69 22.9596 322.686 21.6666 322.882 20.2631C323.129 18.4973 323.621 16.8811 324.358 15.4145C325.121 13.9284 325.999 12.6084 326.992 11.4546C328.012 10.2812 329.1 9.27903 330.256 8.44794C331.416 7.59422 332.526 6.92975 333.586 6.45453L337.259 6.96695C335.837 7.71481 334.554 8.45901 333.41 9.19954C332.289 9.94325 331.275 10.748 330.368 11.6139C329.464 12.4572 328.674 13.397 327.997 14.4335C327.323 15.4474 326.72 16.6211 326.187 17.9545L326.347 18.0462C327.05 17.1518 327.911 16.4526 328.929 15.9484C329.95 15.4216 331.198 15.261 332.672 15.4666C333.714 15.6121 334.643 15.9147 335.457 16.3745C336.271 16.8342 336.951 17.4253 337.497 18.1478C338.043 18.8702 338.423 19.7079 338.636 20.6608C338.872 21.6169 338.913 22.6496 338.758 23.7589C338.596 24.9134 338.254 25.9505 337.733 26.8702C337.214 27.7672 336.555 28.5176 335.754 29.1213C334.978 29.7055 334.065 30.1205 333.014 30.3661C331.985 30.615 330.87 30.6556 329.668 30.4879ZM329.972 28.0723C331.604 28.3 332.924 28.0341 333.932 27.2746C334.962 26.5182 335.59 25.3364 335.815 23.7291L335.853 23.4575C336.078 21.8502 335.798 20.5418 335.015 19.5324C334.254 18.5262 333.058 17.9092 331.426 17.6815C329.793 17.4537 328.462 17.7181 327.431 18.4744C326.424 19.2339 325.807 20.4173 325.582 22.0246L325.544 22.2963C325.32 23.9036 325.587 25.2103 326.348 26.2166C327.131 27.226 328.339 27.8445 329.972 28.0723Z"/><path style="fill:var(--lc,currentColor)" d="M302.717 200.339C305.659 200.173 309.785 200.5 310.248 204.356C310.713 208.232 307.396 212.834 305.198 215.882C304.403 216.985 302.208 220.057 300.583 220.171C296.311 219.621 295.815 221.385 293.358 224.489C291.054 227.397 288.992 230.884 286.75 234.023C289.732 233.658 292.703 233.211 295.66 232.682C297.522 232.361 299.411 231.949 301.285 231.729C301.832 231.665 302.49 231.571 302.946 231.955C303.26 232.219 303.415 232.599 303.449 233.001C303.637 235.296 301.276 239.107 299.874 240.8C299.233 241.574 298.473 242.334 297.541 242.745C295.143 243.803 283.367 245.424 280.34 245.698C278.373 249.068 276.245 252.39 274.195 255.711C268.773 264.489 262.787 272.86 257.525 281.739C263.299 279.81 269.136 277.354 274.82 275.136C279.083 273.472 283.222 271.415 287.466 269.709C286.718 268.375 286.297 267.038 286.371 265.496C286.534 262.087 289.019 259.066 291.427 256.869C299.844 249.196 320.636 239.951 331.996 240.508C333.717 240.593 335.396 240.94 336.588 242.291C337.826 243.694 338.011 245.559 337.886 247.347C337.734 249.497 336.385 252.405 334.424 253.469C332.61 254.452 330.007 254.288 327.987 254.563C320.343 255.601 311.332 257.724 305.401 262.953C304.824 263.46 304.03 264.257 304.019 265.074C304.015 265.361 304.097 265.594 304.301 265.797C304.807 266.299 306.065 266.156 306.723 266.087C309.256 265.821 311.842 265.104 314.257 264.304C315.966 263.737 320.17 261.923 321.744 261.921C322.324 261.92 322.896 262.27 323.292 262.67C324.017 263.401 324.313 264.407 324.294 265.419C324.265 266.978 323.511 268.608 322.316 269.614C320.513 271.132 317.782 271.958 315.612 272.876C309.735 275.364 298.827 279.579 294.373 283.863C293.902 284.314 293.377 284.858 293.36 285.545C294.118 287.186 299.165 285.777 300.621 285.422C313.48 282.293 326.36 277.829 337.87 271.226C341.233 269.323 344.523 267.293 347.734 265.141C349.277 264.12 354.323 260.306 355.613 260.005C360.419 258.882 360.247 265.816 357.97 268.467C355.016 271.906 352.697 273.524 349.203 275.862C335.935 284.574 321.474 291.312 306.276 295.867C296.928 298.975 279.266 303.228 276.109 289.527C275.712 287.798 276.351 285.666 277.017 284.084C267.828 287.67 258.815 291.592 249.714 295.382C248.089 297.907 246.711 300.376 244.951 302.869C242.558 306.35 240.083 306.966 236.123 307.73C230.608 308.792 225.595 306.799 228.317 300.347C229.28 298.064 231.029 295.865 232.389 293.769C233.577 291.939 235.017 290.132 236.257 288.329C238.544 285.24 240.707 282.009 243.059 278.976C241.229 280.52 238.991 282.034 237.035 283.467C231.48 287.538 225.943 291.77 220.048 295.338C218.514 296.267 216.895 296.583 215.192 295.978C209.21 293.851 207.255 289.578 209.028 283.667C202.841 287.9 196.907 292.778 190.036 295.961C186.243 297.718 182.175 298.645 178.122 297.102C175.398 296.075 173.192 294.007 171.988 291.352C169.045 284.773 173.964 277.587 177.925 272.58C187.208 260.845 199.935 252.278 213.499 246.234C217.808 244.314 224.06 241.57 228.789 243.345C231.98 244.631 233.411 247.131 234.726 250.109C238.09 251.587 240.39 253.793 238.782 257.788C237.474 261.04 235.014 264.251 233.022 267.156C230.975 270.077 229.017 273.059 227.149 276.097C234.473 272.012 241.688 267.735 248.786 263.271C249.495 262.83 253.875 260.215 254.196 259.721C256.772 255.763 258.941 251.508 261.57 247.55C261.428 247.586 261.284 247.617 261.139 247.642C256.994 248.362 251.761 250.326 251.057 244.264C250.391 238.534 255.01 238.472 259.192 237.858L268.346 236.509C270.285 233.312 272.595 229.995 274.712 226.903C277.173 223.291 279.72 219.74 282.352 216.253C287.681 209.241 293.633 202.034 302.717 200.339ZM221.273 259.41C222.032 258.184 221.646 256.736 219.929 256.836C211.479 258.066 195.266 273.122 190.29 280.079C189.814 280.744 188.387 282.607 188.514 283.491C188.557 283.79 188.648 283.813 188.848 284.02C189.315 284.216 189.747 284.159 190.226 283.995C191.654 283.428 193.905 282.15 195.3 281.196C204.32 275.03 215.403 268.878 221.273 259.41Z"/><path style="fill:var(--lc,currentColor)" d="M177.599 206.142C180.294 205.562 186.629 206.424 189.267 207.259C193.229 208.512 196.729 211.04 198.664 214.782C200.897 219.099 200.554 224.241 199.111 228.754C196.436 237.12 190.23 244.771 182.394 248.783C178.193 250.934 172.874 251.945 168.304 250.444C166.875 249.975 165.516 249.207 164.83 247.796C164.331 246.771 164.615 245.502 165.21 244.574C166.105 243.175 168.525 241.125 169.793 239.892C173.982 235.814 183.014 227.136 184.737 221.935C184.98 221.204 185.142 220.287 184.77 219.573C184.471 218.999 183.94 218.696 183.338 218.519C179.422 217.369 173.338 220.516 169.891 222.385C164.415 225.354 159.22 229.049 154.36 232.941C143.945 241.28 123.589 260.584 119.921 273.062C119.033 276.082 118.765 279.845 120.333 282.698C121.256 284.377 122.777 285.548 124.609 286.075C130.909 287.888 140.524 283.251 145.921 280.237C152.46 276.683 158.428 271.743 164.415 267.279C168.07 263.857 172.38 269.923 172.642 273.307C172.927 276.984 170.028 280.271 167.469 282.676C156.587 292.9 143.107 299.693 128.221 301.412C113.21 303.146 100.71 293.493 99.2995 278.295C98.1456 267.312 105.278 256.179 112.24 248.127C127.476 230.505 153.749 208.319 177.599 206.142Z"/><path style="fill:var(--lc,currentColor)" d="M347.535 212.187C349.112 212.082 350.457 212.486 351.431 213.941C353.258 216.667 353.424 221.502 350.141 223.204C348.843 223.878 347.286 224.344 345.853 224.842C343.624 225.605 341.404 226.392 339.193 227.205C332.925 229.54 326.744 232.216 320.427 234.423C319.831 234.657 319.125 234.905 318.491 235C317.845 235.097 317.24 235.008 316.71 234.611C316.107 234.16 315.712 233.558 315.612 232.806C315.45 231.608 315.875 230.44 316.595 229.498C320.003 225.049 338.052 215.319 343.827 213.148C345.04 212.692 346.251 212.362 347.535 212.187Z"/></symbol>
+<symbol id="e-ventana" viewBox="-4.0 -4.0 103.0308 103.0308" fill="none">
+<g>
+<path d="M22.875 1H72.1558C74.2479 1 76.2484 1.82375 77.7259 3.31433L91.7165 17.3049C93.194 18.7824 94.0308 20.7829 94.0308 22.875V72.1558C94.0308 74.2479 93.2071 76.2484 91.7165 77.7259L77.7259 91.7165C76.2484 93.194 74.2479 94.0308 72.1558 94.0308H22.875C20.783 94.0308 18.7824 93.2071 17.3049 91.7165L3.31435 77.7259C1.83685 76.2484 1 74.2479 1 72.1558V22.875C1 20.7829 1.82377 18.7824 3.31435 17.3049L17.3049 3.31433C18.7824 1.83683 20.783 1 22.875 1Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M26.7584 68.2725C25.1632 66.6773 24.2741 64.5199 24.2741 62.2578V32.7599C24.2741 30.511 25.1763 28.3405 26.7584 26.7453C28.3536 25.1501 30.511 24.261 32.7731 24.261H62.2709C64.5199 24.261 66.6904 25.1632 68.2856 26.7453C69.8808 28.3405 70.7699 30.4979 70.7699 32.7599V62.2578C70.7699 64.5068 69.8677 66.6773 68.2856 68.2725C66.6904 69.8676 64.533 70.7698 62.2709 70.7698H32.7731C30.5241 70.7698 28.3536 69.8677 26.7584 68.2855V68.2725Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+</g>
+</symbol>
+<symbol id="e-escotilla" viewBox="-4.0 -4.0 103.0308 103.0047" fill="none">
+<g>
+<path d="M1.01305 47.4958C1.01305 73.1757 21.829 94.0047 47.522 94.0047C73.2149 94.0047 94.0308 73.1888 94.0308 47.4958C94.0308 21.8028 73.2019 1 47.5089 1C21.8159 1 1 21.8159 1 47.5089" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M19.6061 47.4958C19.6061 62.9116 32.0931 75.3985 47.5089 75.3985C62.9247 75.3985 75.4115 62.9116 75.4115 47.4958C75.4115 32.08 62.9247 19.5931 47.5089 19.5931C32.0931 19.5931 19.6061 32.08 19.6061 47.4958Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M75.4114 47.4958H94.0177" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M67.2394 67.2264L80.3931 80.3802" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M47.509 75.3985V94.0047" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M27.7781 67.2264L14.6244 80.3802" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M19.6061 47.4958H1" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M27.7781 27.7652L14.6244 14.6114" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M47.509 19.5931V1" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M67.2394 27.7652L80.3931 14.6114" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+</g>
+</symbol>
+<symbol id="e-planeta" viewBox="-4.0 -4.0 121.611 119.611" fill="none">
+<g>
+<path d="M19.6061 55.8054C19.6061 76.3467 36.2641 93.0047 56.8054 93.0047C77.3467 93.0047 94.0047 76.3467 94.0047 55.8054C94.0047 35.2641 77.3467 18.6062 56.8054 18.6062C36.2641 18.6062 19.6061 35.2641 19.6061 55.8054Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M1 55.8054C1 66.0826 25.9869 74.4116 56.8054 74.4116C87.6239 74.4116 112.611 66.0826 112.611 55.8054C112.611 45.5282 87.6239 37.1992 56.8054 37.1992C25.9869 37.1992 1 45.5282 1 55.8054Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M56.8055 0V9.29654M56.8055 102.314V111.611M47.509 55.8054H56.8055M56.8055 55.8054H66.1151M56.8055 55.8054V46.5089M56.8055 55.8054V65.115" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+</g>
+</symbol>
+<symbol id="e-constelacion" viewBox="-4.0 -4.0 121.598 121.598" fill="none">
+<g>
+<path d="M58.7536 20.4038L93.194 54.8441C94.2793 55.9294 94.2793 57.6814 93.194 58.7536L58.7536 93.194C57.6684 94.2792 55.9163 94.2792 54.8441 93.194L20.4038 58.7536C19.3185 57.6684 19.3185 55.9163 20.4038 54.8441L54.8441 20.4038C55.9294 19.3185 57.6815 19.3185 58.7536 20.4038Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M53.079 1H60.532C61.1204 1 61.6957 1.23536 62.101 1.65377L65.4483 5.00104C65.8667 5.41945 66.102 5.98168 66.102 6.57007V14.023C66.102 14.6114 65.8667 15.1867 65.4483 15.592L62.101 18.9393C61.6826 19.3577 61.1204 19.5931 60.532 19.5931H53.079C52.4907 19.5931 51.9153 19.3577 51.51 18.9393L48.1627 15.592C47.7443 15.1736 47.509 14.6114 47.509 14.023V6.57007C47.509 5.98168 47.7443 5.40637 48.1627 5.00104L51.51 1.65377C51.9284 1.23536 52.4907 1 53.079 1Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M99.5746 47.5089H107.028C107.616 47.5089 108.191 47.7442 108.597 48.1626L111.944 51.5099C112.362 51.9283 112.598 52.4906 112.598 53.0789V60.5319C112.598 61.1203 112.362 61.6956 111.944 62.1009L108.597 65.4482C108.178 65.8666 107.616 66.1019 107.028 66.1019H99.5746C98.9862 66.1019 98.4109 65.8666 98.0055 65.4482L94.6583 62.1009C94.2399 61.6825 94.0045 61.1203 94.0045 60.5319V53.0789C94.0045 52.4906 94.2399 51.9152 94.6583 51.5099L98.0055 48.1626C98.4239 47.7442 98.9862 47.5089 99.5746 47.5089Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M53.079 94.0047H60.532C61.1204 94.0047 61.6957 94.24 62.101 94.6584L65.4483 98.0057C65.8667 98.4241 66.102 98.9864 66.102 99.5748V107.028C66.102 107.616 65.8667 108.191 65.4483 108.597L62.101 111.944C61.6826 112.362 61.1204 112.598 60.532 112.598H53.079C52.4907 112.598 51.9153 112.362 51.51 111.944L48.1627 108.597C47.7443 108.178 47.509 107.616 47.509 107.028V99.5748C47.509 98.9864 47.7443 98.411 48.1627 98.0057L51.51 94.6584C51.9284 94.24 52.4907 94.0047 53.079 94.0047Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+<path d="M6.57005 47.5089H14.023C14.6114 47.5089 15.1867 47.7442 15.592 48.1626L18.9393 51.5099C19.3577 51.9283 19.5931 52.4906 19.5931 53.0789V60.5319C19.5931 61.1203 19.3577 61.6956 18.9393 62.1009L15.592 65.4482C15.1736 65.8666 14.6114 66.1019 14.023 66.1019H6.57005C5.98166 66.1019 5.40637 65.8666 5.00104 65.4482L1.65377 62.1009C1.23536 61.6825 1 61.1203 1 60.5319V53.0789C1 52.4906 1.23536 51.9152 1.65377 51.5099L5.00104 48.1626C5.41945 47.7442 5.98166 47.5089 6.57005 47.5089Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+</g>
+</symbol>
+<symbol id="e-destello" viewBox="-4.0 -4.0 102.0 103.0" fill="none">
+<path d="M51.2316 4.08462L60.2034 31.3057C60.6468 32.6503 61.69 33.7049 63.0201 34.1531L89.9485 43.2224C94.0171 44.5933 94.0171 50.4067 89.9485 51.7776L63.0201 60.8469C61.69 61.2951 60.6468 62.3497 60.2034 63.6943L51.2316 90.9154C49.8754 95.0282 44.1246 95.0282 42.7684 90.9154L33.7966 63.6943C33.3532 62.3497 32.31 61.2951 30.9799 60.8469L4.05145 51.7776C-0.0171509 50.4067 -0.0171509 44.5933 4.05145 43.2224L30.9799 34.1531C32.31 33.7049 33.3532 32.6503 33.7966 31.3057L42.7684 4.08462C44.1246 -0.0282069 49.8754 -0.0282069 51.2316 4.08462Z" stroke-width="2.2" stroke-miterlimit="10" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+</symbol>
+<symbol id="e-reticula" viewBox="0 0 100 100" fill="none"><g stroke="currentColor" stroke-width="2.2" vector-effect="non-scaling-stroke"><rect x="10" y="10" width="80" height="80" vector-effect="non-scaling-stroke"/><path d="M30 10 V90 M10 30 H90" vector-effect="non-scaling-stroke"/><path d="M50 10 V90 M10 50 H90" vector-effect="non-scaling-stroke"/><path d="M70 10 V90 M10 70 H90" vector-effect="non-scaling-stroke"/></g><circle cx="60" cy="40" r="5" fill="currentColor"/></symbol>
+<symbol id="a-r" viewBox="0 0 96 96"><path transform="translate(14.00 18.70)" fill="currentColor" stroke="none" d="M 71.3 24 C 74.23 26.93 74.23 31.68 71.3 34.61 L 47.3 58.61 L 36.7 48 L 47.89 36.8 L 0 36.8 L 0 21.8 L 47.89 21.8 L 36.7 10.61 L 47.3 0 L 71.3 24 Z"/></symbol>
+<symbol id="a-l" viewBox="0 0 96 96"><path transform="translate(8.50 18.70)" fill="currentColor" stroke="none" d="M 36.8 10.61 L 25.61 21.8 L 73.5 21.8 L 73.5 36.8 L 25.61 36.8 L 36.8 48 L 26.2 58.61 L 2.2 34.61 C -0.73 31.68 -0.73 26.93 2.2 24 L 26.2 0 L 36.8 10.61 Z"/></symbol>
+<symbol id="a-u" viewBox="0 0 96 96"><path transform="translate(18.70 8.50)" fill="currentColor" stroke="none" d="M 24.28 1.93 C 27.22 -0.73 31.77 -0.64 34.61 2.2 L 58.61 26.2 L 48 36.8 L 36.8 25.61 L 36.8 73.5 L 21.8 73.5 L 21.8 25.61 L 10.61 36.8 L 0 26.2 L 24 2.2 L 24.28 1.93 Z"/></symbol>
+<symbol id="a-d" viewBox="0 0 96 96"><path transform="translate(18.70 14.00)" fill="currentColor" stroke="none" d="M 36.8 0 L 36.8 47.89 L 48 36.7 L 58.61 47.3 L 34.61 71.3 C 31.68 74.23 26.93 74.23 24 71.3 L 0 47.3 L 10.61 36.7 L 21.8 47.89 L 21.8 0 L 36.8 0 Z"/></symbol>
+<symbol id="a-ur" viewBox="0 0 96 96"><path transform="translate(16.70 14.50)" fill="currentColor" stroke="none" d="M 64.8 41.5 L 49.8 41.5 L 49.8 25.61 L 10.61 64.8 L 0 54.2 L 39.2 15 L 23.3 15 L 23.3 0 L 57.3 0 C 61.45 0 64.8 3.36 64.8 7.5 L 64.8 41.5 Z"/></symbol>
+<symbol id="p-cafe" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 19h22v9a10 10 0 0 1-10 10h-2a10 10 0 0 1-10-10z"/><path d="M32 22h3a5 5 0 0 1 0 10h-3"/><path d="M17 8c-2 2.5 2 4 0 7M24 8c-2 2.5 2 4 0 7"/><path d="M8 42h28"/></symbol>
+<symbol id="p-wifi" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19a24 24 0 0 1 34 0M12.5 25a16 16 0 0 1 23 0M18 31a8.5 8.5 0 0 1 12 0"/><circle cx="24" cy="37.5" r="2.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="p-enchufe" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7v9M30 7v9M12 16h24v6a12 12 0 0 1-24 0zM24 34v8"/></symbol>
+<symbol id="p-impresora" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18V8h18v10M15 33H9V18h30v15h-6"/><path d="M15 27h18v13H15z"/><path d="M19 32h10M19 36h7"/></symbol>
+<symbol id="p-banos" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="10" r="3.2"/><path d="M10 17h8v12h-2v12h-4V29h-2z"/><circle cx="34" cy="10" r="3.2"/><path d="M30 17h8l3 13h-4v11h-6V30h-4z"/><path d="M24 7v34"/></symbol>
+<symbol id="p-telefono" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h6l3 9-4 3a20 20 0 0 0 9 9l3-4 9 3v6a3 3 0 0 1-3 3C24 37 11 24 12 11a3 3 0 0 1 3-3z"/></symbol>
+<symbol id="p-puerta" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 41V8h20v33M7 41h30"/><circle cx="27" cy="25" r="1.8" fill="currentColor" stroke="none"/><path d="M32 12l6 2v27"/></symbol>
+<symbol id="p-asesoria" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9h24v15H18l-6 5v-5H7z"/><path d="M35 17h6v15h-4v5l-6-5h-9v-4"/></symbol>
+<symbol id="p-evento" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5l4 13.5 14 5.5-14 5.5L24 43l-4-13.5L6 24l14-5.5z"/></symbol>
+<symbol id="p-llave" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M31 7a9 9 0 0 0-8.5 12L8 33.5a3.5 3.5 0 0 0 5 5L27.5 24A9 9 0 0 0 40 15.5l-5.5 5.5-5-1.5-1.5-5 5.5-5.5A9 9 0 0 0 31 7z"/></symbol>
+<symbol id="p-reloj" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l7 4"/></symbol>
+<symbol id="p-salida" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8H9v32h12M18 24h21M32 17l7 7-7 7"/></symbol>
+<symbol id="nv-s" viewBox="0 0 397 397"><path fill="currentColor" d="M381.17 121.15C371.17 97.52 356.88 76.31 338.66 58.1C320.44 39.89 299.24 25.59 275.61 15.6C251.14 5.24001 225.150 0 198.38 0C171.61 0 145.63 5.24001 121.15 15.6C97.53 25.59 76.31 39.89 58.11 58.1C39.89 76.32 25.6 97.52 15.6 121.15C5.24998 145.62 0 171.61 0 198.38C0 209.11 0.849999 219.72 2.53 230.15C5.04 245.74 9.39998 260.95 15.6 275.61C17.91 281.06 20.44 286.38 23.2 291.56C31.56 307.28 41.98 321.74 54.33 334.77C56.33 336.88 59.69 336.91 61.75 334.86L80.32 316.29L80.39 316.37L194.72 202.04C196.75 200 200.03 200 202.06 202.04L297.63 297.6C290.44 304.79 282.61 311.1 274.27 316.48C265.93 321.87 257.08 326.32 247.84 329.78C232.25 335.65 215.56 338.71 198.39 338.71C182.33 338.71 166.68 336.03 151.97 330.89C150.1 330.23 148 330.71 146.6 332.12L110.22 368.49C107.7 371.02 108.41 375.28 111.62 376.84C114.75 378.36 117.93 379.8 121.15 381.17C145.63 391.52 171.61 396.77 198.38 396.77C225.15 396.77 251.13 391.52 275.61 381.17C281.07 378.86 286.4 376.32 291.6 373.55C308.89 364.36 324.66 352.67 338.66 338.67L338.75 338.58C351.78 325.53 362.81 310.94 371.68 295.04C372.82 293 372.47 290.47 370.83 288.83L357.37 275.38L357.45 275.3L329.59 247.45L206.57 124.43C202.06 119.92 194.75 119.92 190.24 124.43L112.39 202.28L72.86 241.82C70.09 244.58 65.36 243.4 64.22 239.66C60.18 226.46 58.09 212.59 58.09 198.39C58.09 189.5 58.91 180.74 60.51 172.19C65.67 144.69 78.96 119.38 99.18 99.16C119.4 78.94 144.7 65.65 172.21 60.49C180.76 58.89 189.52 58.07 198.41 58.07C207.3 58.07 216.06 58.89 224.61 60.49C252.11 65.66 277.42 78.94 297.64 99.16C317.47 119 330.64 143.73 336.01 170.64C336.21 171.65 336.7 172.58 337.43 173.31L386.85 222.73C389.95 225.83 395.22 223.93 395.68 219.58C396.42 212.58 396.79 205.51 396.79 198.39C396.79 171.63 391.550 145.64 381.2 121.16L381.17 121.15Z"/></symbol>
+<symbol id="nv-h" viewBox="0 0 1044 201"><g fill="currentColor"><g transform="scale(0.506591)"><path d="M381.17 121.15C371.17 97.52 356.88 76.31 338.66 58.1C320.44 39.89 299.24 25.59 275.61 15.6C251.14 5.24001 225.150 0 198.38 0C171.61 0 145.63 5.24001 121.15 15.6C97.53 25.59 76.31 39.89 58.11 58.1C39.89 76.32 25.6 97.52 15.6 121.15C5.24998 145.62 0 171.61 0 198.38C0 209.11 0.849999 219.72 2.53 230.15C5.04 245.74 9.39998 260.95 15.6 275.61C17.91 281.06 20.44 286.38 23.2 291.56C31.56 307.28 41.98 321.74 54.33 334.77C56.33 336.88 59.69 336.91 61.75 334.86L80.32 316.29L80.39 316.37L194.72 202.04C196.75 200 200.03 200 202.06 202.04L297.63 297.6C290.44 304.79 282.61 311.1 274.27 316.48C265.93 321.87 257.08 326.32 247.84 329.78C232.25 335.65 215.56 338.71 198.39 338.71C182.33 338.71 166.68 336.03 151.97 330.89C150.1 330.23 148 330.71 146.6 332.12L110.22 368.49C107.7 371.02 108.41 375.28 111.62 376.84C114.75 378.36 117.93 379.8 121.15 381.17C145.63 391.52 171.61 396.77 198.38 396.77C225.15 396.77 251.13 391.52 275.61 381.17C281.07 378.86 286.4 376.32 291.6 373.55C308.89 364.36 324.66 352.67 338.66 338.67L338.75 338.58C351.78 325.53 362.81 310.94 371.68 295.04C372.82 293 372.47 290.47 370.83 288.83L357.37 275.38L357.45 275.3L329.59 247.45L206.57 124.43C202.06 119.92 194.75 119.92 190.24 124.43L112.39 202.28L72.86 241.82C70.09 244.58 65.36 243.4 64.22 239.66C60.18 226.46 58.09 212.59 58.09 198.39C58.09 189.5 58.91 180.74 60.51 172.19C65.67 144.69 78.96 119.38 99.18 99.16C119.4 78.94 144.7 65.65 172.21 60.49C180.76 58.89 189.52 58.07 198.41 58.07C207.3 58.07 216.06 58.89 224.61 60.49C252.11 65.66 277.42 78.94 297.64 99.16C317.47 119 330.64 143.73 336.01 170.64C336.21 171.65 336.7 172.58 337.43 173.31L386.85 222.73C389.95 225.83 395.22 223.93 395.68 219.58C396.42 212.58 396.79 205.51 396.79 198.39C396.79 171.63 391.550 145.64 381.2 121.16L381.17 121.15Z"/></g><g transform="translate(-302.13 -97.92)"><path d="M730.31 97.92H706.85C703.57 97.92 700.91 100.59 700.91 103.86V249.25L582.57 97.92H538.13V292.89C538.13 296.17 540.8 298.83 544.07 298.83H567.53C570.81 298.83 573.47 296.16 573.47 292.89V147.29L691.67 298.83H736.25V103.86C736.25 100.58 733.58 97.92 730.31 97.92Z"/><path d="M885.2 97.92H846.46L760.6 288.25C759.55 290.58 759.75 293.25 761.14 295.4C762.53 297.55 764.88 298.83 767.44 298.83H789.1C792.03 298.83 794.7 297.11 795.92 294.45C808.55 266.82 849.44 177.32 865.84 140.66L936.14 294.45C937.36 297.11 940.03 298.83 942.96 298.83H964.75C967.31 298.83 969.670 297.54 971.05 295.39C972.43 293.24 972.63 290.56 971.57 288.23L885.17 97.92H885.2Z"/><path d="M1151.08 97.92H1129.28C1126.37 97.92 1123.7 99.63 1122.48 102.27C1116.94 114.22 1069.88 215.82 1052.15 256.07C1035.76 219.43 994.88 129.96 982.24 102.31C981.02 99.6501 978.35 97.9301 975.42 97.9301H953.76C951.2 97.9301 948.85 99.21 947.46 101.36C946.07 103.51 945.87 106.18 946.92 108.51L1032.78 298.84H1071.52L1157.92 108.53C1158.98 106.2 1158.78 103.52 1157.4 101.37C1156.01 99.2201 1153.66 97.9301 1151.1 97.9301L1151.08 97.92Z"/><path d="M1345.72 130.63V97.92H1192.83C1188.94 97.92 1185.77 101.09 1185.77 104.98V291.77C1185.77 295.66 1188.94 298.83 1192.83 298.83H1345.72V266.12H1221.11V211.66H1332.05V178.95H1221.11V130.62H1345.72V130.63Z"/></g></g></symbol>
+<symbol id="nv-p" viewBox="0 0 1346 397"><g fill="currentColor"><path d="M381.17 121.15C371.17 97.52 356.88 76.31 338.66 58.1C320.44 39.89 299.24 25.59 275.61 15.6C251.14 5.24001 225.150 0 198.38 0C171.61 0 145.63 5.24001 121.15 15.6C97.53 25.59 76.31 39.89 58.11 58.1C39.89 76.32 25.6 97.52 15.6 121.15C5.24998 145.62 0 171.61 0 198.38C0 209.11 0.849999 219.72 2.53 230.15C5.04 245.74 9.39998 260.95 15.6 275.61C17.91 281.06 20.44 286.38 23.2 291.56C31.56 307.28 41.98 321.74 54.33 334.77C56.33 336.88 59.69 336.91 61.75 334.86L80.32 316.29L80.39 316.37L194.72 202.04C196.75 200 200.03 200 202.06 202.04L297.63 297.6C290.44 304.79 282.61 311.1 274.27 316.48C265.93 321.87 257.08 326.32 247.84 329.78C232.25 335.65 215.56 338.71 198.39 338.71C182.33 338.71 166.68 336.03 151.97 330.89C150.1 330.23 148 330.71 146.6 332.12L110.22 368.49C107.7 371.02 108.41 375.28 111.62 376.84C114.75 378.36 117.93 379.8 121.15 381.17C145.63 391.52 171.61 396.77 198.38 396.77C225.15 396.77 251.13 391.52 275.61 381.17C281.07 378.86 286.4 376.32 291.6 373.55C308.89 364.36 324.66 352.67 338.66 338.67L338.75 338.58C351.78 325.53 362.81 310.94 371.68 295.04C372.82 293 372.47 290.47 370.83 288.83L357.37 275.38L357.45 275.3L329.59 247.45L206.57 124.43C202.06 119.92 194.75 119.92 190.24 124.43L112.39 202.28L72.86 241.82C70.09 244.58 65.36 243.4 64.22 239.66C60.18 226.46 58.09 212.59 58.09 198.39C58.09 189.5 58.91 180.74 60.51 172.19C65.67 144.69 78.96 119.38 99.18 99.16C119.4 78.94 144.7 65.65 172.21 60.49C180.76 58.89 189.52 58.07 198.41 58.07C207.3 58.07 216.06 58.89 224.61 60.49C252.11 65.66 277.42 78.94 297.64 99.16C317.47 119 330.64 143.73 336.01 170.64C336.21 171.65 336.7 172.58 337.43 173.31L386.85 222.73C389.95 225.83 395.22 223.93 395.68 219.58C396.42 212.58 396.79 205.51 396.79 198.39C396.79 171.63 391.550 145.64 381.2 121.16L381.17 121.15Z"/><path d="M730.31 97.92H706.85C703.57 97.92 700.91 100.59 700.91 103.86V249.25L582.57 97.92H538.13V292.89C538.13 296.17 540.8 298.83 544.07 298.83H567.53C570.81 298.83 573.47 296.16 573.47 292.89V147.29L691.67 298.83H736.25V103.86C736.25 100.58 733.58 97.92 730.31 97.92Z"/><path d="M885.2 97.92H846.46L760.6 288.25C759.55 290.58 759.75 293.25 761.14 295.4C762.53 297.55 764.88 298.83 767.44 298.83H789.1C792.03 298.83 794.7 297.11 795.92 294.45C808.55 266.82 849.44 177.32 865.84 140.66L936.14 294.45C937.36 297.11 940.03 298.83 942.96 298.83H964.75C967.31 298.83 969.670 297.54 971.05 295.39C972.43 293.24 972.63 290.56 971.57 288.23L885.17 97.92H885.2Z"/><path d="M1151.08 97.92H1129.28C1126.37 97.92 1123.7 99.63 1122.48 102.27C1116.94 114.22 1069.88 215.82 1052.15 256.07C1035.76 219.43 994.88 129.96 982.24 102.31C981.02 99.6501 978.35 97.9301 975.42 97.9301H953.76C951.2 97.9301 948.85 99.21 947.46 101.36C946.07 103.51 945.87 106.18 946.92 108.51L1032.78 298.84H1071.52L1157.92 108.53C1158.98 106.2 1158.78 103.52 1157.4 101.37C1156.01 99.2201 1153.66 97.9301 1151.1 97.9301L1151.08 97.92Z"/><path d="M1345.72 130.63V97.92H1192.83C1188.94 97.92 1185.77 101.09 1185.77 104.98V291.77C1185.77 295.66 1188.94 298.83 1192.83 298.83H1345.72V266.12H1221.11V211.66H1332.05V178.95H1221.11V130.62H1345.72V130.63Z"/></g></symbol>
+</defs></svg>
+
+<nav class="nav" aria-label="Secciones">
+  <div class="wrap">
+    <a class="mk" href="#apertura" aria-label="Nave · inicio"><svg viewBox="0 0 1044 201" role="img" aria-label="Nave"><use href="#nv-h"/></svg></a>
+    <ul>
+      <li><a class="l" href="#fuentes">Fuentes</a></li>
+      <li><a class="l" href="#narrativa">Narrativa</a></li>
+      <li><a class="l" href="#conceptos">Conceptos</a></li>
+      <li><a class="l" href="#voz">Voz</a></li>
+      <li><a class="l" href="#pilares">Pilares</a></li>
+      <li><a class="l" href="#arquitectura">Arquitectura</a></li>
+      <li><a class="l" href="#firmas">Firmas</a></li>
+      <li><a class="l" href="#fundamentos">Fundamentos</a></li>
+      <li><a class="l" href="#capas">Capas</a></li>
+      <li><a class="l" href="#aplicaciones">Aplicaciones</a></li>
+      <li><a class="l" href="#implementacion">Implementación</a></li>
+    </ul>
+    <button class="btn read" id="btn-lectura" aria-pressed="false">Modo lectura</button>
+  </div>
+</nav>
+
+<main>
+<!-- 1 · Apertura -->
+<section class="dark hero" id="apertura">
+  <div class="wrap hero-in">
+    <div class="min0">
+      <div class="label" style="color:var(--on-dark-2)" id="hero-ver"></div>
+      <h1>Creamos las condiciones para que tu ambición encuentre <em>cómo avanzar.</em></h1>
+      <p class="lede" id="hero-idea"></p>
+      <div class="scope" aria-label="Alcance de la actualización">
+        <span><i></i>Figma · Identidad: página de propuesta</span>
+        <span><i></i>Figma · Presentación de marca madre</span>
+        <span><i></i>Este sistema navegable</span>
+      </div>
+      <div class="q"><span class="label">La pregunta que responde todo el sistema</span><p id="hero-q"></p></div>
+    </div>
+    <div class="hero-art">
+      <div class="stage"><canvas id="cv-hero" aria-label="Puntos que se ordenan hasta formar el símbolo de Nave" role="img"></canvas></div>
+      <div class="ctl"><span class="label" style="color:var(--on-dark-2)" id="hero-state">Capacidades sueltas</span><button class="btn" id="hero-play" aria-pressed="true">Pausar</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Fuentes y diagnóstico -->
+<section class="sec" id="fuentes">
+  <div class="wrap">
+    <div class="head"><div class="label num">01 · Fuentes y diagnóstico</div><div><h2>Qué existe, qué se conserva y qué falta</h2><p>Se revisó lo que está listado abajo y nada más. Prioridad de fuentes: instrucciones del usuario, textos originales preservados, identidad vigente en Figma, documentación comercial y, al final, las propuestas de este documento.</p></div></div>
+    <div class="tw"><table class="t" id="tbl-fuentes"><thead><tr><th>Fuente</th><th>Qué se revisó</th><th>Prioridad</th></tr></thead><tbody></tbody></table></div>
+    <div class="sub"><div class="label">Diagnóstico</div><div><h3>La identidad de Nave ya tiene logotipo y reglas de firma; el resto del sistema vive en Nave Café</h3><p>El archivo de identidad contiene solo cuatro composiciones de logotipo, en negro, sin estilos. Color, tipografía, trama, capas y voz se desarrollaron para el café. La ampliación consiste en subir esas decisiones a la marca madre y dejar en el café solo lo que es propio de la experiencia física.</p></div></div>
+    <div class="diag" id="diag"></div>
+    <div class="sub"><div class="label">No revisado</div><div><h3>Vacíos declarados</h3></div></div>
+    <ul class="lst" id="no-rev"></ul>
+    <div class="sub"><div class="label">Discrepancias</div><div><h3>Contradicciones entre fuentes y solución mínima</h3><p>Ninguna se resuelve con datos inventados. Las que dependen de una decisión del negocio quedan en la lista de pendientes.</p></div></div>
+    <div class="tw"><table class="t" id="tbl-disc"><thead><tr><th>Tema</th><th>Fuente A</th><th>Fuente B</th><th>Solución propuesta</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+<!-- 3 · Narrativa -->
+<section class="sec" id="narrativa">
+  <div class="wrap">
+    <div class="head"><div class="label num">02 · Narrativa</div><div><h2>Los tres textos, íntegros</h2><p>Los originales no se resumen ni se reescriben. Cada intervención tiene un código, se ve en contexto y se puede aprobar por separado. La vista Propuesta es una lectura limpia de lo que quedaría si se aprobara todo; el original sigue a un clic.</p></div></div>
+    <div class="narr-one">
+      <div class="narr-ctl">
+        <div class="seg" role="tablist" aria-label="Texto" id="tabs-texto"></div>
+        <div class="seg" role="group" aria-label="Versión" id="tabs-vista"></div>
+      </div>
+      <div class="narr">
+        <div class="sheet reg textpanel"><div class="rb"></div><div class="vh"><span class="label" id="txt-label"></span><span id="txt-tag"></span></div><div class="prose" id="txt"></div><div class="notas" id="txt-notas"></div></div>
+        <div><div class="label" style="color:var(--ink-3);margin-bottom:12px">Registro de cambios de este texto</div><div class="chg" id="chg"></div><div id="obs"></div></div>
+      </div>
+    </div>
+    <div class="narr-all" id="narr-all"></div>
+  </div>
+</section>
+
+<!-- 4 · Conceptos -->
+<section class="sec" id="conceptos">
+  <div class="wrap">
+    <div class="head"><div class="label num">03 · Conceptos</div><div><h2>De la ambición a la construcción</h2><p>La tensión compartida es la misma para el café y para Nave. Lo que cambia es el tamaño de las condiciones que se regulan: una mesa y un café, o un equipo, un método y una plataforma en operación.</p></div></div>
+    <p class="bigq" id="tension"></p>
+    <div style="height:clamp(28px,4vw,48px)"></div>
+    <div class="chain" id="chain"></div>
+    <div class="sub"><div class="label">Metáforas · propuesta de organización</div><div><h3>Ordenan el significado; ninguna es un nombre comercial</h3></div></div>
+    <div class="tw"><table class="t" id="tbl-met"><thead><tr><th>Metáfora</th><th>Qué es</th><th>Dónde se usa</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+<!-- 5 · Personalidad y voz -->
+<section class="sec dark" id="voz">
+  <div class="wrap">
+    <div class="head"><div class="label num">04 · Personalidad y voz</div><div><h2>Houston: Héroe + Explorador</h2><p>El cliente es el protagonista y decide el rumbo. Nave se comporta como el centro de control: entiende la misión, coordina y responde por su parte del recorrido.</p></div></div>
+    <div class="hou" id="hou"></div>
+    <div class="arq"><div><span class="label">Héroe</span><h4>Voluntad de resolver</h4><p class="muted" id="heroe"></p></div><div><span class="label">Explorador</span><h4>Ampliar lo posible</h4><p class="muted" id="explorador"></p></div></div>
+    <div class="sub"><div class="label">Registros</div><div><h3>Una personalidad, cinco registros</h3><p>Todo el copy de ejemplo es nuevo y es PROPUESTA. Academy se muestra porque su función no está confirmada: es exploratorio.</p></div></div>
+    <div class="reg-one">
+      <div class="seg" role="tablist" aria-label="Registro de voz" id="tabs-reg" style="margin-bottom:20px"></div>
+      <div id="reg-panel"></div>
+    </div>
+    <div class="reg-all" id="reg-all"></div>
+    <div class="sub"><div class="label">Límites</div><div><h3>Lo que la voz no promete</h3></div></div>
+    <ul class="avoid" id="evitar"></ul>
+  </div>
+</section>
+
+<!-- 6 · Pilares y valores -->
+<section class="sec" id="pilares">
+  <div class="wrap">
+    <div class="head"><div class="label num">05 · Pilares y valores</div><div><h2>Tres pilares que sostienen la promesa</h2><p>Los cinco valores son ORIGINALES y no se sustituyen. Los pilares son PROPUESTA. La matriz conecta cada pilar con un valor, un comportamiento que se pueda observar y la decisión visual y de servicio que lo hace visible.</p></div></div>
+    <div class="label" style="color:var(--ink-3);margin-bottom:12px">Valores corporativos · ORIGINAL</div>
+    <div class="vals" id="vals"></div>
+    <p class="muted" style="margin-top:14px;max-width:70ch;font-size:15px" id="vals-nota"></p>
+    <div class="sub"><div class="label">Matriz · PROPUESTA</div><div><h3>Pilar → valor → comportamiento → evidencia → decisión visual → comunicación → atención</h3></div></div>
+    <div class="tw"><table class="t matrix" id="matrix"></table></div>
+    <div class="obs"><span class="label">Antecedente</span><span id="pil-ant"></span></div>
+  </div>
+</section>
+
+<!-- 7 · Arquitectura -->
+<section class="sec" id="arquitectura">
+  <div class="wrap">
+    <div class="head"><div class="label num">06 · Arquitectura de marca</div><div><h2>Una marca, identificadores solo donde hay un lugar propio</h2><p>Se separan dos problemas: la jerarquía del negocio (qué es marca, unidad, oferta, método o espacio) y la jerarquía visual de las firmas (cómo se ve cada cosa). El árbol es una hipótesis, no un organigrama aprobado.</p></div></div>
+    <div class="sheet reg rec"><div class="rb"></div><div><span class="label" style="color:var(--ignicion)">Recomendación</span><p class="big" id="arq-rec" style="margin-top:12px"></p></div><div><span class="label" style="color:var(--ink-3)">Razones</span><ol id="arq-raz" style="margin-top:12px"></ol><p class="muted" style="margin-top:14px;font-size:15px"><b>Alternativa · </b><span id="arq-alt"></span></p></div></div>
+    <div class="tree-wrap">
+      <div class="sheet tree" id="tree" role="group" aria-label="Árbol de arquitectura"></div>
+      <div class="sheet reg ficha" id="ficha" aria-live="polite"><div class="rb"></div></div>
+    </div>
+    <div class="allfichas" id="allfichas"></div>
+    <div class="sub"><div class="label">Firmas · cuándo usar cada una</div><div><h3>Cuatro modos de firmar</h3></div></div>
+    <div class="modes" id="modes"></div>
+    <div class="sub"><div class="label">No hacer</div><div><h3>Reglas de contención</h3></div></div>
+    <ul class="lst" id="nohacer"></ul>
+    <div class="sub"><div class="label">Equivalencias</div><div><h3>Seis líneas del brief frente a los ocho servicios del deck</h3><p>Talent Integration aparece como línea y como tipo de proyecto: es una sola oferta y en navegación vive una sola vez.</p></div></div>
+    <div class="tw"><table class="t" id="tbl-eq"><thead><tr><th>Línea (brief)</th><th>Deck comercial</th><th>Resolución</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+<!-- 8 · Firmas -->
+<section class="sec" id="firmas">
+  <div class="wrap">
+    <div class="head"><div class="label num">07 · Firmas</div><div><h2>La familia de firmas</h2><p>Vectores tomados del archivo de identidad, sin cambios de geometría. Las proporciones y el área de seguridad se midieron en los marcos 61:30, 61:66, 136:61 y 136:113. Las composiciones con ACADEMY existen en Figma como exploración.</p></div></div>
+    <div class="fir-ctl">
+      <div class="seg" role="group" aria-label="Guías"><button id="b-guias" aria-pressed="true">Área de seguridad</button></div>
+      <div class="seg" role="group" aria-label="Tipografía del identificador" id="b-idf"><button data-f="dm" aria-pressed="true">Identificador · DM Sans (F1)</button><button data-f="st" aria-pressed="false">Standerd 400 · propuesta</button></div>
+      <div class="seg" role="group" aria-label="Fondo" id="b-fondo"><button data-b="crema" aria-pressed="true">Crema</button><button data-b="espacio" aria-pressed="false">Espacio</button></div>
+    </div>
+    <div class="fir-grid" id="fir-grid"></div>
+    <div class="sub"><div class="label">Especificación</div><div><h3>Medidas de la firma</h3></div></div>
+    <dl class="spec" id="fir-spec"></dl>
+  </div>
+</section>
+
+<!-- 9 · Fundamentos -->
+<section class="sec" id="fundamentos">
+  <div class="wrap">
+    <div class="head"><div class="label num">08 · Fundamentos</div><div><h2>Color, tipografía, puntos y materia</h2><p>Los valores salen de Figma y de los tokens vigentes. Lo que es extensión está marcado.</p></div></div>
+    <div class="sub" style="margin-top:0"><div class="label">Color</div><div><h3>Nueve colores con nombre, en cuatro funciones</h3><p id="col-src"></p></div></div>
+    <div class="swg" id="swg"></div>
+    <div class="sub"><div class="label">Proporción · PROPUESTA</div><div><h3>Las expresiones se distinguen por proporción, no por un color propio</h3></div></div>
+    <div id="props"></div>
+    <div class="sub"><div class="label">Tipografía</div><div><h3>Dos familias para todo el sistema</h3><p>Standerd y Lenia Mono son de licencia: se ven si están instaladas; si no, esta página usa Inter Tight y JetBrains Mono.</p></div></div>
+    <div class="grid g4" id="fams"></div>
+    <div class="sub"><div class="label">Puntos</div><div><h3>El punto es la unidad base</h3><p id="pt-idea"></p></div></div>
+    <div class="grid g2">
+      <div><div class="label" style="color:var(--ink-3);margin-bottom:10px">Parámetros comunes</div><div class="tw"><table class="t" id="pt-com"><tbody></tbody></table></div></div>
+      <div><div class="label" style="color:var(--ink-3);margin-bottom:10px">Varían por aplicación</div><div class="tw"><table class="t" id="pt-var"><tbody></tbody></table></div></div>
+    </div>
+    <div style="height:36px"></div>
+    <div class="grid g3" id="pt-fn"></div>
+    <div class="obs" style="margin-top:24px"><span class="label">Evitar</span><span id="pt-evitar"></span></div>
+    <div class="sub"><div class="label">Materialidad</div><div><h3>Aluminio, relieve y papel grueso, con intención</h3><p>El carácter técnico convive con la cercanía. No toda pieza lleva metal: el material aparece cuando la pieza se toca o se instala.</p></div></div>
+    <div class="grid g4" id="mats"></div>
+  </div>
+</section>
+
+<!-- 10 · Capas -->
+<section class="sec" id="capas">
+  <div class="wrap">
+    <div class="head"><div class="label num">09 · Capas</div><div><h2>Cuatro capas sobre la misma pieza</h2><p>Portada de una propuesta B2B. Activa y desactiva cada capa para ver qué aporta; la vista separada muestra cada una sola, con su función y cuándo se puede omitir.</p></div></div>
+    <div class="cap-ctl only-live">
+      <div class="seg" role="group" aria-label="Capas visibles" id="cap-tg"></div>
+      <div class="seg" role="group" aria-label="Vista" id="cap-vista"><button data-v="j" aria-pressed="true">Juntas</button><button data-v="s" aria-pressed="false">Separadas</button></div>
+    </div>
+    <div id="capas-juntas"><div class="sheet reg" style="padding:0"><div class="rb"></div><div class="comp" id="comp"></div></div></div>
+    <div class="sep" id="sep"></div>
+    <div class="layers-info" id="cap-info"></div>
+  </div>
+</section>
+
+<!-- 11 · Aplicaciones -->
+<section class="sec" id="aplicaciones">
+  <div class="wrap">
+    <div class="head"><div class="label num">10 · Aplicaciones</div><div><h2>La misma familia en cinco lugares</h2><p>Marca madre, un servicio B2B, operación, Nave Café y Academy. Academy se muestra marcada como exploratoria porque su función no está confirmada.</p></div></div>
+    <div class="apps">
+      <figure class="app c4" style="margin:0"><div class="sheet reg"><div class="rb"></div><div class="post"><canvas id="cv-post"></canvas><div class="in"><div class="row"><span>Nave</span><span>Misión 001</span></div><h4>Construye a la altura de <em>tus ideas.</em></h4><div class="ft"><svg viewBox="0 0 1044 201" role="img" aria-label="Nave"><use href="#nv-h"/></svg><span>Tech Foundry</span></div></div></div></div><figcaption class="appcap"><div class="t1"><b>Marca madre · publicación</b><span class="tag t-vig"><i></i>Nave sola</span></div><small>Institucional · trama de trayectoria · Crema 50 / Espacio 35</small></figcaption></figure>
+      <figure class="app c4" style="margin:0"><div class="sheet reg"><div class="rb"></div><div class="onep" id="onep"></div></div><figcaption class="appcap"><div class="t1"><b>Servicio B2B · ficha</b><span class="tag t-ajuste"><i></i>Oferta como título</span></div><small>Comercial B2B · trama de dato · Niebla, Espacio, Petróleo</small></figcaption></figure>
+      <figure class="app c4" style="margin:0"><div class="sheet reg on-dark" style="background:var(--niebla)"><div class="rb"></div><div class="plate"><div class="tp"><svg class="em" viewBox="-4 -4 103.03 103.0047" aria-hidden="true"><use href="#e-escotilla"/></svg><span class="cd">GAR</span></div><h4>El Garage</h4><div class="fn"><i></i>Sala privada</div><p style="color:var(--on-dark-2);font-size:15px">Privacidad, inspiración y asesoría. Se reserva por bloques.</p><div class="bt"><svg class="lk" viewBox="0 0 467 308" role="img" aria-label="Nave Café"><use href="#lk"/></svg><svg class="ar" viewBox="0 0 96 96" aria-hidden="true"><use href="#a-r"/></svg></div></div></div><figcaption class="appcap"><div class="t1"><b>Nave Café · señal de sala</b><span class="tag t-vig"><i></i>Espacio como señal</span></div><small>Nave Café · emblema GAR · firma Nave Café</small></figcaption></figure>
+      <figure class="app c7" style="margin:0"><div class="sheet reg"><div class="rb"></div><div class="status" id="status"></div></div><figcaption class="appcap"><div class="t1"><b>Operación · comunicación de incidente</b><span class="tag t-ajuste"><i></i>Oferta como título</span></div><small>Operación y soporte · estado, impacto, acción, seguimiento · ejemplo, no un incidente real</small></figcaption></figure>
+      <figure class="app c5" style="margin:0"><div class="sheet reg"><div class="rb"></div><div class="acad"><canvas id="cv-acad"></canvas><span class="stamp">Exploratorio · función por validar</span><h4>Entiende la herramienta. Después, constrúyela.</h4><div class="ft"><svg viewBox="0 0 1946 201" role="img" aria-label="Nave Academy" id="acad-firma"></svg><span>Programa piloto</span></div></div></div><figcaption class="appcap"><div class="t1"><b>Academy · portada de programa</b><span class="tag t-expl"><i></i>Exploratorio</span></div><small>Nave + identificador (F1) · solo si se confirma la unidad</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Implementación -->
+<section class="sec" id="implementacion">
+  <div class="wrap">
+    <div class="head"><div class="label num">11 · Implementación</div><div><h2>Tokens, componentes, herencia y migración</h2><p>Lo que pasa a Figma y a código. Cada token indica si se verificó en una fuente o si es una extensión propuesta.</p></div></div>
+    <div class="impl-grid">
+      <div class="min0"><div class="label" style="color:var(--ink-3);margin-bottom:10px">Tokens globales</div><div class="tw"><table class="t" id="tk-glob"><thead><tr><th>Token</th><th>Valor</th><th>Origen</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="min0"><div class="label" style="color:var(--ink-3);margin-bottom:10px">Tokens semánticos</div><div class="tw"><table class="t" id="tk-sem"><thead><tr><th>Token</th><th>Apunta a</th></tr></thead><tbody></tbody></table></div>
+        <div class="label" style="color:var(--ink-3);margin:26px 0 10px">Extensiones propuestas</div><div class="tw"><table class="t" id="tk-ext"><thead><tr><th>Token</th><th>Valor</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
+    </div>
+    <div class="sub"><div class="label">Exportar</div><div><h3>Copiar los tokens</h3><p>Genera los tokens globales y semánticos como variables CSS o JSON y los copia al portapapeles.</p></div></div>
+    <div class="seg only-live" style="margin-bottom:12px"><button class="btn solid" id="cp-css">Copiar CSS</button><button class="btn" id="cp-json">Copiar JSON</button></div>
+    <textarea class="codeout" id="tk-out" aria-label="Tokens generados" readonly></textarea>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="impl-grid" style="margin-top:40px">
+      <div><div class="label" style="color:var(--ink-3);margin-bottom:10px">Componentes</div><ul class="lst" id="comps"></ul></div>
+      <div><div class="label" style="color:var(--ink-3);margin-bottom:10px">Reglas de herencia</div><ul class="lst" id="herencia"></ul></div>
+    </div>
+    <div class="sub"><div class="label">Migración</div><div><h3>Del sistema del café a la marca madre</h3></div></div>
+    <div class="tw"><table class="t" id="tbl-mig"><thead><tr><th>Tema</th><th>Hoy</th><th>Pasa a</th></tr></thead><tbody></tbody></table></div>
+    <div class="impl-grid" style="margin-top:40px">
+      <div><div class="label" style="color:var(--ink-3);margin-bottom:10px">Nomenclatura en Figma</div><ul class="lst" id="nomen"></ul></div>
+      <div><div class="label" style="color:var(--ink-3);margin-bottom:10px">Registro de cambios</div><div class="tw"><table class="t" id="tbl-reg"><thead><tr><th>Fecha</th><th>Versión</th><th>Cambio</th></tr></thead><tbody></tbody></table></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="pendientes">
+  <div class="wrap">
+    <div class="head"><div class="label num">12 · Decisiones pendientes</div><div><h2>Lo que necesita una respuesta del equipo</h2><p>Hasta que se decidan, estos puntos se comunican como pendientes y no como hechos.</p></div></div>
+    <ul class="lst" id="pend"></ul>
+  </div>
+</section>
+</main>
+
+<footer class="dark">
+  <div class="wrap foot">
+    <div><svg viewBox="0 0 1346 397" role="img" aria-label="Nave"><use href="#nv-p"/></svg><p class="label" style="color:var(--on-dark-2);margin-top:14px">Construye a la altura de tus ideas.</p></div>
+    <div class="links" id="foot-links"></div>
+  </div>
+</footer>
+
+<script>
+const D = {"meta": {"titulo": "Nave · Sistema de marca", "version": "Propuesta 01 · octubre 2026", "pregunta": "¿Cómo expresa cada parte de Nave que creamos las condiciones para que tu ambición encuentre cómo avanzar?", "idea": "Nave es un programa espacial: reúne estrategia, talento, tecnología y espacios para que la misión de cada cliente avance. Cada parte de la marca es una capacidad que, al organizarse con las demás, hace posible el despegue.", "fuentes": [{"id": "F1", "nombre": "Nave — Identidad Visual (Figma)", "ref": "jgjWkyyD5WQ4gmfLfjQxhm · página Branding 0:1", "url": "https://www.figma.com/design/jgjWkyyD5WQ4gmfLfjQxhm/Nave---Identidad-Visual?node-id=0-1", "revisado": "Página completa (única página del archivo): 61:30 Área de seguridad, 61:66 + identificador, 136:61 horizontal, 136:113 horizontal + identificador. Sin estilos, sin variables. Vectores exportados de 88:2 y 136:182.", "prioridad": "3 · identidad vigente"}, {"id": "F2", "nombre": "Referencias – Diseño (Figma)", "ref": "gdvlPKlvJiRigq80mACP4W · página Iteración", "url": "https://www.figma.com/design/gdvlPKlvJiRigq80mACP4W", "revisado": "Marcos de primer nivel: Logo (1:2, 39:44), Alt. Logo 17:73, Colors 17:59 (9 colores leídos como relleno), Resources 53:1299, Graphic Line ×4. El nodo 122:2 indicado en el brief ya no existe.", "prioridad": "Moodboard · contexto"}, {"id": "F3", "nombre": "Nave Café · Sistema visual (Figma)", "ref": "Ol6gNUSuwNLbNZyemQISgG", "url": "https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG", "revisado": "Estilos (11 de color, 16 de texto), página Presentación · Despegue (49 láminas) y páginas de señalética, merch y letreros.", "prioridad": "Expresión vigente de Nave Café"}, {"id": "F4", "nombre": "Artefacto «Sistema visual Nave Café»", "ref": "claude.ai/artifact/74DTBc51AUHDhY6kccTafb", "url": "https://claude.ai/artifact/74DTBc51AUHDhY6kccTafb", "revisado": "Versión publicada completa. Se conserva intacto; este sistema lo toma como base.", "prioridad": "Base del artefacto"}, {"id": "F5", "nombre": "NAVE · Tech Company & Venture Builder (PDF)", "ref": "Deck comercial", "url": "", "revisado": "Texto completo: oferta (TC-01…05, VB-01…03), modelo operativo, partners, «¿Qué nos rige?», estructura.", "prioridad": "4 · documentación comercial"}, {"id": "F6", "nombre": "Concepto de Nave Café (PDF)", "ref": "Repositorio", "url": "", "revisado": "Manifiesto, ¿Qué es?, personalidad, promesa y pilares del café.", "prioridad": "Antecedente"}, {"id": "F7", "nombre": "Prompt maestro de ampliación", "ref": "Nave_Prompt_Maestro_Branding.md", "url": "", "revisado": "Completo.", "prioridad": "1–2 · instrucciones y textos preservados"}], "no_revisado": ["El nodo 61:111 «Colores, Iconografía y Tipografía» no existe en el archivo de identidad: la paleta se verificó en F2 (17:59) y en los tokens del repositorio.", "No hay iconografía de marca madre en F1; los pictogramas existentes son de Nave Café.", "Documentos metodológicos de Tech Foundry, contratos y certificaciones: no se adjuntaron.", "«Render Nave.pptx.pdf» (vistas 3D del café) no se usó en este encargo."]}, "diagnostico": {"conserva": ["Símbolo y logotipo NΛVE de F1, sin cambios de geometría.", "Área de seguridad y unidad 1X de F1.", "Paleta de 9 colores con nombres propios (F2 + Nave Café).", "Standerd + Lenia Mono como sistema tipográfico.", "Trama de puntos hexagonal, retícula M y cuatro capas funcionales.", "Manifiesto aprobado de Nave Café, íntegro y separado.", "Personalidad Houston, Héroe + Explorador."], "cambia": ["La promesa se amplía de Nave Café a Nave completa (hipótesis central).", "Los colores pasan de una sola marca a proporciones por expresión.", "La trama de puntos se convierte en gramática con parámetros comunes y variables.", "Se agregan reglas de firma: Nave sola, Nave + identificador, oferta como título, espacio como señal.", "El área de seguridad del repositorio (x = ½ altura) se corrige a la de F1 (2X, X = 0,176 × altura de NΛVE)."], "falta": ["Estilos y variables dentro de F1 (se crean en la página de propuesta).", "Iconografía de marca madre y su retícula.", "Fotografía de la operación B2B (equipos, clientes, entregables).", "Validar Academy, Nave Company / Nave Systems y la oferta Digital Assets.", "Fuentes, alcance y condiciones de las afirmaciones comerciales."]}, "cambios": [{"id": "A1", "texto": "problema", "tipo": "AJUSTE PROPUESTO", "antes": "El 88% de las empresas usan IA en alguna función, pero solo el 1% siente haber alcanzado una madurez real en su implementación.", "despues": "El 88% de las empresas usan IA en alguna función¹, pero solo el 1% de sus líderes considera madura su implementación².", "motivo": "Las cifras vienen de dos estudios distintos de 2025: «The state of AI in 2025» (uso regular en al menos una función, autodeclarado) y «Superagency in the workplace» (directivos que describen como madura su IA generativa). Se ajusta quién responde y se llevan las fuentes a notas al pie para no romper el ritmo.", "alcance": "Una frase y dos notas al pie. La sustitución larga propuesta antes queda como alternativa, no recomendada por ritmo.", "estado": "Pendiente de aprobación"}, {"id": "A2", "texto": "problema", "tipo": "AJUSTE PROPUESTO", "antes": "Los agentes de IA pueden hacer el trabajo de múltiples personas", "despues": "Los agentes de IA pueden asumir tareas que antes requerían la intervención de múltiples personas", "motivo": "Describe lo que hacen los agentes sin sugerir que sustituyen a personas.", "alcance": "Media frase.", "estado": "Pendiente de aprobación"}, {"id": "P1", "texto": "problema", "tipo": "PUENTE PROPUESTO", "antes": "", "despues": "Entre lo que imaginamos y lo que hoy podemos construir existe una distancia. Recorrerla exige reunir las condiciones, el conocimiento y las herramientas que nos permitan avanzar.", "motivo": "Conecta la lectura del problema con la tensión compartida del manifiesto.", "alcance": "Párrafo nuevo al final. Se conserva «no importa cuánto camines, jamás llegarás al espacio».", "estado": "Pendiente de aprobación"}, {"id": "A3", "texto": "brief", "tipo": "AJUSTE PROPUESTO", "antes": "", "despues": " según las necesidades de cada proyecto", "motivo": "No todos los productos llevan IA, blockchain y datos a la vez.", "alcance": "Inciso después de «gestión de datos».", "estado": "Pendiente de aprobación"}, {"id": "P2", "texto": "brief", "tipo": "PUENTE PROPUESTO", "antes": "", "despues": "Para hacerlo, reunimos estrategia, talento y tecnología, y acompañamos la construcción, operación y evolución de lo que creamos.", "motivo": "Hace visibles las seis líneas sin enumerarlas.", "alcance": "Frase nueva.", "estado": "Pendiente de aprobación"}, {"id": "P3", "texto": "brief", "tipo": "PUENTE PROPUESTO", "antes": "", "despues": "Esta misma convicción toma forma en Nave Café: el astillero donde las personas encuentran las condiciones para construir, reparar y mejorar sus propias naves.", "motivo": "Une la marca madre con la experiencia física.", "alcance": "Frase nueva.", "estado": "Pendiente de aprobación"}, {"id": "P4", "texto": "brief", "tipo": "PUENTE PROPUESTO", "antes": "", "despues": "Creamos las condiciones para que tu ambición encuentre cómo avanzar.", "motivo": "Cierra el brief con la promesa ampliada.", "alcance": "Cierre.", "estado": "Pendiente de aprobación"}, {"id": "C1", "texto": "manifiesto", "tipo": "AJUSTE PROPUESTO", "antes": "Entre esa distancia", "despues": "En esa distancia", "motivo": "Corrección: la distancia es un lugar, no dos extremos.", "alcance": "Dos palabras. Se aplica solo si se aprueba; la versión del café queda como está.", "estado": "Pendiente de aprobación"}, {"id": "P5", "texto": "manifiesto", "tipo": "PUENTE PROPUESTO", "antes": "", "despues": "Esas condiciones también toman forma en un equipo que comparte tu visión. En el conocimiento que te permite decidir. En la tecnología que amplía lo que puedes hacer. En la certeza de contar con alguien para sostener lo construido y preparar lo que viene.", "motivo": "Extiende las condiciones físicas del café a las capacidades de Nave: equipo, conocimiento, tecnología y continuidad.", "alcance": "Párrafo nuevo después de «El lugar perfecto para construir.»", "estado": "Pendiente de aprobación"}, {"id": "A4", "texto": "manifiesto", "tipo": "AJUSTE PROPUESTO", "antes": "Nave Café.", "despues": "Nave.", "motivo": "Firma de la versión de marca madre.", "alcance": "Solo en la versión Nave; la del café firma «Nave Café.»", "estado": "Pendiente de aprobación"}], "observaciones": [{"texto": "problema", "nota": "«impide a sus usuarios más grandes ver la imagen de conjunto»: «más grandes» puede leerse como tamaño o como importancia. Observación, sin cambio."}, {"texto": "brief", "nota": "«en tiempo real» necesita precisar qué comportamiento operativo describe (visibilidad del avance, despliegue continuo, monitoreo). PENDIENTE DE VALIDAR. No es una promesa de entrega instantánea."}, {"texto": "manifiesto", "nota": "Under Pressure es la semilla conceptual. No se citan letras ni se usa audio."}], "textos": {"problema": {"titulo": "Lectura del problema", "parrafos": [["Estamos en una nueva etapa tecnológica, prácticamente una nueva revolución industrial, en la que somos testigos y partícipes de una carrera que, aunque conocida por todos, está dominada por tan solo unos pocos. ", {"c": "A1", "o": "El 88% de las empresas usan IA en alguna función, pero solo el 1% siente haber alcanzado una madurez real en su implementación.", "n": "El 88% de las empresas usan IA en alguna función¹, pero solo el 1% de sus líderes considera madura su implementación²."}, " El desconocimiento del alcance, del uso práctico y del potencial de las nuevas tecnologías impide a sus usuarios más grandes ver la imagen de conjunto: no estamos compitiendo en la Tierra, sino que estamos en una carrera espacial. ", {"c": "A2", "o": "Los agentes de IA pueden hacer el trabajo de múltiples personas", "n": "Los agentes de IA pueden asumir tareas que antes requerían la intervención de múltiples personas"}, " y las empresas ahora exigen modelos basados en resultados y en el consumo. Estas tecnologías no son solo un soporte o una guía; son el método y, más importante, el resultado, porque no importa cuánto camines, jamás llegarás al espacio."], [{"c": "P1", "o": "", "n": "Entre lo que imaginamos y lo que hoy podemos construir existe una distancia. Recorrerla exige reunir las condiciones, el conocimiento y las herramientas que nos permitan avanzar."}]], "notas": ["¹ McKinsey, «The state of AI in 2025» (noviembre de 2025): 88% de los participantes reporta uso regular de IA en al menos una función de su organización. Encuesta global, autodeclarada.", "² McKinsey, «Superagency in the workplace» (enero de 2025): 1% de los directivos describe como madura la implementación de IA generativa en su empresa."]}, "brief": {"titulo": "Brief", "parrafos": [["Ha llegado el momento de construir y, para ello, existe Nave. Nave es una Tech Foundry que convierte los retos, recursos, necesidades y objetivos de una empresa en productos digitales con un núcleo de inteligencia artificial, blockchain y gestión de datos", {"c": "A3", "o": "", "n": " según las necesidades de cada proyecto"}, ". Construimos productos con procesos industriales y en tiempo real que transforman la manera en que las industrias y los proyectos escalan: el programa espacial para los emprendedores, visionarios y líderes que necesitan la nave para llegar al espacio."], [{"c": "P2", "o": "", "n": "Para hacerlo, reunimos estrategia, talento y tecnología, y acompañamos la construcción, operación y evolución de lo que creamos."}, {"c": "P3", "o": "", "n": " Esta misma convicción toma forma en Nave Café: el astillero donde las personas encuentran las condiciones para construir, reparar y mejorar sus propias naves."}], [{"c": "P4", "o": "", "n": "Creamos las condiciones para que tu ambición encuentre cómo avanzar."}]], "notas": []}, "manifiesto": {"titulo": "Manifiesto", "parrafos": [["Aquellos que sueñan en grande comparten el mismo problema. El mismo problema al que se enfrentaron las personas que llevaron a la humanidad más allá de sus límites:\nla distancia entre lo que imaginan y lo que hoy pueden construir."], ["Entre la visión y la ejecución. Entre la ambición y el conocimiento. Entre la necesidad y los recursos. Entre la Tierra y las estrellas."], [{"c": "C1", "o": "Entre esa distancia", "n": "En esa distancia"}, " aparecen los retos, los inconvenientes y los juicios. Es el mundo que intenta relegar a los soñadores y sus posibilidades a las casillas de siempre, sometiéndolos a la presión de hacer realidad algo que aún parece imposible."], ["Pero si algo nos ha enseñado la historia, es que regular esa presión y usarla a nuestro favor nos ha permitido ampliar nuestras fronteras."], ["A mantener, dentro de una nave, las condiciones que permiten atravesar el vacío del espacio. A proteger a una tripulación miles de metros bajo la superficie del océano. A sostener la vida mientras por fuera todo se pone a prueba."], ["Esas condiciones parecen lejanas, pero tú también las has experimentado. Las recuerdas: la mesa en la que estabas cuando descargaste la idea que llevaba semanas en tu mente; la conversación profunda que te permitió ver la pieza clave que te faltaba; la nueva herramienta que te permitió poner las cosas a prueba."], ["La música que sonaba o lo absorbente del silencio. Las personas que te acompañaban. El sabor del café que te hizo atravesar esas noches. La temperatura, la textura del asiento, la luz que entraba por la ventana. Todo lo que permitió que dejaras de mirar el reloj y que los retos volvieran a emocionarte. El lugar perfecto para construir."], [{"c": "P5", "o": "", "n": "Esas condiciones también toman forma en un equipo que comparte tu visión. En el conocimiento que te permite decidir. En la tecnología que amplía lo que puedes hacer. En la certeza de contar con alguien para sostener lo construido y preparar lo que viene."}], ["No creemos tener todas las respuestas a todos los problemas y retos, pero, si nos acompañas en el viaje, nos aseguraremos de que existan las condiciones que te permitan reparar lo necesario, hallar las soluciones, idear nuevos caminos y hacer de la presión adecuada el impulso para avanzar."], ["Hemos dado y seguiremos dando mil pequeños pasos para preparar tu próximo gran salto. Este es el astillero al que puedes llegar con lo que tienes entre manos y al que puedes volver cada vez que quieras llevarlo más lejos."], [{"c": "A4", "o": "Nave Café.", "n": "Nave."}, "\nConstruye a la altura de tus ideas."]], "notas": []}}, "conceptos": {"tension": "La distancia entre lo que imaginamos y lo que hoy podemos construir.", "promesa": "Creamos las condiciones para que tu ambición encuentre cómo avanzar.", "cierre": "Construye a la altura de tus ideas.", "cadena": [{"n": "Ambición", "d": "La visión de lo que una persona u organización quiere hacer posible.", "nave": "La misión del cliente. Nave la escucha y la vuelve objetivo."}, {"n": "Presión", "d": "Exigencias, incertidumbre, responsabilidad y límites del entorno.", "nave": "No se exalta ni se niega: se mide y se comunica."}, {"n": "Condiciones", "d": "Dirección, recursos, herramientas, apoyo y criterios que permiten trabajar con esa exigencia.", "nave": "Lo que Nave regula: es su promesa."}, {"n": "Capacidad", "d": "Talento, productos, conocimiento y espacios organizados para ejecutar.", "nave": "Las seis líneas, Nave Café y lo que se confirme después."}, {"n": "Construcción", "d": "Convertir la visión en algo que se puede utilizar, probar, reparar y mejorar.", "nave": "El resultado. El despegue es un hito; sigue la operación y la evolución."}], "metaforas": [{"n": "Programa espacial", "es": "El conjunto coordinado de capacidades y experiencias de Nave.", "uso": "Explica la arquitectura. No es un nombre comercial."}, {"n": "Misión", "es": "El objetivo del cliente.", "uso": "Conversación comercial, propuestas, seguimiento."}, {"n": "Nave", "es": "Lo que se construye y articula para avanzar.", "uso": "La marca y el producto del cliente."}, {"n": "Astillero", "es": "Construcción, reparación y mejora; su experiencia física es Nave Café.", "uso": "Nave Café y talleres."}, {"n": "Houston", "es": "Comportamiento y personalidad.", "uso": "Voz, servicio y soporte."}, {"n": "Despegue", "es": "Un hito dentro de un recorrido que continúa con operación y evolución.", "uso": "Lanzamientos. Nunca como final del servicio."}]}, "personalidad": {"houston": ["Comprende la misión y el punto de partida.", "Orienta y coordina con criterio.", "Hace comprensible la complejidad.", "Prepara recursos y condiciones.", "Mantiene la calma, comunica riesgos y propone siguientes pasos.", "Construye, acompaña y responde por su parte del recorrido."], "heroe": "Determinación, competencia, responsabilidad y voluntad de resolver.", "explorador": "Curiosidad, apertura, experimentación y ampliación de posibilidades.", "voz": "Clara, humana, precisa y segura. Ambición respaldada por acciones.", "registros": [{"id": "institucional", "n": "Institucional", "tono": "Ambición, claridad y responsabilidad.", "titular": "Construye a la altura de tus ideas.", "cta": "Conoce cómo trabajamos", "bienvenida": "Bienvenido a Nave. Cuéntanos la misión; preparamos juntos el siguiente paso.", "servicio": "Nave reúne estrategia, talento y tecnología para que una idea llegue a operar y siga mejorando.", "inconveniente": "Hoy no cumplimos lo que acordamos. Ya sabemos por qué, corregimos el plan y te contamos cada avance."}, {"id": "b2b", "n": "Comercial B2B", "tono": "Problema concreto, alcance, evidencia y siguiente paso.", "titular": "Tu sistema heredado ya no te deja crecer. Lo migramos por etapas, sin detener la operación.", "cta": "Agenda un diagnóstico", "bienvenida": "Gracias por la reunión. Te enviamos el alcance, los supuestos y lo que necesitamos de tu equipo.", "servicio": "Next-Gen Engineering, AI & Web3: diseñamos y construimos software a medida con marcos de referencia y estándares documentados. Alcance y plazos se definen en el diagnóstico.", "inconveniente": "El entorno de pruebas falló a las 10:40. Impacto: dos días de retraso en QA. Acción: ambiente paralelo listo mañana. Próximo reporte: jueves 9:00."}, {"id": "cafe", "n": "Nave Café", "tono": "Bienvenida, cercanía, concentración y acompañamiento.", "titular": "Trae lo que tienes entre manos.", "cta": "Reserva una sala", "bienvenida": "Bienvenido a bordo. Café, mesa, red y silencio: tú decides cuánto de cada uno.", "servicio": "El Garage es una sala privada para pensar, probar y recibir asesoría. Se reserva por bloques.", "inconveniente": "La red de la Cubierta está lenta. Ya la estamos revisando; en La Barra y en Cabinas funciona normal."}, {"id": "academy", "n": "Academy (si se confirma)", "tono": "Curiosidad, comprensión y práctica.", "titular": "Entiende la herramienta. Después, constrúyela.", "cta": "Ver el programa", "bienvenida": "Hoy vas a construir algo que funcione al terminar la sesión.", "servicio": "Sesiones prácticas sobre IA aplicada para equipos que van a usarla al día siguiente.", "inconveniente": "La sesión se movió al jueves. Te dejamos el material para avanzar antes.", "exploratorio": true}, {"id": "operacion", "n": "Operación y soporte", "tono": "Estado, impacto, acción y seguimiento.", "titular": "Estado: estable.", "cta": "Ver el registro del incidente", "bienvenida": "Ticket recibido. Responsable asignado y primer diagnóstico en curso.", "servicio": "Managed Cloud & Business Continuity: monitoreo, respuesta y reportes según el acuerdo de servicio de cada cliente.", "inconveniente": "Incidente 214 · Impacto: lentitud en pagos (12% de las transacciones). Acción: reversión aplicada 14:22. Seguimiento: análisis de causa en 48 h."}], "evitar": ["Prometer ausencia total de riesgo o éxito inevitable.", "Garantizar resultados financieros.", "Citar certificaciones no obtenidas: distinguir «trabajamos con marcos de referencia ISO» de «estamos certificados».", "Convertir plazos («menos de dos semanas», «15 días hábiles», «90 días») en atributos universales.", "Exaltar el agotamiento o presentar la presión como causa única del progreso."]}, "valores": ["Gratitud", "Genio Colectivo", "Grandeza", "Gentileza", "Gloria a Dios"], "valores_nota": "Gloria a Dios es una convicción declarada de la cultura. No se traducen prácticas religiosas ni requisitos para clientes o colaboradores; cualquier comportamiento asociado es propuesta.", "pilares": [{"n": "Dar dirección", "f": "Comprender el objetivo y definir el siguiente paso.", "m": "Escucha, diagnóstico, prioridades, viabilidad y criterios de éxito.", "valores": ["Gentileza", "Gratitud"], "comportamiento": "Preguntar antes de proponer; agradecer el contexto que comparte el cliente; decir lo que no sabemos.", "evidencia": "Diagnóstico escrito con supuestos y criterios de éxito antes de cotizar.", "visual": "Capa de orientación al frente: retícula visible, etiquetas en Lenia Mono, mucho soporte libre.", "comunicacion": "Titulares que nombran la misión del cliente, no a Nave.", "atencion": "Primera respuesta con responsable, siguiente paso y fecha."}, {"n": "Construir capacidad", "f": "Reunir y desarrollar lo necesario para ejecutar.", "m": "Talento, productos, herramientas, conocimiento y espacios.", "valores": ["Genio Colectivo", "Grandeza"], "comportamiento": "Armar equipos mixtos; reconocer a quien aporta; apuntar alto con alcance realista.", "evidencia": "Equipo nombrado, entregables demostrables y estándares de referencia citados con precisión.", "visual": "Trama de relación: puntos que se ordenan en estructuras; capa de cuerpo con objeto o producto.", "comunicacion": "Mostrar el trabajo y a las personas; cifras con fuente.", "atencion": "Demostraciones frecuentes; acceso al avance."}, {"n": "Sostener el avance", "f": "Cuidar y hacer evolucionar lo construido.", "m": "Operación, seguimiento, aprendizaje y mejora.", "valores": ["Grandeza", "Gratitud"], "comportamiento": "Cumplir lo pequeño; reportar el estado aunque sea estable; cerrar cada incidente con aprendizaje.", "evidencia": "Acuerdos de servicio por cliente, registros de incidentes, revisiones periódicas.", "visual": "Trama de dato: medidores de 25 puntos, estados con color funcional, trayectoria continua.", "comunicacion": "Estado, impacto, acción y seguimiento.", "atencion": "Soporte con niveles definidos por contrato; nunca «24/7» sin el acuerdo que lo respalde."}], "pilares_antecedente": "Nave Café usó Preparar las condiciones (Empatía), Explorar posibilidades (Curiosidad) y Construir el futuro (Ingenio). Se proponen como la forma en que el café aplica los pilares de Nave, no como un segundo juego oficial: Preparar las condiciones → Dar dirección; Explorar posibilidades → Dar dirección y Construir capacidad; Construir el futuro → Construir capacidad y Sostener el avance.", "arquitectura": {"recomendacion": "Marca monolítica con identificadores selectivos. Nave firma todo. Las ofertas se nombran como títulos, no como logotipos. Solo una entidad con público propio, lugar o canal propio y continuidad recibe un identificador junto a NΛVE: hoy, Nave Café; Academy queda en exploración.", "razones": ["La confianza que se construye en un proyecto B2B la usa también el café, y al revés: una sola marca concentra la reputación.", "Las seis líneas cambian con el mercado; si fueran submarcas, cada cambio de oferta obligaría a rediseñar.", "F1 ya define el sistema de identificador (Nave + ACADEMY) con reglas de proporción: hay una familia lista para usar con criterio.", "Nave Café necesita una expresión propia porque es una experiencia física de consumo; su script y su «EST. 2026» no se trasladan a otras unidades."], "alternativa": "Si Academy se confirma con público, calendario y sede propios, entra como segunda entidad con identificador. Si no, sus contenidos viven como programa dentro de Nave (título de oferta) sin identificador.", "niveles": [{"id": "N0", "n": "Marca madre"}, {"id": "N1", "n": "Entidades con identificador"}, {"id": "N2", "n": "Frentes y líneas de oferta"}, {"id": "N3", "n": "Metodologías, modelos y tipos de proyecto"}, {"id": "N4", "n": "Espacios"}], "entidades": [{"id": "nave", "nivel": "N0", "padre": null, "nombre": "Nave", "tipo": "Marca madre", "estado": "vigente", "audiencia": "Clientes corporativos y de gobierno, emprendedores y fundadores, talento, aliados y la comunidad del café.", "funcion": "Concentra significado, confianza y lenguaje compartido. Firma toda comunicación.", "relacion": "Es la marca.", "promesa": "Creamos las condiciones para que tu ambición encuentre cómo avanzar.", "firma": "Logotipo principal o horizontal de F1 (88:2, 136:182). Sin identificador.", "variacion": "Ninguna en geometría. Color según fondo (Espacio, Crema, Ignición sobre Crema solo en piezas de acento).", "usos": ["Propuestas, contratos y facturas", "Sitio, redes y presentaciones", "Firma en pie de piezas de toda la arquitectura"]}, {"id": "nave-company", "nivel": "N0", "padre": "nave", "nombre": "Nave Company · Nave Systems", "tipo": "Denominación institucional o legal", "estado": "por validar", "audiencia": "Contratos, registros, licitaciones.", "funcion": "Nombre legal o institucional. El deck usa «Nave Systems» en las funciones del equipo; el brief, «Nave Company»; el material, «Nave System».", "relacion": "Descriptor de la misma marca, no una marca separada.", "promesa": "—", "firma": "Texto en Lenia Mono o Standerd en pies legales. Nunca como logotipo.", "variacion": "—", "usos": ["Pie legal", "Contratos", "Registros"], "pendiente": "Confirmar la razón social y retirar las otras dos formas de toda pieza pública."}, {"id": "tc", "nivel": "N2", "padre": "nave", "nombre": "Tech Company", "tipo": "Frente comercial", "estado": "vigente en F5", "audiencia": "Cuentas corporativas y gobiernos.", "funcion": "Agrupa la oferta de transformación digital, modernización y operación.", "relacion": "Descriptor de Nave para la conversación B2B.", "promesa": "Ejecución ágil, escalable y segura.", "firma": "Nave + bajada «Tech Company» en Lenia Mono; código de oferta TC.", "variacion": "Proporción Instrumentos (Acero, Petróleo) más alta.", "usos": ["Portada de propuesta", "Sección del sitio", "Credenciales"]}, {"id": "vb", "nivel": "N2", "padre": "nave", "nombre": "Venture Builder", "tipo": "Frente comercial", "estado": "vigente en F5", "audiencia": "Emprendedores, startups, fundadores y empresas que quieren escalar.", "funcion": "Agrupa la creación de empresas y productos con tecnología en el núcleo.", "relacion": "Descriptor de Nave para la conversación con fundadores.", "promesa": "Tecnología en el núcleo del negocio.", "firma": "Nave + bajada «Venture Builder» en Lenia Mono; código VB.", "variacion": "Proporción Combustión (Ámbar, Ignición) algo más alta.", "usos": ["Convocatorias", "One-pager para fundadores"]}, {"id": "l1", "nivel": "N2", "padre": "nave", "nombre": "Business & Tech Co-Creation", "tipo": "Línea de oferta", "estado": "suministrada", "audiencia": "Dirección de empresas y fundadores.", "funcion": "Consultoría con la metodología Tech Foundry para fusionar visiones y trazar el futuro de los clientes.", "relacion": "Oferta de Nave. Equivale a TC-01 Tech Consultant y VB-01 Tech Foundry del deck.", "promesa": "Dar dirección: del reto al siguiente paso.", "firma": "Título en Standerd + código. Firma Nave al pie.", "variacion": "Trama de relación; capa de orientación al frente.", "usos": ["Ficha de servicio", "Propuesta"]}, {"id": "l2", "nivel": "N2", "padre": "nave", "nombre": "Next-Gen Engineering, AI & Web3", "tipo": "Línea de oferta", "estado": "suministrada · nombre por unificar", "audiencia": "Equipos de tecnología y producto.", "funcion": "Software a medida, inteligente y escalable; marcos de referencia y estándares; Legacy Modernization Lite.", "relacion": "Oferta de Nave. En F5 es «Next-Gen Software Factory» (TC-02); en otros materiales, «Next-Gen Factory & AI».", "promesa": "Construir capacidad.", "firma": "Título + código.", "variacion": "Trama de dato y volumen.", "usos": ["Ficha", "Casos"], "pendiente": "Elegir un solo nombre. Propuesta: «Next-Gen Engineering, AI & Web3» como línea; «Software Factory» como descripción del modo de producción."}, {"id": "l3", "nivel": "N2", "padre": "nave", "nombre": "Venture Studio", "tipo": "Línea de oferta", "estado": "suministrada", "audiencia": "Fundadores y empresas que crean nuevos negocios.", "funcion": "Creación, replicación y escalamiento de empresas.", "relacion": "Oferta de Nave (VB-02). Su autonomía como marca no se justifica todavía: no tiene público ni canal separados de Venture Builder.", "promesa": "Construir capacidad y sostener el avance.", "firma": "Título + código.", "variacion": "Trama de trayectoria.", "usos": ["Convocatoria", "Portafolio de ventures"]}, {"id": "l4", "nivel": "N2", "padre": "nave", "nombre": "Talent Integration", "tipo": "Línea de oferta", "estado": "suministrada", "audiencia": "Empresas que necesitan ampliar su equipo técnico.", "funcion": "Integración de talento con experiencia, metodologías, gobernanza y compromisos de resultados.", "relacion": "Oferta de Nave (TC-04). Aparece también como tipo de proyecto («células de ingeniería»): es la misma oferta en su modalidad de célula. En la navegación vive una sola vez, como línea; en proyectos se enlaza como modalidad.", "promesa": "Construir capacidad.", "firma": "Título + código.", "variacion": "Fotografía de personas, no de producto.", "usos": ["Ficha", "Caso de célula"]}, {"id": "l5", "nivel": "N2", "padre": "nave", "nombre": "Continuous Innovation & AI Ops", "tipo": "Línea de oferta", "estado": "suministrada · no está en F5", "audiencia": "Clientes con productos en operación.", "funcion": "Optimización de IA, gobernanza de datos y evolución estratégica del producto.", "relacion": "Oferta de Nave.", "promesa": "Sostener el avance.", "firma": "Título + código.", "variacion": "Trama de dato.", "usos": ["Ficha", "Reporte periódico"]}, {"id": "l6", "nivel": "N2", "padre": "nave", "nombre": "Managed Cloud & Business Continuity", "tipo": "Línea de oferta", "estado": "suministrada", "audiencia": "Áreas de operación y TI.", "funcion": "Soporte 24/7, DevSecOps, FinOps y observabilidad.", "relacion": "Oferta de Nave (TC-05). «24/7» se comunica solo con el acuerdo de servicio que lo respalde.", "promesa": "Sostener el avance.", "firma": "Título + código.", "variacion": "Pantalla de estado; colores funcionales.", "usos": ["Ficha", "Panel de estado", "Comunicación de incidentes"]}, {"id": "digital-assets", "nivel": "N2", "padre": "nave", "nombre": "Digital Assets portfolio", "tipo": "Oferta en F5 sin línea", "estado": "por validar", "audiencia": "—", "funcion": "Portafolio de activos digitales, apps y software propio y de partners (TC-03).", "relacion": "No aparece entre las seis líneas. Puede ser un catálogo transversal o integrarse en Next-Gen Engineering.", "promesa": "—", "firma": "—", "variacion": "—", "usos": [], "pendiente": "Decidir si es línea, catálogo o se retira."}, {"id": "tech-foundry", "nivel": "N3", "padre": "nave", "nombre": "Tech Foundry", "tipo": "Metodología y categoría", "estado": "vigente", "audiencia": "—", "funcion": "Describe qué es Nave («Nave es una Tech Foundry») y el método de Co-Creation.", "relacion": "En F5 también es el nombre de un servicio (VB-01). Propuesta: usarlo solo como categoría y método; el servicio se llama Business & Tech Co-Creation.", "promesa": "—", "firma": "Texto. Nunca como logotipo.", "variacion": "—", "usos": ["Brief", "Explicación del método"]}, {"id": "tech-equity", "nivel": "N3", "padre": "nave", "nombre": "Tech Equity", "tipo": "Modelo de contratación", "estado": "vigente en F5 · condiciones por validar", "audiencia": "Fundadores.", "funcion": "Nave invierte tecnología y participa como accionista (VB-03).", "relacion": "Modelo, no línea de servicio. Se aplica a Venture Studio.", "promesa": "—", "firma": "Texto con nota de condiciones.", "variacion": "—", "usos": ["Propuesta a fundadores"], "pendiente": "Condiciones legales y de selección antes de comunicarlo."}, {"id": "proyectos", "nivel": "N3", "padre": "nave", "nombre": "Tipos de proyecto", "tipo": "Catálogo de casos", "estado": "suministrado", "audiencia": "—", "funcion": "Agentes de IA para ventas, atención y análisis; tokenización y Web3; modernización de sistemas legados; células de Talent Integration.", "relacion": "Ejemplos que cruzan varias líneas. Se muestran como casos.", "promesa": "—", "firma": "Etiqueta en Lenia Mono.", "variacion": "—", "usos": ["Casos", "Filtros del sitio"]}, {"id": "cafe", "nivel": "N1", "padre": "nave", "nombre": "Nave Café", "tipo": "Experiencia física · identificador expresivo", "estado": "identidad aprobada · apertura sin confirmar", "audiencia": "Directivos senior, universitarios y emprendedores de alto nivel.", "funcion": "Café tradicional y coworking en Colonia Escalón: salas de alquiler, asesoría, herramientas de IA y espacio para podcasts. El astillero físico de Nave.", "relacion": "Entidad de Nave con expresión propia. Hereda símbolo, NΛVE, paleta, trama y voz; agrega el script «Café» y «EST. 2026».", "promesa": "Creamos las condiciones para que tu ambición encuentre cómo avanzar: aquí, con mesa, café y equipo.", "firma": "Logotipo Nave Café (F2, F3). Proporción Tueste y Ámbar más alta.", "variacion": "La más amplia del sistema: materiales, fotografía cálida, merch.", "usos": ["Señalética", "Menú y vasos", "Redes del café", "Letreros"], "pendiente": "No anunciar fecha ni disponibilidad 24/7 sin confirmar. «EST. 2026» es parte del logotipo, no una fecha de apertura."}, {"id": "garage", "nivel": "N4", "padre": "cafe", "nombre": "El Garage", "tipo": "Espacio", "estado": "concepto", "audiencia": "Clientes que necesitan privacidad, inspiración y asesoría.", "funcion": "Sala VIP inspirada en los garajes de startups históricas.", "relacion": "Sala dentro de Nave Café. Se nombra en señalización y reservas, no como marca.", "promesa": "Condiciones para pensar en privado.", "firma": "Emblema GAR + nombre en señal de sala.", "variacion": "Ninguna fuera de la señalética.", "usos": ["Señal de sala", "Reservas"]}, {"id": "espacios", "nivel": "N4", "padre": "cafe", "nombre": "Cubierta · Cabinas · Sala de Control · Hangar · La Barra", "tipo": "Espacios", "estado": "nombres propuestos", "audiencia": "Visitantes del café.", "funcion": "Zonas del café con código de tres letras y emblema.", "relacion": "Señalización interna de Nave Café.", "promesa": "—", "firma": "Emblema + código + nombre.", "variacion": "—", "usos": ["Señalética", "Pantalla de estado"]}, {"id": "academy", "nivel": "N1", "padre": "nave", "nombre": "Nave Academy", "tipo": "Identificador · exploración", "estado": "exploratorio", "audiencia": "Por definir.", "funcion": "Comprobado solo como composición visual en F1 (61:66, 136:113). No hay alcance, público ni calendario confirmados.", "relacion": "Si se confirma, entidad con identificador. Posibles vínculos: «Marketing de contenidos y educación» (F5) y la asesoría del café.", "promesa": "Si se confirma: comprensión y práctica para avanzar.", "firma": "Nave + identificador ACADEMY (F1).", "variacion": "Por definir.", "usos": [], "pendiente": "Validar función, público y estado antes de asignarle alcance."}], "firmas": [{"modo": "Nave sola", "cuando": "Por defecto. Toda pieza institucional, comercial y legal; firma al pie de cualquier pieza de la arquitectura.", "ejemplo": "Propuesta, sitio, redes, credenciales."}, {"modo": "Nave + identificador", "cuando": "Solo para una entidad con público propio, lugar o canal propio y continuidad. Hoy: Nave Café (identificador expresivo). En exploración: Academy.", "ejemplo": "Fachada del café; portada de programa si Academy se confirma."}, {"modo": "Nombre de oferta como título", "cuando": "Líneas, frentes, metodologías y modelos. Se escriben en Standerd con código en Lenia Mono; Nave firma al pie.", "ejemplo": "«TC-02 · Next-Gen Engineering, AI & Web3» en una ficha."}, {"modo": "Nombre de espacio como señalización", "cuando": "Salas y zonas físicas. Emblema, código de tres letras y nombre; solo dentro del lugar y en reservas.", "ejemplo": "«GAR · El Garage» en la puerta."}], "no_hacer": ["No crear logotipos para las líneas de oferta.", "No inventar nombres para llenar el árbol.", "No usar el script de «Café» en otra entidad.", "No poner dos identificadores juntos.", "No usar «Nave Systems», «Nave System» y «Nave Company» como marcas visibles."]}, "firma_spec": {"unidad": "1X = 0,176 × altura de NΛVE (35,34 px con NΛVE a 200,9 px en F1).", "principal": "Símbolo = 1,975 × altura de NΛVE. Separación símbolo–NΛVE = 4X. Área de seguridad = 2X por lado.", "horizontal": "Símbolo = altura de NΛVE. Separación = 1X. Área de seguridad = 2X.", "identificador_apilado": "Identificador debajo de NΛVE a 2X; altura de mayúscula ≈ 0,57 × NΛVE; ancho dentro del ancho de NΛVE.", "identificador_horizontal": "Identificador a la derecha a 2X; altura de mayúscula = altura de NΛVE.", "tipografia_identificador": "En F1: DM Sans Regular. PROPUESTA: Standerd Regular (400) para no sumar una tercera familia. PENDIENTE DE VALIDAR.", "minimos": "Principal 120 px / 25 mm de ancho; horizontal 150 px / 30 mm; símbolo 16 px / 6 mm (tokens del repositorio, por confirmar contra F1)."}, "color": {"paleta": [{"n": "Crema", "hex": "#FFF5EE", "grupo": "Base", "rol": "Soporte claro, papel"}, {"n": "Niebla", "hex": "#D7E1E2", "grupo": "Base", "rol": "Soporte frío, paneles"}, {"n": "Espacio", "hex": "#012436", "grupo": "Profundidad", "rol": "Fondo profundo y texto"}, {"n": "Tueste", "hex": "#210A05", "grupo": "Profundidad", "rol": "Calidez profunda (café)"}, {"n": "Ignición", "hex": "#E55C41", "grupo": "Combustión", "rol": "Acento: uno por pieza"}, {"n": "Ámbar", "hex": "#EFA441", "grupo": "Combustión", "rol": "Códigos y señales"}, {"n": "Acero", "hex": "#798E91", "grupo": "Instrumentos", "rol": "Texto secundario, líneas"}, {"n": "Petróleo", "hex": "#005A88", "grupo": "Instrumentos", "rol": "Datos"}, {"n": "Señal", "hex": "#0067DE", "grupo": "Instrumentos", "rol": "Interfaz y enlaces"}], "fuente": "F2 · Colors 17:59 (leído como relleno). Coincide con tokens.json de Nave Café. No existe en F1.", "proporciones": [{"expresion": "Nave institucional", "mix": [["Crema", 50], ["Espacio", 35], ["Niebla", 8], ["Ignición", 5], ["Ámbar", 2]]}, {"expresion": "Servicio B2B", "mix": [["Niebla", 30], ["Crema", 20], ["Espacio", 32], ["Petróleo", 8], ["Acero", 4], ["Ignición", 4], ["Señal", 2]]}, {"expresion": "Nave Café", "mix": [["Crema", 42], ["Tueste", 25], ["Espacio", 15], ["Ámbar", 11], ["Ignición", 7]]}, {"expresion": "Academy · exploratorio", "mix": [["Crema", 55], ["Espacio", 30], ["Ámbar", 10], ["Ignición", 5]]}], "nota": "PROPUESTA. La diferencia entre expresiones sale de la proporción, no de un color exclusivo por servicio."}, "tipografia": [{"familia": "Standerd", "rol": "Titulares, texto y título de oferta", "pesos": "400 texto · 600 subtítulo · 700 titular", "respaldo": "Inter Tight", "licencia": "Licenciada · no se redistribuye"}, {"familia": "Lenia Mono", "rol": "Datos, códigos, etiquetas y la voz de Houston", "pesos": "400 · 500 · 700", "respaldo": "JetBrains Mono", "licencia": "Licenciada · no se redistribuye"}, {"familia": "Script «Café»", "rol": "Solo logotipo de Nave Café", "pesos": "—", "respaldo": "—", "licencia": "Vector del logotipo"}, {"familia": "DM Sans", "rol": "Identificador ACADEMY en F1 (exploración)", "pesos": "Regular", "respaldo": "—", "licencia": "Libre (Google Fonts)"}], "puntos": {"idea": "Un punto es una capacidad individual. Ordenados en retícula, los puntos forman estructuras, trayectorias y volúmenes: así se ve que las capacidades, al organizarse, permiten avanzar.", "comunes": [["Retícula", "Hexagonal; paso p = M/2 o M/4, con M = lado corto / 20."], ["Diámetro", "Separación : diámetro = 4 : 1 en reposo; hasta 3 : 2 en máximo tono."], ["Color", "Un color de la paleta por capa de puntos; máximo dos capas."], ["Relación con el logo", "Ningún punto entra en el área de seguridad (2X)."], ["Lectura", "Al menos el 40% de la pieza sin trama; el texto nunca va sobre trama de más del 25% de cobertura."], ["Tipografía", "Los puntos se alinean a la retícula M que también ordena el texto."]], "variables": [["Densidad", "Institucional baja · B2B media en datos · Café alta y táctil."], ["Escala", "Del punto de 2 mm impreso a LED de 12 mm en letreros."], ["Desplazamiento", "Lente: los puntos se apartan alrededor de un foco (presión regulada)."], ["Deformación", "Volumen: el tamaño sigue una forma 3D (esfera, planeta, toroide)."], ["Contraste", "Del tono a la silueta según la distancia de lectura."], ["Orden", "Aleatorio → retícula: el estado se estabiliza."]], "funciones": [{"n": "Campo", "d": "Puntos uniformes: el soporte respira.", "pilar": "Dar dirección"}, {"n": "Relación", "d": "Puntos unidos por líneas: capacidades conectadas.", "pilar": "Construir capacidad"}, {"n": "Trayectoria", "d": "Puntos en el orden del símbolo: el avance.", "pilar": "Construir capacidad"}, {"n": "Volumen", "d": "Tamaño según una forma: lo construido toma cuerpo.", "pilar": "Construir capacidad"}, {"n": "Lente", "d": "Desplazamiento alrededor de un foco: la presión regulada.", "pilar": "Dar dirección"}, {"n": "Dato", "d": "Medidores de 25 puntos y estados: el seguimiento.", "pilar": "Sostener el avance"}], "evitar": ["Cubrir toda la pieza de puntos sin función.", "Deformar el logotipo para que parezca hecho de puntos.", "Más de dos capas de trama.", "Trama detrás de texto de lectura."]}, "capas": [{"n": "Soporte", "f": "Papel limpio, grueso y táctil; superficies y respiración.", "omitir": "Nunca. Es el fondo; puede ser solo color."}, {"n": "Trama", "f": "Puntos, grillas, relaciones y estructuras.", "omitir": "En piezas de texto largo, formularios y documentos legales."}, {"n": "Cuerpo", "f": "Mezcla 2D + 3D: aluminio, relieve, objeto, fotografía, ilustración.", "omitir": "En piezas utilitarias y de soporte. Úsese solo cuando el objeto aporte información."}, {"n": "Orientación", "f": "Tipografía, jerarquía, etiquetas, información y señalización: la voz de Houston.", "omitir": "Nunca en piezas con mensaje; solo en texturas de fondo."}], "materialidad": [{"n": "Aluminio cepillado", "uso": "Placas, letreros, credenciales B2B.", "funcion": "Precisión técnica."}, {"n": "Aluminio perforado", "uso": "Señalética y fachadas; la trama hecha objeto.", "funcion": "Puntos reales."}, {"n": "Papel grueso 300–350 g", "uso": "Propuestas impresas, tarjetas, menú.", "funcion": "Cercanía y cuidado."}, {"n": "Relieve seco", "uso": "Símbolo en papelería.", "funcion": "Tacto sin tinta."}], "implementacion": {"tokens_globales": [["color.crema", "#FFF5EE", "verificado F2"], ["color.niebla", "#D7E1E2", "verificado F2"], ["color.espacio", "#012436", "verificado F2"], ["color.tueste", "#210A05", "verificado F2"], ["color.ignicion", "#E55C41", "verificado F2"], ["color.ambar", "#EFA441", "verificado F2"], ["color.acero", "#798E91", "verificado F2"], ["color.petroleo", "#005A88", "verificado F2"], ["color.senal", "#0067DE", "verificado F2"], ["firma.x", "0.176 × altura NΛVE", "verificado F1"], ["firma.seguridad", "2X", "verificado F1"], ["reticula.M", "lado corto / 20", "Nave Café"], ["trama.paso", "M/2 · M/4", "Nave Café"], ["trama.relacion", "4:1", "Nave Café"]], "tokens_semanticos": [["superficie.base", "crema"], ["superficie.profunda", "espacio"], ["superficie.panel", "niebla"], ["texto.principal", "espacio"], ["texto.sobre-profundo", "crema"], ["texto.secundario", "acero"], ["acento", "ignicion"], ["codigo", "ambar"], ["dato", "petroleo"], ["interfaz.enlace", "senal"], ["estado.ok", "#5BC28C (extensión propuesta)"], ["estado.atencion", "ambar"], ["estado.falla", "ignicion"]], "extensiones": [["expresion.cafe.calidez", "tueste", "propuesta"], ["estado.ok", "#5BC28C", "propuesta: hoy solo en la pantalla del café"], ["identificador.familia", "Standerd 400", "propuesta"], ["firma.identificador.gap", "2X", "verificado F1"]], "componentes": ["Firma (Nave · Nave + identificador)", "Etiqueta de dato (Lenia Mono, mayúsculas, +12%)", "Código de oferta (TC-01 · VB-02)", "Título de oferta", "Bloque editorial (manifiesto)", "Señal de sala (emblema + código + nombre)", "Medidor de 25 puntos", "Pantalla de estado", "Portada de propuesta", "Ficha de servicio"], "herencia": ["Nave define: símbolo, NΛVE, paleta, tipografía, retícula M, trama, capas y voz.", "Cada expresión elige: proporción de color, densidad de trama, fotografía y registro de voz.", "Nave Café agrega: script, «EST. 2026», emblemas de espacios, materiales cálidos.", "Ninguna expresión redefine geometría, familias ni nombres de color."], "migracion": [["Logotipo maestro", "Repositorio: símbolo reconstruido geométricamente", "Usar los vectores de F1 (marca/madre/logotipo/)."], ["Área de seguridad", "x = ½ altura de NΛVE", "2X con X = 0,176 × altura de NΛVE (F1)."], ["Promesa", "«…cómo despegar y aterrizar» (concepto del café)", "«…cómo avanzar» en todas las piezas nuevas."], ["Pilares", "Tres del café", "Tres de Nave; los del café quedan como aplicación."], ["Estilos en F1", "No existen", "Página «Propuesta · Marca madre» con estilos; la página Branding no se toca."], ["Nombres", "Nave Company / Nave System(s)", "Nave como marca; razón social por confirmar."]], "nomenclatura_figma": ["Páginas: Branding (original) · Propuesta · Marca madre · Archivo.", "Estilos de color: Marca/01 Crema … Marca/09 Señal; Estado/…", "Estilos de texto: Standerd/0N Nombre tamaño · Lenia Mono/0N Nombre tamaño.", "Láminas: «NN · Sección · Tema»."], "registro": [["2026-10-13", "Propuesta 01", "Arquitectura monolítica con identificadores selectivos; registro editorial A1–A4, P1–P5, C1; pilares de Nave; gramática de puntos; tokens semánticos; vectores maestros desde F1."]]}, "pendientes": ["Aprobar o rechazar cada cambio editorial (A1–A4, C1, P1–P5).", "Confirmar si Nave Academy existe como unidad, con qué público y calendario.", "Confirmar la razón social: Nave Company, Nave Systems o Nave System.", "Unificar el nombre de la línea Next-Gen y decidir el destino de Digital Assets portfolio.", "Definir qué significa «en tiempo real» en el brief.", "Fuente y condiciones de «más de 25 años de experiencia», «calidad en tiempo récord», «garantía» y del soporte 24/7.", "Distinguir marcos ISO de referencia de certificaciones obtenidas.", "Elegir la tipografía del identificador: DM Sans (F1) o Standerd 400 (propuesta).", "Validar los cinco valores frente a los siete puntos de «¿Qué nos rige?» del deck (¿valores o principios operativos?)."], "discrepancias": [{"tema": "Colores en F1", "a": "El brief cita el nodo 61:111 «Colores, Iconografía y Tipografía».", "b": "El nodo no existe; F1 no tiene estilos ni variables.", "solucion": "Paleta tomada de F2 17:59 (idéntica a tokens de Nave Café) y creada como estilos en la página de propuesta."}, {"tema": "Promesa", "a": "Concepto del café: «…cómo despegar y aterrizar».", "b": "Brief: «…cómo avanzar».", "solucion": "Prioridad 2: «cómo avanzar». El despegue es un hito, no el final."}, {"tema": "Área de seguridad", "a": "tokens.json: x = ½ altura de NΛVE.", "b": "F1: 2X, con X = 0,176 × altura de NΛVE.", "solucion": "Prioridad 3: se corrige el token."}, {"tema": "Valores", "a": "Cinco valores corporativos.", "b": "F5: siete puntos en «¿Qué nos rige?».", "solucion": "Los cinco son los valores. Los siete se leen como principios operativos. PENDIENTE DE VALIDAR."}, {"tema": "Oferta", "a": "Seis líneas suministradas.", "b": "F5: ocho servicios TC-01…VB-03.", "solucion": "Tabla de equivalencias; Tech Foundry pasa a método, Tech Equity a modelo, Digital Assets queda pendiente."}, {"tema": "Nombre institucional", "a": "Nave Company (brief).", "b": "Nave Systems (F5) · Nave System (materiales).", "solucion": "Nave es la marca; la razón social se confirma y se usa solo en pies legales."}, {"tema": "Pilares", "a": "Café: Preparar condiciones, Explorar posibilidades, Construir el futuro.", "b": "Propuesta general: Dar dirección, Construir capacidad, Sostener el avance.", "solucion": "Un solo juego oficial (Nave) y los del café como aplicación."}, {"tema": "Tipografía del identificador", "a": "F1: DM Sans Regular.", "b": "Sistema: Standerd + Lenia Mono.", "solucion": "Propuesta: Standerd 400. Pendiente."}], "equivalencias": [["Business & Tech Co-Creation", "TC-01 Tech Consultant · VB-01 Tech Foundry", "Tech Foundry pasa a ser el método."], ["Next-Gen Engineering, AI & Web3", "TC-02 Next-Gen Software Factory", "Unificar nombre."], ["—", "TC-03 Digital Assets portfolio", "Pendiente."], ["Talent Integration", "TC-04 Talent Integration", "Igual."], ["Managed Cloud & Business Continuity", "TC-05 Managed Cloud & Continuity", "Igual, nombre completo."], ["Venture Studio", "VB-02 Venture Studio", "Igual."], ["(modelo) Tech Equity", "VB-03 Tech Equity Business model", "Modelo de contratación."], ["Continuous Innovation & AI Ops", "—", "Nueva respecto al deck."]], "enlaces": [["Figma · Nave — Identidad Visual · Propuesta · Marca madre", "https://www.figma.com/design/jgjWkyyD5WQ4gmfLfjQxhm/Nave---Identidad-Visual?node-id=140-2"], ["Figma · Presentación · Nave marca madre", "https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG/Nave-Caf%C3%A9-%C2%B7-Sistema-visual?node-id=111-394"], ["Sistema visual Nave Café (artefacto anterior)", "https://claude.ai/artifact/74DTBc51AUHDhY6kccTafb"]]};
+const NAVE_S = "M381.17 121.15C371.17 97.52 356.88 76.31 338.66 58.1C320.44 39.89 299.24 25.59 275.61 15.6C251.14 5.24001 225.150 0 198.38 0C171.61 0 145.63 5.24001 121.15 15.6C97.53 25.59 76.31 39.89 58.11 58.1C39.89 76.32 25.6 97.52 15.6 121.15C5.24998 145.62 0 171.61 0 198.38C0 209.11 0.849999 219.72 2.53 230.15C5.04 245.74 9.39998 260.95 15.6 275.61C17.91 281.06 20.44 286.38 23.2 291.56C31.56 307.28 41.98 321.74 54.33 334.77C56.33 336.88 59.69 336.91 61.75 334.86L80.32 316.29L80.39 316.37L194.72 202.04C196.75 200 200.03 200 202.06 202.04L297.63 297.6C290.44 304.79 282.61 311.1 274.27 316.48C265.93 321.87 257.08 326.32 247.84 329.78C232.25 335.65 215.56 338.71 198.39 338.71C182.33 338.71 166.68 336.03 151.97 330.89C150.1 330.23 148 330.71 146.6 332.12L110.22 368.49C107.7 371.02 108.41 375.28 111.62 376.84C114.75 378.36 117.93 379.8 121.15 381.17C145.63 391.52 171.61 396.77 198.38 396.77C225.15 396.77 251.13 391.52 275.61 381.17C281.07 378.86 286.4 376.32 291.6 373.55C308.89 364.36 324.66 352.67 338.66 338.67L338.75 338.58C351.78 325.53 362.81 310.94 371.68 295.04C372.82 293 372.47 290.47 370.83 288.83L357.37 275.38L357.45 275.3L329.59 247.45L206.57 124.43C202.06 119.92 194.75 119.92 190.24 124.43L112.39 202.28L72.86 241.82C70.09 244.58 65.36 243.4 64.22 239.66C60.18 226.46 58.09 212.59 58.09 198.39C58.09 189.5 58.91 180.74 60.51 172.19C65.67 144.69 78.96 119.38 99.18 99.16C119.4 78.94 144.7 65.65 172.21 60.49C180.76 58.89 189.52 58.07 198.41 58.07C207.3 58.07 216.06 58.89 224.61 60.49C252.11 65.66 277.42 78.94 297.64 99.16C317.47 119 330.64 143.73 336.01 170.64C336.21 171.65 336.7 172.58 337.43 173.31L386.85 222.73C389.95 225.83 395.22 223.93 395.68 219.58C396.42 212.58 396.79 205.51 396.79 198.39C396.79 171.63 391.550 145.64 381.2 121.16L381.17 121.15Z";
+const NAVE_W = ["M730.31 97.92H706.85C703.57 97.92 700.91 100.59 700.91 103.86V249.25L582.57 97.92H538.13V292.89C538.13 296.17 540.8 298.83 544.07 298.83H567.53C570.81 298.83 573.47 296.16 573.47 292.89V147.29L691.67 298.83H736.25V103.86C736.25 100.58 733.58 97.92 730.31 97.92Z", "M885.2 97.92H846.46L760.6 288.25C759.55 290.58 759.75 293.25 761.14 295.4C762.53 297.55 764.88 298.83 767.44 298.83H789.1C792.03 298.83 794.7 297.11 795.92 294.45C808.55 266.82 849.44 177.32 865.84 140.66L936.14 294.45C937.36 297.11 940.03 298.83 942.96 298.83H964.75C967.31 298.83 969.670 297.54 971.05 295.39C972.43 293.24 972.63 290.56 971.57 288.23L885.17 97.92H885.2Z", "M1151.08 97.92H1129.28C1126.37 97.92 1123.7 99.63 1122.48 102.27C1116.94 114.22 1069.88 215.82 1052.15 256.07C1035.76 219.43 994.88 129.96 982.24 102.31C981.02 99.6501 978.35 97.9301 975.42 97.9301H953.76C951.2 97.9301 948.85 99.21 947.46 101.36C946.07 103.51 945.87 106.18 946.92 108.51L1032.78 298.84H1071.52L1157.92 108.53C1158.98 106.2 1158.78 103.52 1157.4 101.37C1156.01 99.2201 1153.66 97.9301 1151.1 97.9301L1151.08 97.92Z", "M1345.72 130.63V97.92H1192.83C1188.94 97.92 1185.77 101.09 1185.77 104.98V291.77C1185.77 295.66 1188.94 298.83 1192.83 298.83H1345.72V266.12H1221.11V211.66H1332.05V178.95H1221.11V130.62H1345.72V130.63Z"];
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const C = { crema: '#FFF5EE', niebla: '#D7E1E2', espacio: '#012436', tueste: '#210A05', ignicion: '#E55C41', ambar: '#EFA441', acero: '#798E91', petroleo: '#005A88', senal: '#0067DE' };
+const byName = Object.fromEntries(D.color.paleta.map((p) => [p.n, p.hex]));
+const tagFor = (t) => {
+  const k = { 'ORIGINAL': 't-orig', 'AJUSTE PROPUESTO': 't-ajuste', 'PUENTE PROPUESTO': 't-puente', 'PENDIENTE DE VALIDAR': 't-pend', 'PROPUESTA': 't-ajuste' }[t] || 't-orig';
+  return `<span class="tag ${k}"><i></i>${esc(t)}</span>`;
+};
+const estadoTag = (e) => {
+  const s = e.toLowerCase();
+  const k = s.includes('explor') ? 't-expl' : (s.includes('validar') || s.includes('sin confirmar') || s.includes('propuesto') || s.includes('por unificar') || s.includes('no está')) ? 't-pend' : (s.includes('vigente') || s.includes('suministr') || s.includes('aprobada')) ? 't-vig' : 't-orig';
+  return `<span class="tag ${k}"><i></i>${esc(e)}</span>`;
+};
+const list = (id, arr, fn) => { $(id).innerHTML = arr.map(fn).join(''); };
+
+/* ───── trama: utilidades de lienzo ───── */
+function fit(cv) {
+  const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+  const w = Math.max(1, Math.round(r.width * d)), h = Math.max(1, Math.round(r.height * d));
+  if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  const ctx = cv.getContext('2d'); ctx.setTransform(d, 0, 0, d, 0, 0);
+  return { ctx, w: r.width, h: r.height };
+}
+function hex(w, h, p) {
+  if (!(p > 0.5) || !(w > 1) || !(h > 1)) return [];
+  const out = [], dy = p * Math.sqrt(3) / 2;
+  for (let j = 0, y = p / 2; y < h + p; j++, y += dy) for (let x = (j % 2 ? p / 2 : 0) + p / 2; x < w + p; x += p) out.push([x, y]);
+  return out;
+}
+const symPath = new Path2D(NAVE_S);
+const OFF = document.createElement('canvas').getContext('2d');
+function rng(s) { return () => ((s = Math.imul(s ^ (s >>> 15), 1 | s) + 0x6D2B79F5 | 0, ((s ^ (s >>> 7)) >>> 0) / 4294967296)); }
+
+/* ───── 1 · apertura ───── */
+$('#hero-ver').textContent = `${D.meta.version} · Nave · marca madre`;
+$('#hero-idea').textContent = D.meta.idea;
+$('#hero-q').textContent = D.meta.pregunta;
+(function hero() {
+  const cv = $('#cv-hero'); let pts = null, size = 0, t0 = performance.now(), playing = !RM, tPaused = 0;
+  const off = document.createElement('canvas').getContext('2d');
+  function build(S) {
+    size = S; const p = S / 34, r = rng(11); pts = [];
+    const k = S * 0.78 / 397, ox = S * 0.11, oy = S * 0.11;
+    for (const [x, y] of hex(S, S, p)) {
+      const inside = off.isPointInPath(symPath, (x - ox) / k, (y - oy) / k);
+      const ang = Math.atan2(y - S / 2, x - S / 2);
+      // orden de la trayectoria: el ángulo alrededor del centro, empezando arriba
+      const ord = ((ang + Math.PI * 2.5) % (Math.PI * 2)) / (Math.PI * 2);
+      pts.push({ x, y, inside, ord, sx: r() * S, sy: r() * S, j: r() });
+    }
+  }
+  const ease = (u) => u < 0 ? 0 : u > 1 ? 1 : u * u * (3 - 2 * u);
+  function draw(now) {
+    const { ctx, w } = fit(cv); if (Math.abs(w - size) > 1) build(w);
+    const T = playing ? (now - t0) / 1000 : tPaused;
+    const cyc = RM ? 5 : T % 9;
+    ctx.clearRect(0, 0, w, w);
+    const p = w / 34;
+    for (const d of pts) {
+      const a = ease((cyc - 0.4 - d.j * 0.8) / 1.8);           // de sueltas a retícula
+      const b = d.inside ? ease((cyc - 3 - d.ord * 2) / 0.6) : 0; // encendido en orden de trayectoria
+      const fade = cyc > 7.6 ? ease((cyc - 7.6) / 1.2) : 0;     // vuelve a soltarse
+      const aa = a * (1 - fade);
+      const x = d.sx + (d.x - d.sx) * aa, y = d.sy + (d.y - d.sy) * aa;
+      const rad = p * (0.12 + 0.2 * b * (1 - fade));
+      ctx.fillStyle = b * (1 - fade) > 0.02 ? (d.ord < 0.06 ? C.ignicion : C.crema) : 'rgba(255,245,238,' + (0.16 + 0.12 * aa) + ')';
+      ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832); ctx.fill();
+    }
+    const st = cyc < 1 ? 'Capacidades sueltas' : cyc < 3 ? 'Se ordenan en retícula' : cyc < 7.6 ? 'Toman la forma de la trayectoria' : 'Siguen moviéndose';
+    $('#hero-state').textContent = st;
+    if (playing) requestAnimationFrame(draw);
+  }
+  const btn = $('#hero-play');
+  if (RM) { btn.textContent = 'Reproducir'; btn.setAttribute('aria-pressed', 'false'); }
+  btn.onclick = () => {
+    if (playing) { tPaused = (performance.now() - t0) / 1000; playing = false; btn.textContent = 'Reproducir'; btn.setAttribute('aria-pressed', 'false'); }
+    else { t0 = performance.now() - tPaused * 1000; playing = true; btn.textContent = 'Pausar'; btn.setAttribute('aria-pressed', 'true'); requestAnimationFrame(draw); }
+  };
+  requestAnimationFrame(draw);
+  addEventListener('resize', () => { if (!playing) requestAnimationFrame(draw); });
+  if (RM) tPaused = 5;
+})();
+
+/* ───── 2 · fuentes ───── */
+$('#tbl-fuentes tbody').innerHTML = D.meta.fuentes.map((f) => `<tr><td class="k">${f.url ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.nombre)}</a>` : esc(f.nombre)}<div class="mono" style="font-size:11.5px;color:var(--ink-3);margin-top:4px">${esc(f.id)} · ${esc(f.ref)}</div></td><td>${esc(f.revisado)}</td><td class="m">${esc(f.prioridad)}</td></tr>`).join('');
+$('#diag').innerHTML = [['Se conserva', 'conserva', '#2E8B5A'], ['Cambia', 'cambia', C.ignicion], ['Falta', 'falta', C.ambar]].map(([t, k, c]) => `<div><h4><i style="background:${c}"></i>${t}</h4><ul>${D.diagnostico[k].map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
+list('#no-rev', D.meta.no_revisado, (x, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b><span>${esc(x)}</span></li>`);
+$('#tbl-disc tbody').innerHTML = D.discrepancias.map((d) => `<tr><td class="k">${esc(d.tema)}</td><td>${esc(d.a)}</td><td>${esc(d.b)}</td><td>${esc(d.solucion)}</td></tr>`).join('');
+
+/* ───── 3 · narrativa ───── */
+const CH = Object.fromEntries(D.cambios.map((c) => [c.id, c]));
+const TXT = [['problema', 'Lectura del problema'], ['brief', 'Brief'], ['manifiesto', 'Manifiesto']];
+const VISTAS = [['o', 'Original'], ['c', 'Cambios'], ['p', 'Propuesta']];
+let txtSel = 'problema', vistaSel = 'o';
+function renderTexto(key, vista) {
+  const T = D.textos[key];
+  const pars = T.parrafos.map((par) => {
+    const allNew = par.every((x) => typeof x !== 'string' && !x.o);
+    let html = par.map((x) => {
+      if (typeof x === 'string') return esc(x);
+      if (vista === 'o') return esc(x.o);
+      if (vista === 'p') return esc(x.n);
+      return (x.o ? `<del>${esc(x.o)}</del>` : '') + (x.o && x.n ? ' ' : '') + `<ins>${esc(x.n)}</ins><sup class="ch">${x.c}</sup>`;
+    }).join('');
+    if (!html.replace(/<[^>]+>/g, '').trim()) return '';
+    return `<p class="${allNew && vista !== 'o' ? 'np' : ''}">${html}</p>`;
+  }).join('');
+  const notas = vista !== 'o' && T.notas.length ? T.notas.map((n) => `<div>${esc(n)}</div>`).join('') : '';
+  return { pars, notas };
+}
+function labelVista(key, vista) {
+  if (vista === 'o') return [key === 'manifiesto' ? 'Versión Nave Café · aprobada por el usuario' : 'Texto original', tagFor('ORIGINAL')];
+  if (vista === 'c') return ['Original con cambios en contexto · tachado = se quita · resaltado = se agrega', tagFor('PENDIENTE DE VALIDAR')];
+  return [key === 'manifiesto' ? 'Versión Nave · marca madre · lectura limpia' : 'Lectura limpia si se aprueba todo', tagFor('PROPUESTA')];
+}
+function chgCards(key) {
+  return D.cambios.filter((c) => c.texto === key).map((c) => `<article><div class="top"><span class="id">${c.id}</span>${tagFor(c.tipo)}</div><dl>${c.antes ? `<dt>Antes</dt><dd>${esc(c.antes)}</dd>` : ''}<dt>Después</dt><dd class="b">${esc(c.despues)}</dd><dt>Motivo</dt><dd>${esc(c.motivo)}</dd><dt>Alcance</dt><dd>${esc(c.alcance)}</dd><dt>Estado</dt><dd>${esc(c.estado)}</dd></dl></article>`).join('');
+}
+function obsFor(key) {
+  const o = D.observaciones.filter((x) => x.texto === key);
+  return o.length ? `<div class="obs"><span class="label">Observaciones · sin cambio</span>${o.map((x) => `<p style="margin-top:6px">${esc(x.nota)}</p>`).join('')}</div>` : '';
+}
+function narr() {
+  $('#tabs-texto').innerHTML = TXT.map(([k, n]) => `<button role="tab" aria-selected="${k === txtSel}" data-k="${k}">${n}</button>`).join('');
+  $('#tabs-vista').innerHTML = VISTAS.map(([k, n]) => `<button aria-pressed="${k === vistaSel}" data-v="${k}">${n}</button>`).join('');
+  const { pars, notas } = renderTexto(txtSel, vistaSel);
+  const [lab, tg] = labelVista(txtSel, vistaSel);
+  $('#txt-label').textContent = lab; $('#txt-tag').innerHTML = tg;
+  $('#txt').innerHTML = pars; $('#txt-notas').innerHTML = notas; $('#txt-notas').hidden = !notas;
+  $('#chg').innerHTML = chgCards(txtSel); $('#obs').innerHTML = obsFor(txtSel);
+}
+$('#tabs-texto').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { txtSel = b.dataset.k; narr(); $('#tabs-texto [aria-selected="true"]').focus(); } });
+$('#tabs-texto').addEventListener('keydown', (e) => {
+  if (!['ArrowRight', 'ArrowLeft'].includes(e.key)) return;
+  const i = TXT.findIndex(([k]) => k === txtSel); txtSel = TXT[(i + (e.key === 'ArrowRight' ? 1 : TXT.length - 1)) % TXT.length][0]; narr(); $('#tabs-texto [aria-selected="true"]').focus();
+});
+$('#tabs-vista').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { vistaSel = b.dataset.v; narr(); } });
+narr();
+$('#narr-all').innerHTML = TXT.map(([k, n]) => {
+  const o = renderTexto(k, 'o'), c = renderTexto(k, 'c'), p = renderTexto(k, 'p');
+  return `<div><h3 style="font-size:var(--t-h3);margin-bottom:14px">${n}</h3><div class="grid g2"><div class="sheet textpanel"><div class="vh"><span class="label">${labelVista(k, 'o')[0]}</span>${tagFor('ORIGINAL')}</div><div class="prose">${o.pars}</div></div><div class="sheet textpanel"><div class="vh"><span class="label">${labelVista(k, 'c')[0]}</span>${tagFor('PENDIENTE DE VALIDAR')}</div><div class="prose">${c.pars}</div>${c.notas ? `<div class="notas">${c.notas}</div>` : ''}</div></div><div class="sheet textpanel" style="margin-top:16px"><div class="vh"><span class="label">${labelVista(k, 'p')[0]}</span>${tagFor('PROPUESTA')}</div><div class="prose">${p.pars}</div></div><div class="chg" style="margin-top:16px">${chgCards(k)}</div>${obsFor(k)}</div>`;
+}).join('');
+
+/* ───── 4 · conceptos ───── */
+$('#tension').innerHTML = esc(D.conceptos.tension).replace('lo que hoy podemos construir', '<em>lo que hoy podemos construir</em>');
+$('#chain').innerHTML = D.conceptos.cadena.map((c, i) => `<div><canvas data-i="${i}" aria-hidden="true"></canvas><div class="tx"><span class="label step">${String(i + 1).padStart(2, '0')}</span><h4>${esc(c.n)}</h4><p>${esc(c.d)}</p><p class="nv">${esc(c.nave)}</p></div></div>`).join('');
+function drawChain() {
+  document.querySelectorAll('#chain canvas').forEach((cv) => {
+    const i = +cv.dataset.i, { ctx, w, h } = fit(cv), p = w / 14, r = rng(3 + i);
+    ctx.clearRect(0, 0, w, h);
+    const g = hex(w, h, p);
+    for (const [x0, y0] of g) {
+      let x = x0, y = y0, rad = p * 0.12, col = 'rgba(1,36,54,.22)';
+      const dx = x0 - w / 2, dy = y0 - h / 2, d = Math.hypot(dx, dy);
+      if (i === 0) { if (d < p * 0.6) { rad = p * 0.3; col = C.ignicion; } else { x += (r() - .5) * p * .9; y += (r() - .5) * p * .9; col = 'rgba(1,36,54,.14)'; } }
+      if (i === 1) { const k = Math.max(0, 1 - d / (w * .5)); x += dx * k * -.35; y += dy * k * -.35; rad = p * (0.1 + 0.14 * k); col = k > .55 ? C.ignicion : 'rgba(1,36,54,.3)'; }
+      if (i === 2) { rad = p * 0.13; col = 'rgba(1,36,54,.38)'; }
+      if (i === 3) { const cx = Math.round(x0 / (p * 3.5)), cy = Math.round(y0 / (p * 3.5)); const lead = (cx + cy) % 3 === 0; rad = p * (lead ? .24 : .1); col = lead ? C.espacio : 'rgba(1,36,54,.25)'; }
+      if (i === 4) { const u = (x0 / w), line = 1 - Math.abs((y0 / h) - (1 - u * .8 - .1)) * 6; rad = p * (0.08 + 0.2 * Math.max(0, line)); col = line > .35 ? (u > .85 ? C.ignicion : C.espacio) : 'rgba(1,36,54,.18)'; }
+      ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832); ctx.fill();
+    }
+  });
+}
+$('#tbl-met tbody').innerHTML = D.conceptos.metaforas.map((m) => `<tr><td class="k">${esc(m.n)}</td><td>${esc(m.es)}</td><td>${esc(m.uso)}</td></tr>`).join('');
+
+/* ───── 5 · voz ───── */
+list('#hou', D.personalidad.houston, (x, i) => `<div><b>${String(i + 1).padStart(2, '0')}</b><span>${esc(x)}</span></div>`);
+$('#heroe').textContent = D.personalidad.heroe; $('#explorador').textContent = D.personalidad.explorador;
+let regSel = 'institucional';
+const regHTML = (r) => `<div class="reg-ex"><div><span class="k">Registro</span><span class="v">${esc(r.n)} ${r.exploratorio ? '<span class="tag t-expl"><i></i>Exploratorio</span>' : ''} <span class="tag t-orig" style="margin-left:6px"><i></i>Propuesta</span><br><span style="color:var(--on-dark-2);font-size:16px">${esc(r.tono)}</span></span></div><div><span class="k">Titular</span><span class="v h">${esc(r.titular)}</span></div><div><span class="k">Llamada a la acción</span><span class="v cta">${esc(r.cta)} →</span></div><div><span class="k">Bienvenida</span><span class="v">${esc(r.bienvenida)}</span></div><div><span class="k">Explicar un servicio</span><span class="v">${esc(r.servicio)}</span></div><div><span class="k">Comunicar un inconveniente</span><span class="v">${esc(r.inconveniente)}</span></div></div>`;
+function voz() {
+  $('#tabs-reg').innerHTML = D.personalidad.registros.map((r) => `<button role="tab" aria-selected="${r.id === regSel}" data-k="${r.id}">${esc(r.n)}</button>`).join('');
+  $('#reg-panel').innerHTML = regHTML(D.personalidad.registros.find((r) => r.id === regSel));
+}
+$('#tabs-reg').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { regSel = b.dataset.k; voz(); $('#tabs-reg [aria-selected="true"]').focus(); } });
+voz();
+$('#reg-all').innerHTML = D.personalidad.registros.map(regHTML).join('');
+list('#evitar', D.personalidad.evitar, (x) => `<li>${esc(x)}</li>`);
+
+/* ───── 6 · pilares ───── */
+list('#vals', D.valores, (v) => `<span>${esc(v)}</span>`);
+$('#vals-nota').textContent = D.valores_nota;
+const filas = [['Función', 'f'], ['Manifestación', 'm'], ['Valores', 'valores'], ['Comportamiento', 'comportamiento'], ['Evidencia', 'evidencia'], ['Decisión visual', 'visual'], ['Comunicación', 'comunicacion'], ['Atención al cliente', 'atencion']];
+$('#matrix').innerHTML = `<thead><tr><th></th>${D.pilares.map((p) => `<th>${esc(p.n)}</th>`).join('')}</tr></thead><tbody>${filas.map(([n, k]) => `<tr><td class="m" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)">${n}</td>${D.pilares.map((p) => `<td>${Array.isArray(p[k]) ? p[k].map((v) => `<b>${esc(v)}</b>`).join(' · ') : esc(p[k])}</td>`).join('')}</tr>`).join('')}</tbody>`;
+$('#pil-ant').textContent = ' ' + D.pilares_antecedente;
+
+/* ───── 7 · arquitectura ───── */
+const A = D.arquitectura;
+$('#arq-rec').textContent = A.recomendacion;
+list('#arq-raz', A.razones, (x) => `<li>${esc(x)}</li>`);
+$('#arq-alt').textContent = A.alternativa;
+const ENT = Object.fromEntries(A.entidades.map((e) => [e.id, e]));
+let entSel = 'nave';
+const fichaHTML = (e) => `<span class="ty">${esc(e.nivel)} · ${esc(A.niveles.find((n) => n.id === e.nivel).n)}${e.tipo !== A.niveles.find((n) => n.id === e.nivel).n ? ' · ' + esc(e.tipo) : ''}</span><h3>${esc(e.nombre)}</h3>${estadoTag(e.estado)}<dl>${[['Audiencia', e.audiencia], ['Función', e.funcion], ['Relación con Nave', e.relacion], ['Promesa aplicada', e.promesa], ['Firma visual', e.firma], ['Margen de variación', e.variacion], ['Ejemplos de uso', (e.usos || []).join(' · ') || '—']].map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>${e.pendiente ? `<div class="pend"><b>Pendiente · </b>${esc(e.pendiente)}</div>` : ''}`;
+function tree() {
+  const kids = (id) => A.entidades.filter((e) => e.padre === id);
+  const btn = (e, child) => `<button class="node${child ? ' child' : ''}" aria-pressed="${e.id === entSel}" data-id="${e.id}"><span class="nm">${esc(e.nombre)}<small>${esc(e.tipo)}</small></span>${estadoTag(e.estado.split(' · ')[0])}</button>`;
+  const groups = A.niveles.map((n) => {
+    const items = A.entidades.filter((e) => e.nivel === n.id && (n.id !== 'N4'));
+    const extra = n.id === 'N1' ? '' : '';
+    if (!items.length) return '';
+    return `<div class="lvl"><span class="label">${n.id} · ${esc(n.n)}</span>${items.map((e) => btn(e) + (n.id === 'N1' ? kids(e.id).filter((k) => k.nivel === 'N4').map((k) => btn(k, true)).join('') : '')).join('')}${extra}</div>`;
+  }).join('');
+  $('#tree').innerHTML = groups + `<p class="mono" style="font-size:11px;color:var(--ink-3);margin-top:16px;letter-spacing:.04em">N4 · Espacios se muestran dentro de Nave Café.</p>`;
+  const f = $('#ficha'); f.innerHTML = '<div class="rb"></div>' + fichaHTML(ENT[entSel]);
+}
+$('#tree').addEventListener('click', (e) => { const b = e.target.closest('.node'); if (b) { entSel = b.dataset.id; tree(); $(`#tree [data-id="${entSel}"]`).focus(); if (innerWidth < 900) $('#ficha').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }); } });
+tree();
+$('#allfichas').innerHTML = A.entidades.map((e) => `<div class="sheet ficha" style="position:static">${fichaHTML(e)}</div>`).join('');
+
+/* firmas: geometría desde F1 (unidades del marco principal: NΛVE a 200,91 de alto) */
+const H = 200.91, X = 35.34;
+const W0 = 538.13, WR = 1345.72, WT = 97.92, WB = 298.83; // caja de NΛVE en el SVG principal
+const wordPaths = NAVE_W.map((d) => `<path d="${d}"/>`).join('');
+function idfText(x, y, size, anchor, fam, fill) {
+  const f = fam === 'st' ? `font-family:'Standerd Nave','Standerd','Inter Tight',sans-serif;font-weight:400;font-variation-settings:'wght' 400` : `font-family:'DM Sans',sans-serif;font-weight:400`;
+  return `<text x="${x}" y="${y}" font-size="${size}" text-anchor="${anchor}" style="${f}" fill="${fill}" letter-spacing="${fam === 'st' ? 2 : 0}">ACADEMY</text>`;
+}
+function guides(boxes, col) {
+  return boxes.map(([x, y, w, h, dash]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="${col}" stroke-width="2.4" ${dash ? 'stroke-dasharray="10 8"' : ''} opacity=".7"/>`).join('');
+}
+function unitMark(x, y, col, k = 1) { return `<g transform="translate(${x} ${y}) scale(${k})" fill="none" stroke="${col}" stroke-width="2.4" opacity=".8"><circle cx="17.67" cy="17.67" r="17.67"/><path d="M44 0 h10 v35.34 h-10"/></g><text x="${x + 66 * k}" y="${y + 26 * k}" font-family="JetBrains Mono, monospace" font-size="${22 * k}" fill="${col}" opacity=".9">1X</text>`; }
+function firma(tipo, opt) {
+  const ink = opt.fondo === 'espacio' ? C.crema : C.espacio, g = C.ignicion;
+  const S = `<path d="${NAVE_S}"/>`;
+  if (tipo === 'principal') {
+    const vb = [-2 * X - 20, -2 * X - 20, 1346 + 4 * X + 40, 397 + 4 * X + 90];
+    const gd = opt.guias ? guides([[-2 * X, -2 * X, 397 + 4 * X, 397 + 4 * X, 1], [W0 - 2 * X, WT - 2 * X, WR - W0 + 4 * X, H + 4 * X, 1], [W0, WT, WR - W0, H]], g) + `<line x1="397" y1="${WT - 2 * X}" x2="${W0}" y2="${WT - 2 * X}" stroke="${g}" stroke-width="2.4" opacity=".7"/><text x="${(397 + W0) / 2}" y="${WT - 2 * X - 12}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" fill="${g}">4X</text>` + unitMark(0, 397 + 2 * X + 10, g) : '';
+    return `<svg viewBox="${vb.join(' ')}" role="img" aria-label="Nave principal"><g fill="${ink}">${S}${wordPaths}</g>${gd}</svg>`;
+  }
+  if (tipo === 'horizontal') {
+    const k = H / 396.77, gap = X, wx = 201 + gap; // símbolo = altura NΛVE; separación 1X
+    const vb = [-2 * X - 20, -2 * X - 20, wx + (WR - W0) + 4 * X + 40, H + 4 * X + 90];
+    const gd = opt.guias ? guides([[-2 * X, -2 * X, wx + (WR - W0) + 4 * X, H + 4 * X, 1], [0, 0, wx + (WR - W0), H]], g) + `<rect x="201" y="0" width="${gap}" height="${H}" fill="${g}" opacity=".25"/>` + unitMark(0, H + 2 * X + 10, g) : '';
+    return `<svg viewBox="${vb.join(' ')}" role="img" aria-label="Nave horizontal"><g fill="${ink}"><g transform="scale(${k})">${S}</g><g transform="translate(${wx - W0} ${-WT})">${wordPaths}</g></g>${gd}</svg>`;
+  }
+  if (tipo === 'apilado-id') {
+    const capH = 0.571 * H, size = opt.idf === 'st' ? capH / 0.72 : 164, base = WB + 2 * X + capH;
+    const vb = [-2 * X - 20, -2 * X - 20, 1346 + 4 * X + 40, base + 4 * X + 30];
+    const gd = opt.guias ? guides([[W0 - 2 * X, WT - 2 * X, WR - W0 + 4 * X, base - WT + 4 * X, 1], [W0, WT, WR - W0, H], [W0, WB + 2 * X, WR - W0, capH]], g) + `<text x="${WR + 2 * X + 10}" y="${WB + X + 8}" font-family="JetBrains Mono, monospace" font-size="22" fill="${g}">2X</text>` : '';
+    return `<svg viewBox="${vb.join(' ')}" role="img" aria-label="Nave Academy, apilado"><g fill="${ink}">${S}${wordPaths}</g>${idfText(WR, base, size, 'end', opt.idf, ink)}${gd}</svg>`;
+  }
+  if (tipo === 'horizontal-id') {
+    const k = H / 396.77, wx = 201 + X, right = wx + (WR - W0), ix = right + 2 * X, size = opt.idf === 'st' ? H / 0.72 : 1.427 * H, tw = 6.61 * H;
+    const vb = [-2 * X - 20, -2 * X - 20, ix + tw + 4 * X + 40, H + 4 * X + 40];
+    const gd = opt.guias ? guides([[-2 * X, -2 * X, ix + tw + 4 * X, H + 4 * X, 1], [0, 0, right, H], [ix, 0, tw, H]], g) + `<text x="${right + X}" y="-14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" fill="${g}">2X</text>` : '';
+    return `<svg viewBox="${vb.join(' ')}" role="img" aria-label="Nave Academy, horizontal"><g fill="${ink}"><g transform="scale(${k})">${S}</g><g transform="translate(${wx - W0} ${-WT})">${wordPaths}</g></g>${idfText(ix, H, size, 'start', opt.idf, ink)}${gd}</svg>`;
+  }
+  if (tipo === 'cafe') {
+    const lw = ink, le = C.ambar, lc = opt.fondo === 'espacio' ? C.ambar : C.ignicion;
+    const gd = opt.guias ? `<rect x="-24" y="-24" width="515" height="356" fill="none" stroke="${g}" stroke-width="1.6" stroke-dasharray="7 6" opacity=".7"/>` : '';
+    return `<svg viewBox="-40 -40 547 388" role="img" aria-label="Nave Café" style="--lw:${lw};--le:${le};--lc:${lc}"><use href="#lk"/>${gd}</svg>`;
+  }
+}
+const FIRMAS = [
+  ['principal', 'Principal', 'F1 · 61:30', 'vigente', 'Símbolo = 1,975 × NΛVE · separación 4X · seguridad 2X'],
+  ['horizontal', 'Horizontal', 'F1 · 136:61', 'vigente', 'Símbolo = NΛVE · separación 1X · seguridad 2X'],
+  ['apilado-id', 'Nave + identificador · apilado', 'F1 · 61:66', 'exploratorio', 'Identificador a 2X bajo NΛVE · mayúscula ≈ 0,57 × NΛVE'],
+  ['horizontal-id', 'Nave + identificador · horizontal', 'F1 · 136:113', 'exploratorio', 'Identificador a 2X · mayúscula = NΛVE'],
+  ['cafe', 'Nave Café · identificador expresivo', 'F2 · Logo 1:2 · F3', 'vigente', 'Script «Café» y EST. 2026: exclusivos del café'],
+];
+const fopt = { guias: true, idf: 'dm', fondo: 'crema' };
+function firmas() {
+  $('#fir-grid').innerHTML = FIRMAS.map(([k, n, src, est, sp]) => `<figure class="sheet reg fir${est === 'exploratorio' ? ' ex' : ''}" style="margin:0;${fopt.fondo === 'espacio' ? 'background:var(--espacio);border-color:transparent;' : ''}"><div class="rb"></div><div class="art">${firma(k, fopt)}</div><figcaption class="meta" style="${fopt.fondo === 'espacio' ? 'background:var(--sheet);' : ''}"><span><b>${n}</b><br><span class="mono" style="font-size:11px;color:var(--ink-3);letter-spacing:.04em">${src} · ${sp}</span></span>${estadoTag(est)}</figcaption></figure>`).join('') +
+    `<figure class="sheet fir" style="margin:0;display:flex;flex-direction:column;justify-content:center;padding:24px;gap:10px"><span class="label" style="color:var(--ink-3)">Regla</span><p style="font-size:19px;line-height:1.35;font-weight:600;font-variation-settings:'wght' 600">Las líneas de oferta no tienen firma propia. Se escriben como título y Nave firma al pie.</p><p class="muted" style="font-size:15px">Ver modos de firma en Arquitectura.</p></figure>`;
+}
+$('#b-guias').onclick = (e) => { fopt.guias = !fopt.guias; e.currentTarget.setAttribute('aria-pressed', fopt.guias); firmas(); };
+$('#b-idf').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; fopt.idf = b.dataset.f; $('#b-idf').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b)); firmas(); };
+$('#b-fondo').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; fopt.fondo = b.dataset.b; $('#b-fondo').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b)); firmas(); };
+firmas();
+const FS = D.firma_spec;
+$('#fir-spec').innerHTML = [['Unidad', FS.unidad], ['Principal', FS.principal], ['Horizontal', FS.horizontal], ['Identificador apilado', FS.identificador_apilado], ['Identificador horizontal', FS.identificador_horizontal], ['Tipografía del identificador', FS.tipografia_identificador], ['Tamaños mínimos', FS.minimos]].map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+
+/* modos de firma (miniaturas) */
+const miniNave = `<svg viewBox="0 0 1044 201" style="width:72%"><use href="#nv-h" style="color:${C.espacio}"/></svg>`;
+const MODEVIS = [
+  miniNave,
+  `<svg viewBox="-40 -40 547 388" style="height:100%;--lw:${C.espacio};--le:${C.ambar};--lc:${C.ignicion}"><use href="#lk"/></svg>`,
+  `<div style="width:100%;color:var(--espacio)"><div class="mono" style="font-size:10px;letter-spacing:.1em;color:var(--petroleo);font-weight:700">TC-02</div><div style="font-size:clamp(14px,1.4vw,18px);font-weight:700;font-variation-settings:'wght' 700;line-height:1.05;letter-spacing:-.01em;margin-top:4px">Next-Gen Engineering, AI&nbsp;&amp;&nbsp;Web3</div><svg viewBox="0 0 1044 201" style="height:12px;margin-top:10px;color:var(--espacio)"><use href="#nv-h"/></svg></div>`,
+  `<div style="background:var(--espacio);color:var(--crema);width:100%;height:100%;display:flex;align-items:center;gap:10px;padding:10px"><svg viewBox="-4 -4 103.03 103.0047" style="height:60%;color:var(--ambar)"><use href="#e-escotilla"/></svg><div><div class="mono" style="color:var(--ambar);font-weight:700;letter-spacing:.1em;font-size:12px">GAR</div><div style="font-weight:700;font-variation-settings:'wght' 700;font-size:17px">El Garage</div></div></div>`,
+];
+$('#modes').innerHTML = A.firmas.map((m, i) => `<div class="sheet mode"><div class="vis">${MODEVIS[i]}</div><h4>${esc(m.modo)}</h4><p>${esc(m.cuando)}</p><span class="ex">${esc(m.ejemplo)}</span></div>`).join('');
+list('#nohacer', A.no_hacer, (x, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b><span>${esc(x)}</span></li>`);
+$('#tbl-eq tbody').innerHTML = D.equivalencias.map((r) => `<tr><td class="k">${esc(r[0])}</td><td class="m">${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('');
+
+/* ───── 9 · fundamentos ───── */
+$('#col-src').textContent = D.color.fuente;
+const grupos = [...new Set(D.color.paleta.map((p) => p.grupo))];
+$('#swg').innerHTML = grupos.map((g) => `<div><h4>${g}</h4>${D.color.paleta.filter((p) => p.grupo === g).map((p) => { const dk = ['Espacio', 'Tueste', 'Petróleo', 'Señal', 'Acero', 'Ignición'].includes(p.n); return `<div class="sw"><div class="c" style="background:${p.hex}"><span style="color:${dk ? C.crema : C.espacio}">${p.hex}</span></div><div><b>${p.n}</b><small>${esc(p.rol)}</small></div></div>`; }).join('')}</div>`).join('');
+$('#props').innerHTML = D.color.proporciones.map((e) => `<div class="prop"><span class="n">${esc(e.expresion)}</span><div class="bar">${e.mix.map(([n, v]) => { const dk = ['Espacio', 'Tueste', 'Petróleo', 'Señal', 'Acero', 'Ignición'].includes(n); return `<div style="flex:${v};background:${byName[n]}" title="${n} ${v}%"><span style="color:${dk ? C.crema : C.espacio}">${v >= 8 ? `${n} ${v}` : v}</span></div>`; }).join('')}</div></div>`).join('') + `<p class="note mono" style="font-size:11px;color:var(--ink-3);margin-top:10px;letter-spacing:.05em;text-transform:uppercase">${esc(D.color.nota)}</p>`;
+$('#fams').innerHTML = D.tipografia.map((f, i) => `<div class="sheet fam"><span class="label" style="color:var(--ink-3)">${esc(f.rol)}</span><div class="gl ${i === 1 ? 'mono' : i === 3 ? 'dm' : ''}">${i === 2 ? `<svg viewBox="-40 -40 547 388" style="width:100%;--lw:transparent;--le:transparent;--lc:${C.ignicion}"><use href="#lk"/></svg>` : i === 1 ? 'TC-02 · 25' : i === 3 ? 'ACADEMY' : 'Aa Gg 25'}</div><p><b>${esc(f.familia)}</b> · ${esc(f.pesos)}${f.respaldo !== '—' ? ` · respaldo ${esc(f.respaldo)}` : ''}</p><span class="lic">${esc(f.licencia)}</span></div>`).join('');
+$('#pt-idea').textContent = D.puntos.idea;
+$('#pt-com tbody').innerHTML = D.puntos.comunes.map(([k, v]) => `<tr><td class="k">${esc(k)}</td><td>${esc(v)}</td></tr>`).join('');
+$('#pt-var tbody').innerHTML = D.puntos.variables.map(([k, v]) => `<tr><td class="k">${esc(k)}</td><td>${esc(v)}</td></tr>`).join('');
+$('#pt-fn').innerHTML = D.puntos.funciones.map((f, i) => `<div class="fn"><div class="sheet reg"><div class="rb"></div><canvas data-f="${i}" aria-hidden="true"></canvas></div><h4>${esc(f.n)}</h4><p>${esc(f.d)}</p><span class="label">${esc(f.pilar)}</span></div>`).join('');
+$('#pt-evitar').textContent = ' ' + D.puntos.evitar.join(' · ');
+function drawFn() {
+  document.querySelectorAll('#pt-fn canvas').forEach((cv) => {
+    const i = +cv.dataset.f, { ctx, w, h } = fit(cv), p = w / 22, r = rng(20 + i);
+    ctx.clearRect(0, 0, w, h);
+    const pts = hex(w, h, p), cx = w / 2, cy = h / 2;
+    if (i === 1) { // relación: nodos conectados
+      const nodes = pts.filter(() => r() < .07);
+      ctx.strokeStyle = 'rgba(1,36,54,.35)'; ctx.lineWidth = 1;
+      nodes.forEach((a, k) => { const b = nodes[(k + 1) % nodes.length]; const c2 = nodes[(k + 3) % nodes.length]; [b, c2].forEach((q) => { if (Math.hypot(a[0] - q[0], a[1] - q[1]) < w * .38) { ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); } }); });
+      pts.forEach(([x, y]) => { ctx.fillStyle = 'rgba(1,36,54,.16)'; ctx.beginPath(); ctx.arc(x, y, p * .1, 0, 6.28); ctx.fill(); });
+      nodes.forEach(([x, y], k) => { ctx.fillStyle = k === 0 ? C.ignicion : C.espacio; ctx.beginPath(); ctx.arc(x, y, p * .26, 0, 6.28); ctx.fill(); });
+      return;
+    }
+    const k = Math.min(w, h) * .8 / 397, ox = cx - 198 * k, oy = cy - 198 * k, ctx2 = ctx;
+    for (const [x, y] of pts) {
+      const dx = x - cx, dy = y - cy, d = Math.hypot(dx, dy);
+      let X0 = x, Y0 = y, rad = p * .14, col = 'rgba(1,36,54,.3)';
+      if (i === 0) { rad = p * .12; }
+      if (i === 2) { const ins = OFF.isPointInPath(symPath, (x - ox) / k, (y - oy) / k); if (ins) { const a = ((Math.atan2(dy, dx) + Math.PI * 2.5) % (Math.PI * 2)) / (Math.PI * 2); rad = p * (.12 + .2 * a); col = a > .9 ? C.ignicion : C.espacio; } else { col = 'rgba(1,36,54,.1)'; } }
+      if (i === 3) { const R = Math.min(w, h) * .4; if (d < R) { const z = Math.sqrt(1 - (d / R) ** 2); const l = .5 + .5 * (-dx / R * .5 - dy / R * .6 + z * .6); rad = p * (.06 + .32 * l); col = C.espacio; } else rad = p * .06; }
+      if (i === 4) { const fx = cx + w * .1, fy = cy, dd = Math.hypot(x - fx, y - fy), R = w * .3; if (dd < R && dd > 0) { const push = (1 - dd / R) * p * 2.2; X0 = x + (x - fx) / dd * push; Y0 = y + (y - fy) / dd * push; } rad = p * (.08 + .16 * Math.max(0, 1 - Math.abs(dd - R * .7) / (R * .5))); col = dd < p * .7 ? C.ignicion : 'rgba(1,36,54,.45)'; }
+      if (i === 5) { col = 'rgba(1,36,54,.08)'; rad = p * .08; }
+      ctx.fillStyle = col; ctx.beginPath(); ctx.arc(X0, Y0, rad, 0, 6.28); ctx.fill();
+    }
+    if (i === 5) { // medidores de 25 puntos
+      const vals = [25, 19, 12, 22], cols = [C.espacio, C.espacio, C.ambar, C.espacio];
+      vals.forEach((v, row) => { for (let j = 0; j < 25; j++) { ctx.fillStyle = j < v ? cols[row] : 'rgba(1,36,54,.14)'; ctx.beginPath(); ctx.arc(w * .1 + j * (w * .8 / 24), h * (.25 + row * .17), p * .26, 0, 6.28); ctx.fill(); } });
+    }
+  });
+}
+$('#mats').innerHTML = D.materialidad.map((m, i) => `<div><div class="mat ${['alu', 'perf', 'paper', 'deboss'][i]}">${i === 3 ? `<svg viewBox="0 0 397 397" aria-hidden="true"><use href="#nv-s"/></svg>` : ''}<span class="lb" style="color:${i < 2 ? C.espacio : C.espacio}">${esc(m.n)}</span></div><p style="margin-top:10px;font-size:14.5px"><b>${esc(m.funcion)}</b> <span class="muted">${esc(m.uso)}</span></p></div>`).join('');
+
+/* ───── 10 · capas ───── */
+const CAPAS = D.capas.map((c) => c.n);
+const capOn = { Soporte: true, Trama: true, Cuerpo: true, Orientación: true };
+function layerEls(only) {
+  const show = (n) => only ? only === n : capOn[n];
+  const under = only && only !== 'Soporte' ? '<div style="background:var(--sheet)"></div>' : '';
+  return `${under}<canvas class="L-soporte" ${show('Soporte') ? '' : 'hidden'}></canvas><canvas class="L-trama" ${show('Trama') ? '' : 'hidden'}></canvas><canvas class="L-cuerpo" ${show('Cuerpo') ? '' : 'hidden'}></canvas><div class="orient L-orient" ${show('Orientación') ? '' : 'hidden'}><div class="row"><span>Propuesta · TC-02</span><span>Misión 014 · Banco regional</span></div><h4>Modernizar el núcleo de pagos <em>sin detener la operación.</em></h4><div class="ft"><svg viewBox="0 0 1044 201" role="img" aria-label="Nave"><use href="#nv-h"/></svg><span>Diagnóstico · alcance · plan por etapas</span></div></div>`;
+}
+function paintComp(root) {
+  if (!root || root.getBoundingClientRect().width < 4) return;
+  const S = root.querySelector('.L-soporte'), T = root.querySelector('.L-trama'), B = root.querySelector('.L-cuerpo');
+  if (S && !S.hidden) { const { ctx, w, h } = fit(S); ctx.fillStyle = C.crema; ctx.fillRect(0, 0, w, h); const M = Math.min(w, h) / 20; ctx.strokeStyle = 'rgba(1,36,54,.08)'; ctx.lineWidth = 1; for (let x = 2 * M; x <= w - 2 * M + 1; x += M) { ctx.beginPath(); ctx.moveTo(x, 2 * M); ctx.lineTo(x, h - 2 * M); ctx.stroke(); } for (let y = 2 * M; y <= h - 2 * M + 1; y += M) { ctx.beginPath(); ctx.moveTo(2 * M, y); ctx.lineTo(w - 2 * M, y); ctx.stroke(); } ctx.strokeStyle = 'rgba(1,36,54,.5)'; [[2 * M, 2 * M], [w - 2 * M, 2 * M], [2 * M, h - 2 * M], [w - 2 * M, h - 2 * M]].forEach(([x, y]) => { ctx.beginPath(); ctx.moveTo(x - 7, y); ctx.lineTo(x + 7, y); ctx.moveTo(x, y - 7); ctx.lineTo(x, y + 7); ctx.stroke(); }); }
+  if (T && !T.hidden) { const { ctx, w, h } = fit(T); ctx.clearRect(0, 0, w, h); const M = Math.min(w, h) / 20, p = M / 2, fx = w * .72, fy = h * .42, R = w * .26; for (const [x, y] of hex(w, h, p)) { const d = Math.hypot(x - fx, y - fy); if (x < w * .42 && y > h * .45) continue; let X = x, Y = y; if (d < R && d > 0) { const push = (1 - d / R) * p * 1.6; X += (x - fx) / d * push; Y += (y - fy) / d * push; } const k = Math.max(0, 1 - d / (R * 1.5)); ctx.fillStyle = k > .82 ? C.ignicion : `rgba(1,36,54,${.12 + .4 * k})`; ctx.beginPath(); ctx.arc(X, Y, p * (.1 + .16 * k), 0, 6.28); ctx.fill(); } }
+  if (B && !B.hidden) { const { ctx, w, h } = fit(B); ctx.clearRect(0, 0, w, h); const cx = w * .72, cy = h * .42, R = Math.min(w, h) * .2, p = R / 7; for (let y = -R; y <= R; y += p * .86) for (let x = -R; x <= R; x += p) { const xx = x + ((Math.round(y / (p * .86)) % 2) ? p / 2 : 0), d = Math.hypot(xx, y); if (d > R) continue; const z = Math.sqrt(1 - (d / R) ** 2), l = .35 + .65 * Math.max(0, (-xx * .45 - y * .55) / R + z * .7); ctx.fillStyle = C.espacio; ctx.beginPath(); ctx.arc(cx + xx, cy + y, p * .5 * Math.min(1, l), 0, 6.28); ctx.fill(); } const g = ctx.createLinearGradient(cx - R, cy + R * 1.15, cx + R, cy + R * 1.35); g.addColorStop(0, '#9AA4A9'); g.addColorStop(.3, '#E3E7E8'); g.addColorStop(.6, '#B8C0C3'); g.addColorStop(1, '#D5DADC'); ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(cx, cy + R * 1.2, R * 1.1, R * .16, 0, 0, 6.28); ctx.fill(); }
+}
+function capas() {
+  $('#cap-tg').innerHTML = CAPAS.map((n) => `<button aria-pressed="${capOn[n]}" data-n="${n}">${n}</button>`).join('');
+  $('#comp').innerHTML = layerEls(); paintComp($('#comp'));
+}
+$('#cap-tg').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; capOn[b.dataset.n] = !capOn[b.dataset.n]; capas(); };
+$('#cap-vista').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; const s = b.dataset.v === 's'; $('#cap-vista').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b)); $('#capas-juntas').hidden = s; $('#sep').style.display = s ? 'grid' : ''; $('#cap-tg').style.visibility = s ? 'hidden' : ''; if (s) paintSep(); };
+$('#sep').innerHTML = D.capas.map((c) => `<div><div class="sheet" style="padding:0"><div class="comp">${layerEls(c.n)}</div></div><h4>${esc(c.n)}</h4><p>${esc(c.f)}</p><p class="om">Se omite: ${esc(c.omitir)}</p></div>`).join('');
+function paintSep() { document.querySelectorAll('#sep .comp').forEach(paintComp); }
+$('#cap-info').innerHTML = D.capas.map((c, i) => `<div><span class="label" style="color:var(--ignicion)">Capa ${i + 1}</span><h4 style="margin-top:6px">${esc(c.n)}</h4><p>${esc(c.f)}</p><p class="om">Se omite: ${esc(c.omitir)}</p></div>`).join('');
+capas();
+
+/* ───── 11 · aplicaciones ───── */
+$('#onep').innerHTML = `<div class="hd"><span class="code">TC-02</span><span>Ficha de servicio · 2026</span></div><h4>Next-Gen Engineering, AI&nbsp;&amp;&nbsp;Web3</h4><p style="font-size:1.12em;line-height:1.4;color:var(--ink-2)">Software a medida, inteligente y escalable, construido con marcos de referencia y estándares documentados.</p><div class="dots"><canvas id="cv-onep"></canvas></div><div class="cols"><div><h5>Problema</h5><p>Sistemas heredados que frenan el crecimiento y no se pueden detener para cambiarlos.</p></div><div><h5>Alcance</h5><p>Diagnóstico, arquitectura, construcción por etapas y Legacy Modernization Lite.</p></div><div><h5>Evidencia</h5><p>Casos con permiso del cliente. <i>Pendiente de reunir.</i></p><div class="meter" aria-hidden="true">${Array.from({ length: 25 }, (_, j) => `<i class="${j < 9 ? 'on' : ''}"></i>`).join('')}</div></div><div><h5>Siguiente paso</h5><p>Diagnóstico de dos sesiones con tu equipo técnico.</p></div></div><div class="ftr"><svg viewBox="0 0 1044 201" role="img" aria-label="Nave"><use href="#nv-h"/></svg><span>Marcos ISO de referencia · no certificación</span></div>`;
+$('#status').innerHTML = `<div class="h"><div><span class="pill"><i></i>Atención · degradado</span><h4 style="margin-top:8px">Managed Cloud · Pagos en línea</h4></div><span class="mono">Ejemplo · Incidente 214</span></div><dl><dt>Estado</dt><dd>Lentitud en pagos en línea desde las 13:58.</dd><dt>Impacto</dt><dd>12% de las transacciones tarda más de 5 s. Sin pérdida de datos.</dd><dt>Acción</dt><dd>Reversión del último despliegue aplicada a las 14:22.</dd><dt>Seguimiento</dt><dd>Próximo reporte 15:00 · análisis de causa en 48 h.</dd></dl><div class="m25" aria-label="Recuperación 17 de 25">${Array.from({ length: 25 }, (_, j) => `<i class="${j < 17 ? 'on' : ''}"></i>`).join('')}</div><div class="ft"><span>Responsable: guardia de operación</span><span>Según acuerdo de servicio del cliente</span></div>`;
+(function acadFirma() {
+  const k = H / 396.77, wx = 201 + X, right = wx + (WR - W0), ix = right + 2 * X;
+  $('#acad-firma').setAttribute('viewBox', `0 0 ${ix + 6.7 * H} ${H}`);
+  $('#acad-firma').innerHTML = `<g fill="currentColor"><g transform="scale(${k})"><path d="${NAVE_S}"/></g><g transform="translate(${wx - W0} ${-WT})">${wordPaths}</g></g>${idfText(ix, H, 1.427 * H, 'start', 'dm', 'currentColor')}`;
+})();
+function drawApps() {
+  { const cv = $('#cv-post'), { ctx, w, h } = fit(cv), p = w / 24; ctx.clearRect(0, 0, w, h); const k = w * .62 / 397, ox = w * .3, oy = h * .06; for (const [x, y] of hex(w, h, p)) { const ins = OFF.isPointInPath(symPath, (x - ox) / k, (y - oy) / k); if (!ins) { ctx.fillStyle = 'rgba(255,245,238,.08)'; ctx.beginPath(); ctx.arc(x, y, p * .08, 0, 6.28); ctx.fill(); continue; } const a = ((Math.atan2(y - oy - 198 * k, x - ox - 198 * k) + Math.PI * 2.5) % (Math.PI * 2)) / (Math.PI * 2); ctx.fillStyle = a > .93 ? C.ignicion : `rgba(255,245,238,${.25 + .6 * a})`; ctx.beginPath(); ctx.arc(x, y, p * (.1 + .18 * a), 0, 6.28); ctx.fill(); } }
+  { const cv = $('#cv-onep'), { ctx, w, h } = fit(cv), p = h / 6; ctx.clearRect(0, 0, w, h); const vals = [3, 5, 4, 6, 8, 7, 9, 11, 10, 12, 14, 13, 15, 17, 16, 18]; for (const [x, y] of hex(w, h, p)) { const col = Math.floor(x / (w / vals.length)), v = vals[Math.min(col, vals.length - 1)] / 18, on = (1 - y / h) < v; ctx.fillStyle = on ? (col === vals.length - 1 ? C.ignicion : C.petroleo) : 'rgba(1,36,54,.1)'; ctx.beginPath(); ctx.arc(x, y, p * (on ? .26 : .14), 0, 6.28); ctx.fill(); } }
+  { const cv = $('#cv-acad'), { ctx, w, h } = fit(cv), p = w / 20; ctx.clearRect(0, 0, w, h); for (const [x, y] of hex(w, h, p)) { const u = x / w, v = y / h; if (v > .36) continue; const row = Math.floor(v * 10), on = u < (row + 1) / 10 + .15; ctx.fillStyle = on ? (row === 0 && u > .2 ? C.ambar : 'rgba(1,36,54,.55)') : 'rgba(1,36,54,.1)'; ctx.beginPath(); ctx.arc(x, y, p * (on ? .2 : .1), 0, 6.28); ctx.fill(); } }
+}
+
+/* ───── 12 · implementación ───── */
+const I = D.implementacion;
+$('#tk-glob tbody').innerHTML = I.tokens_globales.map(([k, v, o]) => `<tr><td class="m">${esc(k)}</td><td class="m">${/^#/.test(v) ? `<span style="display:inline-block;width:12px;height:12px;background:${v};border:1px solid var(--rule);vertical-align:-1px;margin-right:6px"></span>` : ''}${esc(v)}</td><td>${estadoTag(o.includes('verificado') ? 'vigente · ' + o : o)}</td></tr>`).join('');
+$('#tk-sem tbody').innerHTML = I.tokens_semanticos.map(([k, v]) => `<tr><td class="m">${esc(k)}</td><td class="m">${esc(v)}</td></tr>`).join('');
+$('#tk-ext tbody').innerHTML = I.extensiones.map(([k, v, o]) => `<tr><td class="m">${esc(k)}</td><td class="m">${esc(v)}</td><td>${estadoTag(o.includes('verificado') ? 'vigente · ' + o : 'propuesto')}${o.includes(':') ? `<div style="font-size:12.5px;color:var(--ink-3);margin-top:4px">${esc(o.split(':').slice(1).join(':').trim())}</div>` : ''}</td></tr>`).join('');
+function tokensCSS() {
+  const g = I.tokens_globales.filter(([, v]) => /^#/.test(v)).map(([k, v]) => `  --nave-${k.replace('color.', 'color-')}: ${v};`);
+  const s = I.tokens_semanticos.map(([k, v]) => { const m = v.match(/^#[0-9A-F]{6}/i); return `  --nave-${k.replace('.', '-')}: ${m ? m[0] : `var(--nave-color-${v})`};`; });
+  return `:root {\n  /* globales · verificados en Figma (F2 17:59) */\n${g.join('\n')}\n  /* semánticos · propuesta */\n${s.join('\n')}\n  /* firma */\n  --nave-firma-x: 0.176; /* × altura de NΛVE (F1) */\n  --nave-firma-seguridad: 2; /* en X */\n}`;
+}
+function tokensJSON() {
+  const o = { color: {}, semantico: {}, firma: { x: '0.176 × altura NΛVE', seguridad: '2X', identificador_gap: '2X' }, reticula: { M: 'lado corto / 20', trama: ['M/2', 'M/4'], relacion: '4:1' } };
+  I.tokens_globales.filter(([k]) => k.startsWith('color.')).forEach(([k, v]) => { o.color[k.slice(6)] = v; });
+  I.tokens_semanticos.forEach(([k, v]) => { o.semantico[k] = v; });
+  return JSON.stringify(o, null, 2);
+}
+$('#tk-out').value = tokensCSS();
+async function copy(txt, what) {
+  $('#tk-out').value = txt;
+  try { await navigator.clipboard.writeText(txt); $('#toast').textContent = `${what} copiado al portapapeles.`; }
+  catch { $('#tk-out').focus(); $('#tk-out').select(); $('#toast').textContent = `No se pudo copiar automáticamente: el texto quedó seleccionado, usa Ctrl/Cmd + C.`; }
+}
+$('#cp-css').onclick = () => copy(tokensCSS(), 'CSS');
+$('#cp-json').onclick = () => copy(tokensJSON(), 'JSON');
+list('#comps', I.componentes, (x, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b><span>${esc(x)}</span></li>`);
+list('#herencia', I.herencia, (x, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b><span>${esc(x)}</span></li>`);
+$('#tbl-mig tbody').innerHTML = I.migracion.map((r) => `<tr><td class="k">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('');
+list('#nomen', I.nomenclatura_figma, (x, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b><span>${esc(x)}</span></li>`);
+$('#tbl-reg tbody').innerHTML = I.registro.map((r) => `<tr><td class="m">${esc(r[0])}</td><td class="m">${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('');
+list('#pend', D.pendientes, (x, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b><span>${esc(x)}</span></li>`);
+$('#foot-links').innerHTML = (D.enlaces || []).map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)} ↗</a>`).join('');
+
+/* modo lectura */
+$('#btn-lectura').onclick = (e) => { const on = document.body.classList.toggle('lectura'); e.currentTarget.setAttribute('aria-pressed', on); e.currentTarget.textContent = on ? 'Vista interactiva' : 'Modo lectura'; requestAnimationFrame(() => { if (on) paintSep(); drawAll(); }); };
+
+function drawAll() { drawChain(); drawFn(); drawApps(); paintComp($('#comp')); if (getComputedStyle($('#sep')).display !== 'none') paintSep(); }
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawAll, 120); });
+document.fonts && document.fonts.ready.then(drawAll);
+drawAll();
+</script>
