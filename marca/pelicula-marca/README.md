@@ -1,6 +1,6 @@
 # NAVE · película de marca
 
-Bitácora de misión de 121 s (210 beats a 104 BPM), en 16:9 y 2560 × 1440. Cuenta el deck *NAVE · Tech Company & Venture Builder* con la línea gráfica de la presentación «Bitácora de despegue»:
+Bitácora de misión de 131 s (228 beats a 104 BPM), en 16:9 y 2560 × 1440. Cuenta el deck *NAVE · Tech Company & Venture Builder* con la línea gráfica de la presentación «Bitácora de despegue»:
 
 - láminas Crema, Espacio y Ámbar;
 - titulares en Standerd con una frase de acento en Ignición;
@@ -15,15 +15,14 @@ Bitácora de misión de 121 s (210 beats a 104 BPM), en 16:9 y 2560 × 1440. Cue
 |---|---|---|
 | Arranque | 0:00 | El punto Ignición parpadea dos veces y entra la bitácora: cruces de registro, puntos de capítulo y altímetro. |
 | Manifiesto | 0:05 | El campo de estrellas se tensa hacia el punto. Aparecen tres marcadores (empresa, idea, persona) y el orden nace en retícula: «para hacerla mejor». |
-| NAVE | 0:14 | La retícula entrega 1 018 puntos al símbolo. El punto enciende el vértice y la marca se asienta. |
-| ¿Qué es NAVE? | 0:20 | Cifra «25+», «Fusionamos» con filas «la rigurosidad ··· y la agilidad.» y el socio de ejecución con barras de señalética. |
-| Clientes | 0:33 | Dos puertas de embarque, TC y VB, con indicadores de aeropuerto. |
-| ¿Qué ofrece? | 0:44 | Tablero «estado de la nave» con 8 servicios. La fila de Tech Equity se abre hasta volverse la lámina siguiente. |
-| Modelo operativo | 0:58 | Dos flechas convergen en una base de tres capas. Los marcos ISO corren como tablero. |
-| Partners | 1:07 | Constelación sobre el horizonte de puntos. |
-| ¿Qué nos rige? | 1:16 | Checklist de pre-vuelo de 7 puntos. |
-| Tripulación | 1:29 | Órbita del board: cada rol tiene su lema y sus funciones, y al final salen los directores por país. |
-| Despegue | 1:51 | «¿Preguntas?», luego «Listos para el despegue.», cuenta T–03 → T–00, columna de empuje y la marca en órbita. |
+| NAVE | 0:16 | La retícula entrega 1 018 puntos al símbolo. El punto enciende el vértice y la marca se asienta. |
+| ¿Qué es NAVE? | 0:23 | Cifra «25+», «Fusionamos» con filas «la rigurosidad ··· y la agilidad.» y el socio de ejecución con barras de señalética. |
+| Clientes | 0:42 | Dos pantallas, una por ruta: TC y VB, con indicadores de aeropuerto. |
+| ¿Qué ofrece? | 0:58 | Dos tableros: los 5 servicios Tech y los 3 Venture. La fila de Tech Equity se abre hasta volverse la lámina siguiente. |
+| Modelo operativo | 1:17 | Dos flechas convergen en una base de tres capas. Los marcos ISO corren como tablero. |
+| Partners | 1:29 | Constelación sobre el horizonte de puntos, en dos pantallas (4 + 3). |
+| ¿Qué nos rige? | 1:45 | Checklist de pre-vuelo de 7 puntos, en dos pantallas (4 + 3). |
+| Despegue | 2:01 | «¿Preguntas?», luego «Listos para el despegue.», cuenta T–03 → T–00, columna de empuje y la marca en órbita. |
 
 Los cambios de color de lámina se hacen con un barrido de trama: los puntos del color siguiente crecen hasta cubrir. Las cruces de registro, los puntos de capítulo y el altímetro de 25 puntos se mantienen en todas las tomas, sin textos en las esquinas.
 
@@ -66,31 +65,11 @@ Props: `bpm`, `escenas`, `contenido`, `colores`, `fuentes`, `autoplay`, `loop`, 
 
 ## Notas de fidelidad
 
-- **Textos:** salen del deck. En el tablero de servicios y en los roles se acortan a una línea (los roles muestran el lema y los títulos de sus funciones).
+- **Textos:** salen del deck. En el tablero de servicios el alcance se acorta a una línea. La tripulación (roles del board) no aparece.
+- **Legibilidad:** ningún texto baja de 40 px en el lienzo de 1440; cuando un punto tiene mucho texto se reparte en varias pantallas (`parte` en `ESCENAS`).
 - **Ortografía:** se corrigió la del deck: Atención, Inquebrantabilidad, metodologías, garantía.
 - **Logotipo:** se usan las letras NAVE del logotipo horizontal, sin «Café».
 
-## Versión final con sonido
+## Versión actual
 
-`nave-pelicula-2k-120fps.mp4`: 2560 × 1440, 120 fps, H.264 + AAC 320 kbps, 121 s, −16 LUFS.
-
-- **Voz:** ElevenLabs Eleven v4, voz «Jorge» (latina, grave, centrada), con tags de emoción, pausas y énfasis. El guion está cortado por frases con los tiempos de palabra de Scribe y colocado al inicio de cada toma.
-- **Música:** «Radar Focus», de Blue Saga (Epidemic Sound), a −17 dB, con *ducking* bajo la voz.
-- **Efectos (Epidemic Sound):** pitidos de radio en el arranque y en la cuenta T–03, *whoosh* en cada barrido de trama, *flip board* en los tableros y retumbo grave en el despegue.
-- **Licencia:** la música y los efectos solo se usan dentro del MP4; los archivos originales no se guardan en el repositorio.
-
-## Versión alternativa sin voz
-
-`nave-pelicula-2k-120fps-sin-voz.mp4`: la misma película a 1,2× (101 s), 2560 × 1440 a 120 fps, −14 LUFS.
-
-- **Música:** «Vaporeon», de Luwaks (Epidemic Sound), future bass eufórico a 112 BPM, al frente de la mezcla.
-- **Efectos:** 82 efectos de Epidemic Sound, sincronizados con los eventos del motor (`mezcla-sin-voz.py` calcula cada tiempo a partir de la escena y el beat local).
-  - pops de cristal en apariciones, con notas ascendentes en los marcadores, partners y emblemas;
-  - ráfagas de datos en contadores y tickers;
-  - granular cuando se mueve la trama;
-  - riser + golpe en el encendido del símbolo;
-  - clics en letras, barras y capas;
-  - tablero de aeropuerto;
-  - confirmaciones en el checklist;
-  - *whoosh* en cada barrido de trama;
-  - cuenta T–03 → T–00, cohete, retumbo y golpe final.
+`nave-pelicula-2k-120fps.mp4`: 2560 × 1440, 120 fps, H.264 (CRF 16), 131 s, **sin audio** (sin voz, música ni efectos).
