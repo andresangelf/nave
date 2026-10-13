@@ -17,7 +17,7 @@ Presentación en Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG. La 
 | `pictogramas/` | 12 pictogramas sobre retícula de 48, trazo 2.5, y 5 flechas contorneadas de Figma (retícula 96, trazo 15, punta redondeada). |
 | `tokens.css`, `tokens.json` | Color, tipografía, retícula y tamaños mínimos. |
 | `presentacion/` | Generador de las tramas y fotos en trama de la presentación «Bitácora de despegue». |
-| `herramientas/trama-estudio.html` | Estudio de Trama: genera tramas por capas a partir de imágenes, símbolo y formas, y el soporte (retícula, margen, marcas, zona segura, corte) según el formato. Exporta SVG por capas, PNG y recetas JSON. |
+| `herramientas/trama-estudio.html` | Estudio de Trama: genera tramas por capas a partir de imágenes, símbolo, formas y gráficos con puntos (cadena, funciones del punto, datos y formas), y el soporte (retícula, margen, marcas, zona segura, corte) según el formato. Exporta SVG por capas, PNG y recetas JSON. Publicado en https://claude.ai/artifact/Pc9kGQBnkvDTELwGWyXydw. |
 | `herramientas/animacion-apertura.html` | «Mil pequeños pasos»: animación de apertura de 15 s en bucle (canvas 1920×1080). Del punto Ignición a la órbita: retícula M, trama que se presuriza, 1018 puntos que arman el símbolo en el orden de su trayectoria y lockup con la promesa. Trae transporte, velocidad, cuadro a cuadro y el guion para After Effects. |
 | `herramientas/animacion-apertura-24fps.mp4` | La misma animación exportada a MP4, 1920×1080, 24 fps, H.264. El primer y el último cuadro son Espacio plano para que el bucle no se note. Se regenera con `herramientas/exportar-animacion.js` (instrucciones dentro del archivo). |
 
@@ -40,10 +40,17 @@ Presentación en Figma: https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG. La 
 
 1. Abre `herramientas/trama-estudio.html` en el navegador (funciona sin conexión; usa Standerd y Lenia si están instaladas).
 2. Elige el formato. Agrega **Soporte** si la pieza necesita retícula, margen 2M, marcas de registro, zona segura o línea de corte.
-3. Suelta o pega imágenes: cada una es una capa que se convierte en puntos. Un PNG con transparencia solo lleva puntos en su silueta (opción **Respetar transparencia**) y entra con encuadre **Contener** para verse completo; una foto entra en **Cubrir**. Suma símbolo, formas (esfera, planeta, toroide, volcán, degradado, onda) o el logotipo.
+3. Suelta o pega imágenes: cada una es una capa que se convierte en puntos. Un PNG con transparencia solo lleva puntos en su silueta (opción **Respetar transparencia**) y entra con encuadre **Contener** para verse completo; una foto entra en **Cubrir**. Suma el símbolo maestro de Nave, formas (esfera, planeta, toroide, volcán, degradado, onda) o el logotipo (Nave, Nave horizontal, Nave Café o NΛVE).
 4. Ajusta por capa: retícula (hexagonal, cuadrada, orgánica), forma del punto, tono (luces o sombras), tamaño o presencia, contraste, densidad direccional, desplazamiento (lente), máscara, color de la paleta y mezcla.
-5. **Guardar receta** crea un JSON reutilizable (con las imágenes incluidas). Cualquiera del equipo lo abre y obtiene la misma trama.
-6. **Copiar SVG** y pegar en Figma: llega como vectores con un grupo por capa (`01 · Soporte`, `02 · Foto`…). También hay descarga de SVG y PNG.
+5. **Gráfico** genera puntos por reglas sobre la misma retícula. Tiene cuatro familias:
+   - **Cadena:** ambición, presión, condiciones, capacidad y construcción («De la ambición a la construcción»).
+   - **Función:** campo, relación (con líneas), trayectoria (el símbolo maestro en orden de avance), volumen, lente y dato.
+   - **Datos:** barras, línea, anillo, proporción y medidores de 25. Los valores se escriben separados por comas; **Resaltar** pone uno en el color de acento y **Rótulos** agrega las cifras.
+   - **Forma:** círculo, aro, triángulo, cuadrado, polígono, flecha y texto, llenados con la retícula sin deformar los puntos.
+
+   Cada gráfico tiene un área (porcentaje del interior del margen 2M) que se puede mover; con **Solo dentro del área** caben varios en una pieza, como en las recetas «De la ambición a la construcción» y «El punto es la unidad base». En SVG sale en grupos: `Fondo de puntos`, `Relaciones`, `Puntos`, `Acento` y `Rótulos`.
+6. **Guardar receta** crea un JSON reutilizable (con las imágenes incluidas). Cualquiera del equipo lo abre y obtiene la misma trama.
+7. **Copiar SVG** y pegar en Figma: llega como vectores con un grupo por capa (`01 · Soporte`, `02 · Foto`…). También hay descarga de SVG y PNG.
 
 ## Película de marca NAVE
 

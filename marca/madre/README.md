@@ -8,7 +8,7 @@ Ampliación del sistema de Nave Café a Nave como marca madre, siguiendo `Nave_P
 |---|---|
 | Artefacto [Nave · Sistema de marca](https://claude.ai/artifact/M3uK8aXtDtmZaGGGgCA8oe) | Sistema navegable en 12 secciones, con estos elementos:<br>• selector ORIGINAL / CAMBIOS / PROPUESTA para los tres textos;<br>• árbol de arquitectura con ficha por entidad;<br>• firmas con área de seguridad;<br>• capas que se pueden activar y desactivar;<br>• aplicaciones;<br>• tokens que se pueden copiar;<br>• modo lectura. |
 | Figma [Nave — Identidad Visual · «Propuesta · Marca madre»](https://www.figma.com/design/jgjWkyyD5WQ4gmfLfjQxhm/Nave---Identidad-Visual?node-id=140-2) | 22 láminas de especificación, 12 estilos de color y 16 de texto. Componentes: cinco firmas, hechas con los vectores de Branding, y las etiquetas de estado. La página Branding no se modificó. |
-| Figma [Nave · Sistema visual · «Presentación · Despegue»](https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG/Nave-%C2%B7-Sistema-visual?node-id=15-4784) | La presentación del sistema, ahora de Nave. Pasó de 49 a 57 láminas sobre la misma base. Se aplicó el manifiesto nuevo: el párrafo «Esas condiciones también toman forma…» y la firma «Nave.».<br>• Cambiaron a Nave: «Qué es Nave», la promesa («cómo avanzar»), los pilares y valores, el logotipo maestro y la firma.<br>• Se conservan como expresión del café: «Nave Café · El astillero», «Logotipo · Nave Café» y sus aplicaciones.<br>• Se agregaron: arquitectura, proporción de color, aplicaciones B2B y decisiones pendientes. |
+| Figma [Nave · Sistema visual · «Presentación · Despegue»](https://www.figma.com/design/Ol6gNUSuwNLbNZyemQISgG/Nave-%C2%B7-Sistema-visual?node-id=15-4784) | La presentación del sistema, ahora de Nave. Pasó de 49 a 63 láminas sobre la misma base. Se aplicó el manifiesto nuevo: el párrafo «Esas condiciones también toman forma…» y la firma «Nave.».<br>• Cambiaron a Nave: «Qué es Nave», la promesa («cómo avanzar»), los pilares y valores, el logotipo maestro y la firma.<br>• Se conservan como expresión del café: «Nave Café · El astillero», «Logotipo · Nave Café» y sus aplicaciones.<br>• Se agregaron: arquitectura, proporción de color y aplicaciones B2B.<br>• Puntos: «De la ambición a la construcción» (15), «El punto es la unidad base» (32) y «Los datos también son puntos» (37), hechos con el Estudio de Trama y ligados a los estilos de color. |
 | `contenido.json` | Fuente única del artefacto:<br>• textos originales y cambios A1–A4, C1, P1–P5;<br>• arquitectura y fichas;<br>• pilares, voz, puntos y capas;<br>• tokens, migración, discrepancias y pendientes. |
 | `logotipo/` | Símbolo y NΛVE exportados de Branding (88:2, 136:182), en versión principal, horizontal y solo símbolo, en Espacio, Crema y Negro. |
 | `fuente/` | `sistema.src.html` con `construir.py` arman `nave-sistema-marca.html`. |
@@ -25,7 +25,7 @@ Ampliación del sistema de Nave Café a Nave como marca madre, siguiendo `Nave_P
   - Café usa su trazo propio.
 - **Color del símbolo:** cambia por marca: Espacio (Nave), Ignición (Café), Petróleo (Systems) y Ámbar (Academy).
 
-En Figma, los componentes son `Marca/Nave`, `Marca/Nave Café`, `Marca/Nave Systems` y `Marca/Nave Academy`. Están en «Recursos importados» del archivo Nave · Sistema visual y aparecen en las láminas 19 a 23 de «Presentación · Despegue».
+En Figma, los componentes son `Marca/Nave`, `Marca/Nave Café`, `Marca/Nave Systems` y `Marca/Nave Academy`. Están en «Recursos importados» del archivo Nave · Sistema visual y aparecen en las láminas 20 a 24 de «Presentación · Despegue».
 
 ## Arquitectura recomendada
 
@@ -44,7 +44,7 @@ python3 marca/madre/fuente/construir.py
 
 ## Pendientes
 
-Están en `contenido.json → pendientes` y en la última lámina de cada archivo de Figma:
+Están en `contenido.json → pendientes` y en la página «Propuesta · Marca madre» del archivo de identidad:
 
 1. Aprobar o rechazar los cambios editoriales.
 2. Confirmar Academy.
