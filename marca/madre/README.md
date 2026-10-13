@@ -13,6 +13,20 @@ Ampliación del sistema de Nave Café a Nave como marca madre, siguiendo `Nave_P
 | `logotipo/` | Símbolo y NΛVE exportados de Branding (88:2, 136:182), en versión principal, horizontal y solo símbolo, en Espacio, Crema y Negro. |
 | `fuente/` | `sistema.src.html` con `construir.py` arman `nave-sistema-marca.html`. |
 
+## Familia de marcas
+
+`logotipo/familia/` reúne los 24 SVG de la familia: 4 marcas × 3 versiones × 2 temas (claro y oscuro). Todos se generan con `python3 fuente/familia.py`.
+
+- **Marcas:** Nave, Nave Café, Nave Systems y Nave Academy.
+- **Versiones:** completa, mínima horizontal y símbolo.
+- **Proporciones:** las mismas de Branding (61:66 y 136:113): identificador a 2X; en la versión completa, alineado al final de NΛVE; en la horizontal, con mayúscula igual a la altura de NΛVE.
+- **Identificadores:**
+  - Systems y Academy usan DM Sans, igual que en Branding.
+  - Café usa su trazo propio.
+- **Color del símbolo:** cambia por marca: Espacio (Nave), Ignición (Café), Petróleo (Systems) y Ámbar (Academy).
+
+En Figma, los componentes son `Marca/Nave`, `Marca/Nave Café`, `Marca/Nave Systems` y `Marca/Nave Academy`. Están en «Recursos importados» del archivo Nave · Sistema visual y aparecen en las láminas 19 a 23 de «Presentación · Despegue».
+
 ## Arquitectura recomendada
 
 Marca monolítica con identificadores selectivos:
