@@ -107,7 +107,9 @@ main{flex:1;padding:32px 0 56px;min-width:0}
 .pr span{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .pr .u{color:var(--accent)}.pr .u::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .pr .i{color:var(--navy)}.pr .i::before{content:"";width:7px;height:7px;border-radius:50%;border:1.5px solid var(--navy)}
-.quad .pr{display:none}
+.pr .b{color:var(--navy)}.pr .b::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--navy)}
+.quad .pr span.u,.quad .pr span.i{display:none}
+.quad .pr:not(:has(.b)){display:none}
 .meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;color:var(--muted)}
 .tag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--dot)}
@@ -179,11 +181,28 @@ body.touch-drag .board{scroll-snap-type:none}
 .tl-days .we{background:#faf8f3}
 .tl-row{position:relative;border-bottom:1px solid var(--line);min-height:50px;background-image:repeating-linear-gradient(90deg,transparent 0 calc(var(--dw)*7 - 1px),var(--line) calc(var(--dw)*7 - 1px) calc(var(--dw)*7))}
 .tl-row.grp{background:var(--bg);min-height:34px}
-.bar-t{position:absolute;top:12px;height:26px;border-radius:9px;background:var(--navy);color:#fff;font-size:12px;font-weight:600;letter-spacing:-.005em;padding:0 11px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:0;text-align:left;transition:background .18s,transform .18s var(--ease)}
+.bar-t{position:absolute;z-index:1;top:12px;height:26px;border-radius:9px;background:var(--navy);color:#fff;font-size:12px;font-weight:600;letter-spacing:-.005em;padding:0 11px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:0;text-align:left;transition:background .18s,transform .18s var(--ease)}
 .bar-t:hover{background:var(--navy-2);transform:translateY(-1px)}
 .bar-t.done{background:#a5b0ae}
 .bar-t.late{background:var(--accent)}
 .bar-lbl{position:absolute;top:15px;font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;pointer-events:none}
+.deplist{display:flex;flex-direction:column;gap:6px;max-height:210px;overflow:auto;padding:2px;margin-top:2px}
+.dep{position:relative;display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:var(--r-sm);padding:10px 14px;cursor:pointer;transition:background .15s,color .15s}
+.dep[hidden]{display:none}
+.dep input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;padding:0}
+.dep::before{content:"";width:9px;height:9px;border-radius:50%;border:1.5px solid var(--muted);flex:none}
+.dep .dt{flex:1;font-weight:600;font-size:13.5px;letter-spacing:-.01em;min-width:0}
+.dep .ds{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.dep:has(input:checked){background:var(--navy);color:#fff}
+.dep:has(input:checked)::before{background:#fff;border-color:#fff}
+.dep:has(input:checked) .ds{color:var(--navy-ink)}
+.dep:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+.dep-warn{color:var(--accent-ink);font-weight:600;font-size:12.5px;line-height:1.5}
+.tl-deps{position:absolute;left:0;top:0;pointer-events:none;z-index:0;overflow:visible}
+.tl-deps marker path{fill:#112936;stroke:none;opacity:1}
+.tl-deps #dah-b path{fill:#C4452D}
+.tl-deps path{fill:none;stroke:var(--navy);stroke-width:1.5;opacity:.55;stroke-linejoin:round}
+.tl-deps path.bad{stroke:var(--accent);stroke-dasharray:4 3;opacity:.95}
 .today-line{position:absolute;top:0;bottom:0;width:2px;background:var(--accent);z-index:2;pointer-events:none}
 .today-line::before{content:"";position:absolute;top:0;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
 .tl-note{margin-top:12px}
@@ -475,6 +494,12 @@ dialog#dLogin::backdrop,dialog#dReg::backdrop{background:var(--bg);background-im
       <div class="f"><label class="label" for="tArea">Área</label><select id="tArea"></select></div>
       <div class="f"><label class="label" for="tEvent">Evento</label><select id="tEvent"></select></div>
       <div class="f full"><label class="label" for="tRel">Puntos relacionados</label><input id="tRel" placeholder="Ej. Menú de temporada, Fotos"></div>
+      <div class="f full" id="depsWrap"><label class="label" for="tDepQ">Depende de</label>
+        <input id="tDepQ" type="search" placeholder="Buscar tarea de la que depende…" autocomplete="off">
+        <div class="deplist" id="tDeps"></div>
+        <p class="dep-warn" id="tDepWarn" role="status"></p>
+        <p class="note" id="tDown"></p>
+      </div>
       <div class="sec" data-n="03">Tiempo y prioridad</div>
       <div class="f"><label class="label" for="tStart">Inicio</label><input type="date" id="tStart"></div>
       <div class="f"><label class="label" for="tDue">Entrega</label><input type="date" id="tDue"></div>
@@ -566,15 +591,17 @@ const initials=n=>n.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
 /* ---------- Data (Supabase) ---------- */
 const SB_URL='https://omcusawoluugpsynclwf.supabase.co',SB_KEY='sb_publishable_tt78fij3F2Q9KYx6d_PKyg_b3qxd62V';
 const sb=supabase.createClient(SB_URL,SB_KEY);
-let S={members:[],areas:[],events:[],tasks:[]},ME=null,areaIds={},eventIds={};
+let S={members:[],areas:[],events:[],tasks:[]},ME=null,areaIds={},eventIds={},depsOk=false;
 const canEdit=()=>!!ME&&['admin','editor','fundador'].includes(ME.rol);
 const member=id=>S.members.find(m=>m.id===id);
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),4500)}
 async function load(){
   const q=(t,sel='*',o)=>{let r=sb.from(t).select(sel);return o?r.order(o):r};
-  const rs=await Promise.all([q('perfiles','id,nombre_completo,rol,activo','nombre_completo'),q('nave_areas','*','nombre'),q('nave_eventos','*','nombre'),q('nave_tareas','*','creado_en'),q('nave_tarea_miembros')]);
-  const bad=rs.find(r=>r.error);if(bad)throw bad.error;
-  const[p,a,e,t,m]=rs.map(r=>r.data);
+  const rs=await Promise.all([q('perfiles','id,nombre_completo,rol,activo','nombre_completo'),q('nave_areas','*','nombre'),q('nave_eventos','*','nombre'),q('nave_tareas','*','creado_en'),q('nave_tarea_miembros'),q('nave_tarea_dependencias')]);
+  const bad=rs.slice(0,5).find(r=>r.error);if(bad)throw bad.error;
+  depsOk=!rs[5].error;                       // si la tabla aún no existe, la app sigue sin dependencias
+  const dp=depsOk?rs[5].data:[];
+  const[p,a,e,t,m]=rs.slice(0,5).map(r=>r.data);
   const sess=(await sb.auth.getSession()).data.session;
   ME=p.find(x=>x.id===sess?.user.id)||null;
   S.members=p.filter(x=>x.activo).map(x=>({id:x.id,name:x.nombre_completo}));
@@ -583,17 +610,33 @@ async function load(){
   const aName=Object.fromEntries(a.map(x=>[x.id,x.nombre])),eName=Object.fromEntries(e.map(x=>[x.id,x.nombre]));
   S.tasks=t.map(r=>({id:r.id,title:r.titulo,status:r.estado,resp:r.responsable_id||'',
     members:m.filter(x=>x.tarea_id===r.id).map(x=>x.perfil_id),area:aName[r.area_id]||'',event:eName[r.evento_id]||'',
-    start:r.inicio||'',due:r.entrega||'',urgent:r.urgente,important:r.importante,related:(r.relacionados||[]).join(', '),notes:r.notas}));
+    start:r.inicio||'',due:r.entrega||'',urgent:r.urgente,important:r.importante,related:(r.relacionados||[]).join(', '),notes:r.notas,
+    deps:dp.filter(x=>x.tarea_id===r.id).map(x=>x.depende_de_id)}));
 }
 const toRow=t=>({id:t.id,titulo:t.title,estado:t.status,responsable_id:t.resp||null,area_id:areaIds[t.area]||null,evento_id:eventIds[t.event]||null,
   inicio:t.start||null,entrega:t.due||null,urgente:t.urgent,importante:t.important,
   relacionados:t.related.split(',').map(x=>x.trim()).filter(Boolean),notas:t.notes});
-async function persistTask(t,withMembers){
+async function persistTask(t,withMembers,withDeps){
   let r=await sb.from('nave_tareas').upsert(toRow(t));if(r.error)throw r.error;
   if(withMembers){
     r=await sb.from('nave_tarea_miembros').delete().eq('tarea_id',t.id);if(r.error)throw r.error;
     if(t.members.length){r=await sb.from('nave_tarea_miembros').insert(t.members.map(id=>({tarea_id:t.id,perfil_id:id})));if(r.error)throw r.error}
   }
+  if(withDeps&&depsOk){
+    r=await sb.from('nave_tarea_dependencias').delete().eq('tarea_id',t.id);if(r.error)throw r.error;
+    if(t.deps.length){r=await sb.from('nave_tarea_dependencias').insert(t.deps.map(id=>({tarea_id:t.id,depende_de_id:id})));if(r.error)throw r.error}
+  }
+}
+/* ---------- Dependencias ---------- */
+const taskById=id=>S.tasks.find(t=>t.id===id);
+const blockers=t=>(t.deps||[]).map(taskById).filter(x=>x&&x.status!=='done');
+const dependents=id=>S.tasks.filter(t=>(t.deps||[]).includes(id));
+function reaches(fromId,targetId,seen=new Set()){          // ¿fromId depende (directa o indirectamente) de targetId?
+  if(fromId===targetId)return true;if(seen.has(fromId))return false;seen.add(fromId);
+  const t=taskById(fromId);return !!t&&(t.deps||[]).some(d=>reaches(d,targetId,seen));
+}
+function warnBlocked(t){
+  const b=blockers(t);if(b.length)toast(`Ojo: depende de ${b.map(x=>'“'+x.title+'”').join(', ')}, que aún no termina.`);
 }
 async function reload(){await load();refreshFilters();applyRole();render()}
 async function run(fn){try{await fn()}catch(e){toast('No se pudo guardar: '+(e.message||e));try{await reload()}catch{}}}
@@ -628,15 +671,16 @@ const isLate=t=>t.due&&t.status!=='done'&&parse(t.due)<today();
 function card(t){
   const people=[...new Set([t.resp,...t.members].filter(Boolean))].map(member).filter(Boolean);
   const rel=t.related.split(',').map(s=>s.trim()).filter(Boolean);
+  const bl=t.status==='done'?[]:blockers(t),nd=(t.deps||[]).length,down=dependents(t.id).length;
   return `<article class="task ${t.status==='done'?'done':''}" draggable="${canEdit()}" data-id="${t.id}" tabindex="0">
-    ${t.urgent||t.important?`<div class="pr">${t.urgent?'<span class="u">Urgente</span>':''}${t.important?'<span class="i">Importante</span>':''}</div>`:''}
+    ${t.urgent||t.important||bl.length?`<div class="pr">${t.urgent?'<span class="u">Urgente</span>':''}${t.important?'<span class="i">Importante</span>':''}${bl.length?`<span class="b" title="Espera: ${esc(bl.map(x=>x.title).join(', '))}">Bloqueada</span>`:''}</div>`:''}
     <h4>${esc(t.title)}</h4>
     <div class="meta">
       ${t.area?`<span class="tag">${esc(t.area)}</span>`:''}
       ${t.event?`<span class="chip">${esc(t.event)}</span>`:''}
       ${t.due?`<span class="due ${isLate(t)?'late':''}">${isLate(t)?'Vencida · ':''}${fmt(t.due)}</span>`:''}
     </div>
-    ${rel.length?`<div class="meta">${rel.map(s=>`<span class="chip">↳ ${esc(s)}</span>`).join('')}</div>`:''}
+    ${rel.length||nd||down?`<div class="meta">${nd?`<span class="chip" title="${esc((t.deps||[]).map(taskById).filter(Boolean).map(x=>x.title).join(', '))}">↤ Depende de ${nd}</span>`:''}${down?`<span class="chip" title="${esc(dependents(t.id).map(x=>x.title).join(', '))}">↦ Desbloquea ${down}</span>`:''}${rel.map(s=>`<span class="chip">↳ ${esc(s)}</span>`).join('')}</div>`:''}
     ${people.length?`<div class="foot-row"><span class="avatars">${people.map(p=>`<span class="av ${p.id===t.resp?'resp':''}" title="${esc(p.name)}${p.id===t.resp?' (responsable)':''}">${initials(p.name)}</span>`).join('')}</span></div>`:''}
   </article>`;
 }
@@ -698,10 +742,32 @@ function renderTimeline(){
     ln.style.cssText=`left:${$('#tl .tl-lbl').offsetWidth+off*dw+dw/2-1}px;top:0`;
     tl.appendChild(ln);
   }
+  drawDeps();
   const wrap=$('.tl-wrap'),tkey=iso(start);
   if(ui.tlKey!==tkey){ui.tlKey=tkey;wrap.scrollLeft=off>=0&&off<DAYS?Math.max(0,(off-2)*dw):0}
   const nd=all.length-dated.length;
   $('#tlNote').textContent=nd?`${nd} tarea${nd>1?'s':''} sin fechas no aparece${nd>1?'n':''} en el cronograma. Asígnales inicio o entrega desde su ficha.`:'';
+}
+function drawDeps(){
+  const tl=$('#tl');if(!tl||!depsOk)return;
+  const edges=[];
+  S.tasks.forEach(b=>(b.deps||[]).forEach(aId=>{
+    const A=tl.querySelector(`.bar-t[data-id="${aId}"]`),B=tl.querySelector(`.bar-t[data-id="${b.id}"]`);
+    if(A&&B)edges.push([A,B]);
+  }));
+  if(!edges.length)return;
+  const pos=el=>{const o=el.offsetParent,l=o.offsetLeft+el.offsetLeft;return{l,r:l+el.offsetWidth,y:o.offsetTop+el.offsetTop+el.offsetHeight/2}};
+  let paths='';
+  edges.forEach(([A,B])=>{
+    const a=pos(A),b=pos(B),bad=b.l<a.r-1,x1=a.r,y1=a.y,x2=b.l,y2=b.y,mid=(y1+y2)/2;
+    const d=x2>=x1+16?`M${x1} ${y1}H${x1+8}V${y2}H${x2}`:`M${x1} ${y1}H${x1+8}V${mid}H${x2-8}V${y2}H${x2}`;
+    paths+=`<path d="${d}" class="${bad?'bad':''}" marker-end="url(#${bad?'dah-b':'dah'})"/>`;
+  });
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('class','tl-deps');svg.setAttribute('width',tl.offsetWidth);svg.setAttribute('height',tl.offsetHeight);
+  svg.setAttribute('aria-hidden','true');
+  svg.innerHTML=`<defs><marker id="dah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#112936"/></marker><marker id="dah-b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#C4452D"/></marker></defs>${paths}`;
+  tl.appendChild(svg);
 }
 function renderCal(){
   const m=ui.calMonth;
@@ -749,9 +815,32 @@ function render(){
 
 /* ---------- Task dialog ---------- */
 const dT=$('#dTask');let editing=null;
+function depLabel(c){return `${STATUS.find(x=>x[0]===c.status)?.[1]||''}${c.due?' · '+fmt(c.due):''}`}
+function renderDeps(t){
+  $('#depsWrap').style.display=depsOk?'':'none';if(!depsOk)return;
+  const sel=new Set(t.deps||[]);
+  let cands=S.tasks.filter(c=>c.id!==t.id&&(!t.id||!reaches(c.id,t.id)));   // sin ciclos: se excluyen las que ya dependen de esta
+  if(!canEdit())cands=cands.filter(c=>sel.has(c.id));
+  cands.sort((a,b)=>(a.due||'9999').localeCompare(b.due||'9999')||a.title.localeCompare(b.title));
+  $('#tDeps').innerHTML=cands.map(c=>`<label class="dep"><input type="checkbox" value="${c.id}" ${sel.has(c.id)?'checked':''} ${canEdit()?'':'disabled'}><span class="dt">${esc(c.title)}</span><span class="ds">${esc(depLabel(c))}</span></label>`).join('')||`<div class="note">${canEdit()?'Aún no hay otras tareas.':'Sin dependencias.'}</div>`;
+  $('#tDepQ').value='';$('#tDepQ').style.display=cands.length>6?'':'none';
+  const down=t.id?dependents(t.id):[];
+  $('#tDown').textContent=down.length?`Desbloquea: ${down.map(x=>x.title).join(', ')}`:'';
+  depWarn();
+}
+function depWarn(){
+  const own=$('#tStart').value||$('#tDue').value,msgs=[];
+  $$('#tDeps input:checked').forEach(i=>{const d=taskById(i.value);
+    if(d&&d.due&&own&&d.due>own)msgs.push(`“${d.title}” termina el ${fmt(d.due)}, después de que esta tarea empiece (${fmt(own)}).`)});
+  $('#tDepWarn').innerHTML=msgs.map(esc).join('<br>');
+}
+$('#tDepQ').addEventListener('input',()=>{const q=$('#tDepQ').value.trim().toLowerCase();$$('#tDeps .dep').forEach(l=>l.hidden=!l.textContent.toLowerCase().includes(q))});
+$('#tDepQ').addEventListener('keydown',e=>{if(e.key==='Enter')e.preventDefault()});
+$('#tDeps').addEventListener('change',depWarn);
+$('#tStart').addEventListener('change',depWarn);$('#tDue').addEventListener('change',depWarn);
 function openTask(id,preset={}){
   editing=id?S.tasks.find(t=>t.id===id):null;
-  const t=editing||{title:'',status:'todo',resp:'',members:[],area:'',event:'',start:'',due:'',urgent:false,important:false,related:'',notes:'',...preset};
+  const t=editing||{title:'',status:'todo',resp:'',members:[],area:'',event:'',start:'',due:'',urgent:false,important:false,related:'',notes:'',deps:[],...preset};
   $('#tTitle').value=t.title;
   $('#tStatus').innerHTML=STATUS.map(([k,l])=>`<option value="${k}">${l}</option>`).join('');$('#tStatus').value=t.status;
   fillSelect($('#tResp'),'Sin responsable',S.members.map(m=>[m.id,m.name]),t.resp);
@@ -761,9 +850,11 @@ function openTask(id,preset={}){
   $('#tStart').value=t.start;$('#tDue').value=t.due;
   $('#tUrg').checked=t.urgent;$('#tImp').checked=t.important;
   $('#tRel').value=t.related;$('#tNotes').value=t.notes;
+  renderDeps(t);
   $('#tDel').style.visibility=editing&&canEdit()?'visible':'hidden';
   $('#tSave').style.display=canEdit()?'':'none';
   $$('#fTask input,#fTask select,#fTask textarea').forEach(i=>i.disabled=!canEdit());
+  $('#tDepQ').disabled=false;
   dT.showModal();$('#tTitle').focus();
 }
 $('#fTask').addEventListener('submit',e=>{
@@ -772,19 +863,21 @@ $('#fTask').addEventListener('submit',e=>{
     title:$('#tTitle').value.trim(),status:$('#tStatus').value,resp:$('#tResp').value,
     members:$$('#tMembers input:checked').map(i=>i.value),area:$('#tArea').value,event:$('#tEvent').value,
     start:$('#tStart').value,due:$('#tDue').value,urgent:$('#tUrg').checked,important:$('#tImp').checked,
-    related:$('#tRel').value.trim(),notes:$('#tNotes').value.trim()
+    related:$('#tRel').value.trim(),notes:$('#tNotes').value.trim(),
+    deps:depsOk?$$('#tDeps input:checked').map(i=>i.value):(editing?.deps||[])
   };
   if(!v.title)return;
   if(v.start&&v.due&&v.start>v.due)[v.start,v.due]=[v.due,v.start];
   if(v.resp&&!v.members.includes(v.resp))v.members.push(v.resp);
   if(!canEdit())return;
   v.members=[...new Set([...v.members,...(editing?editing.members.filter(id=>!member(id)):[])])];
-  let t=editing;
+  let t=editing;const prev=editing?editing.status:null;
   if(editing)Object.assign(editing,v);else{t={id:uid(),...v};S.tasks.push(t)}
-  render();run(()=>persistTask(t,true));
+  render();run(()=>persistTask(t,true,true));
+  if(v.status!==prev&&v.status!=='todo')warnBlocked(t);
 });
 $('#tCancel').onclick=()=>dT.close();
-$('#tDel').onclick=()=>{if(editing&&confirm('¿Eliminar esta tarea?')){const id=editing.id;S.tasks=S.tasks.filter(t=>t!==editing);dT.close();render();run(async()=>{const{error}=await sb.from('nave_tareas').delete().eq('id',id);if(error)throw error})}};
+$('#tDel').onclick=()=>{if(editing&&confirm('¿Eliminar esta tarea?')){const id=editing.id;S.tasks=S.tasks.filter(t=>t!==editing);S.tasks.forEach(x=>x.deps=(x.deps||[]).filter(d=>d!==id));dT.close();render();run(async()=>{const{error}=await sb.from('nave_tareas').delete().eq('id',id);if(error)throw error})}};
 
 /* ---------- Team dialog ---------- */
 const dTeam=$('#dTeam');
@@ -838,7 +931,7 @@ document.addEventListener('dragend',e=>{dragId=null;$$('.dragging,.over').forEac
 document.addEventListener('dragover',e=>{const z=e.target.closest('.col,.quad,.day');if(!z||!dragId)return;e.preventDefault();$$('.over').forEach(x=>x!==z&&x.classList.remove('over'));z.classList.add('over')});
 function applyDrop(id,z){
   const t=S.tasks.find(x=>x.id===id);if(!t||!canEdit())return;
-  if(z.classList.contains('col'))t.status=z.dataset.status;
+  if(z.classList.contains('col')){const was=t.status;t.status=z.dataset.status;if(t.status!==was&&t.status!=='todo')warnBlocked(t)}
   else if(z.classList.contains('quad')){t.urgent=z.dataset.u==='1';t.important=z.dataset.i==='1'}
   else{const k=z.dataset.date;t.due=k;if(t.start&&t.start>k)t.start=k}
   render();run(()=>persistTask(t));
