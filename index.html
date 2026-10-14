@@ -155,6 +155,8 @@ form.dlg{display:flex;flex-direction:column;max-height:92vh}
 .addrow input{flex:1;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;outline:none}
 .addrow input:focus{border-color:var(--ink)}
 
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.2s;z-index:50;max-width:90vw}
+#toast.show{opacity:1;transform:translate(-50%,0)}
 @media (max-width:980px){
   header,.bar,main{padding-left:16px;padding-right:16px}
   .board{grid-template-columns:repeat(4,260px);overflow-x:auto;padding-bottom:8px}
@@ -173,8 +175,10 @@ form.dlg{display:flex;flex-direction:column;max-height:92vh}
       <h1>Tareas del equipo</h1>
     </div>
     <div class="actions">
+      <span class="note" id="who" style="margin:0 4px"></span>
       <button class="btn" id="btnTeam">Equipo y listas</button>
       <button class="btn primary" id="btnNew">+ Nueva tarea</button>
+      <button class="btn ghost" id="btnOut">Salir</button>
     </div>
   </div>
 </header>
@@ -259,6 +263,18 @@ form.dlg{display:flex;flex-direction:column;max-height:92vh}
   </form>
 </dialog>
 
+<dialog id="dLogin">
+  <form class="dlg" id="fLogin" style="padding:26px;gap:14px">
+    <div><div class="eyebrow">Nave Café / Equipo creativo</div><h2 style="font-size:24px;margin-top:4px">Entrar</h2>
+    <p class="note">Usa tu cuenta del panel de Nave.</p></div>
+    <div class="f"><label class="label" for="lEmail">Correo</label><input id="lEmail" type="email" autocomplete="username" required></div>
+    <div class="f"><label class="label" for="lPass">Contraseña</label><input id="lPass" type="password" autocomplete="current-password" required></div>
+    <p id="lMsg" style="color:var(--accent);font-weight:600;min-height:1.2em"></p>
+    <button class="btn primary" id="lBtn" style="padding:10px">Entrar</button>
+  </form>
+</dialog>
+<div id="toast" role="status"></div>
+
 <dialog id="dTeam">
   <form class="dlg" method="dialog">
     <div class="dlg-h"><div class="label">Configuración</div><h2 style="font-size:22px;margin-top:2px">Equipo y listas</h2></div>
@@ -267,12 +283,13 @@ form.dlg{display:flex;flex-direction:column;max-height:92vh}
   </form>
 </dialog>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 (()=>{
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const KEY='nave-tareas-v1';
 const STATUS=[['todo','Por hacer'],['doing','En curso'],['review','En revisión'],['done','Hecho']];
-const uid=()=>Math.random().toString(36).slice(2,9);
+const uid=()=>crypto.randomUUID();
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pad=n=>String(n).padStart(2,'0');
 const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -283,31 +300,44 @@ const mondayOf=d=>{const x=new Date(d);x.setDate(x.getDate()-((x.getDay()+6)%7))
 const fmt=(s,o={day:'numeric',month:'short'})=>s?parse(s).toLocaleDateString('es',o).replace('.',''):'';
 const initials=n=>n.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
 
-/* ---------- Data ---------- */
-function seed(){
-  const t=today(), d=n=>iso(addDays(t,n));
-  const m=[{id:'m1',name:'Ana Ruiz'},{id:'m2',name:'Diego Mora'},{id:'m3',name:'Lucía Paz'},{id:'m4',name:'Tomás Vera'}];
-  return{
-    members:m,
-    areas:['Marca','Producto','Comunicación','Espacio'],
-    events:['Apertura','Taller de octubre','Lanzamiento menú'],
-    tasks:[
-      {id:uid(),title:'Definir paleta y trama del nuevo menú',status:'doing',resp:'m1',members:['m1','m3'],area:'Marca',event:'Lanzamiento menú',start:d(-2),due:d(4),urgent:true,important:true,related:'Sistema visual',notes:''},
-      {id:uid(),title:'Sesión de fotos de producto',status:'todo',resp:'m2',members:['m2'],area:'Producto',event:'Lanzamiento menú',start:d(3),due:d(8),urgent:false,important:true,related:'Menú, Fotos',notes:''},
-      {id:uid(),title:'Calendario de publicaciones',status:'review',resp:'m3',members:['m3','m4'],area:'Comunicación',event:'',start:d(-5),due:d(-1),urgent:true,important:false,related:'',notes:''},
-      {id:uid(),title:'Señalética de coworking',status:'todo',resp:'m4',members:['m4','m1'],area:'Espacio',event:'Apertura',start:d(5),due:d(16),urgent:false,important:true,related:'Orientación',notes:''},
-      {id:uid(),title:'Diseñar invitación al taller',status:'doing',resp:'m1',members:['m1'],area:'Comunicación',event:'Taller de octubre',start:d(0),due:d(6),urgent:true,important:true,related:'',notes:''},
-      {id:uid(),title:'Ordenar archivos de marca',status:'done',resp:'m2',members:['m2'],area:'Marca',event:'',start:d(-9),due:d(-4),urgent:false,important:false,related:'',notes:''},
-      {id:uid(),title:'Cotizar impresión de tarjetas',status:'todo',resp:'m3',members:['m3'],area:'Producto',event:'Apertura',start:'',due:d(10),urgent:true,important:false,related:'',notes:''},
-      {id:uid(),title:'Explorar ideas de empaque',status:'todo',resp:'',members:[],area:'Producto',event:'',start:'',due:'',urgent:false,important:false,related:'',notes:''},
-    ]
-  };
-}
-let S;
-try{S=JSON.parse(localStorage.getItem(KEY))}catch{}
-if(!S||!S.tasks)S=seed();
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch{}};
+/* ---------- Data (Supabase) ---------- */
+const SB_URL='https://eylbbdlinxydupkitwah.supabase.co',SB_KEY='sb_publishable_EFXSQ6VTGCGi0PsYu4cIHw_nmY-hlAt';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+let S={members:[],areas:[],events:[],tasks:[]},ME=null,areaIds={},eventIds={};
+const canEdit=()=>!!ME&&['admin','fundador'].includes(ME.rol);
 const member=id=>S.members.find(m=>m.id===id);
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),4500)}
+async function load(){
+  const q=(t,sel='*',o)=>{let r=sb.from(t).select(sel);return o?r.order(o):r};
+  const rs=await Promise.all([q('perfiles','id,nombre_completo,rol,activo','nombre_completo'),q('nave_areas','*','nombre'),q('nave_eventos','*','nombre'),q('nave_tareas','*','creado_en'),q('nave_tarea_miembros')]);
+  const bad=rs.find(r=>r.error);if(bad)throw bad.error;
+  const[p,a,e,t,m]=rs.map(r=>r.data);
+  const sess=(await sb.auth.getSession()).data.session;
+  ME=p.find(x=>x.id===sess?.user.id)||null;
+  S.members=p.filter(x=>x.activo).map(x=>({id:x.id,name:x.nombre_completo}));
+  S.areas=a.map(x=>x.nombre);S.events=e.map(x=>x.nombre);
+  areaIds=Object.fromEntries(a.map(x=>[x.nombre,x.id]));eventIds=Object.fromEntries(e.map(x=>[x.nombre,x.id]));
+  const aName=Object.fromEntries(a.map(x=>[x.id,x.nombre])),eName=Object.fromEntries(e.map(x=>[x.id,x.nombre]));
+  S.tasks=t.map(r=>({id:r.id,title:r.titulo,status:r.estado,resp:r.responsable_id||'',
+    members:m.filter(x=>x.tarea_id===r.id).map(x=>x.perfil_id),area:aName[r.area_id]||'',event:eName[r.evento_id]||'',
+    start:r.inicio||'',due:r.entrega||'',urgent:r.urgente,important:r.importante,related:(r.relacionados||[]).join(', '),notes:r.notas}));
+}
+const toRow=t=>({id:t.id,titulo:t.title,estado:t.status,responsable_id:t.resp||null,area_id:areaIds[t.area]||null,evento_id:eventIds[t.event]||null,
+  inicio:t.start||null,entrega:t.due||null,urgente:t.urgent,importante:t.important,
+  relacionados:t.related.split(',').map(x=>x.trim()).filter(Boolean),notas:t.notes});
+async function persistTask(t,withMembers){
+  let r=await sb.from('nave_tareas').upsert(toRow(t));if(r.error)throw r.error;
+  if(withMembers){
+    r=await sb.from('nave_tarea_miembros').delete().eq('tarea_id',t.id);if(r.error)throw r.error;
+    if(t.members.length){r=await sb.from('nave_tarea_miembros').insert(t.members.map(id=>({tarea_id:t.id,perfil_id:id})));if(r.error)throw r.error}
+  }
+}
+async function reload(){await load();refreshFilters();applyRole();render()}
+async function run(fn){try{await fn()}catch(e){toast('No se pudo guardar: '+(e.message||e));try{await reload()}catch{}}}
+function applyRole(){
+  $('#btnNew').style.display=canEdit()?'':'none';
+  $('#who').textContent=ME?`${ME.nombre_completo} · ${canEdit()?ME.rol:'solo lectura'}`:'';
+}
 
 /* ---------- State / filters ---------- */
 const ui={view:'kanban',tlStart:addDays(mondayOf(today()),-7),calMonth:new Date(today().getFullYear(),today().getMonth(),1)};
@@ -334,7 +364,7 @@ const isLate=t=>t.due&&t.status!=='done'&&parse(t.due)<today();
 /* ---------- Task card ---------- */
 function card(t){
   const people=[...new Set([t.resp,...t.members].filter(Boolean))].map(member).filter(Boolean);
-  return `<article class="task ${t.status==='done'?'done':''}" draggable="true" data-id="${t.id}" tabindex="0">
+  return `<article class="task ${t.status==='done'?'done':''}" draggable="${canEdit()}" data-id="${t.id}" tabindex="0">
     <h4>${esc(t.title)}</h4>
     <div class="meta">
       ${t.area?`<span class="tag">${esc(t.area)}</span>`:''}
@@ -420,7 +450,7 @@ function renderCal(){
     const dueT=ts.filter(t=>t.due===k),stT=ts.filter(t=>t.start===k&&t.due!==k);
     h+=`<div class="day ${d.getMonth()!==m.getMonth()?'out':''} ${k===tdy?'today':''}" data-date="${k}">
       <span class="n">${d.getDate()}</span>
-      ${dueT.map(t=>`<button class="ev ${t.status==='done'?'done':isLate(t)?'late':''}" draggable="true" data-id="${t.id}" title="Entrega · ${esc(t.title)}">${esc(t.title)}</button>`).join('')}
+      ${dueT.map(t=>`<button class="ev ${t.status==='done'?'done':isLate(t)?'late':''}" draggable="${canEdit()}" data-id="${t.id}" title="Entrega · ${esc(t.title)}">${esc(t.title)}</button>`).join('')}
       ${stT.map(t=>`<button class="ev start" data-id="${t.id}" title="Inicio · ${esc(t.title)}">▸ ${esc(t.title)}</button>`).join('')}
     </div>`;
   }
@@ -431,7 +461,6 @@ function render(){
   $$('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.v===ui.view));
   ({kanban:renderKanban,eisen:renderEisen,timeline:renderTimeline,cal:renderCal})[ui.view]();
 }
-const commit=()=>{save();render()};
 
 /* ---------- Task dialog ---------- */
 const dT=$('#dTask');let editing=null;
@@ -447,7 +476,9 @@ function openTask(id,preset={}){
   $('#tStart').value=t.start;$('#tDue').value=t.due;
   $('#tUrg').checked=t.urgent;$('#tImp').checked=t.important;
   $('#tRel').value=t.related;$('#tNotes').value=t.notes;
-  $('#tDel').style.visibility=editing?'visible':'hidden';
+  $('#tDel').style.visibility=editing&&canEdit()?'visible':'hidden';
+  $('#tSave').style.display=canEdit()?'':'none';
+  $$('#fTask input,#fTask select,#fTask textarea').forEach(i=>i.disabled=!canEdit());
   dT.showModal();$('#tTitle').focus();
 }
 $('#fTask').addEventListener('submit',e=>{
@@ -461,31 +492,34 @@ $('#fTask').addEventListener('submit',e=>{
   if(!v.title)return;
   if(v.start&&v.due&&v.start>v.due)[v.start,v.due]=[v.due,v.start];
   if(v.resp&&!v.members.includes(v.resp))v.members.push(v.resp);
-  if(editing)Object.assign(editing,v);else S.tasks.push({id:uid(),...v});
-  commit();
+  if(!canEdit())return;
+  v.members=[...new Set([...v.members,...(editing?editing.members.filter(id=>!member(id)):[])])];
+  let t=editing;
+  if(editing)Object.assign(editing,v);else{t={id:uid(),...v};S.tasks.push(t)}
+  render();run(()=>persistTask(t,true));
 });
 $('#tCancel').onclick=()=>dT.close();
-$('#tDel').onclick=()=>{if(editing&&confirm('¿Eliminar esta tarea?')){S.tasks=S.tasks.filter(t=>t!==editing);dT.close();commit()}};
+$('#tDel').onclick=()=>{if(editing&&confirm('¿Eliminar esta tarea?')){const id=editing.id;S.tasks=S.tasks.filter(t=>t!==editing);dT.close();render();run(async()=>{const{error}=await sb.from('nave_tareas').delete().eq('id',id);if(error)throw error})}};
 
 /* ---------- Team dialog ---------- */
 const dTeam=$('#dTeam');
+const TBL={areas:'nave_areas',events:'nave_eventos'};
 function renderTeam(){
-  const sec=(title,key,items,ph)=>`<div><div class="label">${title}</div><div class="list">${items.map((it,i)=>`<div class="li"><span>${esc(it.name??it)}</span><button type="button" data-rm="${key}:${i}" aria-label="Quitar">×</button></div>`).join('')||'<div class="note">Vacío</div>'}</div>
-    <div class="addrow"><input data-in="${key}" placeholder="${ph}"><button type="button" class="btn" data-ad="${key}">Añadir</button></div></div>`;
-  $('#teamBody').innerHTML=sec('Miembros del equipo','members',S.members,'Nombre y apellido')+sec('Áreas','areas',S.areas,'Nueva área')+sec('Eventos','events',S.events,'Nuevo evento');
+  const ed=canEdit();
+  const sec=(title,key,items,ph,ro)=>`<div><div class="label">${title}</div><div class="list">${items.map((it,i)=>`<div class="li"><span>${esc(it.name??it)}</span>${ro||!ed?'':`<button type="button" data-rm="${key}:${i}" aria-label="Quitar">×</button>`}</div>`).join('')||'<div class="note">Vacío</div>'}</div>
+    ${ro||!ed?'':`<div class="addrow"><input data-in="${key}" placeholder="${ph}"><button type="button" class="btn" data-ad="${key}">Añadir</button></div>`}</div>`;
+  $('#teamBody').innerHTML=sec('Miembros del equipo','members',S.members,'',true)+'<p class="note" style="margin-top:-12px">Son los perfiles activos del panel de Nave; se administran allí.</p>'+sec('Áreas','areas',S.areas,'Nueva área')+sec('Eventos','events',S.events,'Nuevo evento');
 }
 function teamAdd(key){
-  const inp=$(`[data-in="${key}"]`),v=inp.value.trim();if(!v)return;
-  if(key==='members')S.members.push({id:uid(),name:v});else if(!S[key].includes(v))S[key].push(v);
-  save();renderTeam();refreshFilters();render();$(`[data-in="${key}"]`).focus();
+  const inp=$(`[data-in="${key}"]`),v=inp.value.trim();if(!v||!canEdit())return;
+  run(async()=>{const{error}=await sb.from(TBL[key]).insert({nombre:v});if(error)throw error;await reload();renderTeam();$(`[data-in="${key}"]`)?.focus()});
 }
 $('#teamBody').addEventListener('click',e=>{
   const ad=e.target.closest('[data-ad]');if(ad)return teamAdd(ad.dataset.ad);
-  const rm=e.target.closest('[data-rm]');if(!rm)return;
-  const[key,i]=rm.dataset.rm.split(':');const it=S[key][+i];
-  if(key==='members'){S.tasks.forEach(t=>{if(t.resp===it.id)t.resp='';t.members=t.members.filter(x=>x!==it.id)})}
-  else{const f=key==='areas'?'area':'event';S.tasks.forEach(t=>{if(t[f]===it)t[f]=''})}
-  S[key].splice(+i,1);save();renderTeam();refreshFilters();render();
+  const rm=e.target.closest('[data-rm]');if(!rm||!canEdit())return;
+  const[key,i]=rm.dataset.rm.split(':');const name=S[key][+i];
+  if(!confirm(`¿Quitar “${name}”? Las tareas que lo usan quedarán sin ${key==='areas'?'área':'evento'}.`))return;
+  run(async()=>{const{error}=await sb.from(TBL[key]).delete().eq('nombre',name);if(error)throw error;await reload();renderTeam()});
 });
 $('#teamBody').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.in){e.preventDefault();teamAdd(e.target.dataset.in)}});
 $('#btnTeam').onclick=()=>{renderTeam();dTeam.showModal()};
@@ -514,14 +548,32 @@ document.addEventListener('dragend',e=>{dragId=null;$$('.dragging,.over').forEac
 document.addEventListener('dragover',e=>{const z=e.target.closest('.col,.quad,.day');if(!z||!dragId)return;e.preventDefault();$$('.over').forEach(x=>x!==z&&x.classList.remove('over'));z.classList.add('over')});
 document.addEventListener('drop',e=>{
   const z=e.target.closest('.col,.quad,.day');if(!z||!dragId)return;e.preventDefault();
-  const t=S.tasks.find(x=>x.id===dragId);if(!t)return;
+  const t=S.tasks.find(x=>x.id===dragId);if(!t||!canEdit())return;
   if(z.classList.contains('col'))t.status=z.dataset.status;
   else if(z.classList.contains('quad')){t.urgent=z.dataset.u==='1';t.important=z.dataset.i==='1'}
   else{const k=z.dataset.date;t.due=k;if(t.start&&t.start>k)t.start=k}
-  commit();
+  render();run(()=>persistTask(t));
 });
 
-refreshFilters();render();
+/* Auth */
+const dLogin=$('#dLogin');
+dLogin.addEventListener('cancel',e=>e.preventDefault());
+function showLogin(){if(!dLogin.open)dLogin.showModal()}
+$('#fLogin').addEventListener('submit',async e=>{
+  e.preventDefault();const b=$('#lBtn'),m=$('#lMsg');b.disabled=true;m.textContent='';
+  const{error}=await sb.auth.signInWithPassword({email:$('#lEmail').value.trim(),password:$('#lPass').value});
+  b.disabled=false;
+  if(error){m.textContent='Correo o contraseña incorrectos.';return}
+  $('#lPass').value='';dLogin.close();boot();
+});
+$('#btnOut').onclick=async()=>{await sb.auth.signOut();ME=null;S={members:[],areas:[],events:[],tasks:[]};applyRole();refreshFilters();render();showLogin()};
+async function boot(){
+  const{data:{session}}=await sb.auth.getSession();
+  if(!session){showLogin();return}
+  try{await load();if(!ME)toast('Tu usuario no tiene perfil en el panel de Nave.')}catch(e){toast('No se pudieron cargar los datos: '+(e.message||e))}
+  refreshFilters();applyRole();render();
+}
+refreshFilters();render();boot();
 })();
 </script>
 </body>
