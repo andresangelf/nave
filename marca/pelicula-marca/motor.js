@@ -88,7 +88,7 @@ export const CONTENIDO = {
    `parte` reparte un punto en varias pantallas; `base` estira una toma escrita para menos beats. */
 
 export const ESCENAS = [
-  { id: 'arranque',   beats: 8,  fondo: 'espacio', cap: null },
+  { id: 'lanzamiento', beats: 16, fondo: 'espacio', cap: 'LANZAMIENTO' },
   { id: 'manifiesto', beats: 20, base: 16, fondo: 'espacio', cap: 'MANIFIESTO' },
   { id: 'nave',       beats: 12, base: 10, fondo: 'espacio', cap: 'NAVE', salida: { color: 'crema', beats: 1.6, origen: [1280, 700] } },
   { id: 'queEs',      beats: 34, base: 24, fondo: 'crema',   cap: '¿QUÉ ES NAVE?', salida: { color: 'espacio', beats: 1.6, origen: 'abajo' } },
@@ -101,7 +101,7 @@ export const ESCENAS = [
   { id: 'partners',   beats: 13, parte: 1, fondo: 'espacio', cap: 'PARTNERS', salida: { color: 'crema', beats: 1.6, origen: [1960, 600] } },
   { id: 'valores',    beats: 14, parte: 0, fondo: 'crema',   cap: '¿QUÉ NOS RIGE?' },
   { id: 'valores',    beats: 13, parte: 1, fondo: 'crema',   cap: '¿QUÉ NOS RIGE?', salida: { color: 'espacio', beats: 1.6, origen: [1280, 1100] } },
-  { id: 'despegue',   beats: 18, fondo: 'espacio', cap: 'DESPEGUE' },
+  { id: 'orbita',     beats: 14, fondo: 'espacio', cap: 'ÓRBITA' },
 ];
 
 /* ───────── utilidades ───────── */
@@ -137,7 +137,8 @@ export function crearMotor({ bpm = 104, escenas = ESCENAS, contenido = CONTENIDO
   const lista = escenas.map((e) => { const s = { ...e, inicio: acc, fin: acc + e.beats }; acc += e.beats; return s; });
   const totalB = acc, duracion = totalB * spb;
   const ultima = lista[lista.length - 1];
-  const bDespegue = ultima.inicio + 9;            // T–00: el punto despega
+  const L0 = 7.5;                                 // T–00 en el beat 7,5 de la primera toma: el viaje empieza despegando
+  const bDespegue = lista[0].inicio + L0;
   const capitulos = lista.filter((e, i) => e.cap && lista.findIndex((x) => x.cap === e.cap) === i);
 
   // estrellas en tres profundidades (la distancia del manifiesto)
@@ -301,22 +302,38 @@ export function crearMotor({ bpm = 104, escenas = ESCENAS, contenido = CONTENIDO
     // capítulo: puntos para orientar
     const actual = lista.find((e) => B >= e.inicio && B < e.fin) || ultima, iCap = capitulos.findIndex((e) => e.cap === actual.cap);
     capitulos.forEach((e, i) => punto(X0 + 6 + i * 26, H - 98, i === iCap ? 7 : 4.2, i === iCap ? C.ign : tinta, (i === iCap ? 1 : 0.35) * a));
-    const ascenso = clamp(t / (bDespegue * spb));
+    if (iCap >= 0) texto(`TRAMO ${String(iCap + 1).padStart(2, '0')} / ${String(capitulos.length).padStart(2, '0')} · ${capitulos[iCap].cap}`, X0 + capitulos.length * 26 + 30, H - 84, { fam: 'mono', peso: 500, size: 40, ls: 4, color: tinta, a: 0.6 * a });
     // altímetro de 25 puntos
-    const nivel = 24 * (B > bDespegue ? mix(Math.pow(ascenso, 3) * 0.5, 1, eio(seg(B, bDespegue, 3))) : Math.pow(ascenso, 3) * 0.5);
+    const nivel = B < bDespegue ? -1 : 24 * mix(0.06, 1, eio(clamp((B - bDespegue) / (ultima.inicio + 4 - bDespegue))));
     for (let i = 0; i < 25; i++) { const on = i <= nivel; punto(W - 96, H - 196 - i * 30, on ? 4.6 : 3, on ? C.ign : tinta, (on ? 1 : 0.28) * a); }
   }
 
   /* ───── tomas ───── */
   const T_ = {
-    arranque(b) {
-      estrellasDibujar(0.6 * eo(seg(b, 0.2, 5)), -T * 8, -T * 3);
-      const pop = red ? 1 : eoBack(seg(b, 0.5, 0.6));
-      const apag = (b > 1.6 && b < 1.76) || (b > 2.1 && b < 2.26);
-      const m = red ? 1 : eio(seg(b, 5.4, 2.6));
-      const x = mix(1280, A[0], m), y = mix(720, A[1], m);
-      [1.76, 2.26].forEach((tb) => { const q = seg(b, tb, 1); if (q > 0 && q < 1 && !red) { ctx.strokeStyle = rgba(C.ign, 0.5 * (1 - q)); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, 12 + 90 * eo(q), 0, 7); ctx.stroke(); } });
-      if (!apag) punto(x, y, 12 * pop, C.ign);
+    lanzamiento(b) {
+      const L = L0;
+      // ascenso: las estrellas corren hacia abajo una vuelta completa del campo (1 840 px) y quedan donde empieza el manifiesto
+      const vuelo = red ? (b > L ? 1 : 0) : eio(seg(b, L + 0.4, 6));
+      estrellasDibujar(0.6 * eo(seg(b, 0.2, 3)), -T * 8, -T * 3 + 1840 * vuelo);
+      // columna de empuje: sube desde el suelo en T–00 y se queda atrás cuando el punto asciende
+      const sube = red ? (b > L ? 1 : 0) : eo(seg(b, L + 0.1, 1.6)), baja = red ? 0 : 1100 * eio(seg(b, L + 1.4, 3.4)), apaga = 1 - eio(seg(b, L + 2.6, 2.4));
+      if (sube > 0 && apaga > 0) puntos(pluma.map((q) => {
+        const v = (H - q.y) / (H - 560), sig = mix(620, 70, Math.pow(v, 0.7));
+        const f = Math.exp(-((q.x - 1280) ** 2) / (2 * sig * sig)) * clamp((sube * 1.25 - v) * 3);
+        return [q.x, q.y + baja, 8.4 * f * (0.75 + 0.25 * q.j), apaga];
+      }), C.ambar);
+      // el punto: aparece en tierra, despega con estela y se desplaza al punto de presión del manifiesto
+      const lanz = red ? (b > L ? 1 : 0) : eio(seg(b, L + 0.3, 3)), llega = red ? (b > 13 ? 1 : 0) : eio(seg(b, 13, 2.6));
+      const x = mix(1280, A[0], llega), y = mix(mix(1060, 640, lanz), A[1], llega);
+      if (!red && lanz > 0 && lanz < 1) for (let j = 12; j >= 1; j--) punto(1280, y + j * 26 * (1 - lanz), 12 * (1 - j / 14), C.ign, 0.7 * (1 - j / 13));
+      punto(x, y, 12 * (red ? 1 : eoBack(seg(b, 0.3, 0.6))), C.ign);
+      bloque(K.despegue, 1280, 380, { size: 124, align: 'center', maxW: 2200, entra: () => seg(b, 0.6, 1), sale: () => seg(b, L + 0.2, 0.6) });
+      // cuenta regresiva: T–03, T–02, T–01, T–00
+      for (let k = 3; k >= 0; k--) {
+        const at = L - k * 1.5, p = seg(b, at, 0.4), q = k ? seg(b, at + 1.2, 0.3) : seg(b, L + 0.6, 0.4);
+        if (p <= 0 || q >= 1) continue;
+        texto(`T–0${k}`, 1280, 800 + (red ? 0 : (1 - eoX(p)) * 40), { fam: 'mono', peso: 700, size: 150, ls: 4, color: k ? C.ambar : C.ign, align: 'center', a: (red ? 1 : clamp(p * 2)) * (1 - q) });
+      }
     },
 
     manifiesto(b) {
@@ -540,39 +557,17 @@ export function crearMotor({ bpm = 104, escenas = ESCENAS, contenido = CONTENIDO
       });
     },
 
-    despegue(b) {
-      const L = 9; // T–00 en el beat local 9
-      const lanz = red ? (b > L ? 1 : 0) : seg(b, L + 0.6, 1.6);
-      // columna de empuje: la trama Ámbar sube desde el suelo
-      const sube = red ? (b > L ? 1 : 0) : eo(seg(b, L + 0.2, 1.8)), apaga = 1 - 0.65 * eio(seg(b, L + 3, 3));
-      if (sube > 0) puntos(pluma.map((p) => {
-        const v = (H - p.y) / (H - 560), sig = mix(620, 70, Math.pow(v, 0.7));
-        const f = Math.exp(-((p.x - 1280) ** 2) / (2 * sig * sig)) * clamp((sube * 1.25 - v) * 3);
-        return [p.x, p.y, 8.4 * f * (0.75 + 0.25 * p.j), apaga];
-      }), C.ambar);
-      // el punto despega con estela
-      const yp = 900 - 1100 * Math.pow(lanz, 2.6);
-      if (lanz < 1) {
-        if (lanz > 0 && !red) for (let j = 14; j >= 1; j--) { const q = lanz - j * 0.018; if (q > 0) punto(1280, 900 - 1100 * Math.pow(q, 2.6), 12 * (1 - j / 16), C.ign, 0.8 * (1 - j / 15)); }
-        punto(1280, yp, 12 * (red ? 1 : eoBack(seg(b, 0.1, 0.6))), C.ign);
-      }
+    orbita(b) {
+      estrellasDibujar(0.55, -T * 8, -T * 3);
+      punto(1280, 900 - 260 * eio(seg(b, 0, 2)), 12 * (1 - seg(b, 5.4, 0.6)), C.ign);
       bloque([[K.pregunta, 'crema']], 1280, 380, { size: 220, align: 'center', maxW: 2200, entra: () => seg(b, 0.6, 1.1), sale: () => seg(b, 5.2, 0.8) });
-      bloque(K.despegue, 1280, 440, { size: 124, align: 'center', maxW: 2200, entra: () => seg(b, 6, 1), sale: () => seg(b, L + 0.5, 0.6) });
-      // cuenta regresiva: un número por beat hasta T–00
-      for (let k = 3; k >= 0; k--) {
-        const at = L - k, p = seg(b, at, 0.4), q = k ? seg(b, at + 0.7, 0.3) : seg(b, L + 0.5, 0.3);
-        if (p <= 0 || q >= 1) continue;
-        texto(`T–0${k}`, 1280, 760 + (red ? 0 : (1 - eoX(p)) * 40), { fam: 'mono', peso: 700, size: 150, ls: 4, color: k ? C.ambar : C.ign, align: 'center', a: (red ? 1 : clamp(p * 2)) * (1 - q) });
-      }
-      // órbita: la marca
-      const lk = seg(b, L + 2.2, 1.4);
+      const lk = seg(b, 6, 1.4);
       if (lk > 0) {
-        const alto = 210, w = alto * (617 / 116), x0 = 1280 - w / 2, cy = 600;
+        const alto = 210, w = alto * (617 / 116), x0 = 1280 - w / 2, cy = 640;
         const s = red ? 1 : eo(lk);
         simbolo(x0 + alto / 2, cy + (1 - s) * 40, alto / 200, C.crema, s);
-        logotipo(x0 + alto * (150 / 116), cy - alto / 2, alto, C.crema, [0, 1, 2, 3].map((i) => seg(b, L + 2.5 + i * 0.2, 0.9)));
-        texto(tecleo(K.bajada, seg(b, L + 3.4, 1.2)), 1280, cy + alto / 2 + 100, { fam: 'mono', peso: 500, size: 46, ls: 7, color: C.ambar, align: 'center' });
-        bloque(K.despegue, 1280, cy + alto / 2 + 160, { size: 60, peso: 600, align: 'center', maxW: 2000, entra: () => seg(b, L + 4.4, 1) });
+        logotipo(x0 + alto * (150 / 116), cy - alto / 2, alto, C.crema, [0, 1, 2, 3].map((i) => seg(b, 6.3 + i * 0.2, 0.9)));
+        texto(tecleo(K.bajada, seg(b, 7.2, 1.2)), 1280, cy + alto / 2 + 110, { fam: 'mono', peso: 500, size: 46, ls: 7, color: C.ambar, align: 'center' });
       }
     },
   };

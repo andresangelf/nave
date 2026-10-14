@@ -1,25 +1,27 @@
 # NAVE · película de marca · guion por etapas
 
-Guion para explicar el video de 131 s (2560 × 1440, 120 fps, sin audio). Cada etapa tiene lo que se ve, el texto en pantalla y una locución opcional para presentar el video en vivo o para grabarla después. La locución usa unas 2,3 palabras por segundo, así que respira. Los tiempos son aproximados y salen de `ESCENAS` en `motor.js`; si cambias los beats, se mueven.
+Guion para explicar el video de 134 s (2560 × 1440, 120 fps, sin audio). Cada etapa tiene lo que se ve, el texto en pantalla y una locución opcional para presentar el video en vivo o para grabarla después. La locución usa unas 2,3 palabras por segundo, así que respira. Los tiempos son aproximados y salen de `ESCENAS` en `motor.js`; si cambias los beats, se mueven.
 
-**Hilo del relato:** una persona mira el cielo y siente la distancia (manifiesto). De ahí sale una marca (NAVE). Explicamos qué somos, para quién trabajamos, qué ofrecemos y cómo lo hacemos. Mostramos con quién nos aliamos y qué nos rige. Y todo termina en el despegue, que es la invitación a preguntar y a empezar.
+**Hilo del relato:** el video empieza despegando. Después de T–00 todo es el viaje: cada tramo explica una parte de NAVE (por qué existe, qué es, para quién trabaja, qué ofrece, cómo opera, con quién y bajo qué valores) mientras el altímetro de la derecha sube poco a poco. Abajo a la izquierda, la bitácora indica el tramo: «TRAMO 03 / 10 · NAVE». El viaje termina en órbita, con las preguntas y la marca.
 
 ---
 
-## 1 · Arranque · 0:00–0:05
+## 1 · Lanzamiento · 0:00–0:09
 
-**Se ve:** pantalla oscura, un campo de estrellas que aparece despacio y un punto Ignición que parpadea dos veces. Entran las marcas de la bitácora: cruces en las esquinas, puntos de capítulo y un altímetro de 25 puntos.
+**Se ve:** cielo oscuro y un punto Ignición en tierra. Arriba aparece «Listos para el despegue.» y debajo la cuenta regresiva **T–03, T–02, T–01, T–00**, un número cada segundo. En T–00 una columna de puntos Ámbar sube desde el suelo, el punto despega con su estela y las estrellas corren hacia abajo mientras ascendemos. La columna queda atrás y el punto se acomoda a la derecha, donde empieza el manifiesto. Desde aquí el altímetro empieza a subir.
 
 **Locución:**
-> Todo empieza con un punto.
+> Listos para el despegue.
+> Tres. Dos. Uno.
+> Despegamos.
 
-**Para qué:** pide atención sin gritar. El punto es la unidad base de la marca y será el hilo hasta el final.
+**Para qué:** la acción va primero. El espectador entra al viaje desde el segundo uno y todo lo que sigue se cuenta en el camino.
 
 ---
 
-## 2 · Manifiesto · 0:05–0:16
+## 2 · Manifiesto · 0:09–0:21
 
-**Se ve:** el campo de estrellas se tensa hacia el punto. Tres marcadores se conectan con él: EMPRESA, IDEA, PERSONA. Al final la retícula nace en anillos desde el punto.
+**Se ve:** ya en el aire, el campo de estrellas se tensa hacia el punto. Tres marcadores se conectan con él: EMPRESA, IDEA, PERSONA. Al final la retícula nace en anillos desde el punto.
 
 **Texto en pantalla, una frase a la vez:**
 1. «Nos obsesionamos por cambiar la realidad»
@@ -35,7 +37,7 @@ Guion para explicar el video de 131 s (2560 × 1440, 120 fps, sin audio). Cada e
 
 ---
 
-## 3 · NAVE · 0:16–0:23
+## 3 · NAVE · 0:21–0:28
 
 **Se ve:** la retícula entrega sus puntos y forman el símbolo. El punto Ignición entra al vértice y lo enciende. Las letras NAVE suben una a una y debajo se teclea «TECH COMPANY & VENTURE BUILDER».
 
@@ -49,21 +51,21 @@ Guion para explicar el video de 131 s (2560 × 1440, 120 fps, sin audio). Cada e
 
 ---
 
-## 4 · ¿Qué es NAVE? · 0:23–0:43
+## 4 · ¿Qué es NAVE? · 0:28–0:47
 
 Fondo Crema. Tres momentos.
 
-**4a · La experiencia · 0:23–0:29.** Una cifra enorme que cuenta hasta **25+** y a su lado: «Más de 25 años de experiencia acumulada en la industria tecnológica.»
+**4a · La experiencia · 0:28–0:34.** Una cifra enorme que cuenta hasta **25+** y a su lado: «Más de 25 años de experiencia acumulada en la industria tecnológica.»
 > Detrás de NAVE hay más de veinticinco años de experiencia en tecnología.
 
-**4b · Fusionamos · 0:29–0:36.** El título «Fusionamos» y tres líneas punteadas que unen dos mitades cada una:
+**4b · Fusionamos · 0:34–0:41.** El título «Fusionamos» y tres líneas punteadas que unen dos mitades cada una:
 - la rigurosidad ··· y la agilidad.
 - la seguridad ··· y el enfoque en activos digitales.
 - la escala corporativa ··· y una Startup, PyME o fundador. *(la última línea va en Ignición)*
 
 > Fusionamos la rigurosidad con la agilidad. La seguridad con los activos digitales. La escala de una corporación con la velocidad de un fundador.
 
-**4c · Socio de ejecución · 0:36–0:43.** «Somos el *socio de ejecución.*» Tres barras que se llenan: DISEÑA, AUTOMATIZA, OPERA. Debajo: «SISTEMAS CON IA · BLOCKCHAIN · TECH EQUITY» y «para transformar la *realidad.*»
+**4c · Socio de ejecución · 0:41–0:47.** «Somos el *socio de ejecución.*» Tres barras que se llenan: DISEÑA, AUTOMATIZA, OPERA. Debajo: «SISTEMAS CON IA · BLOCKCHAIN · TECH EQUITY» y «para transformar la *realidad.*»
 > Somos el socio de ejecución. Diseñamos, automatizamos y operamos sistemas con inteligencia artificial y blockchain. Para transformar la realidad.
 
 **Para qué:** responde «¿qué es esto?» en tres golpes: experiencia, mezcla y rol. Cierra volviendo a «transformar la realidad», que es la frase del manifiesto.
@@ -72,11 +74,11 @@ Fondo Crema. Tres momentos.
 
 ---
 
-## 5 · Clientes · 0:43–0:59
+## 5 · Clientes · 0:47–1:04
 
 Dos pantallas, una por ruta, con su indicador tipo aeropuerto.
 
-**5a · Ruta 01, TC · 0:43–0:51.** Letras «TC» enormes en Ámbar, una flecha hacia la izquierda y «Tech Company». Cuatro filas se teclean:
+**5a · Ruta 01, TC · 0:47–0:55.** Letras «TC» enormes en Ámbar, una flecha hacia la izquierda y «Tech Company». Cuatro filas se teclean:
 - Cuentas corporativas y gobiernos
 - Transformación digital · modernización
 - Ejecución ágil, escalable y segura
@@ -84,7 +86,7 @@ Dos pantallas, una por ruta, con su indicador tipo aeropuerto.
 
 > Primera ruta: Tech Company. Trabajamos con corporaciones y gobiernos que necesitan modernizarse, con ejecución ágil, escalable y segura. Y calidad en tiempo récord.
 
-**5b · Ruta 02, VB · 0:51–0:59.** «VB» con la flecha hacia la derecha y «Venture Builder»:
+**5b · Ruta 02, VB · 0:55–1:04.** «VB» con la flecha hacia la derecha y «Venture Builder»:
 - Emprendedores · startups · fundadores
 - Empresas que quieren escalar
 - Innovación y activos digitales
@@ -98,11 +100,11 @@ Dos pantallas, una por ruta, con su indicador tipo aeropuerto.
 
 ---
 
-## 6 · ¿Qué ofrece? · 0:59–1:17
+## 6 · ¿Qué ofrece? · 1:04–1:22
 
 Mismo título, dos tableros de «estado de la nave».
 
-**6a · Tech Company, 5 servicios · 0:59–1:08.** Cada fila entra con su código y su alcance en una línea:
+**6a · Tech Company, 5 servicios · 1:04–1:13.** Cada fila entra con su código y su alcance en una línea:
 - TC-01 Tech Consultant: modernización, ruta digital, datos y FinOps de IT
 - TC-02 Next-Gen Software Factory: software a la medida, inteligente, escalable y con ISOs
 - TC-03 Digital Assets portfolio: activos digitales, apps y software propio y de partners
@@ -111,7 +113,7 @@ Mismo título, dos tableros de «estado de la nave».
 
 > Para Tech Company ofrecemos cinco servicios. Desde consultoría y software a la medida, hasta talento, activos digitales y operación en la nube, las 24 horas.
 
-**6b · Venture Builder, 3 servicios · 1:08–1:17.**
+**6b · Venture Builder, 3 servicios · 1:13–1:22.**
 - VB-01 Tech Foundry: concepto escalable, strategy, business plan y case
 - VB-02 Venture Studio: IA y blockchain del MVP a producción y continuidad
 - VB-03 Tech Equity Business model: invertimos tecnología y NAVE se vuelve accionista *(esta fila se resalta en Ámbar)*
@@ -122,7 +124,7 @@ Mismo título, dos tableros de «estado de la nave».
 
 ---
 
-## 7 · Modelo operativo · 1:17–1:30
+## 7 · Modelo operativo · 1:22–1:35
 
 Fondo Ámbar.
 
@@ -144,16 +146,16 @@ Fondo Ámbar.
 
 ---
 
-## 8 · Partners · 1:30–1:46
+## 8 · Partners · 1:35–1:50
 
 Dos pantallas. Una constelación sobre el horizonte de un planeta de puntos.
 
 **Título:** «Un ecosistema de alianzas estratégicas con los *líderes mundiales* de la tecnología.»
 
-**8a · 1:30–1:38.** Oracle (bases de datos, cloud en blockchain), NVIDIA (GPUs, cómputo acelerado, physical AI), AWS (infraestructura escalable, IA/ML) y Google (Google Cloud, IA generativa).
+**8a · 1:35–1:43.** Oracle (bases de datos, cloud en blockchain), NVIDIA (GPUs, cómputo acelerado, physical AI), AWS (infraestructura escalable, IA/ML) y Google (Google Cloud, IA generativa).
 > No construimos solos. Trabajamos con Oracle, NVIDIA, Amazon Web Services y Google.
 
-**8b · 1:38–1:46.** Supabase (Postgres, autenticación, backend), Ripple (pagos globales, tokenización) y Anthropic (Claude, agentes IA seguros). *El último punto, Anthropic, va en Ignición.*
+**8b · 1:43–1:50.** Supabase (Postgres, autenticación, backend), Ripple (pagos globales, tokenización) y Anthropic (Claude, agentes IA seguros). *El último punto, Anthropic, va en Ignición.*
 > Y con Supabase, Ripple y Anthropic. Cada uno resuelve una pieza de lo que construimos.
 
 **Para qué:** muestra el ecosistema. Los nombres son la prueba social y cada línea dice qué aporta cada uno.
@@ -162,17 +164,17 @@ Dos pantallas. Una constelación sobre el horizonte de un planeta de puntos.
 
 ---
 
-## 9 · ¿Qué nos rige? · 1:46–2:01
+## 9 · ¿Qué nos rige? · 1:50–2:06
 
 Fondo Crema, checklist de pre-vuelo con un contador **«NN/07»** que sube.
 
-**9a · 1:46–1:54:**
+**9a · 1:50–1:58:**
 01 Atención radical al detalle.
 02 Inquebrantabilidad: nos negamos a rendirnos.
 03 Compromiso con el impacto positivo.
 04 Atracción de clientes y talento élite.
 
-**9b · 1:54–2:01:**
+**9b · 1:58–2:06:**
 05 Propósito de transformar realidades.
 06 Intensidad por ganar, mejorar y crecer.
 07 Queremos promover nuevos estándares.
@@ -188,22 +190,16 @@ Fondo Crema, checklist de pre-vuelo con un contador **«NN/07»** que sube.
 
 ---
 
-## 10 · Despegue · 2:01–2:11
+## 10 · Órbita · 2:06–2:14
 
-**Se ve (en este orden):**
-1. «¿Preguntas?» enorme, centrado.
-2. Cambia a «Listos para el despegue.» con el punto en Ignición.
-3. Cuenta regresiva **T–03, T–02, T–01, T–00**, un número por pulso.
-4. En T–00 el punto despega dejando una estela, y una columna de puntos Ámbar sube desde el suelo.
-5. En órbita aparece la marca: símbolo + NAVE, «TECH COMPANY & VENTURE BUILDER» y «Listos para el despegue.»
+**Se ve:** el viaje llega a su altura: el altímetro está completo y las estrellas quietas. Aparece «¿Preguntas?» grande y centrado. Después el punto se apaga y en su lugar se asienta la marca: símbolo + NAVE y «TECH COMPANY & VENTURE BUILDER».
 
 **Locución:**
+> Llegamos.
 > ¿Preguntas?
-> Entonces, listos para el despegue.
-> Tres. Dos. Uno.
 > NAVE. Tech company y venture builder.
 
-**Para qué:** vuelve al punto del inicio. El que parpadeaba en el arranque es el que despega: la historia cierra donde empezó y deja la marca como último recuerdo.
+**Para qué:** cierra el viaje que abrió el lanzamiento. Las preguntas invitan a seguir la conversación y la marca es el último recuerdo.
 
 ---
 
