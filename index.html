@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Matriz Nave MKT</title>
 <meta name="theme-color" content="#112936">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -125,8 +125,10 @@ main{flex:1;padding:32px 0 56px;min-width:0}
 .quad.q1 .task .chip{background:var(--bg)}
 
 /* ---------- Kanban ---------- */
-.board{display:grid;grid-template-columns:repeat(4,minmax(250px,1fr));gap:24px;align-items:start}
-.col{display:flex;flex-direction:column;gap:12px;border-radius:var(--r);transition:outline-color .15s}
+.board{display:grid;grid-template-columns:repeat(4,minmax(250px,1fr));gap:24px;align-items:stretch}
+.col{display:flex;flex-direction:column;gap:12px;border-radius:var(--r);transition:outline-color .15s;min-height:280px}
+.col>.add{align-self:stretch}
+body.touch-drag .board{scroll-snap-type:none}
 .col.over{outline:2px dashed var(--accent);outline-offset:8px}
 .col-head{display:flex;align-items:baseline;gap:12px;padding:14px 2px 6px;border-top:2px solid var(--ink)}
 .col-head .num{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--accent)}
@@ -163,8 +165,8 @@ main{flex:1;padding:32px 0 56px;min-width:0}
 .tl-tools .btn.ghost{margin-left:4px}
 
 /* ---------- Timeline ---------- */
-.tl-wrap{background:var(--card);border-radius:var(--r-lg);overflow:auto;max-height:calc(100vh - 220px)}
-.tl{--dw:30px;--days:42;display:grid;grid-template-columns:260px calc(var(--dw)*var(--days));min-width:max-content;position:relative}
+.tl-wrap{background:var(--card);border-radius:var(--r-lg);overflow:auto;max-height:calc(100vh - 220px);max-height:calc(100dvh - 220px);-webkit-overflow-scrolling:touch}
+.tl{--dw:30px;--days:42;--lbl:260px;display:grid;grid-template-columns:var(--lbl) calc(var(--dw)*var(--days));min-width:max-content;position:relative}
 .tl-h{position:sticky;top:0;z-index:4;background:var(--card);border-bottom:1px solid var(--line)}
 .tl-lbl{position:sticky;left:0;z-index:3;background:var(--card);padding:10px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:13.5px;letter-spacing:-.01em;display:flex;flex-direction:column;justify-content:center;min-height:50px}
 .tl-lbl>*{overflow:hidden;text-overflow:ellipsis}
@@ -273,23 +275,102 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
 #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:13px 20px;border-radius:14px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s var(--ease);z-index:50;max-width:90vw;box-shadow:0 14px 36px -12px rgba(17,41,54,.5)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 
+.fsel{display:contents}
+.agenda{display:none}
+.task{-webkit-touch-callout:none}
+@media (hover:none){
+  .task:hover{transform:none;box-shadow:none;border-color:transparent}
+  .bar-t:hover{background:var(--navy);transform:none}
+  .btn:hover{border-color:var(--line)}.btn.primary:hover{background:var(--navy);border-color:var(--navy)}
+  .add:hover{border-color:#cfcabb;color:var(--muted);background:transparent}
+  .task,.ev{user-select:none;-webkit-user-select:none}
+}
+.touch{display:none}
+@media (hover:none){.touch{display:inline}.mouse{display:none}}
+.drag-ghost{position:fixed;z-index:100;pointer-events:none;margin:0;box-shadow:0 22px 44px -14px rgba(17,41,54,.5);transform:rotate(1.2deg) scale(1.02);opacity:.96;border-color:var(--ink)}
+@keyframes sheet{from{transform:translateY(48px);opacity:0}to{transform:none;opacity:1}}
+
 @media (max-width:980px){
-  .hero{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;padding:22px 0}
   .toro{display:none}
   .stats{grid-template-columns:1fr 1fr;row-gap:22px;padding:22px 4px}
   .stat:nth-child(3){border-left:0}
-  .board{grid-template-columns:repeat(4,272px);overflow-x:auto;padding-bottom:12px;margin:0 calc(-1*clamp(16px,4vw,56px));padding-left:clamp(16px,4vw,56px);padding-right:16px}
-  .axis{grid-template-columns:20px 1fr;grid-template-rows:none}
-  .axis>div:nth-child(2),.axis>div:nth-child(3){display:none}
+  .board{grid-template-columns:repeat(4,min(78vw,300px));overflow-x:auto;padding-bottom:12px;margin:0 calc(-1*clamp(16px,4vw,56px));padding-left:clamp(16px,4vw,56px);padding-right:16px;scroll-snap-type:x proximity;scroll-padding-left:clamp(16px,4vw,56px);-webkit-overflow-scrolling:touch}
+  .col{scroll-snap-align:start}
   .dlg-b{grid-template-columns:1fr}
-  .cal .day{min-height:84px;padding:5px}
-  .login{grid-template-columns:1fr}
+  .login{grid-template-columns:1fr;min-height:0}
   .login-art{display:none}
   .login-form{padding:32px 24px}
+  .filters{width:100%}
   .filters input{width:100%}
-  .filters{width:100%}.filters select{flex:1;min-width:140px}
+  .fsel{display:flex;gap:8px;overflow-x:auto;width:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .fsel::-webkit-scrollbar{display:none}
+  .fsel select{flex:0 0 auto;min-width:150px}
 }
-@media (max-width:560px){.stat{padding:0 16px}}
+@media (max-width:700px){
+  body{font-size:14.5px}
+  .wrap{padding:0 16px}
+  .util{padding-top:16px;gap:10px}
+  .util .right{width:100%;justify-content:space-between}
+  .who{margin-right:0;font-size:12.5px}
+  h1{font-size:36px}
+  .sub{font-size:15px;margin-top:10px}
+  .hero .cta{margin-top:18px}.hero .cta .btn{width:100%}
+  .stats{border-radius:var(--r);margin:0}
+  .stat{padding:0 18px}.stat b{font-size:36px}
+  .bar{margin-top:22px;gap:4px}
+  .tabs{width:100%;justify-content:space-between;gap:0;overflow:visible}
+  .tab{gap:6px;font-size:10.5px;letter-spacing:.05em;padding:15px 0 14px}
+  .tab i{width:6px;height:6px}
+  .filters{padding:12px 0 14px}
+  input,select,textarea{font-size:16px !important}
+  main{padding:22px 0 40px}
+  .board{margin:0 -16px;padding-left:16px;padding-right:16px;scroll-padding-left:16px}
+  .col-head{padding-top:12px}
+  .axis{display:flex;flex-direction:column;gap:12px}
+  .axis .ax{display:none}
+  .quad{min-height:150px;padding:18px;border-radius:var(--r)}
+  .quad-head em{font-size:28px}
+  .tl-tools{gap:6px}
+  .tl-tools .range{font-size:17px;min-width:0;flex:1;padding:0}
+  #tlGroup{margin-left:0 !important;width:100%;order:9}
+  .tl-wrap{max-height:70dvh;border-radius:var(--r)}
+  .tl{--lbl:124px}
+  .tl-lbl{padding:8px 12px;font-size:12.5px;min-height:48px}
+  .tl-lbl small{font-size:10.5px}
+  .tl-lbl.grp{font-size:10px}
+  .bar-lbl{display:none}
+  .cal{border-radius:var(--r)}
+  .cal .dow{padding:10px 0 8px;text-align:center;font-size:10px;letter-spacing:.05em}
+  .cal .day{min-height:60px;padding:5px 3px;align-items:center;gap:3px;cursor:pointer}
+  .cal .n{width:24px;height:24px;font-size:12px}
+  .cal .day.sel{background:var(--bg)}
+  .cal .day.sel .n{box-shadow:inset 0 0 0 1.5px var(--ink)}
+  .cal .day.today.sel .n{box-shadow:none}
+  .ev,.ev.late,.ev.done,.ev.start{display:block;font-size:0;line-height:0;height:5px;width:70%;max-width:28px;padding:0;border:0;border-radius:3px;background:var(--navy);pointer-events:none;text-decoration:none;overflow:hidden}
+  .ev.late{background:var(--accent)}
+  .ev.done{background:#a5b0ae}
+  .ev.start{background:transparent;box-shadow:inset 0 0 0 1.5px var(--navy)}
+  .cal-note{display:none}
+  .agenda{display:block;margin-top:16px}
+  .ag-h{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .ag-item{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;text-align:left;background:var(--card);border:0;border-radius:var(--r);padding:14px 16px;margin-bottom:8px}
+  .ag-k{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+  .ag-k.late{color:var(--accent)}
+  .ag-t{font-size:15px;font-weight:600;letter-spacing:-.01em}
+  .ag-m{font-size:12.5px;color:var(--muted)}
+  .foot{flex-direction:column;gap:4px;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+  dialog{width:100%;max-width:100%;margin:auto 0 0;border-radius:22px 22px 0 0;max-height:94dvh;max-height:94vh}
+  dialog[open]{animation:sheet .38s var(--ease)}
+  dialog::backdrop{backdrop-filter:none}
+  form.dlg{max-height:94dvh;max-height:94vh}
+  .dlg-h{padding:22px 20px 4px}
+  .dlg-b,.team-b{padding-left:20px;padding-right:20px}
+  .dlg-f{padding:14px 20px calc(16px + env(safe-area-inset-bottom))}
+  .dlg-f .btn{height:46px}
+  dialog#dLogin{margin:auto;width:calc(100% - 32px);max-width:480px;border-radius:var(--r-lg);max-height:none;animation:pop .35s var(--ease)}
+  #toast{bottom:calc(20px + env(safe-area-inset-bottom));width:calc(100% - 32px);text-align:center}
+}
 </style>
 </head>
 <body>
@@ -324,14 +405,16 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
   </div>
   <div class="filters">
     <input type="search" id="fq" placeholder="Buscar tarea…" aria-label="Buscar">
-    <select id="fMember" aria-label="Miembro"></select>
-    <select id="fArea" aria-label="Área"></select>
-    <select id="fEvent" aria-label="Evento"></select>
+    <div class="fsel">
+      <select id="fMember" aria-label="Miembro"></select>
+      <select id="fArea" aria-label="Área"></select>
+      <select id="fEvent" aria-label="Evento"></select>
+    </div>
   </div>
 </div>
 
 <main>
-  <section class="view" id="v-kanban"><div class="board" id="board"></div></section>
+  <section class="view" id="v-kanban"><div class="board" id="board"></div><p class="note touch" style="margin-top:12px">Mantén pulsada una tarjeta para moverla de columna.</p></section>
 
   <section class="view" id="v-eisen">
     <div class="axis" id="axis">
@@ -339,7 +422,7 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
       <div class="ax v">Importante</div><div class="quad q1" data-u="1" data-i="1"></div><div class="quad q2" data-u="0" data-i="1"></div>
       <div class="ax v">No importante</div><div class="quad q3" data-u="1" data-i="0"></div><div class="quad q4" data-u="0" data-i="0"></div>
     </div>
-    <p class="note" style="margin-top:16px">Arrastra las tareas entre cuadrantes para cambiar su urgencia e importancia. Las tareas terminadas no se muestran.</p>
+    <p class="note" style="margin-top:16px"><span class="mouse">Arrastra</span><span class="touch">Mantén pulsada una tarjeta y arrástrala</span> las tareas entre cuadrantes para cambiar su urgencia e importancia. Las tareas terminadas no se muestran.</p>
   </section>
 
   <section class="view" id="v-timeline">
@@ -364,7 +447,8 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
       <button class="btn ghost" id="calToday">Hoy</button>
     </div>
     <div class="cal" id="cal"></div>
-    <p class="note" style="margin-top:12px">Arrastra una tarea a otro día para cambiar su fecha de entrega. Las fechas de inicio aparecen con borde punteado.</p>
+    <div class="agenda" id="calAgenda"></div>
+    <p class="note cal-note" style="margin-top:12px">Arrastra una tarea a otro día para cambiar su fecha de entrega. Las fechas de inicio aparecen con borde punteado.</p>
   </section>
 </main>
 
@@ -388,7 +472,7 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
       <div class="sec" data-n="02">Contexto</div>
       <div class="f"><label class="label" for="tArea">Área</label><select id="tArea"></select></div>
       <div class="f"><label class="label" for="tEvent">Evento</label><select id="tEvent"></select></div>
-      <div class="f full"><label class="label" for="tRel">Puntos relacionados</label><input id="tRel" placeholder="Ej. Menú de temporada, Fotos de producto (separados por coma)"></div>
+      <div class="f full"><label class="label" for="tRel">Puntos relacionados</label><input id="tRel" placeholder="Ej. Menú de temporada, Fotos"></div>
       <div class="sec" data-n="03">Tiempo y prioridad</div>
       <div class="f"><label class="label" for="tStart">Inicio</label><input type="date" id="tStart"></div>
       <div class="f"><label class="label" for="tDue">Entrega</label><input type="date" id="tDue"></div>
@@ -492,7 +576,7 @@ function applyRole(){
 }
 
 /* ---------- State / filters ---------- */
-const ui={view:'kanban',tlStart:addDays(mondayOf(today()),-7),calMonth:new Date(today().getFullYear(),today().getMonth(),1)};
+const ui={view:'kanban',tlStart:addDays(mondayOf(today()),-7),calMonth:new Date(today().getFullYear(),today().getMonth(),1),calSel:iso(today())};
 try{const v=localStorage.getItem(KEY+'-view');if(v)ui.view=v}catch{}
 
 function fillSelect(sel,first,items,keep){
@@ -584,9 +668,11 @@ function renderTimeline(){
   if(off>=0&&off<DAYS){
     const tl=$('#tl');
     const ln=document.createElement('div');ln.className='today-line';
-    ln.style.cssText=`left:${260+off*dw+dw/2-1}px;top:0`;
+    ln.style.cssText=`left:${$('#tl .tl-lbl').offsetWidth+off*dw+dw/2-1}px;top:0`;
     tl.appendChild(ln);
   }
+  const wrap=$('.tl-wrap'),tkey=iso(start);
+  if(ui.tlKey!==tkey){ui.tlKey=tkey;wrap.scrollLeft=off>=0&&off<DAYS?Math.max(0,(off-2)*dw):0}
   const nd=all.length-dated.length;
   $('#tlNote').textContent=nd?`${nd} tarea${nd>1?'s':''} sin fechas no aparece${nd>1?'n':''} en el cronograma. Asígnales inicio o entrega desde su ficha.`:'';
 }
@@ -602,13 +688,17 @@ function renderCal(){
   for(let i=0;i<weeks*7;i++){
     const d=addDays(first,i),k=iso(d);
     const dueT=ts.filter(t=>t.due===k),stT=ts.filter(t=>t.start===k&&t.due!==k);
-    h+=`<div class="day ${d.getMonth()!==m.getMonth()?'out':''} ${k===tdy?'today':''}" data-date="${k}">
+    h+=`<div class="day ${d.getMonth()!==m.getMonth()?'out':''} ${k===tdy?'today':''} ${k===ui.calSel?'sel':''}" data-date="${k}">
       <span class="n">${d.getDate()}</span>
       ${dueT.map(t=>`<button class="ev ${t.status==='done'?'done':isLate(t)?'late':''}" draggable="${canEdit()}" data-id="${t.id}" title="Entrega · ${esc(t.title)}">${esc(t.title)}</button>`).join('')}
       ${stT.map(t=>`<button class="ev start" data-id="${t.id}" title="Inicio · ${esc(t.title)}">▸ ${esc(t.title)}</button>`).join('')}
     </div>`;
   }
   $('#cal').innerHTML=h;
+  const sel=ui.calSel,dueS=ts.filter(t=>t.due===sel),stS=ts.filter(t=>t.start===sel&&t.due!==sel);
+  const row=(k,t,late)=>{const r=member(t.resp);return `<button class="ag-item" data-id="${t.id}"><span class="ag-k ${late?'late':''}">${k}</span><span class="ag-t">${esc(t.title)}</span><span class="ag-m">${esc([r?.name,t.area,t.event].filter(Boolean).join(' · '))}</span></button>`};
+  $('#calAgenda').innerHTML=`<div class="ag-h">${parse(sel).toLocaleDateString('es',{weekday:'long',day:'numeric',month:'long'})}</div>`+
+    (dueS.map(t=>row(isLate(t)?'Entrega · vencida':'Entrega',t,isLate(t))).join('')+stS.map(t=>row('Inicio',t)).join('')||'<div class="empty">Sin tareas este día</div>');
 }
 function renderStats(){
   const ts=filtered(),open=ts.filter(t=>t.status!=='done'),t0=today(),t7=addDays(t0,7);
@@ -697,9 +787,14 @@ $('#btnNew').onclick=()=>openTask();
 /* ---------- Interactions ---------- */
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;ui.view=b.dataset.v;try{localStorage.setItem(KEY+'-view',ui.view)}catch{}render()});
 ['#fq','#fMember','#fArea','#fEvent','#tlGroup'].forEach(s=>$(s).addEventListener('input',render));
+const MOBILE=()=>matchMedia('(max-width:700px)').matches;
+let noClickUntil=0;
 document.addEventListener('click',e=>{
+  if(Date.now()<noClickUntil)return;
+  const day=e.target.closest('.day');
+  if(day&&MOBILE()){ui.calSel=day.dataset.date;renderCal();return}
   const add=e.target.closest('[data-add-status]');if(add)return openTask(null,{status:add.dataset.addStatus});
-  const el=e.target.closest('.task,.bar-t,.ev:not(.event)');if(el&&el.dataset.id)openTask(el.dataset.id);
+  const el=e.target.closest('.task,.bar-t,.ev:not(.event),.ag-item');if(el&&el.dataset.id)openTask(el.dataset.id);
 });
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList?.contains('task'))openTask(e.target.dataset.id)});
 $('#tlPrev').onclick=()=>{ui.tlStart=addDays(ui.tlStart,-14);render()};
@@ -714,14 +809,64 @@ let dragId=null;
 document.addEventListener('dragstart',e=>{const el=e.target.closest('[data-id][draggable]');if(!el)return;dragId=el.dataset.id;el.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',dragId)});
 document.addEventListener('dragend',e=>{dragId=null;$$('.dragging,.over').forEach(x=>x.classList.remove('dragging','over'))});
 document.addEventListener('dragover',e=>{const z=e.target.closest('.col,.quad,.day');if(!z||!dragId)return;e.preventDefault();$$('.over').forEach(x=>x!==z&&x.classList.remove('over'));z.classList.add('over')});
-document.addEventListener('drop',e=>{
-  const z=e.target.closest('.col,.quad,.day');if(!z||!dragId)return;e.preventDefault();
-  const t=S.tasks.find(x=>x.id===dragId);if(!t||!canEdit())return;
+function applyDrop(id,z){
+  const t=S.tasks.find(x=>x.id===id);if(!t||!canEdit())return;
   if(z.classList.contains('col'))t.status=z.dataset.status;
   else if(z.classList.contains('quad')){t.urgent=z.dataset.u==='1';t.important=z.dataset.i==='1'}
   else{const k=z.dataset.date;t.due=k;if(t.start&&t.start>k)t.start=k}
   render();run(()=>persistTask(t));
+}
+document.addEventListener('drop',e=>{
+  const z=e.target.closest('.col,.quad,.day');if(!z||!dragId)return;e.preventDefault();
+  applyDrop(dragId,z);
 });
+
+/* Arrastre táctil: mantener pulsada una tarjeta y moverla a otra columna o cuadrante */
+(()=>{
+  let pend=null,td=null;
+  const zoneAt=(x,y)=>document.elementFromPoint(x,y)?.closest('.col,.quad')||null;
+  function begin(){
+    const{el,x,y}=pend;pend=null;
+    const r=el.getBoundingClientRect(),g=el.cloneNode(true);
+    g.classList.add('drag-ghost');g.style.width=r.width+'px';g.style.left=r.left+'px';g.style.top=r.top+'px';
+    document.body.appendChild(g);document.body.classList.add('touch-drag');el.classList.add('dragging');navigator.vibrate?.(12);
+    td={el,g,id:el.dataset.id,dx:x-r.left,dy:y-r.top,zone:null,x,y};
+  }
+  function end(drop){
+    if(!td)return;
+    const{el,g,id,zone}=td;td=null;g.remove();document.body.classList.remove('touch-drag');el.classList.remove('dragging');
+    $$('.over').forEach(z=>z.classList.remove('over'));
+    noClickUntil=Date.now()+450;
+    if(drop&&zone)applyDrop(id,zone);
+  }
+  document.addEventListener('pointerdown',e=>{
+    if(e.pointerType!=='touch'||!canEdit())return;
+    const el=e.target.closest('.task[data-id]');if(!el)return;
+    pend={el,x:e.clientX,y:e.clientY,timer:setTimeout(begin,360)};
+  });
+  document.addEventListener('pointermove',e=>{
+    if(pend){if(Math.hypot(e.clientX-pend.x,e.clientY-pend.y)>9){clearTimeout(pend.timer);pend=null}return}
+    if(!td)return;
+    td.x=e.clientX;td.y=e.clientY;
+    td.g.style.left=(e.clientX-td.dx)+'px';td.g.style.top=(e.clientY-td.dy)+'px';
+  });
+  // desplazamiento automático en los bordes mientras se arrastra
+  (function loop(){
+    if(td){
+      const z=zoneAt(td.x,td.y);
+      if(z!==td.zone){td.zone?.classList.remove('over');z?.classList.add('over');td.zone=z}
+      const bd=$('#board');
+      if(bd&&bd.offsetParent){if(td.x<48)bd.scrollLeft-=14;else if(td.x>innerWidth-48)bd.scrollLeft+=14}
+      if(td.y<90)scrollBy(0,-12);else if(td.y>innerHeight-90)scrollBy(0,12);
+    }
+    requestAnimationFrame(loop);
+  })();
+  const stop=drop=>e=>{if(pend){clearTimeout(pend.timer);pend=null}end(drop)};
+  document.addEventListener('pointerup',stop(true));
+  document.addEventListener('pointercancel',stop(false));
+  document.addEventListener('touchmove',e=>{if(td)e.preventDefault()},{passive:false});
+  document.addEventListener('contextmenu',e=>{if(pend||td||e.target.closest('.task'))if(matchMedia('(pointer:coarse)').matches)e.preventDefault()});
+})();
 
 /* Auth */
 const dLogin=$('#dLogin');
