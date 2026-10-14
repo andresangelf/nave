@@ -301,10 +301,10 @@ const fmt=(s,o={day:'numeric',month:'short'})=>s?parse(s).toLocaleDateString('es
 const initials=n=>n.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
 
 /* ---------- Data (Supabase) ---------- */
-const SB_URL='https://eylbbdlinxydupkitwah.supabase.co',SB_KEY='sb_publishable_EFXSQ6VTGCGi0PsYu4cIHw_nmY-hlAt';
+const SB_URL='https://omcusawoluugpsynclwf.supabase.co',SB_KEY='sb_publishable_tt78fij3F2Q9KYx6d_PKyg_b3qxd62V';
 const sb=supabase.createClient(SB_URL,SB_KEY);
 let S={members:[],areas:[],events:[],tasks:[]},ME=null,areaIds={},eventIds={};
-const canEdit=()=>!!ME&&['admin','fundador'].includes(ME.rol);
+const canEdit=()=>!!ME&&['admin','editor'].includes(ME.rol);
 const member=id=>S.members.find(m=>m.id===id);
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),4500)}
 async function load(){
