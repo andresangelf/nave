@@ -34,6 +34,7 @@ Los cambios de color de lámina se hacen con un barrido de trama: los puntos del
 | `NaveFilm.js` | Componente React: reloj único, lienzo 16:9, controles (Espacio, R, ←/→) y movimiento reducido. |
 | `activos.js` | Trazos del símbolo, letras NAVE y el símbolo de 1 018 puntos. |
 | `index.html` | Vista previa. |
+| `guion.md` | Guion por etapas con lo que se ve, el texto en pantalla y la locución sugerida. |
 | `render.html` + `exportar.mjs` | Exportación cuadro a cuadro a MP4. |
 
 ## Ver
