@@ -259,8 +259,8 @@ form.dlg{display:flex;flex-direction:column;max-height:92vh}
 .addrow input:focus{border-color:var(--ink)}
 
 /* Login */
-dialog#dLogin{width:min(960px,94vw);border-radius:var(--r-lg)}
-dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(var(--dot) 1px,transparent 1.4px);background-size:16px 16px;backdrop-filter:none}
+dialog#dLogin,dialog#dReg{width:min(960px,94vw);border-radius:var(--r-lg)}
+dialog#dLogin::backdrop,dialog#dReg::backdrop{background:var(--bg);background-image:radial-gradient(var(--dot) 1px,transparent 1.4px);background-size:16px 16px;backdrop-filter:none}
 .login{display:grid;grid-template-columns:1.05fr 1fr;min-height:540px}
 .login-art{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:36px;display:flex;flex-direction:column;justify-content:space-between}
 .login-art canvas{position:absolute;right:-20%;top:-2%;width:84%;aspect-ratio:1;pointer-events:none}
@@ -269,8 +269,10 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
 .login-art small{position:relative;color:var(--navy-ink);font-size:13px;display:block;margin-top:14px}
 .login-form{padding:44px 40px;display:flex;flex-direction:column;justify-content:center;gap:16px}
 .login-form h2{font-size:34px;font-weight:700;letter-spacing:-.035em;line-height:1;margin-top:10px}
-#lMsg{color:var(--accent);font-weight:600;min-height:1.3em;font-size:13px}
-#lBtn{height:46px;font-size:14.5px}
+#lMsg,#rMsg{color:var(--accent);font-weight:600;min-height:1.3em;font-size:13px}
+#lBtn,#rBtn,#rGoLogin{height:46px;font-size:14.5px}
+.f input[readonly]{color:var(--muted);cursor:default}
+#rGoLogin[hidden]{display:none}
 
 #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:13px 20px;border-radius:14px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s var(--ease);z-index:50;max-width:90vw;box-shadow:0 14px 36px -12px rgba(17,41,54,.5)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
@@ -368,7 +370,7 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
   .dlg-b,.team-b{padding-left:20px;padding-right:20px}
   .dlg-f{padding:14px 20px calc(16px + env(safe-area-inset-bottom))}
   .dlg-f .btn{height:46px}
-  dialog#dLogin{margin:auto;width:calc(100% - 32px);max-width:480px;border-radius:var(--r-lg);max-height:none;animation:pop .35s var(--ease)}
+  dialog#dLogin,dialog#dReg{margin:auto;width:calc(100% - 32px);max-width:480px;border-radius:var(--r-lg);max-height:none;animation:pop .35s var(--ease)}
   #toast{bottom:calc(20px + env(safe-area-inset-bottom));width:calc(100% - 32px);text-align:center}
 }
 </style>
@@ -509,6 +511,31 @@ dialog#dLogin::backdrop{background:var(--bg);background-image:radial-gradient(va
     </form>
   </div>
 </dialog>
+<dialog id="dReg">
+  <div class="login">
+    <div class="login-art">
+      <div class="eyebrow">Nave Café / Sistema de trabajo</div>
+      <canvas data-toroid="login" aria-hidden="true"></canvas>
+      <div>
+        <p>Creamos las condiciones para que tu ambición encuentre cómo avanzar.</p>
+        <small>Tareas del equipo creativo</small>
+      </div>
+    </div>
+    <form class="login-form" id="fReg">
+      <div><div class="eyebrow">Invitación</div><h2 id="rTitle">Crear cuenta</h2>
+      <p class="note" id="rSub" style="margin-top:10px">Comprobando tu invitación…</p></div>
+      <div id="rBody" hidden style="display:none;flex-direction:column;gap:16px">
+        <div class="f"><label class="label" for="rName">Nombre</label><input id="rName" readonly></div>
+        <div class="f"><label class="label" for="rEmail">Correo</label><input id="rEmail" type="email" readonly></div>
+        <div class="f"><label class="label" for="rPass">Contraseña</label><input id="rPass" type="password" autocomplete="new-password" minlength="8" required></div>
+        <div class="f"><label class="label" for="rPass2">Repite la contraseña</label><input id="rPass2" type="password" autocomplete="new-password" minlength="8" required></div>
+        <p id="rMsg" role="alert"></p>
+        <button class="btn primary" id="rBtn">Crear cuenta</button>
+      </div>
+      <button type="button" class="btn" id="rGoLogin" hidden>Ir a entrar</button>
+    </form>
+  </div>
+</dialog>
 <div id="toast" role="status"></div>
 
 <dialog id="dTeam">
@@ -540,7 +567,7 @@ const initials=n=>n.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
 const SB_URL='https://omcusawoluugpsynclwf.supabase.co',SB_KEY='sb_publishable_tt78fij3F2Q9KYx6d_PKyg_b3qxd62V';
 const sb=supabase.createClient(SB_URL,SB_KEY);
 let S={members:[],areas:[],events:[],tasks:[]},ME=null,areaIds={},eventIds={};
-const canEdit=()=>!!ME&&['admin','editor'].includes(ME.rol);
+const canEdit=()=>!!ME&&['admin','editor','fundador'].includes(ME.rol);
 const member=id=>S.members.find(m=>m.id===id);
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),4500)}
 async function load(){
@@ -880,8 +907,45 @@ $('#fLogin').addEventListener('submit',async e=>{
   $('#lPass').value='';dLogin.close();boot();
 });
 $('#btnOut').onclick=async()=>{await sb.auth.signOut();ME=null;S={members:[],areas:[],events:[],tasks:[]};applyRole();refreshFilters();render();showLogin()};
+/* Registro por invitación: /?registro=<token> */
+const dReg=$('#dReg');let regToken=null;
+dReg.addEventListener('cancel',e=>e.preventDefault());
+function cleanUrl(){const u=new URL(location.href);u.searchParams.delete('registro');history.replaceState(null,'',u.pathname+u.search+u.hash)}
+function regState(kind,email){
+  const body=$('#rBody');body.style.display='none';$('#rGoLogin').hidden=false;
+  if(kind==='bad'){$('#rTitle').textContent='Invitación no válida';$('#rSub').textContent='Este enlace venció o ya fue usado. Pide uno nuevo a quien te invitó.'}
+  if(kind==='sent'){$('#rTitle').textContent='Revisa tu correo';$('#rSub').textContent=`Enviamos un enlace de confirmación a ${email}. Confírmalo y vuelve a entrar con tu contraseña.`}
+}
+async function showRegistro(token){
+  regToken=token;$('#rGoLogin').hidden=true;$('#rBody').style.display='none';
+  if(!dReg.open)dReg.showModal();
+  const{data,error}=await sb.rpc('nave_ver_invitacion',{p_token:token});
+  const inv=data?.[0];
+  if(error||!inv)return regState('bad');
+  $('#rName').value=inv.nombre;$('#rEmail').value=inv.email;
+  $('#rTitle').textContent=`Hola, ${inv.nombre.split(' ')[0]}`;
+  $('#rSub').textContent=`Te invitaron a Nave como ${inv.rol}. Elige una contraseña para crear tu cuenta.`;
+  $('#rBody').style.display='flex';$('#rPass').focus();
+}
+$('#fReg').addEventListener('submit',async e=>{
+  e.preventDefault();const m=$('#rMsg'),b=$('#rBtn'),p1=$('#rPass').value,email=$('#rEmail').value;m.textContent='';
+  if(p1.length<8){m.textContent='La contraseña debe tener al menos 8 caracteres.';return}
+  if(p1!==$('#rPass2').value){m.textContent='Las contraseñas no coinciden.';return}
+  b.disabled=true;
+  const{data,error}=await sb.auth.signUp({email,password:p1,options:{data:{invitacion:regToken},emailRedirectTo:location.origin+'/'}});
+  b.disabled=false;
+  const dup='Este correo ya tiene una cuenta. Entra con tu contraseña.';
+  if(error){m.textContent=/already|registered/i.test(error.message)?dup:'No se pudo crear la cuenta: '+error.message;return}
+  if(data.user?.identities?.length===0){m.textContent=dup;return}
+  cleanUrl();
+  if(data.session){dReg.close();boot()}else regState('sent',email);
+});
+$('#rGoLogin').onclick=()=>{cleanUrl();dReg.close();showLogin()};
 async function boot(){
+  const inv=new URLSearchParams(location.search).get('registro');
   const{data:{session}}=await sb.auth.getSession();
+  if(inv&&!session){showRegistro(inv);return}
+  if(inv)cleanUrl();
   if(!session){showLogin();return}
   try{await load();if(!ME)toast('Tu usuario no tiene perfil en el panel de Nave.')}catch(e){toast('No se pudieron cargar los datos: '+(e.message||e))}
   refreshFilters();applyRole();render();
@@ -919,6 +983,7 @@ function initToroids(){
   requestAnimationFrame(frame);
   if(reduce)addEventListener('resize',()=>cvs.forEach(c=>draw(c,0)));
   dLogin.addEventListener('toggle',()=>cvs.forEach(c=>draw(c,0)));
+  dReg.addEventListener('toggle',()=>cvs.forEach(c=>draw(c,0)));
 }
 $('#footDate').textContent=new Date().toLocaleDateString('es',{month:'long',year:'numeric'}).replace(/^./,c=>c.toUpperCase());
 refreshFilters();render();initToroids();boot();
