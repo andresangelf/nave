@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Matriz Nave MKT</title>
 <meta name="theme-color" content="#112936">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -60,8 +61,10 @@ select.btn{padding-right:28px}
 .top{position:sticky;top:0;z-index:30;background:rgba(241,238,230,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .top-row{display:flex;align-items:center;gap:18px;min-height:48px}
 .brand{display:flex;align-items:center;gap:9px;flex:none}
-.brand img{width:22px;height:22px;border-radius:6px;display:block}
-.brand h1{font-size:14px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.brand h1{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:-.01em;line-height:1}
+.brand .logo{height:15px;width:auto;display:block}
+.brand .sep{width:1px;height:16px;background:#cfcabb}
+.brand .sub{color:var(--muted)}
 .tabs{display:flex;gap:2px;align-self:stretch;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{position:relative;display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;padding:0 11px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;transition:color .18s}
@@ -342,6 +345,7 @@ dialog#dLogin::backdrop,dialog#dReg::backdrop{background:var(--bg);background-im
   .fsel::-webkit-scrollbar{display:none}
   .fsel select{flex:0 0 auto;min-width:130px}
 }
+@media (max-width:480px){.brand .sep,.brand .sub{display:none}}
 @media (max-width:700px){
   .wrap{padding:0 12px}
   .top{position:static;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom:0}
@@ -409,7 +413,7 @@ dialog#dLogin::backdrop,dialog#dReg::backdrop{background:var(--bg);background-im
 <div class="wrap">
 <header class="top">
   <div class="top-row">
-    <div class="brand"><img src="/favicon.svg" alt=""><h1>Matriz Nave MKT</h1></div>
+    <div class="brand"><h1><img class="logo" src="/logo-nave.svg?v=3" alt="Nave" width="78" height="15"><span class="sep" aria-hidden="true"></span><span class="sub">Matriz MKT</span></h1></div>
     <nav class="tabs" role="tablist" id="tabs" aria-label="Vistas">
       <button class="tab" role="tab" data-v="kanban"><i></i>Kanban</button>
       <button class="tab" role="tab" data-v="eisen"><i></i>Eisenhower</button>
