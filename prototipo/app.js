@@ -274,6 +274,12 @@
   function Nav({ ctx, bump }) {
     const { route, go, cart, user, setUser, theme, setTheme, setModal, notify } = ctx;
     const [menu, setMenu] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    useEffect(() => {
+      const on = () => setScrolled(window.scrollY > 4);
+      on(); window.addEventListener('scroll', on, { passive: true });
+      return () => window.removeEventListener('scroll', on);
+    }, []);
     const count = totals(cart).count;
     const section = route.name === 'sala' ? 'salas' : route.name === 'producto' ? 'cafe' : route.name;
     const link = (id, label) => html`<a href=${'#' + id} className="nav-link" aria-current=${section === id ? 'page' : undefined}>${label}</a>`;
@@ -290,14 +296,14 @@
       </div>`}
     </div>`;
     return html`
-      <header className="wrap">
+      <header className=${'appbar' + (scrolled ? ' scrolled' : '')}><div className="wrap">
         <nav className="nav" aria-label="Principal">
           <div><${Logo} /></div>
           <div className="nav-links">${link('salas', 'Salas')}${link('cafe', 'Café')}</div>
           <div className="nav-right">${checkoutBtn()}<button className="btn btn-secondary btn-s" onClick=${() => go('reservas')}>Mis reservas</button>${themeBtn}${avatarBtn}</div>
         </nav>
         <div className="topbar"><${Logo} /><div className="right">${checkoutBtn()}${themeBtn}${avatarBtn}</div></div>
-      </header>`;
+      </div></header>`;
   }
   function TabBar({ ctx }) {
     const { route, go } = ctx;
