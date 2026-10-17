@@ -308,8 +308,9 @@
   function TabBar({ ctx }) {
     const { route, go } = ctx;
     const section = route.name === 'sala' ? 'salas' : route.name === 'producto' ? 'cafe' : route.name;
-    const item = (id, label) => html`<button key=${id} onClick=${() => go(id)} aria-current=${section === id ? 'page' : undefined}><i></i>${label}</button>`;
-    return html`<nav className="tabbar" aria-label="Secciones">${item('inicio', 'Inicio')}${item('salas', 'Salas')}${item('cafe', 'Café')}${item('reservas', 'Reservas')}</nav>`;
+    const T = window.NAVE_TABS;
+    const item = (id, label, ico) => html`<button key=${id} onClick=${() => go(id)} aria-current=${section === id ? 'page' : undefined}><span className="ti" aria-hidden="true" dangerouslySetInnerHTML=${{ __html: T[ico] }}></span>${label}</button>`;
+    return html`<nav className="tabbar" aria-label="Secciones">${item('inicio', 'Inicio', 'inicio')}${item('salas', 'Salas', 'sala')}${item('cafe', 'Café', 'cafe')}${item('reservas', 'Reservas', 'horario')}</nav>`;
   }
 
   /* ---------- Inicio: reloj, próxima salida y tablero ---------- */

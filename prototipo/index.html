@@ -357,10 +357,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   .topbar .logo{height:18px}
   .topbar .right{display:flex;gap:8px;align-items:center}
   .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:1px solid var(--line);padding:10px max(8px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
-  .tabbar button{display:grid;justify-items:center;gap:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--ink-muted)}
-  .tabbar i{width:20px;height:20px;border-radius:50%;background:var(--surface-alt);transition:background-color .2s}
+  .tabbar button{display:grid;justify-items:center;gap:5px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--ink-subtle);position:relative;padding-top:2px;transition:color .2s}
+  .tabbar .ti{width:26px;height:26px;display:block}
+  .tabbar .ti svg{width:100%;height:100%;display:block}
   .tabbar button[aria-current="page"]{color:var(--ink)}
-  .tabbar button[aria-current="page"] i{background:var(--ink)}
+  .tabbar button[aria-current="page"] .ti{color:var(--accent)}
+  .tabbar button::before{content:"";position:absolute;top:-10px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .25s}
+  .tabbar button[aria-current="page"]::before{transform:scale(1)}
   .has-tabbar main.page{padding-bottom:120px}
   .has-mbar main.page{padding-bottom:140px}
   .has-mbar .tabbar{display:none}
