@@ -5,6 +5,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Martian+Mono:wdth,wght@75..112.5,400..700&display=swap">
 <style>
+@font-face{font-family:"Standerd";src:url(fonts/StanderdVF.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Lenia Mono";src:url(fonts/LeniaMono-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Lenia Mono";src:url(fonts/LeniaMono-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Lenia Mono";src:url(fonts/LeniaMono-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Lenia Mono";src:url(fonts/LeniaMono-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Lenia Mono";src:url(fonts/LeniaMono-ExtraBold.woff2) format("woff2");font-weight:800;font-display:swap}
 /* Layout: una sola nave. Contenedor de 1328 px, columnas 840/440, tablero de salidas como pieza central.
    Tokens tomados de la colección de variables "Nave WF" en Figma (modos Nave y Nave Oscuro). */
 :root{
@@ -46,9 +52,6 @@ a{color:inherit}
 img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-
-/* Martian Mono condensada para acercarse al ancho de Lenia Mono */
-.eyebrow,.data,.clock,.clock-sub,.board,.meta span,.demo-hint,.plan-chip,.badge,.spec small,.group-h small,.summary .note,.tabbar button,.mcode{font-stretch:75%}
 
 /* Fondo: logo punteado */
 #dots{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}

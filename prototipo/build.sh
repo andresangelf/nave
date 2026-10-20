@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 rm -rf dist && mkdir -p dist
-cp -r img assets.js dots.js app.js dist/
+cp -r img fonts assets.js dots.js app.js dist/
 {
   printf '<!doctype html>\n<html lang="es">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n</head>\n<body>\n'
   cat index.html
