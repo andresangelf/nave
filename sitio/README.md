@@ -17,18 +17,20 @@ Todo está en `config.js`: audios, texto y enlace del botón CTA (por idioma) y 
 
 | Ruta | Contenido |
 |---|---|
-| `media/nave-1080.mp4` | 1920×1080, 60 fps, 12 MB |
-| `media/nave-720.mp4` | 1280×720, 30 fps, 7 MB |
+| `media/nave-1080.mp4` | 1920×1080, 25 fps, 9 MB |
+| `media/nave-720.mp4` | 1280×720, 25 fps, 5 MB |
 | `media/poster.jpg` | Imagen de portada y vista previa al compartir |
-| `audio/es.mp3`, `audio/en.mp3` | Locuciones (ver `audio/LEEME.md`) |
+| `audio/es.m4a`, `audio/en.m4a` | Locuciones (ver `audio/LEEME.md`) |
 
-Los videos salen de `marca/pelicula-marca/nave-pelicula-2k-120fps.mp4`. Si cambia la película:
+El video sale de `SYSTEM_COMPP.mp4` (1080p, 25 fps, 124,6 s) y el audio del WAV de narración y música. El video del sitio va sin sonido; el audio va aparte para poder cambiar de idioma:
 
 ```bash
-SRC=marca/pelicula-marca/nave-pelicula-2k-120fps.mp4
-ffmpeg -i $SRC -an -vf "fps=60,scale=1920:1080:flags=lanczos" -c:v libx264 -preset medium -crf 25 -pix_fmt yuv420p -movflags +faststart -g 120 sitio/media/nave-1080.mp4
-ffmpeg -i $SRC -an -vf "fps=30,scale=1280:720:flags=lanczos"  -c:v libx264 -preset medium -crf 25 -pix_fmt yuv420p -movflags +faststart -g 60  sitio/media/nave-720.mp4
+ffmpeg -i narracion.wav -c:a aac -b:a 160k -movflags +faststart audio/es.m4a
+ffmpeg -i SYSTEM_COMPP.mp4 -an -c:v libx264 -crf 24 -pix_fmt yuv420p -movflags +faststart -g 50 media/nave-1080.mp4
+ffmpeg -i SYSTEM_COMPP.mp4 -an -vf scale=1280:720:flags=lanczos -c:v libx264 -crf 25 -pix_fmt yuv420p -movflags +faststart -g 50 media/nave-720.mp4
 ```
+
+El audio en inglés debe durar lo mismo y alinearse igual (`audio/en.m4a`).
 
 ## Probar en local
 
@@ -40,4 +42,4 @@ cd sitio && npx http-server -p 8080     # necesita un servidor con soporte de Ra
 
 ## Vercel
 
-`vercel.json` en la raíz ya apunta a `sitio/`. Importar el repo en Vercel y desplegar, sin comando de build.
+Sin comando de build. En `nave-video` el sitio vive en la raíz del repo.

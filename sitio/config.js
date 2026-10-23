@@ -14,8 +14,8 @@ window.NAVE_CONFIG = {
   // Un audio por idioma. Si el archivo no existe, el botón de ese idioma queda desactivado.
   // `desfase` (segundos) mueve el audio respecto al video si hiciera falta afinar la sincronía.
   idiomas: [
-    { id: 'es', etiqueta: 'ES', nombre: 'Español', audio: 'audio/es.mp3', desfase: 0 },
-    { id: 'en', etiqueta: 'EN', nombre: 'English', audio: 'audio/en.mp3', desfase: 0 },
+    { id: 'es', etiqueta: 'ES', nombre: 'Español', audio: 'audio/es.m4a', desfase: 0 },
+    { id: 'en', etiqueta: 'EN', nombre: 'English', audio: 'audio/en.m4a', desfase: 0 },
   ],
   idiomaInicial: 'es',
 
