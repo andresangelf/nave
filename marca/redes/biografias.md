@@ -1,93 +1,71 @@
-# Biografías de redes · Nave Company, Nave Café y Nave Systems
-Voz: «Houston». Serenidad de quien está preparado: frases cortas, claras y precisas, en primera persona del plural, sin signos de exclamación ni frases de hype. Cierre de marca: **Construye a la altura de tus ideas.**
+# Biografías de redes · aspiracionales
+
+Tres marcas, tres voces independientes: cada bio se sostiene sola, sin mencionar a las otras. Tono «Houston»: sereno, cercano, aspiracional. Máximo un emoji por texto.
+
 **Antes de publicar**
-- Dominio `nave.company` tomado de los correos de las tarjetas; confirma el dominio y los enlaces de cada red.
-- Los *handles* no están definidos: no se escribe ninguno aquí.
-- Nave Systems está marcada «por validar» en el brandbook (función y nombre). Su bio es una propuesta.
-- Nave Café: no se incluyen horarios, precios ni dirección exacta porque no están confirmados (decisiones 3 y 6 de la lista de pendientes).
-- Los límites de caracteres son los vigentes de cada plataforma al redactar; revísalos antes de pegar.
-**Lo que Houston no dice:** «¡Síguenos!», «el mejor», «revolucionamos», «soluciones integrales», signos de exclamación, emojis decorativos.
+- Los *handles* no están definidos; no se escribe ninguno.
+- Dominio `nave.company` tomado de los correos de las tarjetas; confírmalo.
+- Nave Systems es «por validar» en el brandbook; su texto es propuesta.
+- Nave Café: sin horarios, precios ni dirección exacta (aún sin confirmar).
 
 ---
 
 ## Nave Company
 
-*Vigente · marca madre (Tech Foundry & Venture Builder)*
+*Vigente*
+
+**Apodos:** Tu equipo en tierra · La forja de ideas · Torre de control
 
 ### Español
 
-**Instagram / Threads** · 149/150
+**Instagram / Threads** · 115/150
 
 ```
-Tech Foundry & Venture Builder.
-Convertimos retos en productos digitales con IA, blockchain y datos.
+Tu equipo en tierra 🚀
+Para las ideas que quieren llegar más lejos.
 Construye a la altura de tus ideas.
 nave.company
 ```
 
-**X** · 155/160
+**X** · 120/160
 
 ```
-Tech Foundry & Venture Builder. Convertimos los retos de una empresa en productos digitales con IA, blockchain y datos. Construye a la altura de tus ideas.
+Tu equipo en tierra. Para quienes imaginan más lejos y quieren ver su idea despegar. Construye a la altura de tus ideas.
 ```
 
-**TikTok** · 69/80
+**TikTok** · 53/80
 
 ```
-Tech Foundry & Venture Builder.
-Construimos a la altura de tus ideas.
+Tu equipo en tierra.
+Para ideas que quieren despegar.
 ```
 
-**LinkedIn · eslogan** · 79/120
+**LinkedIn · eslogan** · 64/120
 
 ```
-Tech Foundry & Venture Builder. Productos digitales con IA, blockchain y datos.
+Tu equipo en tierra para las ideas que quieren llegar más lejos.
 ```
 
-**Facebook · descripción corta** · 209/255
+**Facebook · descripción corta** · 162/255
 
 ```
-Tech Foundry & Venture Builder. Convertimos los retos, recursos y objetivos de una empresa en productos digitales con inteligencia artificial, blockchain y gestión de datos. Construye a la altura de tus ideas.
+Tu equipo en tierra. Acompañamos a quienes imaginan más lejos, desde la primera idea hasta el despegue y lo que viene después. Construye a la altura de tus ideas.
 ```
 
-**WhatsApp Business** · 89/139
+**WhatsApp Business** · 60/139
 
 ```
-Tech Foundry & Venture Builder. Cuéntanos tu reto y te decimos cuál es el siguiente paso.
+Tu equipo en tierra. Cuéntanos qué quieres llevar más lejos.
 ```
 
-**YouTube · descripción** · 519/1000
+**LinkedIn · Acerca de** · 371/2600
 
 ```
-Nave es una Tech Foundry & Venture Builder.
+Tu equipo en tierra.
 
-Convertimos los retos, recursos, necesidades y objetivos de una empresa en productos digitales con un núcleo de inteligencia artificial, blockchain y gestión de datos. Trabajamos en cuatro líneas: co-creación y estrategia, ingeniería con IA y Web3, venture studio y talento, y operación y continuidad.
+Hay ideas que merecen llegar lejos. Lo que a veces falta es el equipo, las herramientas y alguien que ayude a dar el primer paso.
 
-Aquí encontrarás las bitácoras de nuestros fundadores, el podcast de la marca y las demostraciones de lo que construimos.
-
-Construye a la altura de tus ideas.
-nave.company
-```
-
-**LinkedIn · Acerca de** · 1068/2600
-
-```
-Nave es una Tech Foundry & Venture Builder.
-
-Los que sueñan en grande comparten un mismo problema: la distancia entre lo que imaginan y lo que hoy pueden construir. Nosotros creamos las condiciones para que esa ambición encuentre cómo avanzar.
-
-Convertimos los retos, recursos, necesidades y objetivos de una empresa en productos digitales con un núcleo de inteligencia artificial, blockchain y gestión de datos.
-
-Cómo trabajamos
-· Co-creación y estrategia: entendemos el objetivo y definimos el siguiente paso.
-· Ingeniería, IA y Web3: construimos lo que se puede utilizar, probar y mejorar.
-· Venture studio y talento: reunimos el equipo y las herramientas para ejecutar.
-· Operación y continuidad: sostenemos lo construido y preparamos lo que viene.
-
-Con quién trabajamos
-Corporaciones y gobiernos que necesitan modernizarse, y emprendedores, startups y empresas que quieren escalar. Alcance actual: El Salvador, Honduras y Estados Unidos.
-
-Nave Café es nuestro astillero físico en la Colonia Escalón, San Salvador.
+Aquí empiezas con lo que tienes entre manos. Te escuchamos, entendemos hacia dónde quieres ir y construimos contigo el camino, hasta el despegue y lo que viene después.
 
 Construye a la altura de tus ideas.
 nave.company
@@ -95,129 +73,110 @@ nave.company
 
 ### English
 
-**Instagram / Threads** · 142/150
+**Instagram / Threads** · 112/150
 
 ```
-Tech Foundry & Venture Builder.
-Challenges into digital products with AI, blockchain and data.
+Your team on the ground 🚀
+For the ideas that want to go further.
 Build at the height of your ideas.
 nave.company
 ```
 
-**X** · 149/160
+**X** · 126/160
 
 ```
-Tech Foundry & Venture Builder. We turn a company's challenges into digital products with AI, blockchain and data. Build at the height of your ideas.
-```
-
-**LinkedIn · tagline** · 78/120
-
-```
-Tech Foundry & Venture Builder. Digital products with AI, blockchain and data.
+Your team on the ground. For those who imagine further and want to see their idea take off. Build at the height of your ideas.
 ```
 
 ---
 
 ## Nave Café
 
-*Vigente · el astillero físico (Colonia Escalón, San Salvador)*
+*Vigente*
+
+**Apodos:** El astillero de Escalón · Donde se construyen las ideas · Estación de despegue
 
 ### Español
 
-**Instagram / Threads** · 142/150
+**Instagram / Threads** · 75/150
 
 ```
-Café de especialidad y coworking en la Colonia Escalón.
-Un astillero para construir, reparar y mejorar lo que llevas entre manos.
+El astillero de Escalón ☕
+Llega con una idea, sal con un plan.
 San Salvador
 ```
 
-**X** · 150/160
+**X** · 109/160
 
 ```
-Café de especialidad y coworking en la Colonia Escalón, San Salvador. Un astillero de ideas, proyectos y empresas. Construye a la altura de tus ideas.
+El astillero de Escalón. Café, buena compañía y el lugar perfecto para construir lo que sueñas. San Salvador.
 ```
 
-**TikTok** · 64/80
+**TikTok** · 56/80
 
 ```
-Café y coworking en Escalón.
-Un astillero de ideas. San Salvador
+El astillero de Escalón ☕
+Donde las ideas se construyen.
 ```
 
-**Facebook · descripción corta** · 176/255
+**LinkedIn · eslogan** · 81/120
 
 ```
-Café de especialidad, coworking y salas privadas en la Colonia Escalón, San Salvador. Asesoría y herramientas para construir, reparar y mejorar tus ideas, proyectos y empresas.
+Un lugar para construir lo que sueñas. Café y coworking en Escalón, San Salvador.
 ```
 
-**WhatsApp Business** · 98/139
+**Facebook · descripción corta** · 190/255
 
 ```
-Café y coworking en Escalón. Escríbenos para reservar un espacio y te confirmamos fecha y horario.
+El astillero de Escalón. Café, coworking y buena compañía para construir, reparar y mejorar lo que sueñas. Ven con lo que tienes entre manos y vuelve cada vez que quieras llevarlo más lejos.
 ```
 
-**Google Maps · descripción** · 493/750
+**WhatsApp Business** · 59/139
 
 ```
-Nave Café es un astillero de ideas, proyectos y empresas en la Colonia Escalón, San Salvador.
-
-Café de especialidad, coworking y salas privadas, con asesoría especializada y herramientas tecnológicas a la mano. Un lugar para llegar con lo que tienes entre manos, construir, reparar y mejorar, y volver cada vez que quieras llevarlo más lejos.
-
-Puedes trabajar con concentración, reunirte con tu equipo, desarrollar una idea o resolver un reto empresarial. Reserva tu espacio desde nuestra web.
+El astillero de Escalón. Escríbenos para reservar tu lugar.
 ```
 
-**YouTube · descripción** · 262/1000
+**Google Maps · descripción** · 393/750
 
 ```
-Nave Café es un astillero de ideas, proyectos y empresas: café y coworking en la Colonia Escalón, San Salvador.
+El astillero de Escalón, en San Salvador.
 
-Aquí encontrarás las charlas, los encuentros y los momentos de lo que se construye en la barra y en la Cubierta.
+Café de especialidad, coworking y buena compañía. Un lugar para llegar con lo que tienes entre manos, construir, reparar y mejorar, y volver cada vez que quieras llevarlo más lejos.
 
-Construye a la altura de tus ideas.
+La música, el sabor del café, la luz que entra por la ventana: las condiciones perfectas para que los retos vuelvan a emocionarte.
+
+Reserva tu lugar desde nuestra web.
 ```
 
-**LinkedIn · eslogan** · 87/120
+**LinkedIn · Acerca de** · 447/2600
 
 ```
-Café de especialidad y coworking en Escalón, San Salvador. Un astillero para construir.
-```
+El astillero de Escalón.
 
-**LinkedIn · Acerca de** · 625/2600
+Un lugar para construir lo que sueñas. Café de especialidad, coworking y buena compañía en la Colonia Escalón, San Salvador.
 
-```
-Nave Café es un astillero de ideas, proyectos y empresas.
+La mesa donde descargas la idea que llevabas semanas pensando. La conversación que te muestra la pieza que faltaba. La luz, la música y el café que te hacen olvidar el reloj.
 
-Café y coworking en la Colonia Escalón, San Salvador. Un lugar para construir, reparar y mejorar aquello con lo que buscas llegar más lejos.
-
-Qué encuentras
-· Café de especialidad.
-· Coworking y salas privadas.
-· Asesoría especializada.
-· Herramientas tecnológicas.
-
-Para quién
-Para quien tiene una idea, un reto o una ambición y necesita las condiciones para trabajarla: concentración, un equipo con quien reunirse, la herramienta correcta y alguien que acompañe.
-
-Nave Café es parte de Nave, una Tech Foundry & Venture Builder.
+Ven con lo que tienes entre manos. Vuelve cada vez que quieras llevarlo más lejos.
 
 Construye a la altura de tus ideas.
 ```
 
 ### English
 
-**Instagram / Threads** · 133/150
+**Instagram / Threads** · 78/150
 
 ```
-Specialty coffee and coworking in Colonia Escalón.
-A shipyard to build, repair and improve what you carry in your hands.
+The shipyard of Escalón ☕
+Arrive with an idea, leave with a plan.
 San Salvador
 ```
 
-**X** · 145/160
+**X** · 109/160
 
 ```
-Specialty coffee and coworking in Colonia Escalón, San Salvador. A shipyard for ideas, projects and companies. Build at the height of your ideas.
+The shipyard of Escalón. Coffee, good company and the perfect place to build what you dream of. San Salvador.
 ```
 
 ---
@@ -226,73 +185,73 @@ Specialty coffee and coworking in Colonia Escalón, San Salvador. A shipyard for
 
 *POR VALIDAR · función y nombre aún no confirmados. No publicar hasta confirmar.*
 
+**Apodos:** La sala de control · Lo que te mantiene en órbita · Mission control
+
 ### Español
 
-**Instagram / Threads** · 132/150
+**Instagram / Threads** · 100/150
 
 ```
-La tecnología y la operación de Nave.
-Sistemas con IA, nube y datos que sostienen lo construido.
+La sala de control 🛰️
+Para que lo que construyes siga en órbita.
 Construye a la altura de tus ideas.
 ```
 
-**X** · 125/160
+**X** · 108/160
 
 ```
-La capa de tecnología y operación de Nave. Sistemas con IA, nube y datos que sostienen lo construido y preparan lo que viene.
+La sala de control. Lo que mantiene tu proyecto en órbita, hoy y mañana. Construye a la altura de tus ideas.
 ```
 
-**TikTok** · 69/80
+**TikTok** · 46/80
 
 ```
-Tecnología y operación de Nave.
-Sistemas que sostienen lo construido.
+La sala de control.
+Para mantenerte en órbita.
 ```
 
-**LinkedIn · eslogan** · 90/120
+**LinkedIn · eslogan** · 65/120
 
 ```
-Tecnología y operación de Nave. Sistemas con IA, nube y datos para sostener lo construido.
+La sala de control de lo que construyes. Para que siga en órbita.
 ```
 
-**Facebook · descripción corta** · 186/255
+**Facebook · descripción corta** · 140/255
 
 ```
-Tecnología y operación de Nave. Sistemas con inteligencia artificial, nube y datos que cuidan lo construido: operación, seguimiento y mejora continua. Construye a la altura de tus ideas.
+La sala de control de lo que construyes. Cuidamos que tu proyecto siga en órbita, hoy y en lo que viene. Construye a la altura de tus ideas.
 ```
 
-**WhatsApp Business** · 90/139
+**WhatsApp Business** · 61/139
 
 ```
-Tecnología y operación de Nave. Cuéntanos qué necesitas sostener y te decimos cómo seguir.
+La sala de control. Cuéntanos qué quieres mantener en órbita.
 ```
 
-**LinkedIn · Acerca de** · 439/2600
+**LinkedIn · Acerca de** · 242/2600
 
 ```
-Nave Systems es la capa de tecnología y operación de Nave.
+La sala de control.
 
-Nave construye productos digitales; Nave Systems cuida que sigan funcionando y evolucionando. Operación, seguimiento, aprendizaje y mejora continua, con inteligencia artificial, nube y datos.
+Construir es el comienzo. Lo que viene después es cuidar, aprender y seguir mejorando.
 
-Sostener el avance es una de las tres promesas de Nave: cuidar y hacer evolucionar lo construido.
-
-Parte de Nave, una Tech Foundry & Venture Builder.
+Aquí estamos para que lo que construyes siga en órbita: en marcha hoy y listo para lo que viene.
 
 Construye a la altura de tus ideas.
 ```
 
 ### English
 
-**Instagram / Threads** · 133/150
+**Instagram / Threads** · 87/150
 
 ```
-The technology and operations of Nave.
-Systems with AI, cloud and data that sustain what we build.
+Mission control 🛰️
+So what you build stays in orbit.
 Build at the height of your ideas.
 ```
 
-**LinkedIn · tagline** · 93/120
+**LinkedIn · tagline** · 57/120
 
 ```
-Nave's technology and operations. Systems with AI, cloud and data that sustain what is built.
+Mission control for what you build. So it stays in orbit.
 ```
