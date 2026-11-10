@@ -86,6 +86,29 @@ input[type=number]{font-family:var(--mono);font-size:12px}
 .recipes span{font-size:11.5px;color:var(--tx-3)}
 textarea#manual{width:100%;height:120px;background:var(--ui);border:1px solid var(--line-2);border-radius:6px;font-family:var(--mono);font-size:10.5px;padding:8px}
 .empty{color:var(--tx-3);font-size:13px;padding:12px 16px}
+.btn[disabled]{opacity:.38;pointer-events:none}
+.row textarea{width:100%;min-height:78px;resize:vertical;background:var(--ui);border:1px solid var(--line-2);border-radius:6px;padding:6px 8px;font-size:13px;line-height:1.35}
+.seg.g3{display:grid;grid-template-columns:repeat(3,38px);gap:4px}
+.seg.g3 button{padding:5px 0;text-align:center;font-size:12px}
+.stage canvas{touch-action:none}
+.dochk{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.pre{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.pre li{display:grid;grid-template-columns:54px minmax(0,1fr);gap:8px;align-items:start;font-size:12.5px;line-height:1.35}
+.pre b{font-family:var(--mono);font-size:9.5px;font-weight:500;--wg:500;letter-spacing:.08em;text-transform:uppercase;padding:2px 0;border-radius:999px;text-align:center;border:1px solid var(--line-2);color:var(--tx-2)}
+.pre li.aw b{background:var(--ambar);border-color:var(--ambar);color:var(--ui)}
+.pre small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--tx-3)}
+.cats{margin-bottom:8px}
+details.guide{padding:0}
+details.guide summary{cursor:pointer;padding:14px 16px;font-family:var(--mono);font-size:11px;font-weight:500;--wg:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ambar)}
+details.guide .gb{padding:0 16px 14px}
+.gc{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:center;width:100%;text-align:left;padding:5px 6px;border:1px solid transparent;border-radius:6px;background:transparent;cursor:pointer}
+.gc:hover{background:rgba(255,245,238,.05);border-color:var(--line)}
+.gc i{width:22px;height:22px;border-radius:50%;border:1px solid var(--line-2)}
+.gc b{display:block;font-size:13px;font-weight:600;--wg:600}
+.gc span{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--tx-3)}
+#g-man{margin-top:6px}
+.rules{margin:10px 0 0;padding-left:18px;font-size:12.5px;color:var(--tx-2)}
+.rules li{margin:3px 0}
 @media (max-width:980px){
   body{overflow:auto}
   .app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto auto;height:auto}
@@ -109,6 +132,8 @@ textarea#manual{width:100%;height:120px;background:var(--ui);border:1px solid va
   <header>
     <div class="brand"><svg viewBox="0 0 396.77 396.77" aria-hidden="true"><path fill="#FFF5EE" d="M381.17 121.15C371.17 97.52 356.88 76.31 338.66 58.1C320.44 39.89 299.24 25.59 275.61 15.6C251.14 5.24001 225.150 0 198.38 0C171.61 0 145.63 5.24001 121.15 15.6C97.53 25.59 76.31 39.89 58.11 58.1C39.89 76.32 25.6 97.52 15.6 121.15C5.24998 145.62 0 171.61 0 198.38C0 209.11 0.849999 219.72 2.53 230.15C5.04 245.74 9.39998 260.95 15.6 275.61C17.91 281.06 20.44 286.38 23.2 291.56C31.56 307.28 41.98 321.74 54.33 334.77C56.33 336.88 59.69 336.91 61.75 334.86L80.32 316.29L80.39 316.37L194.72 202.04C196.75 200 200.03 200 202.06 202.04L297.63 297.6C290.44 304.79 282.61 311.1 274.27 316.48C265.93 321.87 257.08 326.32 247.84 329.78C232.25 335.65 215.56 338.71 198.39 338.71C182.33 338.71 166.68 336.03 151.97 330.89C150.1 330.23 148 330.71 146.6 332.12L110.22 368.49C107.7 371.02 108.41 375.28 111.62 376.84C114.75 378.36 117.93 379.8 121.15 381.17C145.63 391.52 171.61 396.77 198.38 396.77C225.15 396.77 251.13 391.52 275.61 381.17C281.07 378.86 286.4 376.32 291.6 373.55C308.89 364.36 324.66 352.67 338.66 338.67L338.75 338.58C351.78 325.53 362.81 310.94 371.68 295.04C372.82 293 372.47 290.47 370.83 288.83L357.37 275.38L357.45 275.3L329.59 247.45L206.57 124.43C202.06 119.92 194.75 119.92 190.24 124.43L112.39 202.28L72.86 241.82C70.09 244.58 65.36 243.4 64.22 239.66C60.18 226.46 58.09 212.59 58.09 198.39C58.09 189.5 58.91 180.74 60.51 172.19C65.67 144.69 78.96 119.38 99.18 99.16C119.4 78.94 144.7 65.65 172.21 60.49C180.76 58.89 189.52 58.07 198.41 58.07C207.3 58.07 216.06 58.89 224.61 60.49C252.11 65.66 277.42 78.94 297.64 99.16C317.47 119 330.64 143.73 336.01 170.64C336.21 171.65 336.7 172.58 337.43 173.31L386.85 222.73C389.95 225.83 395.22 223.93 395.68 219.58C396.42 212.58 396.79 205.51 396.79 198.39C396.79 171.63 391.550 145.64 381.2 121.16L381.17 121.15Z"/></svg>Estudio de Trama <span class="lab" style="margin-left:4px">Nave</span></div>
     <div class="sp"></div>
+    <button class="btn" id="b-undo" type="button" title="Deshacer (Ctrl/Cmd + Z)" disabled>Deshacer</button>
+    <button class="btn" id="b-redo" type="button" title="Rehacer (Ctrl/Cmd + Mayús + Z)" disabled>Rehacer</button>
     <button class="btn" id="b-open" type="button">Abrir receta</button>
     <button class="btn" id="b-save" type="button">Guardar receta</button>
     <button class="btn" id="b-png" type="button">PNG</button>
@@ -125,6 +150,8 @@ textarea#manual{width:100%;height:120px;background:var(--ui);border:1px solid va
       <div class="row two" id="d-custom" hidden><label>Medida px</label><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><input type="number" id="d-w" min="200" max="6000" aria-label="Ancho"><input type="number" id="d-h" min="200" max="6000" aria-label="Alto"></div></div>
       <div class="row two"><label>Fondo</label><div class="pal" id="d-bg"></div></div>
       <label class="check"><input type="checkbox" id="d-grid"> Ver retícula M (lado corto ÷ 20)</label>
+      <label class="check"><input type="checkbox" id="d-nobg"> Exportar sin fondo</label>
+      <div class="dochk"><button class="btn sm" id="b-inv" type="button">Invertir claro ↔ oscuro</button></div>
     </div>
     <div class="sec" style="padding-bottom:6px">
       <h3>Capas</h3>
@@ -135,14 +162,33 @@ textarea#manual{width:100%;height:120px;background:var(--ui);border:1px solid va
         <button class="btn sm" data-add="grafico" type="button">+ Gráfico</button>
         <button class="btn sm" data-add="marca" type="button">+ Logotipo</button>
         <button class="btn sm" data-add="soporte" type="button">+ Soporte</button>
+        <button class="btn sm" data-add="texto" type="button">+ Texto</button>
+        <button class="btn sm" data-add="matriz" type="button">+ Cifras</button>
+        <button class="btn sm" data-add="trazo" type="button">+ Trayectoria</button>
+        <button class="btn sm" data-add="marco" type="button">+ Marco</button>
+        <button class="btn sm" data-add="luz" type="button">+ Resplandor</button>
       </div>
     </div>
     <ul class="layers" id="layers" aria-label="Lista de capas"></ul>
     <div class="sec" style="border-top:1px solid var(--line)">
+      <h3>Pre-vuelo</h3>
+      <ul class="pre" id="pre" aria-live="polite"></ul>
+      <p class="hint">Se mide sobre una vista de 200 px, sin soporte ni resplandores.</p>
+    </div>
+    <div class="sec" style="border-top:1px solid var(--line)">
       <h3>Recetas de la casa</h3>
+      <div class="seg cats" id="r-cat" role="group" aria-label="Categoría de recetas"></div>
       <div class="recipes" id="recipes"></div>
       <p class="hint">Una receta guarda capas y ajustes en JSON. Así cualquier persona del equipo reproduce la misma trama con otra imagen.</p>
     </div>
+    <details class="sec guide" id="guide">
+      <summary>Guía rápida de marca</summary>
+      <div class="gb">
+        <div id="g-colors"></div>
+        <input type="text" id="g-man" readonly hidden aria-label="Código de color para copiar a mano">
+        <ol class="rules" id="g-rules"></ol>
+      </div>
+    </details>
   </aside>
 
   <main class="stage" id="stage" aria-label="Lienzo">
@@ -167,7 +213,7 @@ const C = {crema:'#FFF5EE', niebla:'#D7E1E2', espacio:'#012436', tueste:'#210A05
 const NAMES = {crema:'Crema', niebla:'Niebla', espacio:'Espacio', tueste:'Tueste', ignicion:'Ignición', ambar:'Ámbar', acero:'Acero', petroleo:'Petróleo', senal:'Señal', blanco:'Blanco'};
 const FORMATS = [
   ['post', 'Post 1080 × 1350', 1080, 1350], ['cuadrado', 'Cuadrado 1080 × 1080', 1080, 1080], ['historia', 'Historia 1080 × 1920', 1080, 1920],
-  ['pantalla', 'Pantalla 1920 × 1080', 1920, 1080], ['carta', 'Carta 216 × 279 mm (2550 × 3300)', 2550, 3300], ['tarjeta', 'Tarjeta 89 × 51 mm (1051 × 602)', 1051, 602],
+  ['pantalla', 'Pantalla 1920 × 1080', 1920, 1080], ['carta', 'Carta 216 × 279 mm (2550 × 3300)', 2550, 3300], ['tarjeta', 'Tarjeta 89 × 51 mm (1051 × 602)', 1051, 602], ['tarjetav', 'Tarjeta vertical 51 × 89 mm (602 × 1051)', 602, 1051],
   ['senal', 'Señal 400 × 600 mm (2362 × 3543)', 2362, 3543], ['linkedin', 'Portada LinkedIn 1584 × 396', 1584, 396], ['libre', 'Medida libre', 0, 0],
 ];
 const $ = (s, r = document) => r.querySelector(s);
@@ -181,9 +227,10 @@ const LKW = LOCK.filter(p => p.cls === 'w'), LKALL = LOCK;
 
 /* ——— Estado ——— */
 const IMAGES = new Map();   // id de imagen → {img, src(dataURL), name}
-const doc = { fmt: 'post', w: 1080, h: 1350, bg: 'espacio', grid: false, layers: [], sel: null };
+const PK = { texto: 'Texto', matriz: 'Cifras de puntos', trazo: 'Trayectoria', marco: 'Marco de lectura', luz: 'Resplandor' };
+const doc = { fmt: 'post', w: 1080, h: 1350, bg: 'espacio', grid: false, nobg: false, layers: [], sel: null };
 const defaults = (kind) => ({
-  id: uid(), kind, visible: true, name: { imagen: 'Imagen', simbolo: 'Símbolo', forma: 'Forma', marca: 'Logotipo', soporte: 'Soporte', grafico: 'Gráfico' }[kind],
+  id: uid(), kind, visible: true, name: { imagen: 'Imagen', simbolo: 'Símbolo', forma: 'Forma', marca: 'Logotipo', soporte: 'Soporte', grafico: 'Gráfico', ...PK }[kind],
   // fuente
   image: null, shape: 'esfera', angle: kind === 'grafico' ? 0 : 90, lockup: 'naveP',
   // encuadre de la fuente
@@ -193,19 +240,24 @@ const defaults = (kind) => ({
   // tono
   tone: kind === 'imagen' ? 'sombras' : 'luces', mode: 'tamano', min: kind === 'grafico' ? 20 : 0, max: kind === 'imagen' ? 92 : kind === 'grafico' ? 56 : 30, gamma: 1, contrast: 0, cut: 4,
   // presión
-  lens: 0, lx: .62, ly: .4, fade: 0, fadeDir: 'arriba',
+  lens: 0, lx: kind === 'luz' ? .8 : .62, ly: kind === 'luz' ? .7 : .4, fade: 0, fadeDir: 'arriba',
   // máscara y color
-  mask: 'ninguna', color: kind === 'imagen' ? 'crema' : 'ignicion', opacity: 100, blend: 'normal',
+  mask: 'ninguna', color: kind === 'imagen' || kind === 'texto' || kind === 'matriz' || kind === 'trazo' || kind === 'marco' ? 'crema' : 'ignicion', opacity: kind === 'luz' ? 55 : 100, blend: 'normal',
   // gráfico
-  gfam: 'cadena', gen: 'presion', inten: 50, data: '', hl: 0, labels: false, sides: 6, txt: 'NAVE', fill: 'relleno', grad: 'plano', base: 35, colA: 'ignicion', ign: false, clip: false, gw: 100, gh: 100,
+  gfam: 'cadena', gen: 'presion', inten: 50, data: '', hl: 0, labels: false, sides: 6, txt: kind === 'texto' ? 'Construye a la altura\nde tus ideas.' : kind === 'matriz' ? '20' : 'NAVE', fill: 'relleno', grad: 'plano', base: kind === 'trazo' ? 45 : 35, colA: kind === 'marco' ? 'ambar' : 'ignicion', ign: false, clip: false, gw: 100, gh: 100,
   // logotipo
   w: 50, colW: 'crema', colC: 'ambar',
   // soporte
   sGrid: true, sMargin: true, sMarks: 6, sCrop: true, sLabels: true, sSafe: true, sBleed: true, sOrbit: false, colLine: 'crema', colMark: 'ambar', lineOp: 12,
+  // composición: texto, cifras de puntos, trayectoria, marco de lectura y resplandor
+  tstyle: 'titulo', tsz: 100, tw: 100, al: 'izq', pos: 'ml', up: false, brk: false, vert: false, hll: 0,
+  mc: 3.1, md: 76, mlg: 2.5, zig: false, lam: false, mhl: 0,
+  x1: 20, y1: 75, x2: 80, y2: 22, curv: 30, tstep: 20, tdot: 2.4, tpath: true, fu: 100, fr: 14, rn: 3, tri: false,
+  mEt: '', mCod: '', mPieL: '', mPieR: '', mVert: '', mCruces: false, mCol: false, mFil: false, mAv: 0, mAvI: 0, gr: 30,
   seed: Math.floor(Math.random() * 1000),
 });
 /* ——— Soporte: primitivas a partir del formato (una sola fuente para lienzo y SVG) ——— */
-const PRINT = { carta: 1, tarjeta: 1, senal: 1 };
+const PRINT = { carta: 1, tarjeta: 1, tarjetav: 1, senal: 1 };
 function support(l) {
   const W = doc.w, H = doc.h, S = Math.min(W, H), M = S / 20, m = 2 * M, lw = Math.max(1, S / 1080), out = [];
   const cols = Math.floor((W - 2 * m) / M + 1e-6), rows = Math.floor((H - 2 * m) / M + 1e-6), x0 = (W - cols * M) / 2, y0 = (H - rows * M) / 2;
@@ -261,6 +313,175 @@ function supportSVG(l) {
   return Object.entries(groups).map(([g, es]) => `<g id="${esc(g)}">${es.join('')}</g>`).join('');
 }
 const L = () => doc.layers.find(l => l.id === doc.sel);
+
+/* ——— Composición: texto, cifras de puntos, trayectoria, marco de lectura y resplandor ———
+   Cada capa produce una lista de primitivas (line, circle, plus, pts, text, glow) que dibujan igual el lienzo y el SVG. */
+const SANS = '"Standerd","Standerd Nave","Inter Tight","Helvetica Neue",Arial,sans-serif';
+const SVGF = { sans: "'Standerd','Standerd Nave','Inter Tight','Helvetica Neue',Arial,sans-serif", mono: "'Lenia Mono','JetBrains Mono',monospace" };
+const famOf = (f) => f === 'mono' ? MONOF : SANS;
+// estilo: tamaño % del lado corto, peso, interlínea, tracking (em), familia, mayúsculas
+const TS = { display: [14.8, 700, .92, -.03, 'sans'], titulo: [8.9, 700, 1, -.02, 'sans'], subtitulo: [3.7, 600, 1.16, -.01, 'sans'], cuerpo: [2.4, 400, 1.45, 0, 'sans'], etiqueta: [1.7, 500, 1.2, .08, 'mono', 1], cifra: [4.4, 500, 1.15, .04, 'mono', 1] };
+const TSN = [['display', 'Display'], ['titulo', 'Título'], ['subtitulo', 'Subtítulo'], ['cuerpo', 'Cuerpo'], ['etiqueta', 'Etiqueta'], ['cifra', 'Cifra']];
+const mctx = document.createElement('canvas').getContext('2d');
+function textW(s, size, wt, f, ls) {
+  mctx.font = `${wt} ${size}px ${famOf(f)}`;
+  if ('letterSpacing' in mctx) { mctx.letterSpacing = ls + 'px'; return Math.max(0, mctx.measureText(s).width - (s ? ls : 0)); }
+  return mctx.measureText(s).width + ls * Math.max(0, s.length - 1);
+}
+function wrapLines(par, maxW, mw) {
+  const out = []; let cur = '';
+  for (const w of par.split(/ +/).filter(Boolean)) { const t = cur ? cur + ' ' + w : w; if (cur && mw(t) > maxW) { out.push(cur); cur = w; } else cur = t; }
+  out.push(cur); return out;
+}
+// Caja de lectura: margen 64·k; en historias, la zona segura (250 px arriba y abajo sobre 1920).
+function frameBox() {
+  const W = doc.w, H = doc.h, S = Math.min(W, H), k = S / 1080, m = 64 * k, y0 = doc.fmt === 'historia' ? H * 250 / 1920 : m;
+  return { W, H, S, k, m, x0: m, x1: W - m, y0, y1: H - y0 };
+}
+// Anclaje: vertical t|m|b + horizontal l|c|r; devuelve la esquina superior izquierda del bloque w × h.
+function place(l, B, w, h) {
+  const p = l.pos || 'ml', v = p[0], hz = p[1];
+  return [(hz === 'l' ? B.x0 : hz === 'c' ? (B.x0 + B.x1 - w) / 2 : B.x1 - w) + l.ox / 100 * B.W, (v === 't' ? B.y0 : v === 'm' ? (B.y0 + B.y1 - h) / 2 : B.y1 - h) + l.oy / 100 * B.H];
+}
+const GL = Object.fromEntries(Object.entries({
+  '0': '01110 10001 10001 10001 10001 10001 01110', '1': '00100 01100 00100 00100 00100 00100 01110', '2': '01110 10001 00001 00010 00100 01000 11111', '3': '11110 00001 00001 01110 00001 00001 11110',
+  '4': '00010 00110 01010 10010 11111 00010 00010', '5': '11111 10000 11110 00001 00001 10001 01110', '6': '00110 01000 10000 11110 10001 10001 01110', '7': '11111 00001 00010 00100 01000 01000 01000',
+  '8': '01110 10001 10001 01110 10001 10001 01110', '9': '01110 10001 10001 01111 00001 00010 01100',
+  A: '01110 10001 10001 11111 10001 10001 10001', B: '11110 10001 10001 11110 10001 10001 11110', C: '01110 10001 10000 10000 10000 10001 01110', D: '11110 10001 10001 10001 10001 10001 11110',
+  E: '11111 10000 10000 11110 10000 10000 11111', F: '11111 10000 10000 11110 10000 10000 10000', G: '01110 10001 10000 10111 10001 10001 01111', H: '10001 10001 10001 11111 10001 10001 10001',
+  I: '01110 00100 00100 00100 00100 00100 01110', J: '00111 00010 00010 00010 00010 10010 01100', K: '10001 10010 10100 11000 10100 10010 10001', L: '10000 10000 10000 10000 10000 10000 11111',
+  M: '10001 11011 10101 10101 10001 10001 10001', N: '10001 11001 10101 10011 10001 10001 10001', O: '01110 10001 10001 10001 10001 10001 01110', P: '11110 10001 10001 11110 10000 10000 10000',
+  Q: '01110 10001 10001 10001 10101 10010 01101', R: '11110 10001 10001 11110 10100 10010 10001', S: '01111 10000 10000 01110 00001 00001 11110', T: '11111 00100 00100 00100 00100 00100 00100',
+  U: '10001 10001 10001 10001 10001 10001 01110', V: '10001 10001 10001 10001 10001 01010 00100', W: '10001 10001 10001 10101 10101 11011 10001', X: '10001 10001 01010 00100 01010 10001 10001',
+  Y: '10001 10001 01010 00100 00100 00100 00100', Z: '11111 00001 00010 00100 01000 10000 11111', 'Λ': '00100 00100 01010 01010 10001 10001 10001',
+  '–': '00000 00000 00000 11111 00000 00000 00000', '-': '00000 00000 00000 01110 00000 00000 00000', '.': '00000 00000 00000 00000 00000 00000 00100', ':': '00000 00100 00000 00000 00000 00100 00000',
+  '·': '00000 00000 00000 00100 00000 00000 00000', '/': '00001 00001 00010 00100 01000 10000 10000', '#': '01010 01010 11111 01010 11111 01010 01010', '+': '00000 00100 00100 11111 00100 00100 00000',
+  '?': '01110 10001 00001 00010 00100 00000 00100', '¿': '00100 00000 00100 01000 10000 10001 01110', '!': '00100 00100 00100 00100 00100 00000 00100', '%': '11001 11001 00010 00100 01000 10011 10011',
+}).map(([k, v]) => [k, v.split(' ')]));
+const MK = { acu: ['00010', '00100'], til: ['01100', '10011'] };
+const ACC = { 'Á': ['A', 'acu'], 'É': ['E', 'acu'], 'Í': ['I', 'acu'], 'Ó': ['O', 'acu'], 'Ú': ['U', 'acu'], 'Ñ': ['N', 'til'] };
+const cOf = (v) => C[v] || v;
+
+function primsTexto(l) {
+  const B = frameBox(), st = TS[l.tstyle] || TS.titulo, size = B.S * st[0] / 100 * l.tsz / 100, f = st[4], wt = st[1], ls = st[3] * size, lh = st[2] * size, up = l.up || st[5];
+  const maxW = Math.max(size, ((l.vert ? B.y1 - B.y0 : B.x1 - B.x0)) * l.tw / 100);
+  const pars = String(l.txt || '').split('\n').map((p, i) => { if (up) p = p.toUpperCase(); return i === 0 && l.brk && p.trim() ? `[ ${p.trim()} ]` : p; });
+  const mw = (s) => textW(s, size, wt, f, ls), lines = pars.flatMap(p => wrapLines(p, maxW, mw)).map(s => ({ s, w: mw(s) }));
+  const bw = Math.max(1, ...lines.map(q => q.w)), bh = lines.length * lh, [bx, by] = l.vert ? place(l, B, bh, bw) : place(l, B, bw, bh), out = [];
+  lines.forEach((q, i) => {
+    if (!q.s) return;
+    const a = l.al === 'centro' ? (bw - q.w) / 2 : l.al === 'der' ? bw - q.w : 0, yb = (i + .5) * lh + .36 * size, c = i + 1 === Math.round(l.hll) ? cOf(l.colA) : cOf(l.color);
+    out.push(l.vert ? { t: 'text', x: bx + yb, y: by + bw - a, rot: -90, s: size, c, o: 1, txt: q.s, f, wt, ls } : { t: 'text', x: bx + a, y: by + yb, rot: 0, s: size, c, o: 1, txt: q.s, f, wt, ls });
+  });
+  return out;
+}
+function primsMatriz(l) {
+  const B = frameBox(), cell = B.S * l.mc / 100, r = cell * l.md / 200;
+  const rows = String(l.txt || '').toUpperCase().split('\n').map(s => [...s.replace(/\s+$/, '')].map(ch => {
+    ch = ({ '—': '–', '−': '–' })[ch] || ch; let g = ch, mark = null; if (ACC[ch]) [g, mark] = ACC[ch]; if (g === 'A' && l.lam) g = 'Λ';
+    return { g: GL[g], mark, sp: !GL[g] };
+  }));
+  const adv = (q) => q.sp ? 3 : 6, cw = rows.map(g => g.length ? g.reduce((a, q) => a + adv(q), 0) - 1 : 0);
+  const acc = rows.some(g => g.some(q => q.mark)), pad = acc ? 3 : 0, gap = acc ? Math.max(l.mlg, 3.5) : l.mlg, n = rows.length;
+  const bw = l.zig ? Math.max((B.x1 - B.x0) * l.tw / 100, Math.max(...cw) * cell) : Math.max(1, ...cw) * cell, bh = (pad + n * 7 + (n - 1) * gap) * cell, [bx, by] = place(l, B, bw, bh), main = [], hl = [];
+  rows.forEach((g, i) => {
+    const lw = cw[i] * cell, off = l.zig ? (i % 2 ? bw - lw : 0) : l.al === 'centro' ? (bw - lw) / 2 : l.al === 'der' ? bw - lw : 0, top = pad + i * (7 + gap), dst = i + 1 === Math.round(l.mhl) ? hl : main;
+    let cx = 0;
+    for (const q of g) {
+      if (!q.sp) {
+        const put = (row, ry) => { for (let c = 0; c < 5; c++) if (row[c] === '1') dst.push([bx + off + (cx + c + .5) * cell, by + (top + ry + .5) * cell, r]); };
+        q.g.forEach(put); if (q.mark) MK[q.mark].forEach((row, ri) => put(row, ri - 3));
+      }
+      cx += adv(q);
+    }
+  });
+  return [{ t: 'pts', pts: main, c: cOf(l.color), o: 1, dot: l.dot }, { t: 'pts', pts: hl, c: cOf(l.colA), o: 1, dot: l.dot }];
+}
+function primsTrazo(l) {
+  const B = frameBox(), { W, H, k } = B, ax = l.x1 / 100 * W, ay = l.y1 / 100 * H, bx = l.x2 / 100 * W, by = l.y2 / 100 * H, dx = bx - ax, dy = by - ay;
+  const qx = (ax + bx) / 2 - dy * l.curv / 200, qy = (ay + by) / 2 + dx * l.curv / 200, N = 300, P = [], cum = [0];
+  for (let i = 0; i <= N; i++) { const t = i / N, u = 1 - t; P.push([u * u * ax + 2 * u * t * qx + t * t * bx, u * u * ay + 2 * u * t * qy + t * t * by]); if (i) cum.push(cum[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1])); }
+  const total = cum[N] || 1, at = (s) => { s = clamp(s, 0, total); let lo = 0, hi = N; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (cum[m] <= s) lo = m; else hi = m; } const f = (s - cum[lo]) / ((cum[hi] - cum[lo]) || 1); return [P[lo][0] + (P[hi][0] - P[lo][0]) * f, P[lo][1] + (P[hi][1] - P[lo][1]) * f]; };
+  const step = Math.max(3, l.tstep * k), out = [], path = [], ink = cOf(l.color), fr = l.fr * k, rn = Math.round(l.rn);
+  if (l.tpath) for (let s = 0; s <= total + 1e-6; s += step) { const [x, y] = at(s); path.push([x, y, l.tdot * k]); }
+  out.push({ t: 'pts', pts: path, c: ink, o: l.base / 100, dot: l.dot });
+  const [fx, fy] = at(total * l.fu / 100);
+  for (let i = 0; i < rn; i++) out.push({ t: 'circle', cx: fx, cy: fy, r: fr + (i + 1) * fr * .9, c: cOf(l.colC), o: .85 * (1 - i / rn), w: 1.6 * k });
+  if (l.tri) { const sp = Math.max(10 * k, l.tstep * k * .6), tp = []; for (let j = 0; j < 3; j++) for (let i = 0; i <= j; i++) tp.push([fx + (i - j / 2) * sp, fy + fr * 1.35 + sp + j * sp * .87, l.tdot * k]); out.push({ t: 'pts', pts: tp, c: cOf(l.colC), o: 1, dot: l.dot }); }
+  out.push({ t: 'pts', pts: [[fx, fy, fr]], c: cOf(l.colA), o: 1, dot: 'circulo' });
+  return out;
+}
+function primsMarco(l) {
+  const B = frameBox(), { W, H, S, k, m, x0, x1, y0, y1 } = B, size = S * 1.7 / 100 * l.tsz / 100, ls = .08 * size, ink = cOf(l.color), acc = cOf(l.colA), out = [], story = doc.fmt === 'historia';
+  const T = (txt, x, y, c, al) => { txt = String(txt).toUpperCase(); const w = textW(txt, size, 500, 'mono', ls); out.push({ t: 'text', x: x - (al === 'r' ? w : al === 'c' ? w / 2 : 0), y, rot: 0, s: size, c, o: 1, txt, f: 'mono', wt: 500, ls }); };
+  const hy = y0 + .74 * size, fy = y1, prog = l.mAv > 0;
+  if (l.mEt) T(l.brk ? `[ ${l.mEt} ]` : l.mEt, x0, hy, acc, 'l');
+  if (prog) {
+    const n = Math.min(30, Math.round(l.mAv)), cur = Math.round(l.mAvI), pr = size * .17, pitch = size * .95, sx = x1 - pr - (n - 1) * pitch, cy = hy - .36 * size, rest = [], now = [];
+    for (let i = 0; i < n; i++) (i + 1 === cur ? now : rest).push([sx + i * pitch, cy, i + 1 === cur ? pr * 1.5 : pr]);
+    out.push({ t: 'pts', pts: rest, c: ink, o: .45, dot: 'circulo' }, { t: 'pts', pts: now, c: acc, o: 1, dot: 'circulo' });
+  }
+  if (l.mCod) T(l.mCod, prog ? W / 2 : x1, hy, ink, prog ? 'c' : 'r');
+  if (l.mPieL) T(l.mPieL, x0, fy, ink, 'l');
+  if (l.mPieR) T(l.mPieR, x1, fy, acc, 'r');
+  if (l.mFil) out.push({ t: 'line', x1: x0, y1: fy - size * 1.8, x2: x1, y2: fy - size * 1.8, c: ink, o: .3, w: Math.max(1, k) });
+  if (l.mVert) { const txt = String(l.mVert).toUpperCase(), w = textW(txt, size, 500, 'mono', ls); out.push({ t: 'text', x: m * .5 + .36 * size, y: H / 2 + w / 2, rot: -90, s: size, c: ink, o: .8, txt, f: 'mono', wt: 500, ls }); }
+  if (l.mCruces) {
+    const cx0 = m * .5, cx1 = W - m * .5, cy0 = story ? y0 + m * .5 : y0 - m * .5, cy1 = story ? y1 - m * .5 : y1 + m * .5;
+    for (const [x, y] of [[cx0, cy0], [cx1, cy0], [cx0, cy1], [cx1, cy1]]) out.push({ t: 'plus', x, y, r: 7 * k, c: ink, o: .7, w: 1.3 * k });
+  }
+  if (l.mCol) { const a = y0 + 56 * k, b = y1 - 56 * k, n = Math.max(2, Math.floor((b - a) / (22 * k)) + 1), col = []; for (let i = 0; i < n; i++) col.push([W - m * .5, a + (b - a) * i / (n - 1), 2.2 * k]); out.push({ t: 'pts', pts: col, c: ink, o: .55, dot: 'circulo' }); }
+  return out;
+}
+function primsLuz(l) { const B = frameBox(); return [{ t: 'glow', cx: l.lx * B.W, cy: l.ly * B.H, r: B.S * l.gr / 100, c: cOf(l.color), o: 1 }]; }
+function prims(l) {
+  const a = l.kind === 'texto' ? primsTexto(l) : l.kind === 'matriz' ? primsMatriz(l) : l.kind === 'trazo' ? primsTrazo(l) : l.kind === 'marco' ? primsMarco(l) : l.kind === 'luz' ? primsLuz(l) : [];
+  return a.filter(p => p.t !== 'pts' || p.pts.length);
+}
+const primCount = (l) => prims(l).reduce((a, p) => a + (p.t === 'pts' ? p.pts.length : 0), 0);
+const hex2 = (h) => { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
+const glowStops = (c, o) => { const [r, g, b] = hex2(c); return [[0, o], [.45, o * .4], [1, 0]].map(([t, a]) => [t, `rgba(${r},${g},${b},${a})`]); };
+function primsDraw(x, arr) {
+  for (const p of arr) {
+    x.save(); x.globalAlpha *= (p.o ?? 1); x.strokeStyle = x.fillStyle = p.c;
+    if (p.t === 'pts') { x.beginPath(); for (const [px, py, r] of p.pts) drawShape(x, px, py, r, p.dot); x.fill('evenodd'); }
+    else if (p.t === 'line') { x.lineWidth = p.w || 1; x.beginPath(); x.moveTo(p.x1, p.y1); x.lineTo(p.x2, p.y2); x.stroke(); }
+    else if (p.t === 'circle') { x.lineWidth = p.w || 1; if (p.dash) x.setLineDash(p.dash); x.beginPath(); x.arc(p.cx, p.cy, p.r, 0, Math.PI * 2); x.stroke(); }
+    else if (p.t === 'plus') { x.lineWidth = p.w || 1; x.beginPath(); x.moveTo(p.x - p.r, p.y); x.lineTo(p.x + p.r, p.y); x.moveTo(p.x, p.y - p.r); x.lineTo(p.x, p.y + p.r); x.stroke(); }
+    else if (p.t === 'text') {
+      x.translate(p.x, p.y); if (p.rot) x.rotate(p.rot * Math.PI / 180);
+      x.font = `${p.wt} ${p.s}px ${famOf(p.f)}`; x.textAlign = 'left'; x.textBaseline = 'alphabetic'; if ('letterSpacing' in x) x.letterSpacing = (p.ls || 0) + 'px';
+      x.fillText(p.txt, 0, 0);
+    } else if (p.t === 'glow') {
+      const g = x.createRadialGradient(p.cx, p.cy, 0, p.cx, p.cy, p.r); for (const [t, c] of glowStops(p.c, p.o ?? 1)) g.addColorStop(t, c);
+      x.fillStyle = g; x.fillRect(p.cx - p.r, p.cy - p.r, p.r * 2, p.r * 2);
+    }
+    x.restore();
+  }
+}
+function primsSVG(arr, id) {
+  let s = '', gi = 0;
+  for (const p of arr) {
+    const o = p.o != null && p.o < 1 ? ` opacity="${f2(p.o)}"` : '';
+    if (p.t === 'pts') { if (!p.pts.length) continue; s += `<g ${p.dot === 'anillo' ? 'fill="none" stroke' : 'fill'}="${p.c}"${o}>${p.pts.map(([px, py, r]) => shapeSVG(px, py, r, p.dot)).join('')}</g>`; }
+    else if (p.t === 'line') s += `<line x1="${f2(p.x1)}" y1="${f2(p.y1)}" x2="${f2(p.x2)}" y2="${f2(p.y2)}" stroke="${p.c}" stroke-width="${f2(p.w || 1)}"${o}/>`;
+    else if (p.t === 'circle') s += `<circle cx="${f2(p.cx)}" cy="${f2(p.cy)}" r="${f2(p.r)}" fill="none" stroke="${p.c}" stroke-width="${f2(p.w || 1)}"${o}${p.dash ? ` stroke-dasharray="${p.dash.map(f2).join(' ')}"` : ''}/>`;
+    else if (p.t === 'plus') s += `<path d="M${f2(p.x - p.r)} ${f2(p.y)}H${f2(p.x + p.r)}M${f2(p.x)} ${f2(p.y - p.r)}V${f2(p.y + p.r)}" fill="none" stroke="${p.c}" stroke-width="${f2(p.w || 1)}"${o}/>`;
+    else if (p.t === 'text') s += `<text transform="translate(${f2(p.x)} ${f2(p.y)})${p.rot ? ` rotate(${f2(p.rot)})` : ''}" fill="${p.c}"${o} font-family="${SVGF[p.f]}" font-weight="${p.wt}" font-size="${f2(p.s)}" letter-spacing="${f2(p.ls || 0)}" xml:space="preserve">${esc(p.txt)}</text>`;
+    else if (p.t === 'glow') {
+      const gid = `lg-${id}-${gi++}`;
+      s += `<defs><radialGradient id="${gid}" gradientUnits="userSpaceOnUse" cx="${f2(p.cx)}" cy="${f2(p.cy)}" r="${f2(p.r)}">${[[0, p.o ?? 1], [.45, (p.o ?? 1) * .4], [1, 0]].map(([t, a]) => `<stop offset="${t}" stop-color="${p.c}" stop-opacity="${f2(a)}"/>`).join('')}</radialGradient></defs><circle cx="${f2(p.cx)}" cy="${f2(p.cy)}" r="${f2(p.r)}" fill="url(#${gid})"${o}/>`;
+    }
+  }
+  return s;
+}
+// Memoria de puntos por capa (render, contador y pre-vuelo la consultan varias veces por cambio).
+const ptsMemo = new Map();
+function pointsM(l) {
+  const key = JSON.stringify(l) + '|' + doc.w + 'x' + doc.h, h = ptsMemo.get(l.id);
+  if (h && h.k === key) return h.v;
+  const v = points(l); ptsMemo.set(l.id, { k: key, v }); if (ptsMemo.size > 40) ptsMemo.delete(ptsMemo.keys().next().value); return v;
+}
 
 /* ——— Fuentes de tono: cada capa produce un campo de luminancia 0..1 ——— */
 const fieldCache = new Map();
@@ -632,19 +853,20 @@ function lockupDraw(x, l) {
   for (const p of G.parts) { x.save(); if (p.t) { x.translate(p.t[0], p.t[1]); x.scale(p.t[2], p.t[2]); } x.fillStyle = C[l[p.c]]; x.fill(new Path2D(p.d)); x.restore(); }
   x.restore();
 }
-function render(x, scale) {
+function render(x, scale, o = {}) {
   x.save(); x.scale(scale, scale);
-  x.fillStyle = C[doc.bg]; x.fillRect(0, 0, doc.w, doc.h);
+  if (!o.nobg) { x.fillStyle = C[doc.bg]; x.fillRect(0, 0, doc.w, doc.h); }
   for (const l of doc.layers) {
-    if (!l.visible) continue;
+    if (!l.visible || (o.skip && o.skip.includes(l.kind))) continue;
     x.save(); x.globalAlpha = l.opacity / 100; x.globalCompositeOperation = BLEND[l.blend] || 'source-over';
     if (l.kind === 'marca') lockupDraw(x, l);
     else if (l.kind === 'soporte') supportDraw(x, l);
     else if (l.kind === 'grafico') graficoDraw(x, l);
-    else { x.beginPath(); for (const [px, py, r] of points(l)) drawShape(x, px, py, r, l.dot); x.fillStyle = C[l.color] || l.color; x.fill('evenodd'); }
+    else if (PK[l.kind]) primsDraw(x, prims(l));
+    else { x.beginPath(); for (const [px, py, r] of pointsM(l)) drawShape(x, px, py, r, l.dot); x.fillStyle = C[l.color] || l.color; x.fill('evenodd'); }
     x.restore();
   }
-  if (doc.grid && scale < 1.01) {
+  if (doc.grid && scale < 1.01 && !o.nogrid) {
     const M = Math.min(doc.w, doc.h) / 20; x.strokeStyle = 'rgba(229,92,65,.55)'; x.lineWidth = 1 / scale; x.beginPath();
     for (let gx = 2 * M; gx <= doc.w - 2 * M + .5; gx += M) { x.moveTo(gx, 2 * M); x.lineTo(gx, doc.h - 2 * M); }
     for (let gy = 2 * M; gy <= doc.h - 2 * M + .5; gy += M) { x.moveTo(2 * M, gy); x.lineTo(doc.w - 2 * M, gy); }
@@ -662,9 +884,10 @@ function paint() {
   cv.style.width = cw + 'px'; cv.style.height = ch + 'px'; cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr);
   const x = cv.getContext('2d'); x.clearRect(0, 0, cv.width, cv.height);
   render(x, s * dpr);
-  const n = doc.layers.filter(l => l.visible && l.kind !== 'marca' && l.kind !== 'soporte').reduce((a, l) => a + (l.kind === 'grafico' ? gCount(l) : points(l).length), 0);
+  const n = doc.layers.filter(l => l.visible && l.kind !== 'marca' && l.kind !== 'soporte').reduce((a, l) => a + (l.kind === 'grafico' ? gCount(l) : PK[l.kind] ? primCount(l) : pointsM(l).length), 0);
   $('#meta').textContent = `${doc.w} × ${doc.h} px · ${n.toLocaleString('es')} puntos · M = ${Math.round(Math.min(doc.w, doc.h) / 20)} px`;
-  persist();
+  cv.style.cursor = movable(L()) ? 'grab' : 'default';
+  persist(); schedulePre();
 }
 new ResizeObserver(redraw).observe(stage);
 
@@ -681,13 +904,14 @@ function shapeSVG(px, py, r, dot) {
 const esc = (s) => String(s).replace(/[<&"]/g, c => ({ '<': '&lt;', '&': '&amp;', '"': '&quot;' }[c]));
 function buildSVG() {
   let s = `<svg xmlns="http://www.w3.org/2000/svg" width="${doc.w}" height="${doc.h}" viewBox="0 0 ${doc.w} ${doc.h}"><title>Nave · trama</title>`;
-  s += `<rect id="Fondo · ${NAMES[doc.bg]}" width="${doc.w}" height="${doc.h}" fill="${C[doc.bg]}"/>`;
+  if (!doc.nobg) s += `<rect id="Fondo · ${NAMES[doc.bg]}" width="${doc.w}" height="${doc.h}" fill="${C[doc.bg]}"/>`;
   doc.layers.forEach((l, i) => {
     if (!l.visible) return;
     const col = C[l.color] || l.color, mb = l.blend !== 'normal' ? ` style="mix-blend-mode:${({ multiplicar: 'multiply', trama: 'screen', superponer: 'overlay' })[l.blend]}"` : '';
     const nm = esc(`${String(i + 1).padStart(2, '0')} · ${l.name}`);
     if (l.kind === 'soporte') { s += `<g id="${nm}" opacity="${l.opacity / 100}">${supportSVG(l)}</g>`; return; }
     if (l.kind === 'grafico') { s += `<g id="${nm}" opacity="${l.opacity / 100}"${mb}>${graficoSVG(l)}</g>`; return; }
+    if (PK[l.kind]) { s += `<g id="${nm}" opacity="${l.opacity / 100}"${mb}>${primsSVG(prims(l), l.id)}</g>`; return; }
     if (l.kind === 'marca') {
       const G = lockGeo(l), w = doc.w * l.w / 100, k = w / G.w, h = G.h * k;
       const cx = doc.w / 2 + l.ox / 100 * doc.w, cy = doc.h / 2 + l.oy / 100 * doc.h;
@@ -696,7 +920,7 @@ function buildSVG() {
       s += '</g>';
     } else {
       const attr = l.dot === 'anillo' ? `stroke="${col}"` : `fill="${col}"`;
-      s += `<g id="${nm}" ${attr} opacity="${l.opacity / 100}"${mb}>` + points(l).map(([px, py, r]) => shapeSVG(px, py, r, l.dot)).join('') + '</g>';
+      s += `<g id="${nm}" ${attr} opacity="${l.opacity / 100}"${mb}>` + pointsM(l).map(([px, py, r]) => shapeSVG(px, py, r, l.dot)).join('') + '</g>';
     }
   });
   return s + '</svg>';
@@ -717,7 +941,7 @@ const stamp = () => `nave-trama-${doc.fmt}-${new Date().toISOString().slice(0, 1
 $('#b-svg').onclick = () => download(stamp() + '.svg', new Blob([buildSVG()], { type: 'image/svg+xml' }));
 $('#b-png').onclick = () => {
   const c = document.createElement('canvas'), k = Math.min(2, 8000 / Math.max(doc.w, doc.h)); c.width = Math.round(doc.w * k); c.height = Math.round(doc.h * k);
-  render(c.getContext('2d'), k); c.toBlob(b => b ? download(stamp() + '.png', b) : toast('No se pudo generar el PNG.'), 'image/png');
+  render(c.getContext('2d'), k, { nobg: doc.nobg }); c.toBlob(b => b ? download(stamp() + '.png', b) : toast('No se pudo generar el PNG.'), 'image/png');
 };
 $('#b-copy').onclick = () => {
   const svg = buildSVG(), kb = Math.round(svg.length / 1024);
@@ -728,14 +952,14 @@ function showManual(svg) { const p = $('#props'); p.insertAdjacentHTML('afterbeg
 
 /* ——— Recetas ——— */
 function recipe(withImages) {
-  const r = { tipo: 'nave-trama', version: 1, doc: { fmt: doc.fmt, w: doc.w, h: doc.h, bg: doc.bg }, capas: doc.layers.map(l => ({ ...l })) };
+  const r = { tipo: 'nave-trama', version: 1, doc: { fmt: doc.fmt, w: doc.w, h: doc.h, bg: doc.bg, nobg: !!doc.nobg }, capas: doc.layers.map(l => ({ ...l })) };
   if (withImages) { r.imagenes = {}; for (const l of doc.layers) if (l.image && IMAGES.has(l.image)) r.imagenes[l.image] = { nombre: IMAGES.get(l.image).name, src: IMAGES.get(l.image).src }; }
   return r;
 }
 async function loadRecipe(r) {
   if (!r || r.tipo !== 'nave-trama') throw new Error('No es una receta de Nave.');
   if (r.imagenes) for (const [id, im] of Object.entries(r.imagenes)) await addImage(im.src, im.nombre, id);
-  Object.assign(doc, r.doc); doc.layers = r.capas.map(l => ({ ...defaults(l.kind), ...(l.kind === 'marca' && !l.lockup ? { lockup: 'principal' } : {}), ...l })); doc.sel = doc.layers.length ? doc.layers[doc.layers.length - 1].id : null;
+  Object.assign(doc, r.doc); doc.nobg = !!r.doc.nobg; doc.layers = r.capas.map(l => ({ ...defaults(l.kind), ...(l.kind === 'marca' && !l.lockup ? { lockup: 'principal' } : {}), ...l })); doc.sel = doc.layers.length ? doc.layers[doc.layers.length - 1].id : null;
   fieldStore.clear(); syncDoc(); ui();
 }
 $('#b-save').onclick = () => {
@@ -744,6 +968,59 @@ $('#b-save').onclick = () => {
 };
 $('#b-open').onclick = () => $('#f-recipe').click();
 $('#f-recipe').onchange = async (e) => { const f = e.target.files[0]; if (!f) return; try { await loadRecipe(JSON.parse(await f.text())); toast('Receta cargada: ' + f.name); } catch (err) { toast('No se pudo abrir: ' + err.message); } e.target.value = ''; };
+const HOUSE_P = [
+  { n: 'Cartel de misión', cat: 'piezas', d: 'Post · anuncio con marco, trayectoria y fecha', r: { doc: { fmt: 'post', w: 1080, h: 1350, bg: 'espacio' }, capas: [
+    { kind: 'forma', shape: 'campo', name: 'Densidad', color: 'crema', opacity: 20, sep: 26, max: 44, mode: 'ambos', fade: 100, fadeDir: 'arriba', cut: 30 },
+    { kind: 'trazo', name: 'Trayectoria', x1: 66, y1: 80, x2: 93, y2: 12, curv: 22, fu: 0, base: 45, tstep: 22, color: 'crema', colA: 'ignicion', colC: 'ambar' },
+    { kind: 'texto', name: 'Título', txt: 'No solo se lanza Nave.\nSe lanza una nave.', tstyle: 'titulo', tsz: 72, tw: 100, pos: 'tl', oy: 17 },
+    { kind: 'texto', name: 'Cuerpo', txt: 'El 20 de noviembre abrimos la primera convocatoria para quienes construyen a la altura de sus ideas.', tstyle: 'cuerpo', tw: 52, pos: 'tl', oy: 34, color: 'niebla' },
+    { kind: 'texto', name: 'Fecha', txt: '20.11.2026', tstyle: 'cifra', pos: 'bl', oy: -9, color: 'ambar' },
+    { kind: 'marco', name: 'Marco', mEt: 'NAVE 01 / ANUNCIO DE MISIÓN', mCod: 'FASE 01 · T–30', mPieL: '20 OCT — 20 NOV 2026', mPieR: 'NAVE.COMPANY →', mCruces: true, colA: 'ambar' }] } },
+  { n: 'Save the date', cat: 'piezas', d: 'Post · fecha en cifras de puntos', r: { doc: { fmt: 'post', w: 1080, h: 1350, bg: 'espacio' }, capas: [
+    { kind: 'luz', name: 'Resplandor', lx: .86, ly: .8, gr: 40, color: 'ignicion', opacity: 50 },
+    { kind: 'matriz', name: 'Fecha', txt: '20\n11\n26', mc: 2.9, zig: true, pos: 'tl', oy: 6, mhl: 1, colA: 'ignicion', color: 'crema' },
+    { kind: 'texto', name: 'Guarda la fecha', txt: 'Guarda la fecha.', tstyle: 'titulo', tsz: 90, pos: 'bl', oy: -4 },
+    { kind: 'marco', name: 'Marco', mEt: 'SAVE THE DATE', brk: true, mCod: '20.11.2026', mPieL: 'NAVE.COMPANY', mVert: 'NAVE · ANUNCIO DE MISIÓN · 2026', mCruces: true, colA: 'ambar' }] } },
+  { n: 'Invitación formal', cat: 'piezas', d: 'Post claro · orden de misión con datos del evento', r: { doc: { fmt: 'post', w: 1080, h: 1350, bg: 'crema' }, capas: [
+    { kind: 'trazo', name: 'Trayectoria', x1: 36, y1: 52, x2: 90, y2: 12, curv: -30, fu: 100, base: 30, tstep: 22, rn: 0, color: 'espacio', colA: 'ignicion' },
+    { kind: 'texto', name: 'Lo invitamos', txt: 'Lo invitamos', tstyle: 'titulo', tsz: 55, pos: 'tl', oy: 14, color: 'espacio' },
+    { kind: 'texto', name: 'Al despegue', txt: 'al despegue', tstyle: 'display', tsz: 88, pos: 'tl', oy: 18.5, color: 'espacio' },
+    { kind: 'texto', name: 'De NAVE', txt: 'de NAVE.', tstyle: 'titulo', tsz: 55, pos: 'tl', oy: 29, color: 'espacio' },
+    { kind: 'matriz', name: 'Día', txt: '20', mc: 1.6, pos: 'tr', oy: 37, color: 'ignicion' },
+    { kind: 'texto', name: 'Hora · rótulo', txt: 'HORA', tstyle: 'etiqueta', pos: 'tl', oy: 53.8, color: 'espacio', colA: 'ignicion' },
+    { kind: 'texto', name: 'Hora', txt: 'HH:MM', tstyle: 'subtitulo', tsz: 110, pos: 'tl', oy: 56.2, color: 'espacio' },
+    { kind: 'texto', name: 'Fecha · rótulo', txt: 'FECHA', tstyle: 'etiqueta', pos: 'tl', ox: 48, oy: 53.8, color: 'espacio' },
+    { kind: 'texto', name: 'Fecha', txt: '20 · 11 · 2026', tstyle: 'subtitulo', tsz: 110, tw: 45, pos: 'tl', ox: 48, oy: 56.2, color: 'espacio' },
+    { kind: 'texto', name: 'Lugar · rótulo', txt: 'LUGAR', tstyle: 'etiqueta', pos: 'tl', oy: 64.1, color: 'espacio' },
+    { kind: 'texto', name: 'Lugar', txt: 'Nombre del lugar', tstyle: 'subtitulo', tsz: 110, tw: 45, pos: 'tl', oy: 66.4, color: 'espacio' },
+    { kind: 'texto', name: 'Confirmar · rótulo', txt: 'CONFIRMAR', tstyle: 'etiqueta', pos: 'tl', ox: 48, oy: 64.1, color: 'espacio' },
+    { kind: 'texto', name: 'Confirmar', txt: '+503 0000 0000', tstyle: 'subtitulo', tsz: 110, tw: 45, pos: 'tl', ox: 48, oy: 66.4, color: 'espacio' },
+    { kind: 'texto', name: 'Invitado · rótulo', txt: 'INVITADO', tstyle: 'etiqueta', pos: 'tl', oy: 76, color: 'espacio' },
+    { kind: 'texto', name: 'Invitado', txt: 'Nombre Apellido', tstyle: 'titulo', tsz: 60, pos: 'tl', oy: 78.5, color: 'espacio' },
+    { kind: 'marco', name: 'Marco', mEt: 'ORDEN DE MISIÓN Nº 000', brk: true, mPieL: 'NAVE.COMPANY', mPieR: '20.11.2026', mCruces: true, color: 'espacio', colA: 'espacio' }] } },
+  { n: 'Un día antes · T–1', cat: 'piezas', d: 'Post · cuenta regresiva con cifra gigante', r: { doc: { fmt: 'post', w: 1080, h: 1350, bg: 'espacio' }, capas: [
+    { kind: 'matriz', name: 'T–1', txt: 'T–1', mc: 4.7, pos: 'tc', oy: 8, color: 'petroleo' },
+    { kind: 'trazo', name: 'Foco', x1: 8, y1: 61, x2: 86, y2: 52, curv: 15, fu: 100, base: 40, tstep: 22, fr: 14, rn: 3, color: 'crema', colA: 'ignicion', colC: 'ambar' },
+    { kind: 'texto', name: 'Despegamos', txt: 'Mañana\ndespegamos.', tstyle: 'display', tsz: 88, pos: 'bl', oy: -9 },
+    { kind: 'marco', name: 'Marco', mEt: 'T–1 / UN DÍA ANTES', brk: true, mCod: 'NAVE 01', mPieL: '20.11.2026', mPieR: 'NAVE.COMPANY →', mCruces: true, colA: 'ambar' }] } },
+  { n: 'Mensaje limpio', cat: 'piezas', d: 'Post · una frase y una fila de puntos que sube', r: { doc: { fmt: 'post', w: 1080, h: 1350, bg: 'petroleo' }, capas: [
+    { kind: 'luz', name: 'Resplandor', lx: .88, ly: .52, gr: 26, color: 'ambar', opacity: 38 },
+    { kind: 'trazo', name: 'Fila ascendente', x1: 8, y1: 70, x2: 88, y2: 52, curv: 0, fu: 100, base: 70, tstep: 46, tdot: 5.5, fr: 16, rn: 0, color: 'crema', colA: 'ignicion' },
+    { kind: 'texto', name: 'Mensaje', txt: 'Tu sueño\nsuma un\npunto.', tstyle: 'display', pos: 'tl', oy: 8 },
+    { kind: 'texto', name: 'Cuerpo', txt: 'Cada idea empieza con una sola decisión.', tstyle: 'cuerpo', tsz: 120, tw: 60, pos: 'bl', oy: -8 }] } },
+  { n: 'Foto de perfil', cat: 'piezas', d: 'Cuadrado · logotipo Nave al 65 % del ancho', r: { doc: { fmt: 'cuadrado', w: 1080, h: 1080, bg: 'espacio' }, capas: [
+    { kind: 'marca', name: 'Logotipo', lockup: 'naveP', w: 65, colW: 'crema', colC: 'ignicion' }] } },
+  { n: 'Lámina corporativa', cat: 'piezas', d: 'Pantalla clara · título, párrafo y avance', r: { doc: { fmt: 'pantalla', w: 1920, h: 1080, bg: 'crema' }, capas: [
+    { kind: 'forma', shape: 'campo', name: 'Campo', color: 'espacio', opacity: 24, sep: 24, max: 40, mode: 'ambos', lens: 70, lx: .74, ly: .92, fade: 100, fadeDir: 'arriba', cut: 45 },
+    { kind: 'texto', name: 'Título', txt: '¿Qué es NAVE?', tstyle: 'titulo', tw: 42, pos: 'tl', oy: 22, color: 'espacio' },
+    { kind: 'texto', name: 'Párrafo', txt: 'NAVE es una compañía de tecnología y constructora de empresas. Acompañamos a quienes tienen una idea ambiciosa hasta convertirla en algo que se usa, se prueba y se mejora.', tstyle: 'cuerpo', tsz: 130, tw: 40, pos: 'tl', ox: 55, oy: 22.5, color: 'espacio' },
+    { kind: 'marco', name: 'Marco', mEt: 'NAVE · TECH COMPANY & VENTURE BUILDER', mPieL: 'NAVE.COMPANY', mPieR: '03 / 18', mAv: 18, mAvI: 3, mFil: true, color: 'espacio', colA: 'espacio' }] } },
+  { n: 'Historia · cuenta regresiva', cat: 'piezas', d: 'Historia · todo dentro de la zona segura', r: { doc: { fmt: 'historia', w: 1080, h: 1920, bg: 'espacio' }, capas: [
+    { kind: 'matriz', name: 'Días', txt: '10', mc: 6.5, pos: 'mc', oy: -9, color: 'ignicion' },
+    { kind: 'texto', name: 'Días para el despegue', txt: 'días para\nel despegue.', tstyle: 'titulo', al: 'centro', pos: 'mc', oy: 12 },
+    { kind: 'texto', name: 'Fecha', txt: '20 de noviembre de 2026', tstyle: 'cuerpo', tsz: 120, al: 'centro', pos: 'bc', oy: -6, color: 'niebla' },
+    { kind: 'marco', name: 'Marco', mEt: 'NAVE 01 / CUENTA REGRESIVA', brk: true, mCod: '', mPieL: '', mPieR: 'NAVE.COMPANY →', mCruces: true, colA: 'ambar' }] } },
+];
 const HOUSE = [
   { n: 'Sello', d: 'Símbolo en puntos sobre Espacio', r: { doc: { fmt: 'cuadrado', w: 1080, h: 1080, bg: 'espacio' }, capas: [{ kind: 'simbolo', name: 'Órbita', color: 'senal', opacity: 60, sep: 25, max: 25 }, { kind: 'marca', name: 'Logotipo', lockup: 'principal', w: 46, colW: 'crema', colC: 'ambar' }] } },
   { n: 'Soporte de la casa', d: 'Retícula, margen 2M y marcas según formato', r: { doc: { fmt: 'pantalla', w: 1920, h: 1080, bg: 'tueste' }, capas: [{ kind: 'soporte', name: 'Soporte', colLine: 'crema', colMark: 'ambar', lineOp: 14 }, { kind: 'marca', name: 'Logotipo', lockup: 'naveP', w: 30, colW: 'crema', colC: 'crema' }] } },
@@ -763,7 +1040,17 @@ const HOUSE = [
   { n: 'Medidores de 25', d: 'Seguimiento · una fila por indicador', r: { doc: { fmt: 'pantalla', w: 1920, h: 1080, bg: 'espacio' }, capas: [{ kind: 'grafico', gfam: 'datos', gen: 'medidor', name: 'Medidores', color: 'crema', data: '25, 19, 12, 22', hl: 3, labels: true, gw: 76, gh: 70, base: 20, max: 80 }] } },
   { n: 'Cifra en puntos', d: 'Forma · texto con luz y punto de ignición', r: { doc: { fmt: 'post', w: 1080, h: 1350, bg: 'espacio' }, capas: [{ kind: 'grafico', gfam: 'forma', gen: 'texto', txt: '25', name: 'Cifra', color: 'crema', grad: 'luz', sep: 16, max: 70, base: 12, gh: 60, ign: true, lx: .9, ly: .12 }] } },
 ];
-$('#recipes').innerHTML = HOUSE.map((h, i) => `<button type="button" data-r="${i}"><b>${h.n}</b><span>${h.d}</span></button>`).join('') + `<button type="button" data-r="foto"><b>Foto a dos tintas</b><span>Sube una foto: Espacio sobre Ámbar</span></button>`;
+HOUSE.forEach(h => { h.cat = h.cat || (['Barras de puntos', 'Línea de avance', 'Anillo', 'Medidores de 25'].includes(h.n) ? 'datos' : 'tramas'); });
+HOUSE.unshift(...HOUSE_P);
+const SELLO = HOUSE.find(h => h.n === 'Sello');
+const RCATS = [['piezas', 'Piezas'], ['tramas', 'Tramas'], ['datos', 'Datos'], ['todas', 'Todas']]; let rcat = 'todas';
+function recipeList() {
+  $('#r-cat').innerHTML = RCATS.map(([k, n]) => `<button type="button" data-c="${k}" aria-pressed="${rcat === k}">${n}</button>`).join('');
+  $('#recipes').innerHTML = HOUSE.map((h, i) => (rcat === 'todas' || h.cat === rcat) ? `<button type="button" data-r="${i}"><b>${h.n}</b><span>${h.d}</span></button>` : '').join('') +
+    (rcat === 'todas' || rcat === 'tramas' ? `<button type="button" data-r="foto"><b>Foto a dos tintas</b><span>Sube una foto: Espacio sobre Ámbar</span></button>` : '');
+}
+$('#r-cat').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; rcat = b.dataset.c; recipeList(); };
+recipeList();
 $('#recipes').onclick = (e) => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.dataset.r === 'foto') { pendingRecipe = 'foto'; $('#f-img').click(); return; }
@@ -806,7 +1093,7 @@ function palette(id, cur, keys, onPick) {
 }
 const BRAND = ['crema', 'niebla', 'espacio', 'tueste', 'ignicion', 'ambar', 'acero', 'petroleo', 'senal'];
 function syncDoc() {
-  $('#d-fmt').value = doc.fmt; $('#d-custom').hidden = doc.fmt !== 'libre'; $('#d-w').value = doc.w; $('#d-h').value = doc.h; $('#d-grid').checked = doc.grid;
+  $('#d-fmt').value = doc.fmt; $('#d-custom').hidden = doc.fmt !== 'libre'; $('#d-w').value = doc.w; $('#d-h').value = doc.h; $('#d-grid').checked = doc.grid; $('#d-nobg').checked = !!doc.nobg;
   $('#d-bg').outerHTML = palette('bg', doc.bg, [...BRAND, 'blanco']).replace('class="pal"', 'class="pal" id="d-bg"');
   $('#d-bg').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; doc.bg = b.dataset.v; syncDoc(); redraw(); };
 }
@@ -814,44 +1101,64 @@ $('#d-fmt').innerHTML = FORMATS.map(([k, n]) => `<option value="${k}">${n}</opti
 $('#d-fmt').onchange = (e) => { const f = FORMATS.find(x => x[0] === e.target.value); doc.fmt = f[0]; if (f[2]) { doc.w = f[2]; doc.h = f[3]; } fieldStore.clear(); syncDoc(); ui(); };
 ['#d-w', '#d-h'].forEach(s => $(s).onchange = () => { doc.w = clamp(+$('#d-w').value || 1080, 200, 6000); doc.h = clamp(+$('#d-h').value || 1080, 200, 6000); fieldStore.clear(); redraw(); });
 $('#d-grid').onchange = (e) => { doc.grid = e.target.checked; redraw(); };
+$('#d-nobg').onchange = (e) => { doc.nobg = e.target.checked; redraw(); };
+// Invertir claro ↔ oscuro: Crema ↔ Espacio en fondo y tintas; en el marco, Ámbar ↔ Ignición.
+$('#b-inv').onclick = () => {
+  const sw = (v) => v === 'crema' ? 'espacio' : v === 'espacio' ? 'crema' : v, sa = (v) => v === 'ambar' ? 'ignicion' : v === 'ignicion' ? 'ambar' : v;
+  doc.bg = sw(doc.bg);
+  for (const l of doc.layers) { l.color = sw(l.color); l.colW = sw(l.colW); l.colC = sw(l.colC); l.colLine = sw(l.colLine); if (l.kind === 'marco') l.colA = sa(l.colA); }
+  syncDoc(); ui(); toast('Claro y oscuro invertidos.');
+};
 document.querySelectorAll('[data-add]').forEach(b => b.onclick = () => {
   const k = b.dataset.add; if (k === 'imagen') { $('#f-img').click(); return; }
   const l = defaults(k); if (k === 'marca') { l.colW = ['crema', 'niebla', 'ambar', 'blanco'].includes(doc.bg) ? 'espacio' : 'crema'; l.colC = l.colW; }
   if (k === 'grafico') { l.color = ['crema', 'niebla', 'ambar', 'blanco'].includes(doc.bg) ? 'espacio' : 'crema'; if (doc.bg === 'ignicion') l.colA = 'tueste'; }
   if (k !== 'marca' && ['crema', 'niebla', 'blanco'].includes(doc.bg) && l.color === 'crema') l.color = 'espacio';
+  if (PK[k]) {
+    const light = ['crema', 'niebla', 'ambar', 'blanco'].includes(doc.bg);
+    if (k === 'luz') { if (doc.bg === 'ignicion') l.color = 'ambar'; }
+    else if (light && l.color === 'crema') l.color = 'espacio';
+    if (k === 'marco') {
+      Object.assign(l, { mEt: 'NAVE 01 / ANUNCIO', mCod: 'FASE 01', mPieL: '20.11.2026', mPieR: 'NAVE.COMPANY →', mCruces: true, mFil: true });
+      l.colA = doc.bg === 'ignicion' ? 'tueste' : doc.bg === 'ambar' ? 'espacio' : light ? 'ignicion' : 'ambar';
+    }
+    if (k === 'luz') { doc.layers.unshift(l); doc.sel = l.id; ui(); return; }
+  }
   if (k === 'soporte') { l.colLine = ['crema', 'niebla', 'ambar', 'blanco'].includes(doc.bg) ? 'espacio' : 'crema'; doc.layers.unshift(l); doc.sel = l.id; ui(); return; }
   doc.layers.push(l); doc.sel = l.id; ui();
 });
 
 function layerList() {
   const ul = $('#layers');
-  if (!doc.layers.length) { ul.innerHTML = '<li class="empty" style="display:block;cursor:default">Sin capas. Agrega una imagen, el símbolo, una forma o un gráfico.</li>'; return; }
+  if (!doc.layers.length) { ul.innerHTML = '<li class="empty" style="display:block;cursor:default">Sin capas. Agrega una imagen, el símbolo, una forma, un gráfico o un texto.</li>'; return; }
   ul.innerHTML = doc.layers.slice().reverse().map(l => {
     const col = l.kind === 'marca' ? C[l.colW] : l.kind === 'soporte' ? C[l.colMark] : (C[l.color] || l.color);
-    return `<li class="${l.id === doc.sel ? 'sel' : ''}" data-id="${l.id}"><button class="ic" data-act="vis" aria-label="${l.visible ? 'Ocultar' : 'Mostrar'} capa"><svg><use href="#i-${l.visible ? 'eye' : 'off'}"/></svg></button><span class="sw" style="background:${C[doc.bg]}"><i style="background:${col}"></i></span><span class="nm">${esc(l.name)}<small>${{ imagen: 'Imagen', simbolo: 'Símbolo', forma: 'Forma · ' + l.shape, marca: 'Logotipo', soporte: 'Soporte · ' + doc.fmt, grafico: 'Gráfico · ' + (GNAME[l.gen] || '') }[l.kind]}</small></span><span style="display:flex;gap:2px"><button class="ic" data-act="up" aria-label="Subir"><svg><use href="#i-up"/></svg></button><button class="ic" data-act="dn" aria-label="Bajar"><svg><use href="#i-dn"/></svg></button><button class="ic" data-act="dup" aria-label="Duplicar"><svg><use href="#i-dup"/></svg></button><button class="ic" data-act="del" aria-label="Eliminar"><svg><use href="#i-x"/></svg></button></span></li>`;
+    return `<li class="${l.id === doc.sel ? 'sel' : ''}" data-id="${l.id}"><button class="ic" data-act="vis" aria-label="${l.visible ? 'Ocultar' : 'Mostrar'} capa"><svg><use href="#i-${l.visible ? 'eye' : 'off'}"/></svg></button><span class="sw" style="background:${C[doc.bg]}"><i style="background:${col}"></i></span><span class="nm">${esc(l.name)}<small>${{ imagen: 'Imagen', simbolo: 'Símbolo', forma: 'Forma · ' + l.shape, marca: 'Logotipo', soporte: 'Soporte · ' + doc.fmt, grafico: 'Gráfico · ' + (GNAME[l.gen] || ''), ...PK }[l.kind]}</small></span><span style="display:flex;gap:2px"><button class="ic" data-act="up" aria-label="Subir"><svg><use href="#i-up"/></svg></button><button class="ic" data-act="dn" aria-label="Bajar"><svg><use href="#i-dn"/></svg></button><button class="ic" data-act="dup" aria-label="Duplicar"><svg><use href="#i-dup"/></svg></button><button class="ic" data-act="del" aria-label="Eliminar"><svg><use href="#i-x"/></svg></button></span></li>`;
   }).join('');
 }
+function dupLayer(id) { const i = doc.layers.findIndex(l => l.id === id); if (i < 0) return; const c = { ...doc.layers[i], id: uid(), name: doc.layers[i].name + ' copia' }; doc.layers.splice(i + 1, 0, c); doc.sel = c.id; }
+function delLayer(id) { const i = doc.layers.findIndex(l => l.id === id); if (i < 0) return; doc.layers.splice(i, 1); if (doc.sel === id) doc.sel = doc.layers.length ? doc.layers[doc.layers.length - 1].id : null; }
 $('#layers').onclick = (e) => {
   const li = e.target.closest('li[data-id]'); if (!li) return; const id = li.dataset.id, i = doc.layers.findIndex(l => l.id === id), l = doc.layers[i];
   const act = e.target.closest('[data-act]')?.dataset.act;
   if (act === 'vis') l.visible = !l.visible;
   else if (act === 'up' && i < doc.layers.length - 1) [doc.layers[i], doc.layers[i + 1]] = [doc.layers[i + 1], doc.layers[i]];
   else if (act === 'dn' && i > 0) [doc.layers[i], doc.layers[i - 1]] = [doc.layers[i - 1], doc.layers[i]];
-  else if (act === 'dup') { const c = { ...l, id: uid(), name: l.name + ' copia' }; doc.layers.splice(i + 1, 0, c); doc.sel = c.id; }
-  else if (act === 'del') { doc.layers.splice(i, 1); if (doc.sel === id) doc.sel = doc.layers.length ? doc.layers[doc.layers.length - 1].id : null; }
+  else if (act === 'dup') dupLayer(id);
+  else if (act === 'del') delLayer(id);
   else doc.sel = id;
   ui();
 };
 
 const R = (key, label, min, max, step = 1, unit = '') => { const l = L(); return `<div class="row"><label for="p-${key}">${label}</label><input id="p-${key}" data-k="${key}" type="range" min="${min}" max="${max}" step="${step}" value="${l[key]}"><output>${l[key]}${unit}</output></div>`; };
-const SEG = (key, label, opts) => { const l = L(); return `<div class="row two"><label>${label}</label><div class="seg" data-seg="${key}">${opts.map(([v, n]) => `<button type="button" data-v="${v}" aria-pressed="${l[key] === v}">${n}</button>`).join('')}</div></div>`; };
+const CK = (k, t) => { const l = L(); return `<label class="check"><input type="checkbox" data-ck="${k}" ${l[k] ? 'checked' : ''}> ${t}</label>`; };
+const SEG = (key, label, opts, cls = '') => { const l = L(); return `<div class="row two"><label>${label}</label><div class="seg ${cls}" data-seg="${key}">${opts.map(([v, n]) => `<button type="button" data-v="${v}" aria-pressed="${l[key] === v}">${n}</button>`).join('')}</div></div>`; };
 function props() {
   const l = L(), p = $('#props');
   if (!l) { p.innerHTML = '<p class="empty">Selecciona una capa para ajustar su trama. Puedes soltar una imagen sobre el lienzo o pegarla con Ctrl/Cmd + V.</p>'; return; }
   let h = `<div class="sec"><h3>Capa</h3><div class="row two"><label for="p-name">Nombre</label><input type="text" id="p-name" value="${esc(l.name)}"></div>`;
   if (l.kind === 'imagen') { const im = IMAGES.get(l.image); h += `<div class="thumb" id="p-img" role="button" tabindex="0">${im ? `<img src="${im.src}" alt="">` : 'La imagen de esta receta no está cargada. Haz clic para elegir una.'}</div>`; }
   if (l.kind === 'forma') h += SEG('shape', 'Forma', [['campo', 'Campo'], ['degradado', 'Degradado'], ['esfera', 'Esfera'], ['planeta', 'Planeta'], ['toroide', 'Toroide'], ['volcan', 'Volcán'], ['onda', 'Onda']]) + (l.shape === 'degradado' ? R('angle', 'Ángulo', 0, 359, 1, '°') : '');
-  const CK = (k, t) => `<label class="check"><input type="checkbox" data-ck="${k}" ${l[k] ? 'checked' : ''}> ${t}</label>`;
   if (l.kind === 'soporte') {
     const Mv = Math.round(Math.min(doc.w, doc.h) / 20);
     h += `<p class="hint">Se calcula del formato: M = lado corto ÷ 20 = ${Mv} px, margen 2M = ${2 * Mv} px. Cambia el formato a la izquierda y el soporte se rehace.</p></div><div class="sec"><h3>Elementos</h3>` +
@@ -878,6 +1185,26 @@ function props() {
       (g !== 'lente' ? CK('ign', 'Punto de ignición en el foco') : '') + (l.ign || g === 'lente' ? R('lx', 'Foco X', 0, 1, .01) + R('ly', 'Foco Y', 0, 1, .01) : '') + R('opacity', 'Opacidad', 0, 100, 1, '%') +
       SEG('blend', 'Mezcla', [['normal', 'Normal'], ['multiplicar', 'Multiplicar'], ['trama', 'Trama'], ['superponer', 'Superponer']]) + SEG('mask', 'Máscara', [['ninguna', 'Ninguna'], ['simbolo', 'Símbolo'], ['circulo', 'Círculo'], ['margen', 'Margen 2M']]) +
       `<div class="row two"><label>Semilla</label><button class="btn sm" id="p-seed" type="button">Variar puntos (${l.seed})</button></div></div>`;
+  }
+  else if (PK[l.kind]) {
+    const TI = (k, t) => `<div class="row two"><label for="p-${k}">${t}</label><input type="text" id="p-${k}" data-t="${k}" value="${esc(l[k])}" spellcheck="false"></div>`;
+    const TA = (k, t) => `<div class="row two"><label for="p-${k}">${t}</label><textarea id="p-${k}" data-t="${k}" rows="3" spellcheck="false">${esc(l[k])}</textarea></div>`;
+    const ANC = SEG('pos', 'Anclaje', [['tl', '↖'], ['tc', '↑'], ['tr', '↗'], ['ml', '←'], ['mc', '•'], ['mr', '→'], ['bl', '↙'], ['bc', '↓'], ['br', '↘']], 'g3') + R('ox', 'Mover X', -60, 60, 1, '%') + R('oy', 'Mover Y', -60, 60, 1, '%');
+    const AL = SEG('al', 'Alinear', [['izq', 'Izq.'], ['centro', 'Centro'], ['der', 'Der.']]);
+    const PAL = (k, t) => `<div class="row two"><label>${t}</label>${palette(k, l[k], [...BRAND, 'blanco'])}</div>`;
+    const MIX = R('opacity', 'Opacidad', 0, 100, 1, '%') + SEG('blend', 'Mezcla', [['normal', 'Normal'], ['multiplicar', 'Multiplicar'], ['trama', 'Trama'], ['superponer', 'Superponer']]);
+    const DOT = SEG('dot', 'Punto', [['circulo', '●'], ['cuadrado', '■'], ['rombo', '◆'], ['cruz', '+'], ['anillo', '○']]);
+    if (l.kind === 'texto') h += TA('txt', 'Texto') + SEG('tstyle', 'Estilo', TSN) + R('tsz', 'Tamaño', 30, 300, 1, '%') + R('tw', 'Ancho', 20, 100, 1, '%') + AL + ANC + CK('up', 'Mayúsculas') + CK('brk', 'Primer párrafo entre [ ]') + CK('vert', 'Vertical, de abajo hacia arriba (rótulo de borde)') + R('hll', 'Línea en acento', 0, 12, 1) + '</div>' +
+      `<div class="sec"><h3>Color</h3>${PAL('color', 'Color')}${PAL('colA', 'Acento')}${MIX}</div>`;
+    else if (l.kind === 'matriz') h += TA('txt', 'Cifras') + `<p class="hint">Matriz de 5 × 7 puntos: 0–9, A–Z, Λ y – . : · / # + ? ¿ ! %. Las vocales con tilde y la Ñ llevan marca arriba.</p>` + R('mc', 'Celda', 1, 9, .1, '%') + R('md', 'Punto', 40, 100, 1, '%') + R('mlg', 'Entre líneas', 0, 8, .5) + R('tw', 'Ancho', 20, 100, 1, '%') + CK('zig', 'Escalonado: líneas pares a la izquierda, impares a la derecha') + CK('lam', 'Dibujar la A como Λ (sin travesaño)') + AL + ANC + R('mhl', 'Línea en acento', 0, 8, 1) + '</div>' +
+      `<div class="sec"><h3>Color</h3>${DOT}${PAL('color', 'Color')}${PAL('colA', 'Acento')}${MIX}</div>`;
+    else if (l.kind === 'trazo') h += `<p class="hint">Curva entre dos puntos, en % del lienzo. Arrastra sobre el lienzo para mover toda la trayectoria.</p>` + R('x1', 'Inicio X', -20, 120, 1, '%') + R('y1', 'Inicio Y', -20, 120, 1, '%') + R('x2', 'Fin X', -20, 120, 1, '%') + R('y2', 'Fin Y', -20, 120, 1, '%') + R('curv', 'Curvatura', -100, 100, 1) + '</div>' +
+      `<div class="sec"><h3>Puntos y foco</h3>` + CK('tpath', 'Mostrar la ruta de puntos') + R('tstep', 'Separación', 8, 60, 1) + R('tdot', 'Punto', 1, 10, .2) + R('base', 'Opacidad ruta', 0, 100, 1, '%') + R('fu', 'Foco en', 0, 100, 1, '%') + R('fr', 'Radio foco', 4, 40, 1) + R('rn', 'Anillos', 0, 6, 1) + CK('tri', 'Triángulo de puntos bajo el foco') + '</div>' +
+      `<div class="sec"><h3>Color</h3>${DOT}${PAL('color', 'Ruta')}${PAL('colA', 'Foco')}${PAL('colC', 'Anillos')}${MIX}</div>`;
+    else if (l.kind === 'marco') h += `<p class="hint">Rótulos en la caja de lectura (margen de 64 px; en historias, la zona segura).</p>` + TI('mEt', 'Etiqueta') + CK('brk', 'Etiqueta entre [ ]') + TI('mCod', 'Código') + TI('mPieL', 'Pie izq.') + TI('mPieR', 'Pie der.') + TI('mVert', 'Texto vertical') + R('tsz', 'Tamaño', 50, 300, 1, '%') + '</div>' +
+      `<div class="sec"><h3>Elementos</h3>` + CK('mCruces', 'Cruces de registro en las esquinas') + CK('mCol', 'Columna de puntos en el borde derecho') + CK('mFil', 'Línea fina sobre el pie') + R('mAv', 'Avance: puntos', 0, 30, 1) + R('mAvI', 'Avance: actual', 0, 30, 1) + '</div>' +
+      `<div class="sec"><h3>Color</h3>${PAL('color', 'Tinta')}${PAL('colA', 'Acento')}${MIX}</div>`;
+    else h += R('lx', 'Posición X', 0, 1, .01) + R('ly', 'Posición Y', 0, 1, .01) + R('gr', 'Radio', 5, 90, 1, '%') + '</div>' + `<div class="sec"><h3>Color</h3>${PAL('color', 'Color')}${MIX}</div>`;
   }
   else {
     if (l.kind === 'imagen') h += SEG('fit', 'Encuadre', [['cubrir', 'Cubrir'], ['contener', 'Contener']]) + CK('alpha', 'Respetar transparencia (PNG): solo la silueta lleva puntos');
@@ -912,14 +1239,136 @@ const f2i = document.createElement('input'); f2i.type = 'file'; f2i.accept = 'im
 f2i.onchange = async (e) => { const f = e.target.files[0]; if (!f || !replacing) return; const l = doc.layers.find(x => x.id === replacing); const src = await readFile(f); l.image = await addImage(src, f.name); fieldStore.clear(); replacing = null; e.target.value = ''; ui(); };
 function ui() { layerList(); props(); redraw(); }
 
-/* ——— Persistencia local (solo comodidad de este navegador) ——— */
+/* ——— Persistencia local y historial (deshacer / rehacer) ——— */
 let saveT = 0;
-function persist() { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem('nave-trama', JSON.stringify(recipe(false))); } catch (e) {} }, 400); }
+const hist = [], MAXH = 60; let hi = -1;
+const snap = () => JSON.stringify(recipe(false));
+function updUndo() { $('#b-undo').disabled = !(hi > 0 || saveT); $('#b-redo').disabled = !(hi < hist.length - 1); }
+function commit() {
+  clearTimeout(saveT); saveT = 0; const s = snap();
+  try { localStorage.setItem('nave-trama', s); } catch (e) {}
+  if (hi < 0 || hist[hi].s !== s) { hist.length = hi + 1; hist.push({ s }); if (hist.length > MAXH) hist.shift(); hi = hist.length - 1; }
+  updUndo();
+}
+function persist() { clearTimeout(saveT); saveT = setTimeout(commit, 400); updUndo(); }
+function stepHist(d) {
+  if (saveT) commit();
+  const n = hi + d; if (n < 0 || n >= hist.length) return;
+  hi = n; const r = JSON.parse(hist[hi].s), keep = doc.sel;
+  Object.assign(doc, r.doc); doc.nobg = !!r.doc.nobg; doc.layers = r.capas.map(l => ({ ...defaults(l.kind), ...l }));
+  doc.sel = doc.layers.some(l => l.id === keep) ? keep : doc.layers.length ? doc.layers[doc.layers.length - 1].id : null;
+  fieldStore.clear(); syncDoc(); ui(); hist[hi].s = snap(); updUndo();
+}
+$('#b-undo').onclick = () => stepHist(-1);
+$('#b-redo').onclick = () => stepHist(1);
+
+/* ——— Teclado y arrastre ——— */
+const NUDGE_MAX = (l) => l.kind === 'texto' || l.kind === 'matriz' ? 60 : 50;
+const movable = (l) => !!l && l.visible && l.kind !== 'soporte' && l.kind !== 'marco';
+function moveLayer(l, o, dx, dy) {   // dx, dy en % del lienzo, a partir del estado inicial o
+  if (l.kind === 'trazo') { l.x1 = +(o.x1 + dx).toFixed(2); l.x2 = +(o.x2 + dx).toFixed(2); l.y1 = +(o.y1 + dy).toFixed(2); l.y2 = +(o.y2 + dy).toFixed(2); }
+  else if (l.kind === 'luz') { l.lx = +clamp(o.lx + dx / 100).toFixed(3); l.ly = +clamp(o.ly + dy / 100).toFixed(3); }
+  else { const m = NUDGE_MAX(l); l.ox = +clamp(o.ox + dx, -m, m).toFixed(2); l.oy = +clamp(o.oy + dy, -m, m).toFixed(2); if (l.kind === 'imagen' || l.kind === 'simbolo' || l.kind === 'forma') fieldStore.size > 30 && fieldStore.clear(); }
+}
+document.addEventListener('keydown', (e) => {
+  const t = e.target, tag = t.tagName, ty = t.type || '';
+  const typing = t.isContentEditable || tag === 'TEXTAREA' || tag === 'SELECT' || (tag === 'INPUT' && !/^(checkbox|radio|button|range|file)$/.test(ty));
+  if (typing || e.altKey) return;
+  const mod = e.ctrlKey || e.metaKey, key = e.key.toLowerCase(), l = L();
+  if (mod && key === 'z') { e.preventDefault(); stepHist(e.shiftKey ? 1 : -1); return; }
+  if (mod && key === 'y') { e.preventDefault(); stepHist(1); return; }
+  if (mod && key === 'd') { e.preventDefault(); if (l) { dupLayer(l.id); ui(); } return; }
+  if (mod) return;
+  if (e.key === 'Delete' || e.key === 'Backspace') { if (l) { e.preventDefault(); delLayer(l.id); ui(); } return; }
+  const a = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.key];
+  if (a && movable(l) && !(tag === 'INPUT' && ty === 'range')) {
+    e.preventDefault(); const st = e.shiftKey ? 5 : 1, o = { ...l }; moveLayer(l, o, a[0] * st, a[1] * st); props(); redraw();
+  }
+});
+let drag = null;
+cv.addEventListener('pointerdown', (e) => {
+  if (e.button) return; const l = L(); if (!movable(l)) return;
+  drag = { sx: e.clientX, sy: e.clientY, id: l.id, o: { ...l }, moved: false }; cv.setPointerCapture(e.pointerId); cv.style.cursor = 'grabbing'; e.preventDefault();
+});
+cv.addEventListener('pointermove', (e) => {
+  if (!drag) return; const l = L(); if (!l || l.id !== drag.id) return;
+  const r = cv.getBoundingClientRect(), dx = (e.clientX - drag.sx) / r.width * 100, dy = (e.clientY - drag.sy) / r.height * 100;
+  if (!drag.moved && Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) < 3) return;
+  drag.moved = true; moveLayer(l, drag.o, dx, dy); redraw();
+});
+const endDrag = () => { if (!drag) return; const moved = drag.moved; drag = null; cv.style.cursor = movable(L()) ? 'grab' : 'default'; if (moved) props(); };
+cv.addEventListener('pointerup', endDrag); cv.addEventListener('pointercancel', endDrag);
+
+/* ——— Pre-vuelo: mide la pieza sobre una vista de 200 px y avisa de lo que rompe una regla de la marca ——— */
+const relL = ([r, g, b]) => { const f = (v) => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }; return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
+const ctr = (a, b) => { const p = relL(a), q = relL(b); return (Math.max(p, q) + .05) / (Math.min(p, q) + .05); };
+let preT = 0;
+function schedulePre() { clearTimeout(preT); preT = setTimeout(runPre, 350); }
+function runPre() {
+  const W = doc.w, H = doc.h, sc = Math.min(1, 200 / Math.max(W, H)), cw = Math.max(1, Math.round(W * sc)), ch = Math.max(1, Math.round(H * sc)), k = Math.min(W, H) / 1080;
+  const cc = document.createElement('canvas'); cc.width = cw; cc.height = ch; const x = cc.getContext('2d', { willReadFrequently: true });
+  render(x, sc, { skip: ['soporte', 'luz'], nogrid: true });
+  const d = x.getImageData(0, 0, cw, ch).data, N = cw * ch, bg = hex2(C[doc.bg]), ig = hex2(C.ignicion), am = hex2(C.ambar), rows = [];
+  let ink = 0, nIg = 0, nAm = 0;
+  const dist = (i, c) => Math.hypot(d[i] - c[0], d[i + 1] - c[1], d[i + 2] - c[2]);
+  for (let i = 0; i < N * 4; i += 4) { if (dist(i, bg) > 50) ink++; if (dist(i, ig) < 60) nIg++; else if (dist(i, am) < 60) nAm++; }
+  const pct = (v) => fmtN(v) + ' %', bgAcc = doc.bg === 'ignicion' || doc.bg === 'ambar';
+  const igP = doc.bg === 'ignicion' ? 100 : nIg / N * 100, amP = doc.bg === 'ambar' ? 100 : nAm / N * 100;
+  // 1 · área de acento
+  if (bgAcc) rows.push([true, 'Área de acento', `Fondo de capítulo · el otro acento ocupa ${pct(doc.bg === 'ignicion' ? amP : igP)}`]);
+  else rows.push([igP + amP <= 10, 'Área de acento', `${pct(igP + amP)} de la pieza (máximo 10 %)`]);
+  // 2 · un solo acento
+  const other = doc.bg === 'ignicion' ? amP : doc.bg === 'ambar' ? igP : Math.min(igP, amP);
+  rows.push([!(igP > .2 && amP > .2), 'Un solo acento por pieza', igP > .2 && amP > .2 ? `Ignición ${pct(igP)} y Ámbar ${pct(amP)}` : bgAcc ? `Fondo de capítulo; el otro acento ${pct(other)}` : `Ignición ${pct(igP)} · Ámbar ${pct(amP)}`]);
+  // 3 · aire
+  const free = (N - ink) / N * 100;
+  rows.push([free >= 40, 'Trama que se abre', `${pct(free)} sin tinta (mínimo 40 %)`]);
+  // 4 · diámetro de los puntos
+  let minD = Infinity;
+  for (const l of doc.layers) {
+    if (!l.visible) continue;
+    if (l.kind === 'imagen' || l.kind === 'simbolo' || l.kind === 'forma') { const rs = Float32Array.from(pointsM(l), p => p[2] * 2).sort(); if (rs.length) minD = Math.min(minD, rs[Math.floor(rs.length * .02)]); }
+    else if (l.kind === 'matriz' || l.kind === 'trazo') for (const p of prims(l)) if (p.t === 'pts') for (const q of p.pts) minD = Math.min(minD, q[2] * 2);
+  }
+  rows.push(minD === Infinity ? [true, 'Puntos de 3 px o más', 'Sin capas de puntos'] : [minD >= 3, 'Puntos de 3 px o más', `Diámetro mínimo ${fmtN(minD)} px (mínimo 3 px)`]);
+  // 5 · tamaño del texto
+  let mS = Infinity, mM = Infinity;
+  for (const l of doc.layers) if (l.visible && (l.kind === 'texto' || l.kind === 'marco')) for (const p of prims(l)) if (p.t === 'text') { if (p.f === 'mono') mM = Math.min(mM, p.s); else mS = Math.min(mS, p.s); }
+  const okT = mS >= 24 * k - 1e-6 && mM >= 14 * k - 1e-6, parts = [];
+  if (mS < Infinity) parts.push(`texto ${fmtN(mS)} px (mín. ${fmtN(24 * k)})`); if (mM < Infinity) parts.push(`mono ${fmtN(mM)} px (mín. ${fmtN(14 * k)})`);
+  rows.push([okT, 'Texto legible', parts.length ? parts.join(' · ') : 'Sin texto']);
+  // 6 · contraste
+  let worst = null;
+  for (const l of doc.layers) {
+    if (!l.visible || !(l.kind === 'texto' || l.kind === 'matriz' || l.kind === 'marco')) continue;
+    const st = TS[l.tstyle] || TS.titulo, big = l.kind === 'matriz' || (l.kind === 'texto' && st[0] * l.tsz / 100 >= 3), need = big ? 3 : 4.5;
+    const cols = [l.color]; if ((l.kind === 'texto' && l.hll > 0) || (l.kind === 'matriz' && l.mhl > 0) || (l.kind === 'marco' && (l.mEt || l.mPieR || l.mAvI))) cols.push(l.colA);
+    if (l.kind === 'texto' && !String(l.txt).trim()) continue;
+    for (const c of cols) { const a = l.opacity / 100, fg = hex2(cOf(c)).map((v, i) => v * a + bg[i] * (1 - a)), r = ctr(fg, bg); if (!worst || r / need < worst.r / worst.need) worst = { r, need, name: l.name }; }
+  }
+  rows.push(worst ? [worst.r >= worst.need, 'Contraste del texto', `${fmtN(worst.r)} : 1 · ${worst.name} (mínimo ${fmtN(worst.need)} : 1)`] : [true, 'Contraste del texto', 'Sin texto ni cifras']);
+  $('#pre').innerHTML = rows.map(([ok, t, v]) => `<li class="${ok ? 'ok' : 'aw'}"><b>${ok ? 'ok' : 'aviso'}</b><span>${t}<small>${esc(v)}</small></span></li>`).join('');
+}
+
+/* ——— Guía rápida ——— */
+const GUIDE = [['crema', 'Crema', 'soporte'], ['niebla', 'Niebla', 'soporte frío'], ['espacio', 'Espacio', 'profundidad'], ['tueste', 'Tueste', 'calidez profunda'], ['ignicion', 'Ignición', 'acento'], ['ambar', 'Ámbar', 'señal y código'], ['acero', 'Acero', 'instrumento'], ['petroleo', 'Petróleo', 'datos'], ['senal', 'Señal', 'interfaz']];
+$('#g-colors').innerHTML = GUIDE.map(([k, n, r]) => `<button type="button" class="gc" data-hex="${C[k]}" title="Copiar ${C[k]}"><i style="background:${C[k]}"></i><span><b>${n}</b>${C[k]} · ${r}</span></button>`).join('');
+$('#g-rules').innerHTML = ['Un solo acento por pieza.', 'La Λ intacta, sin travesaño.', '«Café» solo en el logotipo.', 'La trama se abre donde se lee.', 'Puntos de 3 px o más.', 'Prueba a tamaño real.'].map(t => `<li>${t}</li>`).join('');
+$('#g-colors').onclick = (e) => {
+  const b = e.target.closest('button[data-hex]'); if (!b) return; const hx = b.dataset.hex, man = $('#g-man');
+  const ok = () => { man.hidden = true; toast('Copiado ' + hx); };
+  const fb = () => {
+    let done = false; const ta = document.createElement('textarea'); ta.value = hx; ta.style.cssText = 'position:fixed;left:-9999px;top:0'; document.body.appendChild(ta); ta.select();
+    try { done = document.execCommand('copy'); } catch (err) {} ta.remove();
+    if (done) ok(); else { man.hidden = false; man.value = hx; man.focus(); man.select(); toast('Copia manual: el código quedó seleccionado.'); }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(hx).then(ok, fb); else fb();
+};
 (async () => {
   let r = null; try { r = JSON.parse(localStorage.getItem('nave-trama') || 'null'); } catch (e) {}
   if (r && r.capas && r.capas.length && !r.capas.some(c => c.kind === 'imagen')) await loadRecipe(r);
-  else await loadRecipe({ tipo: 'nave-trama', ...JSON.parse(JSON.stringify(HOUSE[0].r)) });
-  if (document.fonts && document.fonts.ready) Promise.all(['400','500','600','700'].map(w=>document.fonts.load(w+' 16px "Standerd Nave"').catch(()=>{}))).then(()=>document.fonts.ready).then(()=>{ fontEpoch++; redraw(); });
+  else await loadRecipe({ tipo: 'nave-trama', ...JSON.parse(JSON.stringify(SELLO.r)) });
+  if (document.fonts && document.fonts.ready) Promise.all(['400','500','600','700'].flatMap(w=>[document.fonts.load(w+' 16px "Standerd Nave"'),document.fonts.load(w+' 16px "Inter Tight"'),document.fonts.load(w+' 16px "JetBrains Mono"')].map(p=>p.catch(()=>{})))).then(()=>document.fonts.ready).then(()=>{ fontEpoch++; redraw(); });
 })();
 })();
 </script>
