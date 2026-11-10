@@ -1372,7 +1372,7 @@ let pendingRecipe = null;
 // Plantillas con nombre: la pieza actual en localStorage; las imágenes solo caben si suman menos de 2 MB.
 function templateRecipe(name) {
   const r = recipe(true), size = Object.values(r.imagenes || {}).reduce((a, im) => a + im.src.length, 0);
-  if (size > 2e6) { delete r.imagenes; toast('Las imágenes superan 2 MB y no se guardan: vuelve a subirlas al usar la plantilla.'); }
+  if (size > 2e6) { delete r.imagenes; templateRecipe.big = true; }
   r.nombre = name; return r;
 }
 const modal = $('#modal');
@@ -1400,12 +1400,12 @@ $('#tpl-bar').onclick = (e) => {
   const b = e.target.closest('[data-ta]'); if (!b) return; const k = b.dataset.ta;
   if (k === 'save') { tplMode = 'save'; recipeList(); }
   else if (k === 'cancel') { tplMode = null; recipeList(); }
-  else if (k === 'copy') openModal('Copiar JSON de la pieza', JSON.stringify(templateRecipe(curPiece() ? curPiece().name : 'Pieza')), [['copy', 'Copiar', 1], ['close', 'Cerrar']], true);
+  else if (k === 'copy') openModal('Copiar JSON de la pieza', (() => { const j = JSON.stringify(templateRecipe(curPiece() ? curPiece().name : 'Pieza')); if (templateRecipe.big) { templateRecipe.big = false; toast('Las imágenes superan 2 MB y no se incluyen: vuelve a subirlas al cargarla.'); } return j; })(), [['copy', 'Copiar', 1], ['close', 'Cerrar']], true);
   else if (k === 'paste') openModal('Pegar JSON de una plantilla', '', [['tpl', 'Guardar como plantilla', 1], ['load', 'Abrir en la pieza'], ['close', 'Cerrar']], false);
 };
 $('#tpl-bar').addEventListener('submit', (e) => {
   e.preventDefault(); const n = $('#tpl-name').value.trim().slice(0, 40) || 'Plantilla';
-  tpls.push({ id: uid(), n, r: templateRecipe(n) }); tplMode = null; if (saveTpls()) { rcat = 'mias'; toast('Plantilla guardada: ' + n); } recipeList();
+  tpls.push({ id: uid(), n, r: templateRecipe(n) }); tplMode = null; if (saveTpls()) { rcat = 'mias'; toast('Plantilla guardada: ' + n + (templateRecipe.big ? '. Las imágenes superan 2 MB; vuelve a subirlas al cargarla.' : '')); } templateRecipe.big = false; recipeList();
 });
 
 /* ——— Imágenes ——— */
@@ -1422,7 +1422,7 @@ async function addImageLayer(file, asFoto) {
   const src = await readFile(file);
   // reduce a 1600 px para mantener recetas livianas
   const big = await addImage(src, file.name), im = IMAGES.get(big).img, k = Math.min(1, 1600 / Math.max(im.width, im.height));
-  if (k < 1) { const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); IMAGES.delete(big); await addImage(hasAlpha(c) ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .86), file.name, big); }
+  if (k < 1) { const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d', { willReadFrequently: true }).drawImage(im, 0, 0, c.width, c.height); IMAGES.delete(big); await addImage(hasAlpha(c) ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .86), file.name, big); }
   if (asFoto) {
     const imm = IMAGES.get(big).img, l = { ...defaults('foto'), image: big, name: file.name.replace(/\.[^.]+$/, '').slice(0, 28) }, hpx = doc.w * l.w / 100 * imm.height / imm.width;
     if (hpx > doc.h * .9) { l.h = 90; l.w = +Math.min(95, doc.h * .9 * imm.width / imm.height / doc.w * 100).toFixed(1); } else l.h = +(hpx / doc.h * 100).toFixed(1);
@@ -1616,7 +1616,7 @@ function props() {
     if (l.kind === 'figura') h += SEG('fig', 'Figura', [['rectangulo', 'Rectángulo'], ['circulo', 'Círculo'], ['pildora', 'Píldora'], ['semicirculo', 'Semicírculo'], ['arco', 'Arco'], ['filete', 'Filete'], ['lambda', 'Λ'], ['nave', 'Nave']]) +
       (l.fig === 'rectangulo' ? R('rad', 'Radio de esquina', 0, 50, 1, '%') : '') + (l.fig === 'arco' ? R('th', 'Grosor del arco', 5, 50, 1, '%') : '') +
       `<p class="hint">${{ lambda: 'La Λ del símbolo, sin travesaño.', nave: 'El símbolo de Nave, sólido.', filete: 'Línea fina; el alto fija su grosor (mínimo 1,5 px).', arco: 'Segmento grueso de anillo.' }[l.fig] || 'Forma sólida de marca; ancho y alto en % del lienzo.'}</p>` +
-      R('w', 'Ancho', 1, 200, .5, '%') + R('h', 'Alto', .1, 200, .5, '%') + ANCF + '</div>' + `<div class="sec"><h3>Color</h3><div class="row two"><label>Color</label>${palette('color', l.color, [...BRAND, 'blanco'])}</div>${MIX2}</div>`;
+      R('w', 'Ancho', 1, 200, .5, '%') + R('h', 'Alto', .1, 200, .05, '%') + ANCF + '</div>' + `<div class="sec"><h3>Color</h3><div class="row two"><label>Color</label>${palette('color', l.color, [...BRAND, 'blanco'])}</div>${MIX2}</div>`;
     else h += SEG('fsh', 'Recorte', [['rectangulo', 'Rectángulo'], ['circulo', 'Círculo'], ['pildora', 'Píldora'], ['simbolo', 'Símbolo'], ['lambda', 'Λ']]) + SEG('ffit', 'Encuadre', [['llenar', 'Llenar'], ['ver', 'Ver completa']]) +
       R('fz', 'Zoom', 1, 4, .05) + R('fpx', 'Desplazar X', -50, 50, 1, '%') + R('fpy', 'Desplazar Y', -50, 50, 1, '%') + R('w', 'Ancho', 5, 200, .5, '%') + R('h', 'Alto', 5, 200, .5, '%') + ANCF + '</div>' +
       `<div class="sec"><h3>Revelado</h3>` + CK('duo', 'Duotono en dos colores de la marca') + (l.duo ? `<div class="row two"><label>Sombras</label>${palette('duoA', l.duoA, [...BRAND, 'blanco'])}</div><div class="row two"><label>Luces</label>${palette('duoB', l.duoB, [...BRAND, 'blanco'])}</div>` : '') +
@@ -1666,6 +1666,7 @@ function props() {
     if (k === 'tstyle') { l.lhp = null; l.lsp = null; }
     if ((k === 'gfam' || k === 'gen') && Object.values(DDATA).includes(l.data)) l.data = '';
     if (k === 'lockup' && (l.lockup === 'naveP' || l.lockup === 'naveH')) l.colC = l.colW;
+    if (k === 'fig' && l.kind === 'figura') { if (l.fig === 'filete') { l.h = +(Math.max(1.5, 2 * Math.min(doc.w, doc.h) / 1080) / doc.h * 100).toFixed(3); l.rad = 0; } else if (l.h < 1) l.h = 30; }
     props(); layerList(); redraw();
   });
   p.querySelectorAll('[data-t]').forEach(inp => inp.oninput = () => {
@@ -1712,7 +1713,7 @@ function persistAll() {
   const imgs = {}; let size = 0;
   for (const p of pieces) for (const m of (p.s.match(/"image":"[^"]+"/g) || [])) { const id = m.slice(9, -1), im = IMAGES.get(id); if (im && !imgs[id]) { imgs[id] = { nombre: im.name, src: im.src }; size += im.src.length; } }
   const blob = { v: 2, cur: curP, resp: $('#d-resp').checked, pieces: pieces.map(p => ({ id: p.id, name: p.name, s: p.s })) };
-  if (size < 1.5e6) blob.imgs = imgs;
+  if (size < 1.5e6) blob.imgs = imgs; else if (size && !persistAll.warned) { persistAll.warned = true; toast('Las imágenes no se guardaron en el navegador (superan 1,5 MB): vuelve a subirlas al recargar la página.'); }
   try { localStorage.setItem('nave-trama-r2', JSON.stringify(blob)); } catch (e) {}
 }
 function commit() {
