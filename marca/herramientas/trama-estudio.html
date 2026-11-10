@@ -146,7 +146,7 @@ details.guide .gb{padding:0 16px 14px}
   <aside class="left" aria-label="Capas y documento">
     <div class="sec">
       <h3>Documento</h3>
-      <div class="row two"><label for="d-fmt">Formato</label><select id="d-fmt"></select></div>
+      <div class="row two" style="grid-template-columns:minmax(0,1fr);gap:4px"><label for="d-fmt">Formato</label><select id="d-fmt"></select></div>
       <div class="row two" id="d-custom" hidden><label>Medida px</label><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><input type="number" id="d-w" min="200" max="6000" aria-label="Ancho"><input type="number" id="d-h" min="200" max="6000" aria-label="Alto"></div></div>
       <div class="row two"><label>Fondo</label><div class="pal" id="d-bg"></div></div>
       <label class="check"><input type="checkbox" id="d-grid"> Ver retícula M (lado corto ÷ 20)</label>
@@ -999,7 +999,7 @@ const HOUSE_P = [
     { kind: 'texto', name: 'Invitado', txt: 'Nombre Apellido', tstyle: 'titulo', tsz: 60, pos: 'tl', oy: 78.5, color: 'espacio' },
     { kind: 'marco', name: 'Marco', mEt: 'ORDEN DE MISIÓN Nº 000', brk: true, mPieL: 'NAVE.COMPANY', mPieR: '20.11.2026', mCruces: true, color: 'espacio', colA: 'espacio' }] } },
   { n: 'Un día antes · T–1', cat: 'piezas', d: 'Post · cuenta regresiva con cifra gigante', r: { doc: { fmt: 'post', w: 1080, h: 1350, bg: 'espacio' }, capas: [
-    { kind: 'matriz', name: 'T–1', txt: 'T–1', mc: 4.7, pos: 'tc', oy: 8, color: 'petroleo' },
+    { kind: 'matriz', name: 'T–1', txt: 'T–1', mc: 4.7, pos: 'tc', oy: 8, color: 'acero' },
     { kind: 'trazo', name: 'Foco', x1: 8, y1: 61, x2: 86, y2: 52, curv: 15, fu: 100, base: 40, tstep: 22, fr: 14, rn: 3, color: 'crema', colA: 'ignicion', colC: 'ambar' },
     { kind: 'texto', name: 'Despegamos', txt: 'Mañana\ndespegamos.', tstyle: 'display', tsz: 88, pos: 'bl', oy: -9 },
     { kind: 'marco', name: 'Marco', mEt: 'T–1 / UN DÍA ANTES', brk: true, mCod: 'NAVE 01', mPieL: '20.11.2026', mPieR: 'NAVE.COMPANY →', mCruces: true, colA: 'ambar' }] } },
@@ -1011,7 +1011,7 @@ const HOUSE_P = [
   { n: 'Foto de perfil', cat: 'piezas', d: 'Cuadrado · logotipo Nave al 65 % del ancho', r: { doc: { fmt: 'cuadrado', w: 1080, h: 1080, bg: 'espacio' }, capas: [
     { kind: 'marca', name: 'Logotipo', lockup: 'naveP', w: 65, colW: 'crema', colC: 'ignicion' }] } },
   { n: 'Lámina corporativa', cat: 'piezas', d: 'Pantalla clara · título, párrafo y avance', r: { doc: { fmt: 'pantalla', w: 1920, h: 1080, bg: 'crema' }, capas: [
-    { kind: 'forma', shape: 'campo', name: 'Campo', color: 'espacio', opacity: 24, sep: 24, max: 40, mode: 'ambos', lens: 70, lx: .74, ly: .92, fade: 100, fadeDir: 'arriba', cut: 45 },
+    { kind: 'forma', shape: 'campo', name: 'Campo', color: 'espacio', opacity: 24, sep: 24, max: 40, mode: 'ambos', lens: 70, lx: .74, ly: .92, fade: 100, fadeDir: 'arriba', cut: 72 },
     { kind: 'texto', name: 'Título', txt: '¿Qué es NAVE?', tstyle: 'titulo', tw: 42, pos: 'tl', oy: 22, color: 'espacio' },
     { kind: 'texto', name: 'Párrafo', txt: 'NAVE es una compañía de tecnología y constructora de empresas. Acompañamos a quienes tienen una idea ambiciosa hasta convertirla en algo que se usa, se prueba y se mejora.', tstyle: 'cuerpo', tsz: 130, tw: 40, pos: 'tl', ox: 55, oy: 22.5, color: 'espacio' },
     { kind: 'marco', name: 'Marco', mEt: 'NAVE · TECH COMPANY & VENTURE BUILDER', mPieL: 'NAVE.COMPANY', mPieR: '03 / 18', mAv: 18, mAvI: 3, mFil: true, color: 'espacio', colA: 'espacio' }] } },
@@ -1194,9 +1194,9 @@ function props() {
     const PAL = (k, t) => `<div class="row two"><label>${t}</label>${palette(k, l[k], [...BRAND, 'blanco'])}</div>`;
     const MIX = R('opacity', 'Opacidad', 0, 100, 1, '%') + SEG('blend', 'Mezcla', [['normal', 'Normal'], ['multiplicar', 'Multiplicar'], ['trama', 'Trama'], ['superponer', 'Superponer']]);
     const DOT = SEG('dot', 'Punto', [['circulo', '●'], ['cuadrado', '■'], ['rombo', '◆'], ['cruz', '+'], ['anillo', '○']]);
-    if (l.kind === 'texto') h += TA('txt', 'Texto') + SEG('tstyle', 'Estilo', TSN) + R('tsz', 'Tamaño', 30, 300, 1, '%') + R('tw', 'Ancho', 20, 100, 1, '%') + AL + ANC + CK('up', 'Mayúsculas') + CK('brk', 'Primer párrafo entre [ ]') + CK('vert', 'Vertical, de abajo hacia arriba (rótulo de borde)') + R('hll', 'Línea en acento', 0, 12, 1) + '</div>' +
+    if (l.kind === 'texto') h += TA('txt', 'Texto') + SEG('tstyle', 'Estilo', TSN) + R('tsz', 'Tamaño', 30, 300, 1, '%') + R('tw', 'Ancho', 20, 100, 1, '%') + AL + ANC + (TS[l.tstyle] && TS[l.tstyle][5] ? '' : CK('up', 'Mayúsculas')) + CK('brk', 'Primer párrafo entre [ ]') + CK('vert', 'Vertical, de abajo hacia arriba (rótulo de borde)') + R('hll', 'Línea en acento', 0, Math.max(1, String(l.txt || '').split('\n').length), 1) + '</div>' +
       `<div class="sec"><h3>Color</h3>${PAL('color', 'Color')}${PAL('colA', 'Acento')}${MIX}</div>`;
-    else if (l.kind === 'matriz') h += TA('txt', 'Cifras') + `<p class="hint">Matriz de 5 × 7 puntos: 0–9, A–Z, Λ y – . : · / # + ? ¿ ! %. Las vocales con tilde y la Ñ llevan marca arriba.</p>` + R('mc', 'Celda', 1, 9, .1, '%') + R('md', 'Punto', 40, 100, 1, '%') + R('mlg', 'Entre líneas', 0, 8, .5) + R('tw', 'Ancho', 20, 100, 1, '%') + CK('zig', 'Escalonado: líneas pares a la izquierda, impares a la derecha') + CK('lam', 'Dibujar la A como Λ (sin travesaño)') + AL + ANC + R('mhl', 'Línea en acento', 0, 8, 1) + '</div>' +
+    else if (l.kind === 'matriz') h += TA('txt', 'Cifras') + `<p class="hint">Matriz de 5 × 7 puntos: 0–9, A–Z, Λ y – . : · / # + ? ¿ ! %. Las vocales con tilde y la Ñ llevan marca arriba.</p>` + R('mc', 'Celda', 1, 9, .1, '%') + R('md', 'Punto', 40, 100, 1, '%') + R('mlg', 'Entre líneas', 0, 8, .5) + R('tw', 'Ancho', 20, 100, 1, '%') + CK('zig', 'Escalonado: líneas pares a la izquierda, impares a la derecha') + CK('lam', 'Dibujar la A como Λ (sin travesaño)') + AL + ANC + R('mhl', 'Línea en acento', 0, Math.max(1, String(l.txt || '').split('\n').length), 1) + '</div>' +
       `<div class="sec"><h3>Color</h3>${DOT}${PAL('color', 'Color')}${PAL('colA', 'Acento')}${MIX}</div>`;
     else if (l.kind === 'trazo') h += `<p class="hint">Curva entre dos puntos, en % del lienzo. Arrastra sobre el lienzo para mover toda la trayectoria.</p>` + R('x1', 'Inicio X', -20, 120, 1, '%') + R('y1', 'Inicio Y', -20, 120, 1, '%') + R('x2', 'Fin X', -20, 120, 1, '%') + R('y2', 'Fin Y', -20, 120, 1, '%') + R('curv', 'Curvatura', -100, 100, 1) + '</div>' +
       `<div class="sec"><h3>Puntos y foco</h3>` + CK('tpath', 'Mostrar la ruta de puntos') + R('tstep', 'Separación', 8, 60, 1) + R('tdot', 'Punto', 1, 10, .2) + R('base', 'Opacidad ruta', 0, 100, 1, '%') + R('fu', 'Foco en', 0, 100, 1, '%') + R('fr', 'Radio foco', 4, 40, 1) + R('rn', 'Anillos', 0, 6, 1) + CK('tri', 'Triángulo de puntos bajo el foco') + '</div>' +
@@ -1227,7 +1227,14 @@ function props() {
     if (k === 'lockup' && (l.lockup === 'naveP' || l.lockup === 'naveH')) l.colC = l.colW;
     props(); layerList(); redraw();
   });
-  p.querySelectorAll('[data-t]').forEach(inp => inp.oninput = () => { l[inp.dataset.t] = inp.value; redraw(); });
+  p.querySelectorAll('[data-t]').forEach(inp => inp.oninput = () => {
+    l[inp.dataset.t] = inp.value;
+    if (inp.dataset.t === 'txt' && (l.kind === 'texto' || l.kind === 'matriz')) {
+      const k = l.kind === 'texto' ? 'hll' : 'mhl', sl = $('#p-' + k), n = Math.max(1, inp.value.split('\n').length);
+      if (sl) { sl.max = n; if (+sl.value > n) { sl.value = n; l[k] = n; } sl.nextElementSibling.textContent = sl.value; }
+    }
+    redraw();
+  });
   p.querySelectorAll('[data-pal]').forEach(g => g.onclick = (e) => { const b = e.target.closest('button'); if (!b) return; l[g.dataset.pal] = b.dataset.v; props(); layerList(); redraw(); });
   p.querySelectorAll('[data-ck]').forEach(c => c.onchange = () => { l[c.dataset.ck] = c.checked; if (c.dataset.ck === 'ign' || (l.kind === 'grafico' && c.dataset.ck === 'labels')) props(); redraw(); });
   $('#p-name').oninput = (e) => { l.name = e.target.value; layerList(); persist(); };
@@ -1243,7 +1250,7 @@ function ui() { layerList(); props(); redraw(); }
 let saveT = 0;
 const hist = [], MAXH = 60; let hi = -1;
 const snap = () => JSON.stringify(recipe(false));
-function updUndo() { $('#b-undo').disabled = !(hi > 0 || saveT); $('#b-redo').disabled = !(hi < hist.length - 1); }
+function updUndo() { $('#b-undo').disabled = !(hi > 0 || (saveT && hist[hi] && snap() !== hist[hi].s)); $('#b-redo').disabled = !(hi < hist.length - 1); }
 function commit() {
   clearTimeout(saveT); saveT = 0; const s = snap();
   try { localStorage.setItem('nave-trama', s); } catch (e) {}
